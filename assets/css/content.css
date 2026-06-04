@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════
-   CONTENT BLOCKS — additions to style.css
+   CONTENT BLOCKS - additions to style.css
    Carrossel, callout, vídeo, código, imagens
 ══════════════════════════════════════ */
 
@@ -305,16 +305,16 @@
 }
 
 /* ══════════════════════════════════════
-   DETAIL PAGES — layout centrado
+   DETAIL PAGES - layout centrado
 ══════════════════════════════════════ */
-/* Tags na sidebar — wrap para não saírem fora */
+/* Tags na sidebar - wrap para não saírem fora */
 .detail-info-row div {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
 }
 
-/* Hero decorativo — texto à direita */
+/* Hero decorativo - texto à direita */
 .page-hero { overflow: hidden; }
 .page-hero-bg {
   position: absolute;
@@ -335,12 +335,12 @@
    SPACING & VISUAL FIXES
 ══════════════════════════════════════ */
 
-/* Posts em destaque — espaço entre eles */
+/* Posts em destaque - espaço entre eles */
 .blog-featured {
   gap: 24px;
 }
 
-/* Cards de projecto — espaço entre eles */
+/* Cards de projecto - espaço entre eles */
 .projects-grid,
 .projects-grid-full,
 .related-projects {
@@ -348,17 +348,17 @@
   background: transparent;
 }
 
-/* Cards de blog — espaço consistente */
+/* Cards de blog - espaço consistente */
 .blog-grid {
   gap: 24px;
 }
 
-/* Thumb sem imagem nos projetos — fundo com placeholder SVG */
+/* Thumb sem imagem nos projetos - fundo com placeholder SVG */
 .project-thumb {
   background: var(--surface);
 }
 
-/* Múltiplas categorias no card — espaço entre tags */
+/* Múltiplas categorias no card - espaço entre tags */
 .blog-meta {
   display: flex;
   align-items: center;
@@ -369,10 +369,10 @@
   margin-left: 0;
 }
 /* ══════════════════════════════════════
-   MEDIA EM FALTA — posts e projectos
+   MEDIA EM FALTA - posts e projectos
 ══════════════════════════════════════ */
 
-/* Stack e category tags na sidebar — wrap e cor */
+/* Stack e category tags na sidebar - wrap e cor */
 .detail-info-row div {
   display: flex;
   flex-wrap: wrap;
@@ -410,7 +410,7 @@
 .carousel-slide.slide-missing img { display: none; }
 
 .carousel-slide.slide-missing::before {
-  content: '🖼️  Esta imagem não existe — verifica o caminho no .md';
+  content: '🖼️  Esta imagem não existe. Verifica o caminho no .md';
   display: flex;
   align-items: center;
   justify-content: center;
@@ -429,7 +429,7 @@
 .video-wrap.video-missing video { display: none; }
 
 .video-wrap.video-missing::before {
-  content: '🎬  Vídeo não encontrado — para YouTube ou Vimeo usa o bloco :::video';
+  content: '🎬  Vídeo não encontrado. Para YouTube ou Vimeo usa o bloco :::video';
   position: absolute;
   inset: 0;
   display: flex;
