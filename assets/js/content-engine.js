@@ -38,7 +38,7 @@ function parseFrontmatter(raw) {
   return { meta, body: match[2] };
 }
 
-/* ── Categorias — suporta string, "Cat1, Cat2" ou array ── */
+/* ── Categorias - suporta string, "Cat1, Cat2" ou array ── */
 function getCategories(meta) {
   if (!meta.category) return [];
   if (Array.isArray(meta.category)) return meta.category;
@@ -126,6 +126,59 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
+}
+
+function setMetaTag(selector, attr, value) {
+  if (!value) return;
+  let tag = document.head.querySelector(selector);
+  if (!tag) {
+    tag = document.createElement('meta');
+    const nameMatch = selector.match(/meta\[name="([^"]+)"\]/);
+    const propertyMatch = selector.match(/meta\[property="([^"]+)"\]/);
+    if (nameMatch) tag.setAttribute('name', nameMatch[1]);
+    if (propertyMatch) tag.setAttribute('property', propertyMatch[1]);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute(attr, value);
+}
+
+function setCanonical(url) {
+  if (!url) return;
+  let link = document.head.querySelector('link[rel="canonical"]');
+  if (!link) {
+    link = document.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    document.head.appendChild(link);
+  }
+  link.setAttribute('href', url);
+}
+
+function setStructuredData(id, data) {
+  let script = document.getElementById(id);
+  if (!script) {
+    script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = id;
+    document.head.appendChild(script);
+  }
+  script.textContent = JSON.stringify(data);
+}
+
+// Mantém as páginas dinâmicas com metadata própria depois de carregar Markdown.
+function updateDynamicSeo({ title, description, url, image, type = 'article', structuredData }) {
+  const fullTitle = title ? `${title} | Tiago Cabaça` : 'Tiago Cabaça';
+  document.title = fullTitle;
+  setMetaTag('meta[name="description"]', 'content', description);
+  setCanonical(url);
+  setMetaTag('meta[property="og:type"]', 'content', type);
+  setMetaTag('meta[property="og:title"]', 'content', fullTitle);
+  setMetaTag('meta[property="og:description"]', 'content', description);
+  setMetaTag('meta[property="og:url"]', 'content', url);
+  setMetaTag('meta[property="og:image"]', 'content', image);
+  setMetaTag('meta[name="twitter:title"]', 'content', fullTitle);
+  setMetaTag('meta[name="twitter:description"]', 'content', description);
+  setMetaTag('meta[name="twitter:image"]', 'content', image);
+  if (structuredData) setStructuredData('dynamic-structured-data', structuredData);
 }
 
 /* ── Markdown ── */
@@ -323,7 +376,32 @@ async function loadBlogPost() {
   try {
     const raw = await fetchMD(`content/posts/${id}.md`);
     const { meta, body } = parseFrontmatter(raw);
-    document.title = `${meta.title} — Tiago Cabaça`;
+    // Usa o frontmatter do post para alimentar previews e dados estruturados.
+    const postUrl = `https://cabacatech.com/pages/blog-post.html?id=${encodeURIComponent(id)}`;
+    const postImage = meta.cover
+      ? new URL(meta.cover, 'https://cabacatech.com/').href
+      : 'https://res.cloudinary.com/ddmoo3e4n/image/upload/c_fill,g_face,z_0.85,w_1200,h_630,q_auto/f_auto/v1780519074/Ganda_foto_doocur.jpg';
+    updateDynamicSeo({
+      title: meta.title,
+      description: meta.desc || 'Artigo de Tiago Cabaça sobre desenvolvimento web, tecnologia e projetos pessoais.',
+      url: postUrl,
+      image: postImage,
+      type: 'article',
+      structuredData: {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        '@id': `${postUrl}#article`,
+        url: postUrl,
+        headline: meta.title,
+        description: meta.desc || '',
+        image: postImage,
+        author: { '@id': 'https://cabacatech.com/#person' },
+        publisher: { '@id': 'https://cabacatech.com/#person' },
+        datePublished: meta.date || undefined,
+        inLanguage: 'pt-PT',
+        mainEntityOfPage: postUrl
+      }
+    });
 
     const hero = document.getElementById('post-hero');
     if (hero) {
@@ -439,7 +517,31 @@ async function loadProjectDetail() {
   try {
     const raw = await fetchMD(`content/projects/${id}.md`);
     const { meta, body } = parseFrontmatter(raw);
-    document.title = `${meta.title} — Tiago Cabaça`;
+    // Usa o frontmatter do projeto para alimentar previews e dados estruturados.
+    const projectUrl = `https://cabacatech.com/pages/project-detail.html?id=${encodeURIComponent(id)}`;
+    const projectImage = meta.cover
+      ? new URL(meta.cover, 'https://cabacatech.com/').href
+      : 'https://res.cloudinary.com/ddmoo3e4n/image/upload/c_fill,g_face,z_0.85,w_1200,h_630,q_auto/f_auto/v1780519074/Ganda_foto_doocur.jpg';
+    updateDynamicSeo({
+      title: meta.title,
+      description: meta.desc || 'Projeto de Tiago Cabaça com contexto, stack técnica e decisões de desenvolvimento.',
+      url: projectUrl,
+      image: projectImage,
+      type: 'article',
+      structuredData: {
+        '@context': 'https://schema.org',
+        '@type': 'CreativeWork',
+        '@id': `${projectUrl}#project`,
+        url: projectUrl,
+        name: meta.title,
+        description: meta.desc || '',
+        image: projectImage,
+        creator: { '@id': 'https://cabacatech.com/#person' },
+        keywords: Array.isArray(meta.stack) ? meta.stack.join(', ') : undefined,
+        dateCreated: meta.year || undefined,
+        inLanguage: 'pt-PT'
+      }
+    });
 
     const hero = document.getElementById('project-hero');
     if (hero) {
@@ -533,7 +635,7 @@ async function loadIndexPreviews() {
 }
 
 /* ══════════════════════════════════════
-   FILTROS — suporta múltiplas categorias
+   FILTROS - suporta múltiplas categorias
 ══════════════════════════════════════ */
 function buildFilters(items, type) {
   const bar = document.getElementById(`${type}-filters`);

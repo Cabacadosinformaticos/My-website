@@ -1,0 +1,37 @@
+# CabacaTech
+
+CabacaTech is the personal website and portfolio of Tiago Cabaça.
+
+## About Tiago Cabaça
+
+Tiago Cabaça is a developer and informatics student based in Lisbon, Portugal. He studies computer engineering and management informatics at IADE, works on web development projects, and is available for freelance work.
+
+He builds websites, web apps, APIs, technical tools and open source projects. His main technologies include JavaScript, TypeScript, React, Node.js, Python, Kotlin, SQL and Git.
+
+## Main pages
+
+- Home: https://cabacatech.com/
+- About: https://cabacatech.com/pages/about.html
+- Projects: https://cabacatech.com/pages/projects.html
+- Services: https://cabacatech.com/pages/services.html
+- Blog: https://cabacatech.com/pages/blog.html
+- Contact: https://cabacatech.com/pages/contact.html
+- Uses: https://cabacatech.com/pages/uses.html
+
+## Projects
+
+- PSP Lisboa App: Android application project related to PSP Lisboa.
+- Track Manager: open source web app for managing audio and subtitle tracks in video files, using React, TypeScript, FastAPI, Python, FFmpeg and MKVToolNix.
+- Africana Virtual Airways: full stack flight booking platform with search, seat selection, PNR and administration backoffice.
+- Xplored: Android project created in an academic context.
+
+## Services
+
+Tiago Cabaça offers freelance services in web development, UI/UX design, technical consulting, performance optimization and technical SEO.
+
+## Contact
+
+Preferred contact: tiagocabaca@proton.me
+
+GitHub: https://github.com/Cabacadosinformaticos
+Reddit: https://www.reddit.com/u/TiagoCabaca007

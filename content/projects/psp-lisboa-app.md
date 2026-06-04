@@ -55,13 +55,13 @@ O mapa de esquadras com todos os filtros foi um dos desafios mais interessantes 
 
 Sete estudantes de Engenharia Informática e Creative Technologies do IADE:
 
-- **Tiago Cabaça** — Lead Developer, UI/UX Designer
-- **André Maleitas** — Firebase e Autenticação
-- **Rodrigo Freire** — Backend Developer
-- **Martim Conceição** — Mapas e Localização
-- **César Rodrigues** — Frontend Developer, QA e Testes
-- **Lucas Nicolau** — Integração de APIs
-- **Sara Santos** — Design Visual e Branding
+- **Tiago Cabaça**: Lead Developer, UI/UX Designer
+- **André Maleitas**: Firebase e Autenticação
+- **Rodrigo Freire**: Backend Developer
+- **Martim Conceição**: Mapas e Localização
+- **César Rodrigues**: Frontend Developer, QA e Testes
+- **Lucas Nicolau**: Integração de APIs
+- **Sara Santos**: Design Visual e Branding
 
 ## O contexto
 
