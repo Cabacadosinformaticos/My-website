@@ -122,6 +122,10 @@
   .about-sidebar-sticky { position: static; }
 
   .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+  .construction-zone::before,
+  .construction-zone::after {
+    width: min(860px, 136%);
+  }
   .project-detail-layout { grid-template-columns: 1fr; }
   .project-detail-sidebar { position: static; }
   .post-layout { grid-template-columns: 1fr; }
@@ -154,6 +158,23 @@
   .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
   .filter-bar { gap: 6px; }
   .form-row { grid-template-columns: 1fr; }
+  .construction-notice {
+    width: calc(100% - 28px);
+    padding: 18px 18px 16px;
+  }
+  .construction-tape {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+  }
+  .construction-notice p {
+    font-size: 12px;
+  }
+  .construction-zone::before,
+  .construction-zone::after {
+    top: 50%;
+    height: 34px;
+    width: 156%;
+  }
   .related-projects { grid-template-columns: 1fr; }
   .not-found-links { flex-direction: column; align-items: center; }
   .author-card { flex-direction: column; }
