@@ -89,6 +89,62 @@ function isVimeo(url)   { return url.includes('vimeo.com'); }
 function getYouTubeId(url) { const m = url.match(/(?:v=|youtu\.be\/)([^&\s]+)/); return m ? m[1] : null; }
 function getVimeoId(url)   { const m = url.match(/vimeo\.com\/(\d+)/); return m ? m[1] : null; }
 
+function parseBlockAttrs(raw = '') {
+  const attrs = {};
+  raw.replace(/(\w+)="([^"]*)"/g, (_, key, value) => {
+    attrs[key] = value;
+    return '';
+  });
+  return attrs;
+}
+
+function renderInnerMarkdown(text) {
+  const html = renderMarkdown(text.trim());
+  return html.replace(/^<p>/, '').replace(/<\/p>\s*$/, '');
+}
+
+function renderCalloutBlock(type, attrText, inner) {
+  const attrs = parseBlockAttrs(attrText);
+  const title = attrs.title || ({
+    callout: 'Nota',
+    info: 'Nota',
+    tip: 'Dica',
+    warning: 'Atencao',
+    danger: 'Cuidado'
+  }[type] || 'Nota');
+  return `<aside class="content-callout content-callout-${type}"><div class="content-callout-kicker">${escapeHtml(title)}</div><div class="content-callout-body">${renderInnerMarkdown(inner)}</div></aside>`;
+}
+
+function renderSpecBlock(attrText, inner) {
+  const attrs = parseBlockAttrs(attrText);
+  const title = attrs.title || 'Especificacoes';
+  const rows = inner.trim().split('\n').map(line => {
+    const col = line.indexOf(':');
+    if (col === -1) return '';
+    const key = line.slice(0, col).trim();
+    const value = line.slice(col + 1).trim();
+    return `<div class="spec-row"><span>${escapeHtml(key)}</span><strong>${escapeHtml(value)}</strong></div>`;
+  }).filter(Boolean).join('');
+  return `<section class="spec-card"><h3>${escapeHtml(title)}</h3><div class="spec-grid">${rows}</div></section>`;
+}
+
+function renderResourceBlock(attrText, inner) {
+  const attrs = parseBlockAttrs(attrText);
+  const title = attrs.title || 'Recurso';
+  const url = attrs.url || '#';
+  const label = attrs.label || 'Abrir recurso';
+  const body = inner.trim() ? `<p>${renderInnerMarkdown(inner)}</p>` : '';
+  return `<aside class="resource-card"><div><span class="resource-kicker">Recurso recomendado</span><h3>${escapeHtml(title)}</h3>${body}</div><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a></aside>`;
+}
+
+function renderImagePlaceholder(attrText, inner) {
+  const attrs = parseBlockAttrs(attrText);
+  const title = attrs.title || 'Imagem a adicionar';
+  const ratio = attrs.ratio || '16:9';
+  const desc = attrs.desc || inner.trim() || 'Substituir este placeholder por uma imagem final.';
+  return `<figure class="image-placeholder" style="--placeholder-ratio:${escapeHtml(ratio.replace(':', ' / '))}"><div><span>Imagem pendente</span><strong>${escapeHtml(title)}</strong><p>${escapeHtml(desc)}</p></div></figure>`;
+}
+
 /* ── Blocos especiais ── */
 function processBlocks(md) {
   const fences = [];
@@ -104,8 +160,20 @@ function processBlocks(md) {
     const dots   = images.map((_, i) => `<button class="carousel-dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="Slide ${i + 1}"></button>`).join('');
     return `<div class="carousel" data-total="${images.length}"><div class="carousel-track">${slides}</div><button class="carousel-prev" aria-label="Anterior">&#8592;</button><button class="carousel-next" aria-label="Próximo">&#8594;</button><div class="carousel-dots">${dots}</div></div>`;
   });
-  md = md.replace(/:::callout\n([\s\S]*?):::/g, (_, inner) =>
-    `<div class="callout"><span class="callout-icon">💡</span><div class="callout-body">${inner.trim()}</div></div>`
+  md = md.replace(/:::(callout|info|tip|warning|danger)([^\n]*)\n([\s\S]*?):::/g, (_, type, attrText, inner) =>
+    renderCalloutBlock(type, attrText, inner)
+  );
+  md = md.replace(/:::specs([^\n]*)\n([\s\S]*?):::/g, (_, attrText, inner) =>
+    renderSpecBlock(attrText, inner)
+  );
+  md = md.replace(/:::resource([^\n]*)\n([\s\S]*?):::/g, (_, attrText, inner) =>
+    renderResourceBlock(attrText, inner)
+  );
+  md = md.replace(/:::decision([^\n]*)\n([\s\S]*?):::/g, (_, attrText, inner) =>
+    renderCalloutBlock('info', attrText || ' title="Decisao tecnica"', inner)
+  );
+  md = md.replace(/:::image-placeholder([^\n]*)\n([\s\S]*?):::/g, (_, attrText, inner) =>
+    renderImagePlaceholder(attrText, inner)
   );
   md = md.replace(/:::video\n([\s\S]*?):::/g, (_, inner) => {
     const url = inner.trim();
