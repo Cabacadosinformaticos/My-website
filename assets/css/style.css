@@ -1254,9 +1254,14 @@ footer {
   gap: 64px;
   align-items: start;
 }
+.project-content,
+.post-body {
+  min-width: 0;
+}
 .project-detail-sidebar {
   position: sticky;
   top: calc(var(--nav-h) + 32px);
+  min-width: 0;
 }
 .detail-info-card {
   background: var(--surface);
@@ -1363,7 +1368,11 @@ footer {
   gap: 64px;
   align-items: start;
 }
-.post-sidebar { position: sticky; top: calc(var(--nav-h) + 32px); }
+.post-sidebar {
+  position: sticky;
+  top: calc(var(--nav-h) + 32px);
+  min-width: 0;
+}
 .post-toc {
   background: var(--surface);
   border: 1px solid var(--border);

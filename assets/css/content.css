@@ -269,6 +269,7 @@
   border: 1px solid var(--border2);
   border-radius: var(--radius);
   overflow: hidden;
+  max-width: 100%;
 }
 .code-title {
   font-family: var(--font-mono);
@@ -286,6 +287,7 @@
 }
 .post-body pre,
 .project-content pre {
+  max-width: 100%;
   background: var(--surface);
   border: 1px solid var(--border2);
   padding: 20px;
@@ -367,6 +369,9 @@
 .post-body table,
 .project-content table {
   width: 100%;
+  max-width: 100%;
+  display: block;
+  overflow-x: auto;
   border-collapse: collapse;
   margin: 24px 0;
   font-size: 13px;
