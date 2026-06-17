@@ -41,6 +41,46 @@ Referência da Intel para processamento e aceleração de vídeo por hardware.
 Separei a MediaBox porque vídeo e storage têm necessidades diferentes de um servidor de Minecraft. O Servidorzinho fica com serviços gerais e CPU. A MediaBox fica com transcodificação, ficheiros e experiências de NAS.
 :::
 
+## Arquitetura da MediaBox
+
+A MediaBox tem uma função mais especializada do que o Servidorzinho. O host Proxmox serve como base, mas o interesse está nas duas camadas principais: media e storage.
+
+```text title="visão lógica"
+Lenovo ThinkPad M90Q
+  -> Proxmox VE 9.2.1
+       -> VM TrueNAS Scale
+            -> Disco externo de 10 TB por passthrough USB
+            -> Partilhas, permissões e datasets
+       -> Serviço Jellyfin
+            -> Biblioteca de media
+            -> Transcodificação com Intel Quick Sync
+```
+
+O objetivo é que o Jellyfin consuma media a partir de storage organizado, e que a parte de storage esteja separada o suficiente para eu poder aprender TrueNAS sem misturar tudo diretamente no host.
+
+:::warning title="Ainda é um setup em evolução"
+Esta arquitetura ainda não é a versão final. A parte de NAS é experimental e existe para aprender, não para fingir que um disco USB único é uma solução profissional.
+:::
+
+## O que é transcoding na prática
+
+Transcoding é o processo de converter um ficheiro de media para outro formato, resolução, bitrate ou codec enquanto ele está a ser reproduzido. Isto acontece quando o dispositivo cliente não consegue reproduzir o ficheiro original diretamente, ou quando a ligação disponível não aguenta o ficheiro original.
+
+Exemplos simples:
+
+| Situação | O que pode acontecer |
+|---|---|
+| TV não suporta o codec do ficheiro | Jellyfin converte para um formato compatível |
+| Acesso remoto com pouca largura de banda | Jellyfin baixa bitrate ou resolução |
+| Legendas obrigam a queimar texto no vídeo | Jellyfin gera uma nova stream com legendas |
+| Cliente suporta o ficheiro original | Direct Play, sem transcoding |
+
+O ideal é sempre Direct Play, porque o servidor quase não trabalha. Mas quando isso não é possível, Quick Sync evita que o CPU tenha de fazer tudo sozinho.
+
+:::tip title="Objetivo de performance"
+O melhor media server não é aquele que transcodifica tudo. É aquele que transcodifica quando precisa e faz Direct Play quando pode.
+:::
+
 ## Jellyfin como serviço de media
 
 Um dos serviços que mais queria montar era uma espécie de Netflix pessoal. Para isso escolhi Jellyfin, uma solução open source para organizar e ver filmes, séries, música, livros e outros conteúdos a partir da nossa própria infraestrutura.
@@ -52,6 +92,46 @@ Jellyfin é o serviço que estou a usar para gerir e reproduzir a minha bibliote
 A parte boa é a liberdade: não há subscrições, não há catálogo a desaparecer de um mês para o outro e os dados ficam em casa. A parte menos boa é que tudo passa a ser responsabilidade minha: instalação, configuração, troubleshooting, storage, backups e organização.
 
 :::image-placeholder title="Dashboard do Jellyfin" desc="Screenshot do Jellyfin com biblioteca de teste ou dados privados ocultados." ratio="16:9"
+:::
+
+## Organização do Jellyfin
+
+O Jellyfin depende muito da organização dos ficheiros. A tecnologia ajuda, mas se a biblioteca estiver caótica, a experiência fica má. O plano é separar bibliotecas por tipo de conteúdo e manter nomes previsíveis.
+
+Um modelo simples seria:
+
+```text title="estrutura de media"
+/media
+  /filmes
+    /Nome do Filme (Ano)
+      Nome do Filme (Ano).mkv
+  /series
+    /Nome da Serie
+      /Season 01
+        Nome da Serie S01E01.mkv
+  /musica
+  /livros
+```
+
+Isto facilita o scraping de metadata, evita falsos positivos e torna mais simples migrar ou reconstruir a biblioteca se for preciso.
+
+Também quero separar a biblioteca de media dos dados internos do Jellyfin. Os ficheiros de media devem estar no storage partilhado. A configuração do Jellyfin, utilizadores, metadata e cache devem ser tratados como dados de aplicação.
+
+## Quick Sync e limites reais
+
+Ter Intel Quick Sync não significa que tudo fica automaticamente perfeito. Há várias coisas que influenciam a performance:
+
+- Codec de origem e destino.
+- Resolução, especialmente 4K.
+- Bitrate do ficheiro original.
+- Legendas, sobretudo quando precisam de ser queimadas no vídeo.
+- Número de streams ao mesmo tempo.
+- Velocidade do storage.
+- Rede entre cliente, Jellyfin e ficheiros.
+
+A iGPU ajuda imenso, mas não elimina a necessidade de escolher formatos razoáveis e perceber quando o servidor está a fazer Direct Play ou Transcode.
+
+:::image-placeholder title="Jellyfin com informação de playback" desc="Screenshot de uma reprodução onde se veja Direct Play ou Transcode, com nomes de ficheiros ocultados." ratio="16:9"
 :::
 
 ## O problema real: espaço
@@ -71,6 +151,24 @@ Um único disco externo por USB não dá redundância e pode trazer riscos de co
 :::
 
 :::image-placeholder title="Disco externo de 10 TB" desc="Foto do Seagate Expansion ligado à MediaBox, mostrando a ligação USB e fonte externa." ratio="4:3"
+:::
+
+## Limitações do disco USB
+
+O disco externo resolveu o problema de entrada, mas trouxe limitações técnicas claras:
+
+| Limitação | Porque importa |
+|---|---|
+| Sem redundância | Se o disco falhar, os dados vão com ele |
+| Ligação USB | Pode ser menos estável do que SATA ou SAS |
+| Um único disco | Sem distribuição de carga entre discos |
+| Caixa externa | Mais uma fonte, cabo e ponto físico de falha |
+| Crescimento limitado | Quando encher, a expansão não é elegante |
+
+Para experimentar, serve. Para dados únicos e importantes, não chega. A diferença entre "storage grande" e "storage seguro" é uma das lições mais importantes deste projeto.
+
+:::danger title="Capacidade não é resiliência"
+10 TB parecem muito, mas continuam a ser um único ponto de falha. Um disco grande sem backup é só uma perda grande à espera de acontecer.
 :::
 
 ## TrueNAS Scale em VM
@@ -95,11 +193,71 @@ A VM tem 16 GB de RAM porque o TrueNAS tira partido de memória para cache e por
 :::image-placeholder title="TrueNAS Scale" desc="Screenshot do TrueNAS com pools, shares e nomes sensíveis ocultados." ratio="16:9"
 :::
 
+## Passthrough do disco
+
+A ideia do passthrough é dar à VM acesso direto ao disco externo, em vez de criar um disco virtual por cima do storage do Proxmox. Isto é importante porque o TrueNAS deve gerir o storage que vai servir.
+
+O modelo conceptual é:
+
+```text title="storage path"
+Disco USB 10 TB
+  -> Proxmox identifica o dispositivo
+       -> Dispositivo passado para a VM TrueNAS
+            -> TrueNAS cria pool e datasets
+                 -> Partilhas para serviços e utilizadores
+```
+
+Isto evita uma camada desnecessária de abstração, mas não transforma USB numa ligação ideal. O TrueNAS pode gerir o disco, mas continua dependente da estabilidade física e lógica da ligação USB.
+
+:::warning title="Passthrough não remove o risco do USB"
+Passar o disco diretamente para a VM melhora o controlo do TrueNAS sobre o dispositivo, mas a ligação continua a ser USB. Cabo, caixa externa e energia continuam a importar.
+:::
+
+## Datasets, permissões e partilhas
+
+Ainda estou a explorar esta parte, mas a estrutura que faz sentido é separar dados por uso. Não quero uma única pasta gigante onde tudo vive ao mesmo nível.
+
+Um modelo possível:
+
+```text title="datasets planeados"
+pool_media
+  /media
+    /filmes
+    /series
+    /musica
+  /backups
+  /transferencias
+  /testes
+```
+
+Esta separação ajuda em permissões, snapshots, limpeza e futuras migrações. A pasta de media pode ter regras diferentes da pasta de backups. Uma área de testes pode ser apagada sem tocar no resto.
+
+As permissões são a parte onde quero ter mais cuidado. É fácil resolver tudo com permissões largas, mas isso cria problemas quando vários serviços ou utilizadores começam a escrever no mesmo storage.
+
+:::tip title="Organização antes de automação"
+Antes de automatizar downloads, renames ou imports, quero garantir que datasets e permissões fazem sentido. Automação por cima de storage mal organizado só espalha a confusão mais depressa.
+:::
+
 ## Cuidados físicos
 
 O disco e o servidor estão num local separado e estável. Uma das minhas preocupações era vibração. Discos mecânicos modernos são bastante resistentes, mas continuam a ser dispositivos físicos com peças móveis.
 
 O disco tem fonte própria, não depende da alimentação USB, e está ligado a uma porta SuperSpeed do M90Q. Antes de começar a usar, fiz testes de velocidade dentro do Proxmox para confirmar que a ligação era suficiente para o uso pretendido.
+
+## Pontos de monitorização
+
+Para este servidor, as métricas que me interessam são diferentes das do Servidorzinho:
+
+| Área | O que observar |
+|---|---|
+| CPU | Picos quando há transcode sem aceleração |
+| iGPU | Se Quick Sync está realmente a ser usado |
+| RAM | Cache do TrueNAS e consumo do Jellyfin |
+| Disco USB | Erros, desconexões e performance |
+| Rede | Throughput ao servir ficheiros grandes |
+| Storage livre | Crescimento da biblioteca |
+
+Se o Jellyfin estiver lento, a causa pode não ser o Jellyfin. Pode ser transcode em CPU, storage lento, rede fraca, metadata a atualizar ou permissões erradas no caminho da biblioteca.
 
 ## Estado atual
 
