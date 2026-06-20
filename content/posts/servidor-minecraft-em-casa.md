@@ -3,7 +3,7 @@ title: Ter um servidor de Minecraft em casa é mais trabalhoso do que parece
 desc: Entre AMP, mods, Docker, updates e amigos à espera, montar um servidor de Minecraft próprio acabou por ser uma escola de administração de sistemas.
 category: [Minecraft, Homelab, Servidores]
 date: Jun 2026
-readTime: 9 min
+readTime: 13 min
 cover: ""
 ---
 
@@ -15,6 +15,21 @@ Claro que não foi assim tão simples.
 
 :::image-placeholder title="Servidor de Minecraft" desc="Screenshot de um mundo de Minecraft ou da lista de servidores, sem IP público visível." ratio="16:9"
 :::
+
+## O problema dos servidores modded
+
+Minecraft vanilla já tem os seus detalhes, mas servidores com mods mudam completamente a conversa. Um modpack pesado não é só "Minecraft com mais coisas". É uma coleção de código de várias origens, versões e dependências, tudo a tentar correr em conjunto.
+
+Isto cria problemas muito próprios:
+
+- Mods que só funcionam numa versão específica.
+- Clientes e servidor que precisam de estar alinhados.
+- Mundo que fica preso a uma versão ou conjunto de mods.
+- Mais uso de RAM.
+- Arranques mais lentos.
+- Mais hipóteses de conflito depois de updates.
+
+Quando um amigo só quer entrar e jogar, nada disto interessa. Mas quando és tu que manténs o servidor, cada uma destas coisas passa a importar.
 
 ## A base técnica
 
@@ -30,6 +45,8 @@ Gestor: AMP da CubeCoders
 
 Pode parecer muito, e é. Mas muitos dos servidores que quero correr usam modpacks pesados, alguns com mais de 50 mods. Preferi dar margem à VM e depois ir ajustando se fosse preciso.
 
+O mais importante para mim não era usar o mínimo possível. Era evitar que o servidor ficasse sem margem durante geração de chunks, arranque de modpacks ou picos com vários jogadores. Um servidor de jogo pode estar calmo 90% do tempo e mesmo assim precisar de respirar nos outros 10%.
+
 ## O papel do AMP
 
 Para gerir os servidores uso o AMP, da CubeCoders. Ele dá-me uma dashboard web onde posso criar instâncias, gerir ficheiros, mudar versões, configurar permissões e controlar recursos.
@@ -41,6 +58,8 @@ Para gerir os servidores uso o AMP, da CubeCoders. Ele dá-me uma dashboard web 
 O AMP é uma daquelas ferramentas que, quando funciona bem, parece magia. Crio uma instância, entro no painel, configuro a versão, mexo nos ficheiros e sigo a vida.
 
 O problema é quando não funciona bem. Aí começa a parte divertida, ou irritante, dependendo da hora.
+
+Mesmo assim, prefiro isto a gerir tudo à mão. O AMP dá-me uma forma visual de separar servidores, controlar recursos e dar acesso a outras pessoas sem lhes entregar a VM inteira.
 
 ## Instâncias, containers e camadas
 
@@ -61,6 +80,20 @@ Isto é bom porque separa os mundos. Cada servidor pode ter a sua versão, mods 
 
 :::image-placeholder title="Painel de instâncias do AMP" desc="Screenshot do AMP com nomes dos mundos e utilizadores ocultados." ratio="16:9"
 :::
+
+## O que pode correr mal
+
+Quando uma instância não arranca, a causa pode estar em vários sítios:
+
+| Sintoma | Possível causa |
+|---|---|
+| Servidor não aparece online | Instância parada, porta errada ou container em erro |
+| Erro ao ligar ao container | Problema no Docker ou na instância do AMP |
+| Crash durante arranque | Mod incompatível, falta de RAM ou ficheiro corrompido |
+| Jogadores não conseguem entrar | Versão do cliente diferente ou autenticação |
+| Lag forte | CPU, RAM, geração de chunks ou modpack pesado |
+
+Isto ensinou-me a não assumir logo que "o servidor está partido". Às vezes é só um mod. Às vezes é rede. Às vezes é uma atualização a meio. Às vezes é a camada por baixo.
 
 ## Updates: o inimigo natural da paz
 
@@ -84,6 +117,19 @@ O primeiro comando atualiza o script de instalação do AMP. O segundo muda para
 Especialmente em servidores com mods, nunca assumas que um update vai correr bem. Um backup antes de mexer pode salvar horas de frustração.
 :::
 
+## A rotina que quero melhorar
+
+O ideal, antes de qualquer update grande, seria ter uma rotina mais disciplinada:
+
+1. Avisar quem usa o servidor.
+2. Fazer backup do mundo.
+3. Confirmar espaço livre na VM.
+4. Atualizar AMP e instâncias.
+5. Testar uma instância de cada vez.
+6. Confirmar logs antes de dizer que está tudo pronto.
+
+Ainda não trato isto como um serviço profissional, mas quanto mais pessoas dependem do servidor, mais sentido faz ter um processo previsível.
+
 ## Quando só querias jogar
 
 A parte mais cómica é que estes problemas quase sempre aparecem na pior altura. Uma pessoa chega a casa, quer jogar uma hora para descomprimir, abre o launcher e percebe que há updates para fazer.
@@ -93,6 +139,8 @@ Dez minutos depois, o servidor mostra `critical error`.
 Mais dez minutos e aparece qualquer coisa como `cannot connect to the docker container`.
 
 E de repente a sessão de Minecraft virou administração de sistemas.
+
+É frustrante, mas também é exatamente o tipo de problema que ensina. Não há teoria que substitua aquela sensação de ter três pessoas à espera e uma mensagem de erro que não explica nada.
 
 ## O lado bom
 
@@ -107,6 +155,14 @@ Uso Tailscale para acesso privado aos serviços do homelab, incluindo painéis a
 :::warning title="Não publiques painéis administrativos na internet sem proteção"
 Se precisas de aceder ao AMP fora de casa, usa uma abordagem segura. Abrir portas no router para painéis internos pode dar problemas sérios.
 :::
+
+## Porque continuo a preferir isto
+
+Podia pagar por hosting de Minecraft. Provavelmente dava menos trabalho. Mas também aprendia muito menos.
+
+Com isto, controlo a máquina, a VM, o painel, os backups, as permissões e a rede. Quando algo falha, sou obrigado a perceber onde falhou. E quando funciona, sei exatamente o que está a acontecer por baixo.
+
+Para mim, essa é a graça toda.
 
 ## O que isto me ensinou
 

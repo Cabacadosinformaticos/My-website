@@ -3,7 +3,7 @@ title: O lado menos glamoroso de ter servidores em casa
 desc: Updates, DNS, backups, discos, segurança e outras partes pouco bonitas de manter um homelab.
 category: [Homelab, Segurança, Infraestrutura]
 date: Jun 2026
-readTime: 7 min
+readTime: 11 min
 cover: ""
 ---
 
@@ -13,6 +13,14 @@ Mas há uma parte menos glamorosa que aparece depressa: manter tudo isso a funci
 
 :::image-placeholder title="O lado real do setup" desc="Foto do setup com cabos, disco, mini PCs e a parte menos perfeita da infraestrutura." ratio="16:9"
 :::
+
+## A diferença entre montar e manter
+
+Montar um serviço é a parte entusiasmante. Escolher a ferramenta, criar a VM ou LXC, abrir a dashboard pela primeira vez e ver tudo a funcionar dá aquela sensação boa de progresso.
+
+Manter é outra coisa. Manter é lembrar que aquele serviço existe quando há updates. É saber onde estão os dados. É perceber se há backups. É descobrir porque algo que funcionava ontem deixou de funcionar hoje.
+
+Foi essa diferença que o homelab me mostrou mais depressa do que eu esperava.
 
 ## Updates que aparecem na pior altura
 
@@ -32,6 +40,10 @@ Depois `Ctrl + D` para sair do utilizador `amp`.
 Antes de atualizar serviços importantes, convém saber como voltar atrás. Backups e snapshots não são glamour, mas salvam tempo.
 :::
 
+O problema dos updates não é só o comando. É o contexto. Atualizar um serviço isolado é uma coisa. Atualizar algo que tem dados, utilizadores, dependências e hábitos à volta é outra.
+
+No Minecraft, um update pode envolver AMP, containers, mods e versões do cliente. No Jellyfin, pode envolver metadata, permissões e storage. No Proxmox, pode afetar a base onde tudo corre. A palavra "update" parece sempre pequena demais para aquilo que pode implicar.
+
 ## DNS é invisível até falhar
 
 O AdGuard Home é um ótimo exemplo de um serviço pequeno com impacto gigante. Enquanto funciona, ninguém repara. Quando falha, parece que a internet inteira morreu.
@@ -46,6 +58,8 @@ Uso AdGuard Home como DNS local para bloquear tracking, telemetry, malware, phis
 Um LXC com poucos recursos pode ser essencial para a rede toda. Se ele falha, o impacto pode ser maior do que o tamanho do serviço sugere.
 :::
 
+Isto mudou a forma como olho para serviços "simples". O AdGuard Home quase não pesa no servidor, mas está no caminho de todos os dispositivos quando precisam de resolver domínios. É pequeno em recursos, mas grande em impacto.
+
 ## Segurança não é só firewall
 
 Uma das decisões mais importantes foi não expor dashboards administrativos diretamente à internet. Proxmox, AMP, TrueNAS e outros painéis são úteis, mas não precisam de estar abertos ao mundo.
@@ -57,6 +71,8 @@ Uso Tailscale para acesso privado aos serviços do homelab.
 :::
 
 Segurança também é esconder dados em screenshots, usar permissões certas, não partilhar tokens, confirmar scripts antes de executar e não fingir que "é só uma rede doméstica".
+
+Também é separar papéis. Acesso para jogar não é acesso para administrar. Acesso para ver media não é acesso para alterar storage. Acesso por Tailscale não elimina a necessidade de permissões no serviço final.
 
 ## Scripts mágicos são confortáveis, mas perigosos
 
@@ -72,6 +88,8 @@ Projeto comunitário útil para instalar serviços no Proxmox, desde que se leia
 Se um comando vem da internet e corre como root ou com permissões elevadas, ele pode fazer praticamente tudo no sistema. Lê primeiro, executa depois.
 :::
 
+Isto não quer dizer que scripts comunitários sejam maus. Pelo contrário, podem poupar imenso tempo. Mas há uma diferença entre usar uma ferramenta e abdicar de perceber o que ela faz.
+
 ## Storage cresce sempre
 
 Também aprendi que storage é uma armadilha. No início parece que 10 TB é imenso. Depois começas a guardar media, backups, ISOs, snapshots, testes e ficheiros temporários.
@@ -82,6 +100,22 @@ Pior: espaço não é segurança. Um disco de 10 TB continua a ser um único dis
 
 :::image-placeholder title="Storage e NAS experimental" desc="Foto ou diagrama simples do disco externo, MediaBox e VM TrueNAS." ratio="16:9"
 :::
+
+## Monitorizar não é opcional para sempre
+
+No início, dá para ir vendo as coisas à mão. Entrar no Proxmox, abrir dashboards, confirmar espaço e seguir. Mas à medida que há mais serviços, isso deixa de escalar.
+
+Mesmo num homelab pequeno, há sinais que quero acompanhar melhor:
+
+| Sinal | Porque importa |
+|---|---|
+| Espaço livre | Evita serviços a falhar por disco cheio |
+| Uso de RAM | Mostra containers ou VMs mal dimensionados |
+| CPU em pico | Ajuda a perceber lag ou transcode |
+| Estado dos backups | Backup que não correu é quase igual a não existir |
+| Erros de disco | Pode antecipar perda de dados |
+
+Ainda não tenho isto tão bem montado como quero, mas já percebi que "vou vendo" funciona só até ao dia em que não viste.
 
 ## Backups são a parte que ninguém quer fazer
 
@@ -96,6 +130,23 @@ Um backup bom não é só "tenho uma cópia". É saber:
 - Como se restaura.
 - Quanto tempo demora.
 - Quando foi testado pela última vez.
+
+O mais fácil é fazer backup do que é óbvio e esquecer o que dá trabalho. Guardar ficheiros é simples. Guardar configurações, permissões, tokens, listas de serviços e passos de recuperação já exige disciplina.
+
+Para mim, a pergunta certa passou a ser: "se isto morresse hoje, eu saberia reconstruir?" Se a resposta for não, falta documentação ou backup.
+
+## Documentação para mim próprio
+
+Uma coisa que parece exagerada até fazer falta é documentação pessoal. Não documentação bonita para publicar, mas notas simples:
+
+- IPs dos serviços.
+- Onde cada coisa corre.
+- Como foi instalada.
+- Que portas usa.
+- Que dados são importantes.
+- Como se restaura.
+
+Daqui a seis meses, eu já não vou lembrar todos os detalhes. Documentar é uma forma de ajudar o meu futuro eu.
 
 ## O que compensa
 

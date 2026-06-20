@@ -3,7 +3,7 @@ title: Como comecei o meu homelab
 desc: A história de como um achado no OLX virou o início do meu pequeno laboratório de servidores em casa.
 category: [Homelab, Servidores, Pessoal]
 date: Jun 2026
-readTime: 8 min
+readTime: 12 min
 cover: ""
 ---
 
@@ -16,6 +16,22 @@ Eu queria algo compacto, forte e que não me prendesse logo no primeiro mês.
 :::image-placeholder title="Foto inicial do setup" desc="Foto dos dois mini PCs ou do espaço onde o homelab está montado." ratio="16:9"
 :::
 
+## Porque isto me interessava tanto
+
+O que me puxava para a ideia de ter um homelab não era só ter "um servidor". Era ter um sítio meu para aprender coisas que, de outra forma, ficam muito abstratas.
+
+Virtualização parece simples quando se vê num vídeo. DNS parece simples quando tudo funciona. Backups parecem óbvios quando ainda não perdeste nada. Mas quando tens máquinas reais, serviços reais e dados que queres mesmo manter, a conversa muda.
+
+Eu queria um ambiente onde pudesse fazer perguntas práticas:
+
+- O que acontece se uma VM ficar sem espaço?
+- Como separo serviços para não depender tudo da mesma instalação?
+- Como acedo a dashboards fora de casa sem abrir portas à internet?
+- Como recupero se uma atualização partir um serviço?
+- Quanto hardware é realmente necessário para isto?
+
+O homelab nasceu dessa curiosidade. Minecraft foi a desculpa perfeita, mas o objetivo maior era aprender infraestrutura de forma prática.
+
 ## O achado no OLX
 
 O Minisforum MS-A1 era uma daquelas máquinas que eu via e pensava: era perfeito, mas é caro. Tinha o tamanho certo, boa construção e aceitava hardware bastante sério para o formato.
@@ -23,6 +39,8 @@ O Minisforum MS-A1 era uma daquelas máquinas que eu via e pensava: era perfeito
 Um dia, no meio da pesquisa, decidi procurar por "Minisforum" no OLX. Para minha surpresa, estava lá um MS-A1, o mesmo modelo que eu andava a ver, a um preço muito mais interessante. Melhor ainda: vinha com 64 GB de RAM.
 
 Na altura, os preços da RAM estavam a subir bastante, por isso aquilo pareceu mesmo um achado. Não era uma compra pequena, mas era uma oportunidade difícil de ignorar.
+
+O engraçado é que a compra resolveu uma parte do problema e criou outra. Antes, eu estava bloqueado por não ter hardware. Depois, passei a ter uma máquina capaz demais para aquilo que eu sabia fazer na altura. Isso mudou a pergunta de "o que posso correr?" para "como é que organizo isto sem fazer asneira?".
 
 ## Comprar mais do que precisava
 
@@ -36,6 +54,8 @@ Isso levou-me a montar uma máquina com bastante margem:
 - Proxmox como base.
 
 Olhando agora, tenho de admitir que foi um bocado exagerado. Com tudo o que tenho feito, raramente uso uma parte relevante do processador. Mas também é verdade que esta margem me deu liberdade para experimentar sem estar sempre preocupado com limites.
+
+Há aqui uma lição que só percebi depois: comprar hardware com margem é confortável, mas também pode esconder más decisões. Se tens CPU e RAM a mais, é fácil resolver tudo atirando recursos para cima do problema. A parte difícil é perceber se o serviço precisa mesmo desses recursos ou se está mal configurado.
 
 :::specs title="Servidor principal"
 Nome: Servidorzinho
@@ -58,6 +78,8 @@ Para isso acabei por usar uma VM com Debian 13.2.0-amd64 e AMP, da CubeCoders. O
 
 O lado bom é que tudo fica muito mais confortável de gerir. O lado menos bom é que updates continuam a ser updates. Às vezes corre tudo bem. Outras vezes um mundo decide que já não quer arrancar e lá se vai a hora que era para jogar.
 
+Foi aqui que o projeto deixou de ser só "tenho um servidor de Minecraft" e passou a ser "tenho um serviço para manter". A diferença parece pequena, mas não é. Um serviço tem utilizadores, expectativas, atualizações, permissões e dados que não queres perder.
+
 ## O segundo objetivo: aprender
 
 Se fosse só para jogar Minecraft, havia opções mais simples. O que tornou isto interessante foi o resto: Proxmox, VMs, LXCs, DNS, redes privadas, storage, permissões e backups.
@@ -71,6 +93,20 @@ O Proxmox tornou-se o centro do homelab. É onde crio máquinas virtuais, contai
 :::image-placeholder title="Dashboard do Proxmox" desc="Screenshot do Proxmox com dados sensíveis borrados." ratio="16:9"
 :::
 
+## As primeiras decisões que mudaram tudo
+
+As decisões que mais marcaram o setup não foram as peças de hardware. Foram decisões de organização:
+
+| Decisão | Porque importou |
+|---|---|
+| Usar Proxmox | Separar experiências em VMs e LXCs |
+| Não instalar tudo no host | Evitar transformar o servidor numa confusão |
+| Usar Tailscale | Aceder remotamente sem expor dashboards |
+| Separar media noutro servidor | Usar Quick Sync onde faz sentido |
+| Meter DNS local num LXC | Ter um serviço leve e isolado |
+
+Estas escolhas fizeram-me perceber que infraestrutura é muito mais sobre fronteiras do que sobre potência. O importante é saber onde uma coisa começa e outra acaba.
+
 ## Segurança antes da comodidade
 
 Uma coisa que decidi cedo foi evitar expor dashboards diretamente à internet. É tentador abrir uma porta no router e aceder a tudo de fora, mas isso pode trazer riscos sérios.
@@ -81,6 +117,8 @@ Para resolver a parte do acesso remoto, comecei a usar Tailscale. Assim consigo 
 Uso Tailscale para aceder ao homelab através de uma rede privada.
 :::
 
+Esta foi uma das decisões que mais me deixou confortável. Eu queria poder aceder ao Proxmox e ao AMP fora de casa, mas não queria que a solução fosse abrir painéis administrativos ao mundo. Tailscale deu-me uma forma simples de manter essa administração num espaço privado.
+
 ## Depois veio a MediaBox
 
 O segundo servidor apareceu porque o primeiro não era ideal para tudo. O Servidorzinho tem muito CPU, mas para vídeo eu queria Intel Quick Sync. Daí nasceu a MediaBox, um Lenovo ThinkPad M90Q com i5 14500T e Intel UHD Graphics 770.
@@ -89,6 +127,18 @@ A função dela é outra: media, Jellyfin, transcodificação e experiências co
 
 :::image-placeholder title="Servidorzinho e MediaBox" desc="Foto dos dois servidores lado a lado ou nos seus locais finais." ratio="16:9"
 :::
+
+## O que eu faria diferente
+
+Se começasse hoje, faria algumas coisas com mais calma:
+
+- Documentava cada decisão desde o início.
+- Criava uma lista clara de serviços críticos.
+- Pensava em backups antes de pensar em novos serviços.
+- Separava melhor experiências temporárias de serviços que quero manter.
+- Media melhor consumo, temperatura e uso real antes de assumir necessidades.
+
+Não quer dizer que tenha corrido mal. Pelo contrário, funcionou bem. Mas há uma diferença entre montar algo que funciona e montar algo que se entende daqui a seis meses.
 
 ## O que aprendi até agora
 
