@@ -101,7 +101,7 @@ MyWebsite/
 
 This website is deployed using **GitHub Pages**.
 
-🔗 Live version: [https://tiagocabaca.github.io](https://tiagocabaca.github.io)
+🔗 Live version: [https://cabacatech.com/](https://cabacatech.com/)
 
 
 ## 📸 Preview
@@ -140,8 +140,8 @@ The design, content, and branding of this website are personal and should not be
 
 **Tiago Cabaça**, also known as **CabacadosInformaticos**
 
-* GitHub: [https://github.com/Cabacadosinformaticos](https://github.com/Cabacadosinformaticos)
-* LinkedIn: *(coming soon)*
+* GitHub: [github.com/Cabacadosinformaticos](https://github.com/Cabacadosinformaticos)
+* LinkedIn: [linkedin.com/in/tiago-cabaça](https://www.linkedin.com/in/tiago-cabaça)
 
 
 ## ⭐ Notes
