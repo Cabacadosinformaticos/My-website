@@ -2,6 +2,11 @@
    RESPONSIVE
 ══════════════════════════════════════ */
 
+/* Hero em ecrã inteiro no desktop (mobile mantém a altura base) */
+@media (min-width: 901px) {
+  #hero { min-height: calc(100vh - var(--nav-h)); }
+}
+
 @media (max-width: 1100px) {
   .projects-grid,
   .projects-grid-full,
