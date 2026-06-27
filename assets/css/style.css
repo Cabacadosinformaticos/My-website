@@ -618,16 +618,22 @@ nav.scrolled { border-bottom-color: var(--border2); }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: var(--border);
+  background: transparent;
   margin-top: 48px;
 }
 
 .service-card {
   background: var(--bg2);
   padding: 32px;
-  transition: background .2s;
+  transition: background .3s;
   position: relative;
   overflow: hidden;
+}
+/* Durante a animação de entrada o fundo fica transparente e só
+   aparece quando o card termina o reveal (evita o bloco sólido). */
+.service-card.reveal:not(.visible),
+.service-full-card.reveal:not(.visible) {
+  background: transparent;
 }
 .service-card::before {
   content: '';
@@ -1463,13 +1469,13 @@ footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  background: var(--border);
+  background: transparent;
   margin-bottom: 80px;
 }
 .service-full-card {
   background: var(--bg2);
   padding: 40px;
-  transition: background .2s;
+  transition: background .3s;
   position: relative;
   overflow: hidden;
 }
