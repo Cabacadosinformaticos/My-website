@@ -5,6 +5,13 @@
 /* Hero em ecrã inteiro no desktop (mobile mantém a altura base) */
 @media (min-width: 901px) {
   #hero { min-height: calc(100vh - var(--nav-h)); }
+
+  /* Footer no desktop: esquerda à esquerda, meio ao centro,
+     direita à esquerda mas empurrada um pouco para a direita. */
+  .footer-top { align-items: start; }
+  .footer-top .footer-col:nth-child(2) { text-align: center; }
+  .footer-top .footer-col:nth-child(2) .footer-links { align-items: center; }
+  .footer-top .footer-col:nth-child(3) { padding-left: 48px; }
 }
 
 @media (max-width: 1100px) {
@@ -158,6 +165,16 @@
   .services-grid { grid-template-columns: 1fr; }
   .process-steps { grid-template-columns: 1fr 1fr; }
   .footer-top { grid-template-columns: 1fr; gap: 32px; }
+
+  /* Footer todo centrado no mobile */
+  .footer-top { text-align: center; }
+  .footer-brand { display: flex; flex-direction: column; align-items: center; }
+  .footer-tagline { max-width: none; }
+  .footer-social { justify-content: center; }
+  .footer-links { align-items: center; }
+  .footer-col:nth-child(3) { padding-left: 0; }
+  footer .status { justify-content: center; }
+  .footer-bottom { flex-direction: column; gap: 12px; justify-content: center; text-align: center; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { width: 100%; justify-content: center; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
