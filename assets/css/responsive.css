@@ -178,6 +178,15 @@
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { width: 100%; justify-content: center; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+  /* No mobile, o botão "Ver todos" fica abaixo do conteúdo da secção */
+  .cta-order { display: flex; flex-direction: column; }
+  .cta-order .section-header { display: contents; }
+  .cta-order .section-header > div { order: 0; margin-bottom: 28px; }
+  .cta-order .section-header > .btn { order: 2; align-self: flex-start; margin-top: 28px; }
+  .cta-order > .services-grid,
+  .cta-order > .projects-grid,
+  .cta-order > .blog-grid { order: 1; margin-top: 0; }
   .filter-bar { gap: 6px; }
   .form-row { grid-template-columns: 1fr; }
   .construction-notice {
