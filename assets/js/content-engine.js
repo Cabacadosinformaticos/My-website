@@ -632,7 +632,10 @@ async function loadProjectDetail() {
       const cats      = getCategories(meta);
       const catTags   = cats.map(c => `<span class="tag" style="margin:2px 4px 2px 0">${c}</span>`).join('');
       const stackList = Array.isArray(meta.stack) ? meta.stack.map(t => `<span class="tag" style="margin:2px 4px 2px 0">${t}</span>`).join('') : '';
-      const statusColor = meta.status === 'Em produção' ? '#00e87a' : meta.status === 'Em desenvolvimento' ? 'var(--accent)' : 'var(--muted2)';
+      const statusColor = meta.status === 'Em produção' ? '#00e87a'
+        : meta.status === 'Concluído' ? '#38bdf8'
+        : meta.status === 'Em desenvolvimento' ? 'var(--accent)'
+        : 'var(--muted2)';
       sidebar.innerHTML = `
         <div class="detail-info-card">
           ${meta.year     ? `<div class="detail-info-row"><span>Ano</span><span>${meta.year}</span></div>` : ''}

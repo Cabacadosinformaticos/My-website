@@ -530,7 +530,9 @@
   flex-wrap: wrap;
   gap: 4px;
 }
-.detail-info-row .tag {
+/* `div` extra de especificidade para vencer `.detail-info-row span:first-child`,
+   que caso contrário deixava a primeira tag (categoria/stack) apagada. */
+.detail-info-row div .tag {
   color: var(--text);
   border-color: var(--border2);
   background: var(--surface2);
