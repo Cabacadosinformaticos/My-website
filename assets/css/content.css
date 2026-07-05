@@ -419,6 +419,14 @@
   padding-bottom: 12px;
   border-bottom: 1px solid var(--border);
 }
+/* Compensa a nav fixa quando se salta para um heading pelo índice,
+   para o título não ficar escondido por baixo da barra. */
+.post-body h2,
+.post-body h3,
+.project-content h2,
+.project-content h3 {
+  scroll-margin-top: calc(var(--nav-h) + 24px);
+}
 .post-body h3,
 .project-content h3 {
   font-family: var(--font-body);
