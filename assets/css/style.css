@@ -629,12 +629,9 @@ nav.scrolled { border-bottom-color: var(--border2); }
   position: relative;
   overflow: hidden;
 }
-/* Durante a animação de entrada o fundo fica transparente e só
-   aparece quando o card termina o reveal (evita o bloco sólido). */
-.service-card.reveal:not(.visible),
-.service-full-card.reveal:not(.visible) {
-  background: transparent;
-}
+/* A grid é transparente (ver .services-grid / .services-full-grid) para não
+   mostrar um bloco sólido durante o reveal. O fundo do card mantém-se e faz
+   fade com a própria opacidade da animação, voltando ao normal no fim. */
 .service-card::before {
   content: '';
   position: absolute;
