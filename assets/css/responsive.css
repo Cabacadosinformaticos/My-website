@@ -183,10 +183,13 @@
   .cta-order { display: flex; flex-direction: column; }
   .cta-order .section-header { display: contents; }
   .cta-order .section-header > div { order: 0; margin-bottom: 28px; }
-  .cta-order .section-header > .btn { order: 2; align-self: flex-start; margin-top: 28px; }
+  .cta-order .section-header > .btn { order: 2; align-self: stretch; width: 100%; justify-content: center; margin-top: 28px; padding: 15px 20px; font-size: 13px; }
   .cta-order > .services-grid,
   .cta-order > .projects-grid,
   .cta-order > .blog-grid { order: 1; margin-top: 0; }
+
+  /* "Saber mais" da secção sobre a preencher o ecrã, tal como os "Ver todos" */
+  .about-text .btn { width: 100%; justify-content: center; padding: 15px 20px; font-size: 13px; }
   .filter-bar { gap: 6px; }
   .form-row { grid-template-columns: 1fr; }
   .construction-notice {
