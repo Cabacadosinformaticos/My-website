@@ -218,3 +218,24 @@
   .stats-row { flex-wrap: wrap; gap: 16px; }
   .process-steps { grid-template-columns: 1fr; }
 }
+
+/* ── Blocos de conteúdo novos no mobile ── */
+@media (max-width: 640px) {
+  /* Stats: 2 por linha, tiles mais apertados */
+  .stats-block { grid-template-columns: 1fr 1fr; }
+  .stat-tile { padding: 16px 12px; }
+  .stat-value { font-size: 32px; }
+
+  /* Compare: colunas empilhadas */
+  .compare-grid { grid-template-columns: 1fr; }
+  .compare-card { padding: 18px; }
+
+  /* Série: anterior/seguinte empilhados e alinhados à esquerda */
+  .series-nav { grid-template-columns: 1fr; }
+  .series-next { text-align: left; }
+
+  /* Lightbox com menos margem */
+  .lightbox { padding: 16px; }
+  .lightbox-close { top: 12px; right: 12px; }
+  .lightbox-figure img { max-height: calc(100vh - 180px); }
+}

@@ -145,6 +145,62 @@ function renderImagePlaceholder(attrText, inner) {
   return `<figure class="image-placeholder" style="--placeholder-ratio:${escapeHtml(ratio.replace(':', ' / '))}"><div><span>Imagem pendente</span><strong>${escapeHtml(title)}</strong><p>${escapeHtml(desc)}</p></div></figure>`;
 }
 
+/* ── Blocos de texto ── */
+// Devolve ao texto os blocos de código já trocados por tokens,
+// para o Markdown interior (ex.: details) os poder renderizar.
+function restoreFences(text, fences) {
+  return text.replace(/@@CODE_FENCE_(\d+)@@/g, (match, i) => fences[Number(i)] ?? match);
+}
+
+// O HTML interior é guardado em placeholders e só entra depois do
+// renderMarkdown final: assim o marked não volta a analisá-lo como
+// Markdown e as linhas vazias dentro do bloco não o partem.
+function pushDeferred(list, html) {
+  const token = `@@BLOCK_BODY_${list.length}@@`;
+  list.push({ token, html });
+  return token;
+}
+
+function renderDetailsBlock(attrText, inner, fences, deferred) {
+  const attrs = parseBlockAttrs(attrText);
+  const title = attrs.title || 'Detalhes';
+  const body  = pushDeferred(deferred, renderMarkdown(restoreFences(inner, fences).trim()));
+  return `<details class="content-details"><summary>${escapeHtml(title)}</summary><div class="content-details-body">${body}</div></details>`;
+}
+
+function renderTimelineBlock(attrText, inner) {
+  const attrs = parseBlockAttrs(attrText);
+  const heading = attrs.title ? `<h3>${escapeHtml(attrs.title)}</h3>` : '';
+  const items = inner.trim().split('\n').filter(l => l.trim()).map(line => {
+    const parts = line.split('|').map(p => p.trim());
+    const date  = parts[0] || '';
+    const title = parts[1] || '';
+    const text  = parts.slice(2).join(' | ').trim();
+    return `<li class="timeline-item"><span class="timeline-date">${escapeHtml(date)}</span><div class="timeline-body"><strong class="timeline-title">${escapeHtml(title)}</strong>${text ? renderInnerMarkdown(text) : ''}</div></li>`;
+  }).join('');
+  return `<section class="timeline-card">${heading}<ol class="timeline">${items}</ol></section>`;
+}
+
+function renderStatsBlock(inner) {
+  const tiles = inner.trim().split('\n').filter(l => l.trim()).map(line => {
+    const col   = line.indexOf('|');
+    const value = (col === -1 ? line : line.slice(0, col)).trim();
+    const label = col === -1 ? '' : line.slice(col + 1).trim();
+    return `<div class="stat-tile"><span class="stat-value">${escapeHtml(value)}</span><span class="stat-label">${escapeHtml(label)}</span></div>`;
+  });
+  // Máximo de 4 por linha no desktop (a classe fixa as colunas).
+  const count = Math.min(tiles.length, 4) || 1;
+  return `<div class="stats-block stats-count-${count}">${tiles.join('')}</div>`;
+}
+
+function renderCompareBlock(attrText, inner, fences, deferred) {
+  const attrs = parseBlockAttrs(attrText);
+  const [left = '', right = ''] = inner.split(/^[ \t]*\|\|\|[ \t]*\r?$/m);
+  const heading = attrs.title ? `<h3>${escapeHtml(attrs.title)}</h3>` : '';
+  const col = (name, text) => `<div class="compare-col"><h4>${escapeHtml(name)}</h4>${pushDeferred(deferred, renderMarkdown(restoreFences(text, fences).trim()))}</div>`;
+  return `<section class="compare-card">${heading}<div class="compare-grid">${col(attrs.left || 'Antes', left)}${col(attrs.right || 'Depois', right)}</div></section>`;
+}
+
 /* ── Blocos especiais ── */
 function processBlocks(md) {
   const fences = [];
@@ -155,8 +211,14 @@ function processBlocks(md) {
   });
 
   md = md.replace(/:::carousel\n([\s\S]*?):::/g, (_, inner) => {
-    const images = inner.trim().split('\n').filter(Boolean);
-    const slides = images.map((src, i) => `<div class="carousel-slide${i === 0 ? ' active' : ''}"><img src="${src.trim()}" alt="Imagem ${i + 1}" loading="lazy"/></div>`).join('');
+    // Cada linha é "caminho" ou "caminho | legenda".
+    const images = inner.trim().split('\n').filter(l => l.trim()).map(line => {
+      const col = line.indexOf('|');
+      return col === -1
+        ? { src: line.trim(), caption: '' }
+        : { src: line.slice(0, col).trim(), caption: line.slice(col + 1).trim() };
+    });
+    const slides = images.map((img, i) => `<div class="carousel-slide${i === 0 ? ' active' : ''}"><img src="${img.src}" alt="${escapeHtml(img.caption || `Imagem ${i + 1}`)}" loading="lazy"/>${img.caption ? `<div class="carousel-caption">${escapeHtml(img.caption)}</div>` : ''}</div>`).join('');
     const dots   = images.map((_, i) => `<button class="carousel-dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="Slide ${i + 1}"></button>`).join('');
     return `<div class="carousel" data-total="${images.length}"><div class="carousel-track">${slides}</div><button class="carousel-prev" aria-label="Anterior">&#8592;</button><button class="carousel-next" aria-label="Próximo">&#8594;</button><div class="carousel-dots">${dots}</div></div>`;
   });
@@ -181,8 +243,26 @@ function processBlocks(md) {
     if (isVimeo(url))   return `<div class="video-wrap"><iframe src="https://player.vimeo.com/video/${getVimeoId(url)}" frameborder="0" allowfullscreen loading="lazy"></iframe></div>`;
     return `<div class="video-wrap"><video controls><source src="${url}"></video></div>`;
   });
+  // Blocos novos: âncora no início da linha, para não apanhar
+  // menções ao bloco dentro de texto corrido.
+  const deferred = [];
+  md = md.replace(/^:::details([^\n]*)\n([\s\S]*?)^:::/gm, (_, attrText, inner) =>
+    renderDetailsBlock(attrText, inner, fences, deferred)
+  );
+  md = md.replace(/^:::timeline([^\n]*)\n([\s\S]*?)^:::/gm, (_, attrText, inner) =>
+    renderTimelineBlock(attrText, inner)
+  );
+  md = md.replace(/^:::stats([^\n]*)\n([\s\S]*?)^:::/gm, (_, _attrText, inner) =>
+    renderStatsBlock(inner)
+  );
+  md = md.replace(/^:::compare([^\n]*)\n([\s\S]*?)^:::/gm, (_, attrText, inner) =>
+    renderCompareBlock(attrText, inner, fences, deferred)
+  );
   fences.forEach((block, i) => {
     md = md.replace(`@@CODE_FENCE_${i}@@`, block);
+  });
+  deferred.forEach(({ token, html }) => {
+    md = md.split(token).join(html);
   });
   return md;
 }
@@ -247,6 +327,15 @@ function updateDynamicSeo({ title, description, url, image, type = 'article', st
   setMetaTag('meta[name="twitter:description"]', 'content', description);
   setMetaTag('meta[name="twitter:image"]', 'content', image);
   if (structuredData) setStructuredData('dynamic-structured-data', structuredData);
+}
+
+/* ── Datas do frontmatter ("Out 2026") para ISO 8601 ("2026-10") ── */
+function toIsoMonth(value) {
+  if (!value) return undefined;
+  const months = { jan: '01', fev: '02', mar: '03', abr: '04', mai: '05', jun: '06', jul: '07', ago: '08', set: '09', out: '10', nov: '11', dez: '12' };
+  const m = String(value).trim().match(/^([A-Za-zçÇ]{3})[a-zç]*\.?\s+(\d{4})$/);
+  if (m && months[m[1].toLowerCase()]) return `${m[2]}-${months[m[1].toLowerCase()]}`;
+  return /^\d{4}(-\d{2}){0,2}$/.test(String(value).trim()) ? String(value).trim() : undefined;
 }
 
 /* ── Markdown ── */
@@ -360,6 +449,104 @@ function initBodyMediaErrors() {
   });
 }
 
+/* ══════════════════════════════════════
+   LIGHTBOX - imagens do corpo e do carrossel
+══════════════════════════════════════ */
+let lightboxEl = null;
+
+function getLightbox() {
+  if (lightboxEl) return lightboxEl;
+  lightboxEl = document.createElement('div');
+  lightboxEl.className = 'lightbox';
+  lightboxEl.setAttribute('role', 'dialog');
+  lightboxEl.setAttribute('aria-modal', 'true');
+  lightboxEl.setAttribute('aria-label', 'Imagem ampliada');
+  lightboxEl.innerHTML = '<button class="lightbox-close" type="button" aria-label="Fechar imagem">&times;</button><figure class="lightbox-figure"><img alt=""/><figcaption></figcaption></figure>';
+  // Fechar ao clicar fora da imagem.
+  lightboxEl.addEventListener('click', e => { if (e.target === lightboxEl) closeLightbox(); });
+  lightboxEl.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+  document.body.appendChild(lightboxEl);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  return lightboxEl;
+}
+
+function openLightbox(src, alt, caption) {
+  const el  = getLightbox();
+  const img = el.querySelector('img');
+  const cap = el.querySelector('figcaption');
+  img.src = src;
+  img.alt = alt || '';
+  cap.textContent = caption || '';
+  cap.hidden = !caption;
+  el.classList.add('open');
+  document.body.classList.add('lightbox-open');
+  el.querySelector('.lightbox-close').focus();
+}
+
+function closeLightbox() {
+  if (!lightboxEl || !lightboxEl.classList.contains('open')) return;
+  lightboxEl.classList.remove('open');
+  document.body.classList.remove('lightbox-open');
+}
+
+function initLightbox() {
+  document.querySelectorAll('.post-figure img, .project-content figure img, .carousel-slide img').forEach(img => {
+    if (img.dataset.lightbox) return;
+    img.dataset.lightbox = '1';
+    img.classList.add('lightbox-img');
+    img.setAttribute('tabindex', '0');
+    img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', 'Ampliar imagem');
+    const open = () => {
+      // Imagens em falta não abrem.
+      if (img.closest('.img-missing') || img.closest('.slide-missing')) return;
+      if (img.complete && img.naturalWidth === 0) return;
+      const caption = img.closest('.carousel-slide')?.querySelector('.carousel-caption')?.textContent
+        || img.closest('figure')?.querySelector('figcaption')?.textContent
+        || img.alt || '';
+      openLightbox(img.currentSrc || img.src, img.alt, caption);
+    };
+    img.addEventListener('click', open);
+    img.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+  });
+  getLightbox();
+}
+
+/* ── Barra de progresso de leitura (só em posts) ── */
+function initReadingProgress() {
+  const target = document.getElementById('post-body');
+  if (!target) return;
+  const bar = document.createElement('div');
+  bar.className = 'reading-progress';
+  bar.setAttribute('role', 'progressbar');
+  bar.setAttribute('aria-label', 'Progresso de leitura');
+  bar.setAttribute('aria-valuemin', '0');
+  bar.setAttribute('aria-valuemax', '100');
+  bar.setAttribute('aria-valuenow', '0');
+  document.body.appendChild(bar);
+
+  const navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0;
+  let ticking = false;
+  function update() {
+    const rect  = target.getBoundingClientRect();
+    const start = window.scrollY + rect.top - navH;
+    const total = rect.height - window.innerHeight + navH;
+    const pct   = total <= 0 ? 100 : Math.min(100, Math.max(0, ((window.scrollY - start) / total) * 100));
+    bar.style.width = pct + '%';
+    bar.setAttribute('aria-valuenow', String(Math.round(pct)));
+  }
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { update(); ticking = false; });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+}
+
 /* ── Reveal ── */
 function initReveal() {
   const obs = new IntersectionObserver(entries => {
@@ -368,6 +555,104 @@ function initReveal() {
     });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}
+
+/* ══════════════════════════════════════
+   CACHE DE METADADOS
+   Evita repetir os mesmos fetches entre
+   relacionados, séries e listagens.
+══════════════════════════════════════ */
+const metaCache = { posts: new Map(), projects: new Map(), postsAll: null, projectsAll: null };
+
+async function fetchPostMeta(id) {
+  if (metaCache.posts.has(id)) return metaCache.posts.get(id);
+  const raw = await fetchMD(`content/posts/${id}.md`);
+  const { meta } = parseFrontmatter(raw);
+  const item = { id, ...meta };
+  metaCache.posts.set(id, item);
+  return item;
+}
+
+async function fetchProjectMeta(id) {
+  if (metaCache.projects.has(id)) return metaCache.projects.get(id);
+  const raw = await fetchMD(`content/projects/${id}.md`);
+  const { meta } = parseFrontmatter(raw);
+  const item = { id, ...meta };
+  metaCache.projects.set(id, item);
+  return item;
+}
+
+function loadAllPostsMeta() {
+  if (!metaCache.postsAll) {
+    metaCache.postsAll = fetchMD('data/posts-index.json').then(t => JSON.parse(t))
+      .then(index => Promise.all(index.map(fetchPostMeta)));
+  }
+  return metaCache.postsAll;
+}
+
+function loadAllProjectsMeta() {
+  if (!metaCache.projectsAll) {
+    metaCache.projectsAll = fetchMD('data/projects-index.json').then(t => JSON.parse(t))
+      .then(index => Promise.all(index.map(fetchProjectMeta)));
+  }
+  return metaCache.projectsAll;
+}
+
+/* ══════════════════════════════════════
+   SÉRIE DE ARTIGOS
+══════════════════════════════════════ */
+async function buildSeriesNav(currentId, meta) {
+  if (!meta.series) return { top: '', bottom: '' };
+  let members = [];
+  try {
+    members = (await loadAllPostsMeta()).filter(p => p.series === meta.series);
+  } catch {}
+  if (!members.some(p => p.id === currentId)) members.push({ id: currentId, ...meta });
+  members.sort((a, b) => (Number(a.seriesPart) || 0) - (Number(b.seriesPart) || 0));
+
+  const total = members.length;
+  const pos   = members.findIndex(p => p.id === currentId);
+  const num   = Number(meta.seriesPart) || pos + 1;
+  const link  = id => `blog-post.html?id=${encodeURIComponent(id)}`;
+  const name  = p => escapeHtml(p.title || p.id);
+
+  const list = members.map((p, i) => p.id === currentId
+    ? `<li class="current" aria-current="page"><span>${i + 1}. ${name(p)}</span></li>`
+    : `<li><a href="${link(p.id)}">${i + 1}. ${name(p)}</a></li>`
+  ).join('');
+
+  const top = `<nav class="series-box" aria-label="Série de artigos">
+    <span class="series-kicker">Série</span>
+    <div class="series-head"><strong class="series-name">${escapeHtml(meta.series)}</strong><span class="series-count">Parte ${num} de ${total}</span></div>
+    <ol class="series-list">${list}</ol>
+  </nav>`;
+
+  const links = [];
+  if (members[pos - 1]) links.push(`<a class="series-link series-prev" href="${link(members[pos - 1].id)}"><span>← Anterior</span><strong>${name(members[pos - 1])}</strong></a>`);
+  if (members[pos + 1]) links.push(`<a class="series-link series-next" href="${link(members[pos + 1].id)}"><span>Seguinte →</span><strong>${name(members[pos + 1])}</strong></a>`);
+  const bottom = links.length
+    ? `<nav class="series-nav${links.length === 1 ? ' series-nav-single' : ''}" aria-label="Navegação da série">${links.join('')}</nav>`
+    : '';
+
+  return { top, bottom };
+}
+
+/* ── Relacionados curados (related: [post:id, project:id]) ── */
+async function renderRelatedInto(el, related) {
+  const items = (await Promise.all(related.map(async entry => {
+    const [type, ...rest] = String(entry).split(':');
+    const id = rest.join(':').trim();
+    if (!id) return null;
+    try {
+      if (type === 'project') return { type: 'project', data: await fetchProjectMeta(id) };
+      if (type === 'post')    return { type: 'post',    data: await fetchPostMeta(id) };
+    } catch (e) { console.error(e); }
+    return null;
+  }))).filter(Boolean);
+  if (!items.length) return;
+  el.innerHTML = items.map(i => i.type === 'project' ? projectCard(i.data) : blogCard(i.data)).join('');
+  // Cards de tipos diferentes na mesma grelha precisam de gap próprio.
+  if (new Set(items.map(i => i.type)).size > 1) el.classList.add('related-mixed');
 }
 
 /* ══════════════════════════════════════
@@ -465,7 +750,7 @@ async function loadBlogPost() {
         image: postImage,
         author: { '@id': 'https://cabacatech.com/#person' },
         publisher: { '@id': 'https://cabacatech.com/#person' },
-        datePublished: meta.date || undefined,
+        datePublished: toIsoMonth(meta.date),
         inLanguage: 'pt-PT',
         mainEntityOfPage: postUrl
       }
@@ -492,8 +777,11 @@ async function loadBlogPost() {
     const tocEl = document.getElementById('post-toc-container');
     if (tocEl) tocEl.innerHTML = buildTOC(html);
 
+    // Caixa da série no topo e navegação anterior/seguinte no fim.
+    const series = await buildSeriesNav(id, meta);
+
     const bodyEl = document.getElementById('post-body');
-    if (bodyEl) bodyEl.innerHTML = html;
+    if (bodyEl) bodyEl.innerHTML = series.top + html + series.bottom;
 
     const metaEl = document.getElementById('post-meta-sidebar');
     if (metaEl) {
@@ -508,24 +796,24 @@ async function loadBlogPost() {
     }
 
     initTOCSpy(); initCarousels(); initReveal(); initBodyMediaErrors();
-    loadRelatedPosts(id);
+    initLightbox(); initReadingProgress();
+    loadRelatedPosts(id, meta.related);
   } catch (e) {
     container.innerHTML = '<p class="error-msg">Não foi possível carregar o post.</p>';
     console.error(e);
   }
 }
 
-async function loadRelatedPosts(currentId) {
+async function loadRelatedPosts(currentId, related) {
   const el = document.getElementById('related-posts');
   if (!el) return;
+  if (Array.isArray(related) && related.length) {
+    await renderRelatedInto(el, related);
+    return;
+  }
   try {
-    const index  = await fetchMD('data/posts-index.json').then(t => JSON.parse(t));
-    const others = await Promise.all(index.filter(id => id !== currentId).slice(0, 3).map(async id => {
-      const raw = await fetchMD(`content/posts/${id}.md`);
-      const { meta } = parseFrontmatter(raw);
-      return { id, ...meta };
-    }));
-    el.innerHTML = others.map(p => blogCard(p)).join('');
+    const all = await loadAllPostsMeta();
+    el.innerHTML = all.filter(p => p.id !== currentId).slice(0, 3).map(p => blogCard(p)).join('');
   } catch {}
 }
 
@@ -627,6 +915,9 @@ async function loadProjectDetail() {
         <div class="page-hero-bg">PROJECT</div>`;
     }
 
+    const processed = processBlocks(body);
+    const html      = renderMarkdown(processed);
+
     const sidebar = document.getElementById('project-sidebar');
     if (sidebar) {
       const cats      = getCategories(meta);
@@ -645,32 +936,31 @@ async function loadProjectDetail() {
           ${cats.length   ? `<div class="detail-info-row" style="flex-direction:column;align-items:flex-start;gap:6px"><span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">Categorias</span><div>${catTags}</div></div>` : ''}
           ${meta.stack    ? `<div class="detail-info-row" style="flex-direction:column;align-items:flex-start;gap:8px;border-bottom:none"><span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">Stack</span><div>${stackList}</div></div>` : ''}
         </div>`;
+      // Índice no sidebar quando o projecto tem 3 ou mais secções.
+      if ((html.match(/<h2 id="/g) || []).length >= 3) sidebar.innerHTML += buildTOC(html);
     }
 
-    const processed = processBlocks(body);
-    const html      = renderMarkdown(processed);
     const bodyEl    = document.getElementById('project-body');
     if (bodyEl) bodyEl.innerHTML = html;
 
-    initCarousels(); initReveal(); initTOCSpy(); initBodyMediaErrors();
-    loadRelatedProjects(id);
+    initCarousels(); initReveal(); initTOCSpy(); initBodyMediaErrors(); initLightbox();
+    loadRelatedProjects(id, meta.related);
   } catch (e) {
     container.innerHTML = '<p class="error-msg">Não foi possível carregar o projecto.</p>';
     console.error(e);
   }
 }
 
-async function loadRelatedProjects(currentId) {
+async function loadRelatedProjects(currentId, related) {
   const el = document.getElementById('related-projects');
   if (!el) return;
+  if (Array.isArray(related) && related.length) {
+    await renderRelatedInto(el, related);
+    return;
+  }
   try {
-    const index  = await fetchMD('data/projects-index.json').then(t => JSON.parse(t));
-    const others = await Promise.all(index.filter(id => id !== currentId).slice(0, 3).map(async (id, i) => {
-      const raw = await fetchMD(`content/projects/${id}.md`);
-      const { meta } = parseFrontmatter(raw);
-      return { id, num: String(i + 1).padStart(2, '0'), ...meta };
-    }));
-    el.innerHTML = others.map(p => projectCard(p)).join('');
+    const all = await loadAllProjectsMeta();
+    el.innerHTML = all.filter(p => p.id !== currentId).slice(0, 3).map(p => projectCard(p)).join('');
   } catch {}
 }
 
