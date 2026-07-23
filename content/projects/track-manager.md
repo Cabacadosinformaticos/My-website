@@ -1,46 +1,84 @@
 ---
 title: Track Manager
-desc: Web app open source para gerir faixas de áudio e legendas em ficheiros de vídeo (MKV, MP4) através de uma interface visual simples. Sem recompressão, sem linha de comandos.
+desc: Web app open source para gerir as faixas de áudio e legendas dos meus ficheiros de vídeo MKV e MP4, através de uma interface visual. Sem recomprimir o vídeo e sem linha de comandos.
 category: [Web App, Ferramenta, Open Source]
-year: 2025
+year: 2026
 type: Pessoal
-duration: Em desenvolvimento
-status: Em desenvolvimento
+duration: 12 dias
+status: Concluído
 github: https://github.com/Cabacadosinformaticos/Track-Manager
-stack: [React, TypeScript, FastAPI, Python, FFmpeg, MKVToolNix, Tailwind CSS, Vite]
+stack: [React 19, TypeScript, Vite, Tailwind CSS, Framer Motion, dnd-kit, Python 3.12, FastAPI, FFmpeg, MKVToolNix]
 cover: ""
+related: [post:como-este-site-foi-feito, project:iade-horarios]
 ---
 
-O Track Manager nasceu de uma frustração muito específica: querer limpar as faixas de áudio e legendas de ficheiros de vídeo sem ter de abrir o terminal. A operação em si é simples do ponto de vista técnico, mas as ferramentas existentes ou exigem conhecimento de FFmpeg em linha de comandos, ou são aplicações pesadas e complexas para aquilo que é uma tarefa de dois minutos. Faltava uma interface web limpa que tratasse disso sem fricção.
+Um ficheiro de vídeo MKV ou MP4 pode trazer várias faixas: áudio em vários idiomas, legendas, comentários do realizador. Escolher quais ficam, qual é a predefinida e em que ordem aparecem é uma operação simples, mas as ferramentas que existem para isso ou exigem comandos longos de FFmpeg, ou são aplicações pensadas para utilizadores avançados. Queria abrir o ficheiro, ver as faixas, desmarcar o que não quero, arrastar para reordenar e guardar. O Track Manager faz exatamente isso.
 
-## O problema em detalhe
+Construí-o nas férias da Páscoa de 2026, em 12 dias, e lancei a versão 1.0.0 a 8 de abril.
 
-Quando descarregas uma série ou um filme num formato como MKV, o ficheiro pode conter dezenas de faixas: áudio em cinco idiomas, legendas em dez, e talvez uma faixa de vídeo alternativa. Se só queres português e inglês, carregar com todas as outras faixas é desperdício de espaço e cria confusão no reprodutor. Remover faixas com FFmpeg funciona, mas o comando é longo, nada intuitivo e fácil de errar. O MKVToolNix tem uma GUI mas é pesado e claramente pensado para utilizadores avançados.
+:::image-placeholder title="Interface do Track Manager" desc="Screenshot da lista de faixas de um ficheiro de teste, com faixas de áudio e legendas e o arrastar para reordenar." ratio="16:9"
+:::
 
-Queria algo que me deixasse abrir o ficheiro, ver todas as faixas organizadas por tipo, desmarcar as que não quero, e exportar. Sem mais.
+## O que faz
 
-## Como funciona
+- Lê um ficheiro MKV ou MP4 e mostra todas as faixas por tipo, com idioma, codec e indicação de predefinida.
+- Remover, reordenar com arrastar e largar, renomear e escolher a faixa predefinida.
+- Guardar sem recomprimir o vídeo: as operações reorganizam as faixas que já existem.
+- Cópia de segurança automática antes de qualquer operação destrutiva.
 
-O utilizador carrega um ficheiro de vídeo (MKV ou MP4) através da interface web. O backend em Python analisa o ficheiro com FFmpeg e MKVToolNix e devolve a lista completa de faixas: tipo (vídeo, áudio, legenda), idioma, codec, e se está definida como faixa padrão.
+## Arquitetura
 
-A interface mostra essas faixas organizadas por tipo, com possibilidade de reordenar (drag and drop), remover, e marcar como padrão. Quando o utilizador confirma, o backend executa as operações necessárias no ficheiro sem recomprimir nada: apenas remontagem das faixas selecionadas, o que é quase instantâneo independentemente do tamanho do ficheiro.
+```text title="visão geral"
+React + TypeScript
+  DropZone -> TrackList (dnd-kit) -> TrackCard -> ExportDialog
+        |
+        | REST (multipart)
+        v
+FastAPI
+  routers: files, tracks
+  track_service  -> escolhe o motor certo
+     |-- motor MKV: mkvpropedit (altera no próprio ficheiro)
+     |-- motor MP4: FFmpeg (remux para um ficheiro novo)
+```
 
-O ficheiro resultante é devolvido para download.
+Não há base de dados nem contas. Cada upload recebe uma pasta temporária com um UUID, e a informação das faixas é sempre lida de novo a partir do ficheiro. A fonte de verdade é o próprio vídeo.
 
 ## Decisões técnicas
 
-**FastAPI (Python)** para o backend porque é rápido de montar, a tipagem com Pydantic garante que os dados das faixas chegam sempre com a estrutura certa, e gera documentação automática da API. Isso é importante num projeto open source: se alguém quiser contribuir, pode ver exatamente o que cada endpoint espera e devolve sem ler o código.
+:::decision title="Dois motores, uma interface"
+Os dois formatos funcionam de forma muito diferente. Num MKV, o `mkvpropedit` altera os metadados das faixas no próprio ficheiro, quase de imediato, mesmo num ficheiro de vários gigabytes. Num MP4 isso não é possível, e é preciso um remux completo com FFmpeg para um ficheiro novo. Escondi esta diferença atrás de uma camada de serviço comum, para que a interface não precise de saber com que formato está a falar.
+:::
 
-**React com TypeScript** no frontend porque os tipos das faixas de vídeo são suficientemente complexos para justificar tipagem estrita. Com JavaScript puro é fácil cometer erros silenciosos na manipulação dos objetos de faixa; com TypeScript o compilador apanha esses erros antes de chegarem ao utilizador.
+:::decision title="Uma web app local em vez de uma app de desktop"
+Uma interface web dá-me React, animações e arrastar e largar sem empacotar uma aplicação de desktop. Corre no meu computador e também abre noutros dispositivos da rede de casa.
+:::
 
-**Vite** como bundler por causa do tempo de arranque do servidor de desenvolvimento. Numa ferramenta que vou usar no dia-a-dia durante o desenvolvimento, um HMR instantâneo faz diferença real.
+:::decision title="Cópia de segurança em vez de desfazer"
+Um sistema de desfazer completo para operações sobre ficheiros de vídeo é complexo e frágil. Uma cópia antes de cada operação destrutiva resolve o mesmo problema com uma fração do código.
+:::
 
-**Tailwind CSS** para a interface porque preciso de iterar rapidamente no design sem mudar de ficheiro constantemente. Para uma ferramenta utilitária, uma UI funcional e limpa é mais importante que uma UI elaborada.
+:::decision title="FastAPI e TypeScript"
+Uma faixa tem muitos campos e várias numerações diferentes. O Pydantic do lado do servidor e o TypeScript do lado do cliente garantem que a mesma estrutura chega igual aos dois lados, e o FastAPI gera a documentação da API sozinho, o que ajuda quem quiser contribuir.
+:::
 
-A comunicação entre frontend e backend é feita via REST. Os ficheiros de vídeo são enviados via `multipart/form-data` e o resultado é devolvido como `application/octet-stream`. Para ficheiros grandes, o backend processa em stream para não carregar o ficheiro inteiro em memória.
+## Problemas que tive de resolver
 
-## Estado atual e planos
+:::details title="Três ferramentas, três formas de contar faixas"
+O `ffprobe`, o `mkvmerge` e o `mkvpropedit` numeram as faixas de maneiras diferentes. Uma operação pedida para a faixa 2 podia acabar a mexer noutra. Passei a usar os índices do `ffprobe` como única referência e a traduzi-los para cada ferramenta no momento de executar.
+:::
 
-A app está em desenvolvimento ativo. As funcionalidades de base (carregar ficheiro, listar faixas, remover, exportar) estão implementadas. A reordenação por drag and drop e a definição de faixa padrão estão em curso.
+:::details title="Acentos estragados nos nomes das faixas"
+No Windows, a saída das ferramentas chegava em cp1252, e os nomes em português apareciam corrompidos. Forcei UTF-8 na leitura, com substituição dos caracteres inválidos em vez de falhar.
+:::
 
-Próximos passos: suporte a processamento de múltiplos ficheiros em batch, interface para renomear faixas, e possivelmente um modo de linha de comandos que use a mesma lógica do backend para integração em scripts.
+:::details title="Ferramentas instaladas que o programa não encontrava"
+O FFmpeg e o MKVToolNix instalados pelo winget nem sempre ficam no PATH. Escrevi um resolvedor que procura nas pastas do winget e nos Program Files antes de desistir.
+:::
+
+## Limitações conhecidas
+
+Converter de MKV para MP4 não é sempre sem perdas: o MP4 não suporta legendas em imagem, que se perdem, e as legendas ASS/SSA são convertidas para `mov_text`, perdendo a formatação. A interface avisa antes de converter.
+
+## O que aprendi
+
+Uma ferramenta pequena e bem delimitada é dos melhores projetos para aprender: o problema cabe na cabeça, e os detalhes difíceis (codificação de texto, numeração de faixas, diferenças entre formatos) aparecem todos, sem ficarem escondidos atrás de uma framework.
