@@ -2,9 +2,10 @@
 title: Como este site foi feito
 desc: A arquitetura por trás do site, as decisões técnicas e o porquê de tudo funcionar com ficheiros Markdown.
 category: Web Dev
-date: Mai 2025
+date: Mai 2026
 readTime: 6 min
 cover: /assets/images/posts/como-este-site-foi-feito-cover.jpg
+related: [post:ola-mundo, project:track-manager, project:aeiade-website]
 ---
 
 Este site não foi feito com WordPress, nem com Next.js, nem com nenhum gerador estático. É HTML, CSS e JavaScript vanilla, e funciona sem um único servidor, sem nenhum processo de build, e sem dependências instaladas localmente.
@@ -67,6 +68,19 @@ Um carrossel de imagens basta listar os caminhos:
 ```
 
 O motor transforma isso num componente navegável com setas e indicadores de posição.
+
+Com o tempo, a lista de blocos cresceu. Cada um abre com três dois-pontos seguidos do nome, como o carrossel acima. Hoje o motor também sabe desenhar:
+
+| Bloco | O que faz |
+|---|---|
+| `specs` | Uma ficha técnica, em pares chave e valor |
+| `decision` | Uma decisão técnica, destacada do texto |
+| `details` | Uma secção fechada por defeito, para detalhes que nem todos querem ler |
+| `timeline` | Uma linha do tempo |
+| `stats` | Números em destaque |
+| `compare` | Duas colunas lado a lado, para comparar opções |
+
+E o frontmatter ganhou dois campos que ligam o conteúdo entre si. Com `series` e `seriesPart`, um post sabe que faz parte de uma série e mostra as outras partes, como acontece no [Diário do Homelab](blog-post.html?id=como-comecei-o-meu-homelab). Com `related`, escolho à mão que posts e projetos aparecem no fim de cada página, em vez de mostrar sempre os três primeiros do índice.
 
 ## Sem build, sem dependências
 

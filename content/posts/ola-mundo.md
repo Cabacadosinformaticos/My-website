@@ -2,7 +2,7 @@
 title: Olá, Mundo. A minha jornada até aqui
 desc: De disquetes aos oito anos ao Vice-presidente do CFD, passando por Pascal, COBOL, servidores e um professor que mudou tudo.
 category: Pessoal
-date: Mai 2025
+date: Mai 2026
 readTime: 8 min
 cover: /assets/images/posts/ola-mundo-cover.jpg
 ---

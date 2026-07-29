@@ -5,6 +5,9 @@ category: [Minecraft, Homelab, Servidores]
 date: Jun 2026
 readTime: 13 min
 cover: ""
+series: Diário do Homelab
+seriesPart: 2
+related: [post:o-lado-menos-glamoroso-do-homelab, project:homelab-proxmox-servidorzinho, post:dns-em-casa-com-adguard-home]
 ---
 
 Uma das grandes razões para eu querer um servidor em casa era Minecraft. Eu queria ter mundos meus, modpacks pesados, servidores para amigos e controlo total sobre as versões e configurações.
@@ -38,12 +41,12 @@ O servidor corre numa VM dedicada dentro do Proxmox. Essa VM usa Debian 13.2.0-a
 :::specs title="VM do Minecraft"
 Sistema: Debian 13.2.0-amd64
 vCPU: 10 vCores
-RAM: 20 GB
+RAM: 18 GiB
 Disco: Cerca de 250 GB SSD
 Gestor: AMP da CubeCoders
 :::
 
-Pode parecer muito, e é. Mas muitos dos servidores que quero correr usam modpacks pesados, alguns com mais de 50 mods. Preferi dar margem à VM e depois ir ajustando se fosse preciso.
+Pode parecer muito, e é. Mas muitos dos servidores que quero correr usam modpacks pesados, alguns com mais de 50 mods. Preferi dar margem à VM e depois ir ajustando se fosse preciso. Foi o que aconteceu: comecei com 20 GB e, quando a plataforma de desenvolvimento chegou ao mesmo servidor, baixei para 18 GiB e pus a VM a arrancar só depois dos serviços de infraestrutura, como o DNS. Um servidor de jogos pode esperar uns segundos; a rede da casa não.
 
 O mais importante para mim não era usar o mínimo possível. Era evitar que o servidor ficasse sem margem durante geração de chunks, arranque de modpacks ou picos com vários jogadores. Um servidor de jogo pode estar calmo 90% do tempo e mesmo assim precisar de respirar nos outros 10%.
 
@@ -147,10 +150,6 @@ E de repente a sessão de Minecraft virou administração de sistemas.
 Apesar disso tudo, continuo a achar que vale muito a pena. Ter controlo total sobre os mundos é excelente. Posso criar servidores para amigos, dar permissões específicas, separar instâncias e deixar cada pessoa mexer no seu espaço.
 
 Com Tailscale, também consigo aceder à administração sem expor o painel diretamente à internet.
-
-:::resource title="Tailscale" url="https://tailscale.com/docs"
-Uso Tailscale para acesso privado aos serviços do homelab, incluindo painéis administrativos.
-:::
 
 :::warning title="Não publiques painéis administrativos na internet sem proteção"
 Se precisas de aceder ao AMP fora de casa, usa uma abordagem segura. Abrir portas no router para painéis internos pode dar problemas sérios.
