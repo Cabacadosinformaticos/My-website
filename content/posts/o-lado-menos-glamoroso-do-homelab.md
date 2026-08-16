@@ -2,9 +2,12 @@
 title: O lado menos glamoroso de ter servidores em casa
 desc: Updates, DNS, backups, discos, segurança e outras partes pouco bonitas de manter um homelab.
 category: [Homelab, Segurança, Infraestrutura]
-date: Jun 2026
+date: Ago 2026
 readTime: 11 min
 cover: ""
+series: Diário do Homelab
+seriesPart: 4
+related: [post:servidor-minecraft-em-casa, post:dns-em-casa-com-adguard-home, project:cabacalab]
 ---
 
 Quando se fala de homelab, é fácil mostrar a parte bonita: dashboards, mini PCs, serviços próprios, media server, Minecraft, DNS local e acesso remoto.
@@ -28,13 +31,7 @@ Os updates são necessários, mas raramente aparecem quando dá jeito.
 
 No servidor de Minecraft, por exemplo, atualizar não é só carregar num botão. Há AMP, instâncias, containers, versões do Minecraft, mods e autenticação. Quando algo falha, a tarde que era para jogar passa a ser uma sessão de troubleshooting.
 
-```bash title="update do AMP"
-getamp update
-su -l amp
-ampinstmgr upgradeall
-```
-
-Depois `Ctrl + D` para sair do utilizador `amp`.
+Contei o processo completo, com os comandos, na [parte 2](blog-post.html?id=servidor-minecraft-em-casa).
 
 :::warning title="O update não é o problema, a falta de plano é"
 Antes de atualizar serviços importantes, convém saber como voltar atrás. Backups e snapshots não são glamour, mas salvam tempo.
@@ -46,19 +43,13 @@ No Minecraft, um update pode envolver AMP, containers, mods e versões do client
 
 ## DNS é invisível até falhar
 
-O AdGuard Home é um ótimo exemplo de um serviço pequeno com impacto gigante. Enquanto funciona, ninguém repara. Quando falha, parece que a internet inteira morreu.
-
-Se o router aponta para o AdGuard Home como DNS e o LXC está desligado, os dispositivos podem deixar de resolver domínios. A ligação à internet pode estar boa, mas nada abre porque os nomes não resolvem.
-
-:::resource title="AdGuard Home" url="https://adguard.com/en/adguard-home/overview.html"
-Uso AdGuard Home como DNS local para bloquear tracking, telemetry, malware, phishing e anúncios.
-:::
+O AdGuard Home é um ótimo exemplo de um serviço pequeno com impacto gigante. Enquanto funciona, ninguém repara. Quando falha, parece que a internet inteira morreu: a ligação está boa, mas nenhum nome resolve.
 
 :::danger title="Serviços pequenos também podem ser críticos"
-Um LXC com poucos recursos pode ser essencial para a rede toda. Se ele falha, o impacto pode ser maior do que o tamanho do serviço sugere.
+Um container com 1 GB de RAM pode ser essencial para a rede toda. O tamanho de um serviço não diz nada sobre o impacto da sua falha.
 :::
 
-Isto mudou a forma como olho para serviços "simples". O AdGuard Home quase não pesa no servidor, mas está no caminho de todos os dispositivos quando precisam de resolver domínios. É pequeno em recursos, mas grande em impacto.
+Isto mudou a forma como olho para serviços "simples". Expliquei como o montei, e o limite escondido que andava a deitar pedidos fora, na [parte 3](blog-post.html?id=dns-em-casa-com-adguard-home).
 
 ## Segurança não é só firewall
 
@@ -76,7 +67,7 @@ Também é separar papéis. Acesso para jogar não é acesso para administrar. A
 
 ## Scripts mágicos são confortáveis, mas perigosos
 
-Usei Proxmox VE Helper-Scripts para instalar o AdGuard Home. Foi prático e funcionou bem.
+Usei os Proxmox VE Helper-Scripts para instalar o AdGuard Home. Foi prático e funcionou bem.
 
 Mas um comando que faz `curl` de um script remoto e o passa diretamente para `bash` deve sempre levantar uma sobrancelha.
 
