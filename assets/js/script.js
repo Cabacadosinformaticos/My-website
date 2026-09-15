@@ -192,6 +192,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ── Página escondida ──
+     O coração do rodapé e a palavra "bros" escrita no teclado levam lá. */
+  const ownScript = document.querySelector('script[src$="assets/js/script.js"]');
+  const siteRoot = ownScript ? ownScript.getAttribute('src').replace(/assets\/js\/script\.js$/, '') : '';
+  const hiddenPage = siteRoot + 'pages/bros.html';
+  const onHiddenPage = /\/pages\/bros\.html$/.test(window.location.pathname);
+
+  document.querySelectorAll('.footer-heart').forEach(span => {
+    const heart = document.createElement('a');
+    heart.className = span.className;
+    heart.textContent = span.textContent;
+    heart.href = hiddenPage;
+    heart.setAttribute('aria-label', span.getAttribute('aria-label') || 'amor');
+    heart.style.display = 'inline-block';
+    heart.style.transformOrigin = '50% 55%';
+    span.replaceWith(heart);
+    const reduceHeart = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+    const beat = () => {
+      if (!heart.animate || (reduceHeart && reduceHeart.matches)) return;
+      heart.animate([
+        { transform: 'scale(1)' }, { transform: 'scale(1.38)', offset: .18 }, { transform: 'scale(1)', offset: .34 },
+        { transform: 'scale(1.26)', offset: .5 }, { transform: 'scale(1)' }
+      ], { duration: 900, easing: 'ease-out' });
+    };
+    heart.addEventListener('mouseenter', beat);
+    heart.addEventListener('focus', beat);
+  });
+
+  let typed = '';
+  let typedAt = 0;
+  document.addEventListener('keydown', e => {
+    if (onHiddenPage || e.ctrlKey || e.metaKey || e.altKey || e.key.length !== 1) return;
+    const t = e.target;
+    if (t && (t.isContentEditable || /^(input|textarea|select)$/i.test(t.tagName))) return;
+    const now = Date.now();
+    if (now - typedAt > 1500) typed = '';
+    typedAt = now;
+    typed = (typed + e.key.toLowerCase()).slice(-4);
+    if (typed === 'bros') window.location.href = hiddenPage;
+  });
+
   /* ── Glitch hover ── */
   const glitches = document.querySelectorAll('.glitch');
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#';
