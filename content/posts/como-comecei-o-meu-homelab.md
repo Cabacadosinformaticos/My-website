@@ -5,6 +5,9 @@ category: [Homelab, Servidores, Pessoal]
 date: Jun 2026
 readTime: 12 min
 cover: ""
+series: Diário do Homelab
+seriesPart: 1
+related: [project:homelab-proxmox-servidorzinho, post:servidor-minecraft-em-casa, post:chega-o-bifrost]
 ---
 
 Durante anos tive aquela ideia na cabeça: um dia vou ter um servidor meu em casa. Não era só para ter uma máquina ligada. Era para poder experimentar virtualização, correr serviços, partir coisas sem medo e, claro, finalmente ter um servidor de Minecraft meu.
@@ -49,8 +52,8 @@ Depois da compra, entrei na fase de decidir o que meter lá dentro. A minha ment
 Isso levou-me a montar uma máquina com bastante margem:
 
 - AMD Ryzen 9 7900.
-- 64 GB de RAM DDR4.
-- SSD NVMe WD Black SN850X de 2 TB.
+- 64 GB de RAM DDR5.
+- SSD NVMe WD Black SN850X de 2 TB (mais tarde juntei-lhe um segundo, igual).
 - Proxmox como base.
 
 Olhando agora, tenho de admitir que foi um bocado exagerado. Com tudo o que tenho feito, raramente uso uma parte relevante do processador. Mas também é verdade que esta margem me deu liberdade para experimentar sem estar sempre preocupado com limites.
@@ -61,9 +64,9 @@ Há aqui uma lição que só percebi depois: comprar hardware com margem é conf
 Nome: Servidorzinho
 Máquina: Minisforum MS-A1
 CPU: AMD Ryzen 9 7900
-RAM: 64 GB DDR4
-Storage: WD Black SN850X 2 TB NVMe
-Sistema: Proxmox VE 9.2.3
+RAM: 64 GB DDR5
+Storage: 2x WD Black SN850X 2 TB NVMe
+Sistema: Proxmox VE 9
 :::
 
 ## O primeiro objetivo: Minecraft
@@ -102,7 +105,7 @@ As decisões que mais marcaram o setup não foram as peças de hardware. Foram d
 | Usar Proxmox | Separar experiências em VMs e LXCs |
 | Não instalar tudo no host | Evitar transformar o servidor numa confusão |
 | Usar Tailscale | Aceder remotamente sem expor dashboards |
-| Separar media noutro servidor | Usar Quick Sync onde faz sentido |
+| Separar media noutro servidor | Usar Quick Sync onde faz sentido (mais tarde voltei atrás, ver a parte 6) |
 | Meter DNS local num LXC | Ter um serviço leve e isolado |
 
 Estas escolhas fizeram-me perceber que infraestrutura é muito mais sobre fronteiras do que sobre potência. O importante é saber onde uma coisa começa e outra acaba.
@@ -121,9 +124,11 @@ Esta foi uma das decisões que mais me deixou confortável. Eu queria poder aced
 
 ## Depois veio a MediaBox
 
-O segundo servidor apareceu porque o primeiro não era ideal para tudo. O Servidorzinho tem muito CPU, mas para vídeo eu queria Intel Quick Sync. Daí nasceu a MediaBox, um Lenovo ThinkPad M90Q com i5 14500T e Intel UHD Graphics 770.
+O segundo servidor apareceu porque o primeiro não era ideal para tudo. O Servidorzinho tem muito CPU, mas para vídeo eu queria Intel Quick Sync. Daí nasceu a MediaBox, um Lenovo ThinkCentre M90q Gen 5 com um i5 14500T e Intel UHD Graphics 770, para media, Jellyfin, transcodificação e experiências com NAS.
 
-A função dela é outra: media, Jellyfin, transcodificação e experiências com NAS.
+:::callout title="Atualização de outubro de 2026"
+A MediaBox já não é servidor. Contei o que aprendi com ela na [parte 6](blog-post.html?id=jellyfin-e-truenas-o-que-aprendi), e quem ocupa agora o lugar dela na [parte 7](blog-post.html?id=chega-o-bifrost).
+:::
 
 :::image-placeholder title="Servidorzinho e MediaBox" desc="Foto dos dois servidores lado a lado ou nos seus locais finais." ratio="16:9"
 :::
