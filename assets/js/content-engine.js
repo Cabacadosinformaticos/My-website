@@ -621,17 +621,17 @@ async function buildSeriesNav(currentId, meta) {
     : `<li><a href="${link(p.id)}">${i + 1}. ${name(p)}</a></li>`
   ).join('');
 
-  const top = `<nav class="series-box" aria-label="Série de artigos">
+  const top = `<div class="series-box" role="navigation" aria-label="Série de artigos">
     <span class="series-kicker">Série</span>
     <div class="series-head"><strong class="series-name">${escapeHtml(meta.series)}</strong><span class="series-count">Parte ${num} de ${total}</span></div>
     <ol class="series-list">${list}</ol>
-  </nav>`;
+  </div>`;
 
   const links = [];
   if (members[pos - 1]) links.push(`<a class="series-link series-prev" href="${link(members[pos - 1].id)}"><span>← Anterior</span><strong>${name(members[pos - 1])}</strong></a>`);
   if (members[pos + 1]) links.push(`<a class="series-link series-next" href="${link(members[pos + 1].id)}"><span>Seguinte →</span><strong>${name(members[pos + 1])}</strong></a>`);
   const bottom = links.length
-    ? `<nav class="series-nav${links.length === 1 ? ' series-nav-single' : ''}" aria-label="Navegação da série">${links.join('')}</nav>`
+    ? `<div class="series-nav${links.length === 1 ? ' series-nav-single' : ''}" role="navigation" aria-label="Navegação da série">${links.join('')}</div>`
     : '';
 
   return { top, bottom };

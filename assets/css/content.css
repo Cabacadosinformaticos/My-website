@@ -813,21 +813,6 @@
 /* ══════════════════════════════════════
    SÉRIE DE ARTIGOS
 ══════════════════════════════════════ */
-/* O seletor global `nav` é a barra fixa do topo: repor o fluxo
-   normal nestas navegações de série. */
-.series-box,
-.series-nav {
-  position: static;
-  inset: auto;
-  height: auto;
-  z-index: auto;
-  display: block;
-  align-items: normal;
-  justify-content: normal;
-  backdrop-filter: none;
-  transition: none;
-}
-
 .series-box {
   margin: 0 0 32px;
   padding: 18px 20px;
