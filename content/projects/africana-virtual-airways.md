@@ -19,13 +19,13 @@ O Africana Virtual Airways foi o projeto principal do 4.º semestre. O desafio e
 
 ## A equipa e o meu papel
 
-Fomos três: eu, o Muhammad Sacoor e o César Rodrigues.
+Fomos três: eu, o Muhammad Sacoor e o César Oliveira.
 
 | Pessoa | Papel |
 |---|---|
 | Tiago Cabaça | Full-stack: sistema de reservas, itinerários, schema MySQL, backoffice de administração, autenticação e segurança, API, documentação técnica e UML |
 | Muhammad Sacoor | Lead developer: arquitetura, integrações com VATSIM e meteorologia, mapa de voos em tempo real, globo 3D, motor de PNR |
-| César Rodrigues | Conteúdo e apoio: galeria da frota, entretenimento a bordo, testes de usabilidade e poster |
+| César Oliveira | Conteúdo e apoio: galeria da frota, entretenimento a bordo, testes de usabilidade e poster |
 
 ## O que a plataforma faz
 

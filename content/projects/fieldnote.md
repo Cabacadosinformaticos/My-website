@@ -33,7 +33,7 @@ A pergunta que orienta o desenho é simples: o que acontece a um registo quando 
 
 ## O meu papel
 
-Somos dois: eu e o César Rodrigues. Fico com a arquitetura e o backend, a parte que mais pesa na nota de Sistemas Distribuídos. O César trata do dashboard, dos ecrãs da app e do arquivo. Os diagramas UML fazemos em conjunto.
+Somos dois: eu e o César Oliveira. Fico com a arquitetura e o backend, a parte que mais pesa na nota de Sistemas Distribuídos. O César trata do dashboard, dos ecrãs da app e do arquivo. Os diagramas UML fazemos em conjunto.
 
 :::stats
 5 | Cadeiras avaliam o projeto

@@ -18,11 +18,16 @@ Fui Lead Developer e UI/UX Designer.
 :::image-placeholder title="Ecrãs da app" desc="Carrossel com os screenshots reais: início, mapa, detalhe de esquadra, guia de serviços, categorias e lista de esquadras." ratio="16:9"
 :::
 
-## O desafio
+## O que nos pediram
 
-O Comando Metropolitano de Lisboa gere 120 esquadras, organizadas em divisões territoriais, de trânsito, de investigação criminal, de segurança de instalações e de transportes públicos. A PSP trabalha em 13 áreas de serviço, do policiamento de proximidade ao licenciamento de armas e aos objetos perdidos.
+O desafio vinha do Comando Metropolitano de Lisboa (COMETLIS), que gere 120 esquadras organizadas em divisões territoriais, de trânsito, de investigação criminal, de segurança de instalações e de transportes públicos. A PSP trabalha em 13 áreas de serviço, do policiamento de proximidade ao licenciamento de armas e aos objetos perdidos.
 
-O problema era concreto: quem precisa de ir à PSP muitas vezes não sabe a que esquadra ir, nem que serviços cada uma presta. Isso gera deslocações desnecessárias e tempo perdido, dos dois lados do balcão.
+O pedido era desenvolver uma app que facilitasse o acesso dos cidadãos à PSP na área de Lisboa, e trazia duas exigências concretas:
+
+- **Geolocalização**: mostrar a esquadra mais próxima e guiar o cidadão até lá.
+- **Filtro por serviço**: saber que esquadra trata de trânsito, de armas, de perdidos e achados, e de cada um dos outros serviços.
+
+O impacto esperado também era claro: menos tempo perdido e menos idas à esquadra errada. O júri avaliava impacto social, inovação, qualidade técnica, usabilidade, sustentabilidade, qualidade da apresentação e viabilidade. Tivemos uma apresentação intermédia aos mentores no sábado, a entrega final no domingo às 14h e as apresentações finais às 15h.
 
 :::stats
 48 h | Do zero à demo
@@ -30,6 +35,22 @@ O problema era concreto: quem precisa de ir à PSP muitas vezes não sabe a que 
 13 | Categorias de serviço
 7 | Pessoas na equipa
 :::
+
+## Da pergunta à ideia
+
+<!-- REVER (Tiago): esta secção foi escrita a partir do enquadramento do pitch. Acrescentar o que a equipa discutiu e descartou durante o evento. -->
+
+Antes de pensar em ecrãs, reduzimos o desafio à pergunta que o cidadão faz quando precisa da polícia para alguma coisa que não é uma emergência: **onde é que devo ir?** Com 120 estruturas e 13 áreas de serviço, a resposta não é óbvia, e a informação existia mas estava espalhada.
+
+A partir daí, a app organizou-se num fluxo de três passos, que foi também a espinha do nosso pitch:
+
+:::timeline
+1 | Descobrir | O ecrã inicial mostra logo a esquadra mais próxima, uma pesquisa e atalhos para os serviços mais procurados. Sem menus antes de chegar à informação.
+2 | Filtrar | No mapa ou no guia de serviços, o cidadão reduz as 120 esquadras às que tratam do que precisa, ou às que estão abertas 24 horas.
+3 | Agir | A ficha da esquadra tem horários, telefone, morada e direções. A escolha passa a ação com um toque.
+:::
+
+Tudo o que não servia esta pergunta ficou em segundo plano. As funcionalidades de conta, notificações e documentos digitais entraram como protótipo, para mostrar à PSP até onde a app podia crescer, sem roubar tempo ao fluxo principal.
 
 ## O que a app faz
 
@@ -64,6 +85,16 @@ Num Tech Jam de 48 horas, a ferramenta certa é a que a equipa conhece e que nã
 Abrir o detalhe num ecrã novo fazia perder a posição e o zoom do mapa. Num painel sobreposto, fechar o detalhe devolve o utilizador exatamente onde estava.
 :::
 
+## O que propusemos a seguir
+
+No fecho do pitch deixámos um caminho para a app passar de protótipo a serviço:
+
+1. Validar o fluxo com cidadãos reais.
+2. Completar a informação oficial de todas as esquadras e serviços.
+3. Um piloto com notificações e estados reais das participações.
+
+E algumas ideias para mais tarde: notificações mais ricas, a ocupação das esquadras em tempo real e a ligação a plataformas nacionais de emergência.
+
 ## A equipa
 
 Sete estudantes de Engenharia Informática e Creative Technologies do IADE:
@@ -74,7 +105,7 @@ Sete estudantes de Engenharia Informática e Creative Technologies do IADE:
 | André Maleitas | Firebase e autenticação |
 | Rodrigo Freire | Backend |
 | Martim Conceição | Mapas e localização |
-| César Rodrigues | Frontend, QA e testes |
+| César Oliveira | Frontend, QA e testes |
 | Lucas Nicolau | Integração de APIs |
 | Sara Santos | Design visual e branding |
 

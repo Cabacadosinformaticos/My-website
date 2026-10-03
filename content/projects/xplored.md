@@ -23,7 +23,7 @@ O Xplored é uma app para explorar uma zona da cidade como se fosse um jogo. O u
 |---|---|
 | Tiago Cabaça | Relatórios, mockups, design e base de dados; na revisão de 2026, correções, documentação, a maioria das funcionalidades novas e testes |
 | Muhammad Sacoor | Backend em Spring Boot, Android, poster e vídeo |
-| César Rodrigues | Android e apresentações |
+| César Oliveira | Android e apresentações |
 
 ## O que a app faz
 
