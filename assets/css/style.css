@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Epilogue:wght@400;500;700;900&display=swap');
+@import url('fonts.css');
 
 /* ══════════════════════════════════════
    ROOT
@@ -524,7 +524,12 @@ nav.scrolled { border-bottom-color: var(--border2); }
   line-height: 1.7;
   margin-bottom: 20px;
 }
-.project-links { display: flex; gap: 16px; }
+.project-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
 
 /* ══════════════════════════════════════
    BLOG CARDS
@@ -536,10 +541,13 @@ nav.scrolled { border-bottom-color: var(--border2); }
 }
 
 .blog-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--border);
   overflow: hidden;
-  transition: all .25s;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
   border-radius: var(--radius);
 }
 .blog-card:hover {
@@ -548,7 +556,22 @@ nav.scrolled { border-bottom-color: var(--border2); }
   box-shadow: 0 16px 48px rgba(0,0,0,0.3);
 }
 
+/* Traço de acento na aresta de topo, o mesmo motivo dos cards de projeto. */
+.blog-accent-line {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s;
+  z-index: 2;
+}
+.blog-card:hover .blog-accent-line,
+.blog-featured-card:hover .blog-accent-line { transform: scaleX(1); }
+
 .blog-thumb {
+  position: relative;
   height: 160px;
   background: var(--bg2);
   display: flex;
@@ -557,6 +580,7 @@ nav.scrolled { border-bottom-color: var(--border2); }
   border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
+.thumb-media { width: 100%; height: 100%; }
 .blog-thumb-icon {
   font-family: var(--font-head);
   font-size: 56px;
@@ -566,13 +590,41 @@ nav.scrolled { border-bottom-color: var(--border2); }
 }
 .blog-card:hover .blog-thumb-icon { color: rgba(232,255,71,0.15); }
 
-.blog-body { padding: 20px; }
+/* Etiqueta de série por cima da miniatura */
+.blog-series {
+  position: absolute;
+  top: 12px; left: 12px;
+  max-width: calc(100% - 24px);
+  padding: 4px 8px;
+  background: rgba(4,6,15,0.86);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.blog-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+/* Categoria e data ficam juntas à esquerda; a data empurra para o fim
+   da linha sem abrir buracos entre as etiquetas. */
 .blog-meta {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
   margin-bottom: 10px;
 }
+.blog-meta .blog-date { margin-left: auto; }
 .blog-cat {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -598,13 +650,30 @@ nav.scrolled { border-bottom-color: var(--border2); }
   font-size: 13px;
   color: var(--muted2);
   line-height: 1.7;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .blog-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
 }
+.blog-arrow {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1;
+  color: var(--accent);
+  transition: transform .25s;
+}
+.blog-card:hover .blog-arrow,
+.blog-featured-card:hover .blog-arrow { transform: translateX(4px); }
 .read-time {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -711,11 +780,89 @@ footer {
   padding: 64px 48px 0;
 }
 
+/* ── Faixa de convite ── */
+.footer-cta {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+}
+.footer-cta-title {
+  font-family: var(--font-head);
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 0.95;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.footer-cta-text {
+  font-size: 13px;
+  color: var(--muted2);
+  line-height: 1.7;
+  max-width: 420px;
+}
+.footer-cta-email-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  min-width: 0;
+  max-width: 100%;
+}
+.footer-email {
+  font-family: var(--font-mono);
+  font-size: clamp(16px, 2.4vw, 22px);
+  color: var(--accent);
+  letter-spacing: 0.01em;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  transition: color .2s;
+}
+.footer-email:hover { color: #fff; }
+.copy-btn {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--muted2);
+  transition: color .2s, border-color .2s, background .2s;
+}
+.copy-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+.copy-btn:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+.copy-btn.is-copied { border-color: #00e87a; color: #00e87a; }
+.copy-status {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #00e87a;
+}
+.footer-cta-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+/* ── Grelha de links ── */
 .footer-top {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 48px;
-  padding-bottom: 48px;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding: 48px 0;
 }
 
 .footer-brand .nav-logo { font-size: 19px; margin-bottom: 12px; display: block; }
@@ -723,19 +870,7 @@ footer {
   font-size: 13px;
   color: var(--muted2);
   line-height: 1.7;
-  max-width: 260px;
-  margin-bottom: 20px;
-}
-.footer-social { display: flex; gap: 10px; }
-.footer-social-block { margin-top: 22px; }
-.footer-social-title {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
+  max-width: 280px;
 }
 
 .footer-col h4 {
@@ -754,15 +889,17 @@ footer {
 }
 .footer-links a:hover { color: var(--text); }
 
-.footer-contact-email {
-  font-family: var(--font-mono);
+/* Redes com ícone e nome, não só ícone. */
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 13px;
-  color: var(--accent);
-  display: block;
-  margin-bottom: 16px;
+  color: var(--muted2);
   transition: color .2s;
 }
-.footer-contact-email:hover { color: #fff; }
+.footer-social-link svg { flex-shrink: 0; opacity: .9; }
+.footer-social-link:hover { color: var(--accent); }
 
 .footer-bottom {
   border-top: 1px solid var(--border);
@@ -770,6 +907,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 .footer-copy {
   font-family: var(--font-mono);
@@ -777,7 +916,14 @@ footer {
   color: var(--muted);
 }
 .footer-copy span { color: var(--accent); }
-.footer-top-link {
+.footer-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+.footer-bottom-links { display: flex; align-items: center; gap: 20px; }
+.footer-top-link,
+.footer-privacy-link {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--muted);
@@ -785,7 +931,8 @@ footer {
   text-transform: uppercase;
   transition: color .2s;
 }
-.footer-top-link:hover { color: var(--accent); }
+.footer-top-link:hover,
+.footer-privacy-link:hover { color: var(--accent); }
 
 /* ══════════════════════════════════════
    PAGE HERO (inner pages)
@@ -1352,18 +1499,30 @@ footer {
   margin-bottom: 48px;
 }
 .blog-featured-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   overflow: hidden;
-  transition: background .2s;
+  transition: background .2s, border-color .25s;
 }
-.blog-featured-card:hover { background: var(--surface2); }
+.blog-featured-card:hover { background: var(--surface2); border-color: var(--border2); }
 .blog-featured-thumb {
+  position: relative;
   height: 220px;
   background: var(--bg);
   display: flex; align-items: center; justify-content: center;
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
 }
-.blog-featured-body { padding: 28px; }
+.blog-featured-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+}
 .blog-featured-title {
   font-family: var(--font-body);
   font-weight: 700;
@@ -1373,6 +1532,26 @@ footer {
   line-height: 1.35;
   letter-spacing: -0.3px;
 }
+.blog-featured-excerpt {
+  font-size: 14px;
+  color: var(--muted2);
+  line-height: 1.8;
+  margin-bottom: 18px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Meta do topo do artigo: categoria, data e leitura juntas. */
+.post-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.post-meta-sep { color: var(--border2); }
 
 /* Blog Post */
 .post-layout {
@@ -1453,8 +1632,8 @@ footer {
   border: 1px solid var(--border);
   padding: 32px;
   display: flex;
-  gap: 24px;
-  align-items: flex-start;
+  gap: 32px;
+  align-items: center;
   margin-top: 56px;
   border-radius: var(--radius);
   transition: border-color .25s, box-shadow .25s;
@@ -1470,15 +1649,16 @@ footer {
   border-color: var(--border2);
   box-shadow: 0 18px 46px rgba(0,0,0,0.3);
 }
+/* Círculo grande à esquerda, com a altura do bloco de texto. */
 .author-avatar {
-  width: 64px; height: 64px;
+  width: 150px; height: 150px;
   border-radius: 50%;
   border: 2px solid var(--accent);
-  box-shadow: 0 0 0 4px rgba(232,255,71,0.08);
+  box-shadow: 0 0 0 6px rgba(232,255,71,0.07);
   background: var(--bg);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-head);
-  font-size: 24px;
+  font-size: 40px;
   color: var(--accent);
   flex-shrink: 0;
   letter-spacing: 1px;
@@ -1998,9 +2178,158 @@ footer {
 .reveal.visible { opacity: 1; transform: none; }
 
 /* ══════════════════════════════════════
+   GITHUB - botão de destaque e card do repositório
+══════════════════════════════════════ */
+.project-hero-actions {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.github-cta {
+  position: relative;
+  font-size: 12px;
+  padding: 14px 26px;
+  gap: 10px;
+}
+.github-cta .gh-mark { flex-shrink: 0; }
+.github-cta-arrow {
+  font-family: var(--font-mono);
+  transition: transform .25s;
+}
+.github-cta:hover .github-cta-arrow { transform: translateX(4px); }
+/* Cantos que aparecem à volta do botão no hover */
+.github-cta .corner {
+  opacity: 0;
+  transition: opacity .25s, transform .25s;
+}
+.github-cta .corner.tl { transform: translate(3px, 3px); }
+.github-cta .corner.tr { transform: translate(-3px, 3px); }
+.github-cta .corner.bl { transform: translate(3px, -3px); }
+.github-cta .corner.br { transform: translate(-3px, -3px); }
+.github-cta:hover .corner { opacity: 1; transform: none; }
+
+.repo-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+/* Um único varrimento na aresta de topo, quando o card entra em ecrã. */
+.repo-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+.repo-card.is-in::after { animation: repo-sweep .7s ease-out .1s both; }
+@keyframes repo-sweep {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+.repo-kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.repo-path {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text);
+  word-break: break-all;
+  margin-bottom: 10px;
+}
+.repo-text {
+  font-size: 13px;
+  color: var(--muted2);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+.repo-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--accent-dim);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: background .2s, border-color .2s, color .2s;
+}
+.repo-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+.repo-arrow { transition: transform .25s; }
+.repo-btn:hover .repo-arrow { transform: translateX(4px); }
+
+/* Pill de código nos cards de projeto */
+.project-link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  transition: color .2s, border-color .2s, background .2s;
+}
+.project-link-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+.project-link-pill svg { flex-shrink: 0; }
+
+/* ══════════════════════════════════════
+   PÁGINA DE PRIVACIDADE
+══════════════════════════════════════ */
+.privacy-page { max-width: 70ch; }
+.privacy-page h2 { margin-top: 40px; }
+.privacy-page h2:first-child { margin-top: 0; }
+.privacy-page a { color: var(--accent); }
+.privacy-page a:hover { color: #fff; }
+.privacy-page strong { color: var(--text); }
+.privacy-updated {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 14px;
+}
+
+/* ══════════════════════════════════════
    ANIMATIONS
 ══════════════════════════════════════ */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: none; }
+}
+
+/* Sem movimento: o card do repositório mostra logo o estado final. */
+@media (prefers-reduced-motion: reduce) {
+  .repo-card.is-in::after { animation: none; opacity: 0; }
 }
