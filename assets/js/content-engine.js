@@ -1,3 +1,8 @@
+/*!
+ * Content engine of cabacatech.com
+ * Copyright (c) 2026 Tiago Cabaça. Released under the MIT License.
+ * https://github.com/Cabacadosinformaticos/My-website
+ */
 /* ══════════════════════════════════════
    CONTENT ENGINE v3
 ══════════════════════════════════════ */
@@ -32,6 +37,9 @@ function parseFrontmatter(raw) {
     let val   = line.slice(col + 1).trim();
     if (val.startsWith('[') && val.endsWith(']')) {
       val = val.slice(1, -1).split(',').map(s => s.trim().replace(/^["']|["']$/g, '')).filter(Boolean);
+    } else if (/^"[^"]*"$|^'[^']*'$/.test(val)) {
+      // Valores entre aspas, como cover: "", ficam sem as aspas.
+      val = val.slice(1, -1);
     }
     meta[key] = val;
   });
@@ -63,7 +71,8 @@ function categoryIcon(category) {
     'Open Source': `<circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7M6 9v12" stroke-width="2" stroke-linecap="round"/>`,
     'Tutorial':    `<path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`,
   };
-  return icons[category] || `<circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01" stroke-width="2" stroke-linecap="round"/>`;
+  // Ícone neutro (terminal) para categorias sem ícone próprio.
+  return icons[category] || `<rect x="2" y="4" width="20" height="16" rx="1"/><path d="M6 9l3 3-3 3M12 15h6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
 }
 
 function categoryColor(category) {
@@ -168,17 +177,56 @@ function renderDetailsBlock(attrText, inner, fences, deferred) {
   return `<details class="content-details"><summary>${escapeHtml(title)}</summary><div class="content-details-body">${body}</div></details>`;
 }
 
-function renderTimelineBlock(attrText, inner) {
-  const attrs = parseBlockAttrs(attrText);
-  const heading = attrs.title ? `<h3>${escapeHtml(attrs.title)}</h3>` : '';
-  const items = inner.trim().split('\n').filter(l => l.trim()).map(line => {
+/* ── Linha do tempo: data | título | texto ──
+   `layout="horizontal|compact|grid"` na linha de abertura;
+   sem atributo mantém a linha vertical de sempre. */
+function parseTimelineItems(inner) {
+  return inner.trim().split('\n').filter(l => l.trim()).map(line => {
     const parts = line.split('|').map(p => p.trim());
-    const date  = parts[0] || '';
-    const title = parts[1] || '';
-    const text  = parts.slice(2).join(' | ').trim();
-    return `<li class="timeline-item"><span class="timeline-date">${escapeHtml(date)}</span><div class="timeline-body"><strong class="timeline-title">${escapeHtml(title)}</strong>${text ? renderInnerMarkdown(text) : ''}</div></li>`;
-  }).join('');
-  return `<section class="timeline-card">${heading}<ol class="timeline">${items}</ol></section>`;
+    return {
+      date:  parts[0] || '',
+      title: parts[1] || '',
+      text:  parts.slice(2).join(' | ').trim()
+    };
+  });
+}
+
+function renderTimelineBlock(attrText, inner) {
+  const attrs   = parseBlockAttrs(attrText);
+  const layout  = (attrs.layout || '').trim().toLowerCase();
+  const heading = attrs.title ? `<h3>${escapeHtml(attrs.title)}</h3>` : '';
+  const items   = parseTimelineItems(inner);
+
+  if (layout === 'horizontal') {
+    const steps = items.map((it, i) => `<li class="timeline-h-item" style="--i:${i}">
+        <span class="timeline-h-date">${escapeHtml(it.date)}</span>
+        <strong class="timeline-h-title">${escapeHtml(it.title)}</strong>
+        ${it.text ? `<div class="timeline-h-text">${renderInnerMarkdown(it.text)}</div>` : ''}
+      </li>`).join('');
+    return `<section class="timeline-card timeline-card-h">${heading}<div class="timeline-h-scroll" tabindex="0" role="region" aria-label="Linha do tempo, desliza para ver mais"><ol class="timeline-h" style="--steps:${items.length}">${steps}</ol></div></section>`;
+  }
+
+  if (layout === 'compact') {
+    const rows = items.map((it, i) => `<li class="timeline-c-item" style="--i:${i}">
+        <span class="timeline-c-date">${escapeHtml(it.date)}</span>
+        <span class="timeline-c-mark" aria-hidden="true"></span>
+        <div class="timeline-c-body"><strong class="timeline-c-title">${escapeHtml(it.title)}</strong>${it.text ? `<div class="timeline-c-text">${renderInnerMarkdown(it.text)}</div>` : ''}</div>
+      </li>`).join('');
+    return `<section class="timeline-card timeline-card-c">${heading}<ol class="timeline-c">${rows}</ol></section>`;
+  }
+
+  if (layout === 'grid') {
+    const cells = items.map((it, i) => `<li class="timeline-g-item" style="--i:${i}">
+        <span class="timeline-g-num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
+        <span class="timeline-g-date">${escapeHtml(it.date)}</span>
+        <strong class="timeline-g-title">${escapeHtml(it.title)}</strong>
+        ${it.text ? `<div class="timeline-g-text">${renderInnerMarkdown(it.text)}</div>` : ''}
+      </li>`).join('');
+    return `<section class="timeline-card timeline-card-g">${heading}<ol class="timeline-g">${cells}</ol></section>`;
+  }
+
+  const list = items.map((it, i) => `<li class="timeline-item" style="--i:${i}"><span class="timeline-date">${escapeHtml(it.date)}</span><div class="timeline-body"><strong class="timeline-title">${escapeHtml(it.title)}</strong>${it.text ? renderInnerMarkdown(it.text) : ''}</div></li>`).join('');
+  return `<section class="timeline-card">${heading}<ol class="timeline">${list}</ol></section>`;
 }
 
 function renderStatsBlock(inner) {
@@ -199,6 +247,43 @@ function renderCompareBlock(attrText, inner, fences, deferred) {
   const heading = attrs.title ? `<h3>${escapeHtml(attrs.title)}</h3>` : '';
   const col = (name, text) => `<div class="compare-col"><h4>${escapeHtml(name)}</h4>${pushDeferred(deferred, renderMarkdown(restoreFences(text, fences).trim()))}</div>`;
   return `<section class="compare-card">${heading}<div class="compare-grid">${col(attrs.left || 'Antes', left)}${col(attrs.right || 'Depois', right)}</div></section>`;
+}
+
+/* ── Blocos de código ──
+   Barra de terminal (pontos + título + copiar). Nos blocos de
+   shell cada linha é um span próprio: o prompt `$` é um
+   pseudo-elemento (nunca entra no texto copiado) e o bloco
+   revela as linhas uma a uma na primeira entrada em ecrã. */
+const SHELL_LANGS = ['bash', 'sh', 'shell', 'console', 'zsh'];
+
+function highlightCode(code, lang) {
+  if (window.hljs && lang) {
+    try { return window.hljs.highlight(code, { language: lang }).value; } catch {}
+  }
+  return escapeHtml(code);
+}
+
+function renderCodeBlock(code, lang, title) {
+  const isShell  = SHELL_LANGS.includes(String(lang).toLowerCase());
+  const label    = title || lang || 'código';
+  const clean    = String(code).replace(/\n$/, '');
+  const lines    = clean.split('\n');
+  const body     = isShell
+    ? lines.map((line, i) => {
+        // Linhas de comentário ficam apagadas.
+        const cls = /^\s*#/.test(line) ? ' code-line-comment' : '';
+        return `<span class="code-line${cls}" style="--i:${i}">${highlightCode(line, lang)}</span>`;
+      }).join('')
+    : highlightCode(clean, lang);
+
+  return `<div class="code-block${isShell ? ' code-block-shell' : ''}" style="--lines:${lines.length}">
+  <div class="code-bar">
+    <span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="code-name">${escapeHtml(label)}</span>
+    <button class="code-copy" type="button"><span class="code-copy-label" aria-live="polite">Copiar</span></button>
+  </div>
+  <pre><code class="language-${escapeHtml(lang)}">${body}</code></pre>
+</div>`;
 }
 
 /* ── Blocos especiais ── */
@@ -351,12 +436,7 @@ function renderMarkdown(md) {
         : infoString || '';
       const titleMatch = rawInfo.match(/title="([^"]+)"/);
       const lang = rawInfo.replace(/\s*title="[^"]*"/, '').trim();
-      let highlighted = escapeHtml(code);
-      if (window.hljs && lang) {
-        try { highlighted = window.hljs.highlight(code, { language: lang }).value; } catch {}
-      }
-      const codeHtml = `<pre><code class="language-${escapeHtml(lang)}">${highlighted}</code></pre>`;
-      return titleMatch ? `<div class="code-block"><div class="code-title">${escapeHtml(titleMatch[1])}</div>${codeHtml}</div>` : `<div class="code-block">${codeHtml}</div>`;
+      return renderCodeBlock(code, lang, titleMatch ? titleMatch[1] : '');
     };
     renderer.image = (href, title, alt) =>
       `<figure class="post-figure"><img src="${href}" alt="${alt || ''}" loading="lazy"/>${alt ? `<figcaption>${alt}</figcaption>` : ''}</figure>`;
@@ -423,7 +503,7 @@ function handleImgError(img) {
   if (wrapper) wrapper.innerHTML = thumbPlaceholder(cat);
 }
 
-/* ── Erros de media dentro do body de posts/projectos ── */
+/* ── Erros de media dentro do body de posts/projetos ── */
 function initBodyMediaErrors() {
   // Imagens simples dentro de figures
   document.querySelectorAll('.post-body figure img, .project-content figure img').forEach(img => {
@@ -547,6 +627,140 @@ function initReadingProgress() {
   update();
 }
 
+/* ══════════════════════════════════════
+   EFEITOS DE ENTRADA (correm uma só vez)
+   Observador partilhado: acrescenta `is-in`
+   ao elemento, corre o callback e deixa de
+   observar. Nunca volta a disparar.
+══════════════════════════════════════ */
+const onceCallbacks = new WeakMap();
+let onceObserver = null;
+
+function prefersReducedMotion() {
+  return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+}
+
+function getOnceObserver() {
+  if (onceObserver) return onceObserver;
+  onceObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      obs.unobserve(el);
+      el.classList.add('is-in');
+      const cb = onceCallbacks.get(el);
+      onceCallbacks.delete(el);
+      if (cb) cb(el);
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
+  return onceObserver;
+}
+
+function initOnce(el, cb) {
+  if (!el || el.dataset.onceObserved) return;
+  el.dataset.onceObserved = '1';
+  if (cb) onceCallbacks.set(el, cb);
+  getOnceObserver().observe(el);
+}
+
+/* ── Copiar para a área de transferência ── */
+async function copyText(text) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch {}
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-1000px';
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  } catch { return false; }
+}
+
+/* ── Blocos de código: copiar + revelar linhas ── */
+function initCodeBlocks(root = document) {
+  root.querySelectorAll('.code-block').forEach(block => {
+    if (block.dataset.codeReady) return;
+    block.dataset.codeReady = '1';
+    const codeEl = block.querySelector('code');
+    const btn    = block.querySelector('.code-copy');
+    const label  = block.querySelector('.code-copy-label');
+    if (btn && codeEl && label) {
+      btn.addEventListener('click', async () => {
+        // Nos blocos de terminal cada linha é um span: junta-as com quebras de linha.
+        const lines = codeEl.querySelectorAll('.code-line');
+        const text  = lines.length ? [...lines].map(l => l.textContent).join('\n') : codeEl.textContent;
+        const ok = await copyText(text);
+        label.textContent = ok ? 'Copiado' : 'Falhou';
+        btn.classList.toggle('is-copied', ok);
+        clearTimeout(btn.copyTimer);
+        btn.copyTimer = setTimeout(() => {
+          label.textContent = 'Copiar';
+          btn.classList.remove('is-copied');
+        }, 1500);
+      });
+    }
+    if (block.classList.contains('code-block-shell')) initOnce(block);
+  });
+}
+
+/* ── Números que contam uma vez ── */
+// Devolve o inteiro a animar e o resto (unidade) que fica estático.
+// Valores como "95/100" ou "1.5" ficam parados: não são um inteiro
+// seguido de uma unidade simples.
+function splitCountable(text) {
+  const m = String(text).trim().match(/^(\d+)([^\d]*)$/);
+  if (!m) return null;
+  const rest = m[2];
+  if (rest && !/^\s*[A-Za-zµ%°]{1,4}$/.test(rest)) return null;
+  return { num: Number(m[1]), rest };
+}
+
+function countUpValue(el, num, rest) {
+  const duration = 900;
+  const start = performance.now();
+  const step = now => {
+    const p = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(num * eased) + rest;
+    if (p < 1) requestAnimationFrame(step);
+    else el.textContent = num + rest;
+  };
+  requestAnimationFrame(step);
+}
+
+function initStats(root = document) {
+  root.querySelectorAll('.stats-block').forEach(block => {
+    if (block.dataset.statsReady) return;
+    block.dataset.statsReady = '1';
+    if (prefersReducedMotion()) return;
+    const values  = [...block.querySelectorAll('.stat-value')];
+    const targets = values.map(el => splitCountable(el.textContent));
+    if (!targets.some(t => t && t.num > 0)) return;
+    initOnce(block, () => {
+      values.forEach((el, i) => {
+        const t = targets[i];
+        if (t && t.num > 0) countUpValue(el, t.num, t.rest);
+      });
+    });
+  });
+}
+
+/* ── Efeitos do conteúdo carregado por Markdown ── */
+function initContentEffects(root = document) {
+  initCodeBlocks(root);
+  initStats(root);
+  root.querySelectorAll('.timeline-card, .content-callout, .repo-card').forEach(el => initOnce(el));
+}
+
 /* ── Reveal ── */
 function initReveal() {
   const obs = new IntersectionObserver(entries => {
@@ -585,7 +799,8 @@ async function fetchProjectMeta(id) {
 function loadAllPostsMeta() {
   if (!metaCache.postsAll) {
     metaCache.postsAll = fetchMD('data/posts-index.json').then(t => JSON.parse(t))
-      .then(index => Promise.all(index.map(fetchPostMeta)));
+      .then(index => Promise.all(index.map(fetchPostMeta)))
+      .then(posts => { rememberSeriesTotals(posts); return posts; });
   }
   return metaCache.postsAll;
 }
@@ -669,6 +884,7 @@ async function loadBlogList() {
       const { meta } = parseFrontmatter(raw);
       return { id, ...meta };
     }));
+    rememberSeriesTotals(posts);
     buildFilters(posts, 'post');
     if (featured) featured.innerHTML = posts.slice(0, 2).map(p => featuredCard(p)).join('');
     grid.innerHTML = posts.map(p => blogCard(p)).join('');
@@ -679,40 +895,75 @@ async function loadBlogList() {
   }
 }
 
+/* Miniatura do card. Vai dentro de `.thumb-media` para o
+   fallback de imagem em falta não apagar o resto do bloco. */
+function cardThumb(p, cats) {
+  return `<div class="thumb-media">${p.cover
+    ? `<img src="${p.cover}" alt="${escapeHtml(p.title || '')}" loading="lazy" style="width:100%;height:100%;object-fit:cover" data-fallback-cat="${cats[0] || ''}" onerror="handleImgError(this)"/>`
+    : thumbPlaceholder(cats[0])}</div>`;
+}
+
+/* Etiqueta de série: "Diário do Homelab · 3/7". Os totais são
+   preenchidos sempre que a lista completa de posts é conhecida. */
+const seriesTotals = {};
+
+function rememberSeriesTotals(posts) {
+  Object.keys(seriesTotals).forEach(key => delete seriesTotals[key]);
+  posts.forEach(p => {
+    if (!p || !p.series) return;
+    seriesTotals[p.series] = (seriesTotals[p.series] || 0) + 1;
+  });
+}
+
+function seriesBadge(p) {
+  if (!p || !p.series) return '';
+  const part  = Number(p.seriesPart) || 0;
+  const total = seriesTotals[p.series] || 0;
+  const count = part ? (total ? `${part}/${total}` : String(part)) : '';
+  const label = count ? `${p.series} · ${count}` : String(p.series);
+  return `<span class="blog-series">${escapeHtml(label)}</span>`;
+}
+
+/* Linha de kicker do card: primeira categoria + data no fim. */
+function cardKicker(p) {
+  const cat = getCategories(p)[0] || '';
+  return `<div class="blog-meta">
+      ${cat ? `<span class="blog-cat">${escapeHtml(cat)}</span>` : ''}
+      ${p.date ? `<span class="blog-date">${escapeHtml(p.date)}</span>` : ''}
+    </div>`;
+}
+
 function blogCard(p, linkPrefix = '') {
-  const cats    = getCategories(p);
-  const thumb   = p.cover
-    ? `<img src="${p.cover}" alt="${p.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover" data-fallback-cat="${cats[0] || ''}" onerror="handleImgError(this)"/>`
-    : thumbPlaceholder(cats[0]);
-  const catTags = cats.map(c => `<span class="blog-cat">${c}</span>`).join('');
+  const cats = getCategories(p);
   return `
 <a href="${linkPrefix}blog-post.html?id=${p.id}" class="blog-card" data-category="${cats.join(',')}">
-  <div class="blog-thumb">${thumb}</div>
+  <span class="blog-accent-line" aria-hidden="true"></span>
+  <div class="blog-thumb">${cardThumb(p, cats)}${seriesBadge(p)}</div>
   <div class="blog-body">
-    <div class="blog-meta">${catTags}<span class="blog-date">${p.date || ''}</span></div>
-    <div class="blog-title">${p.title}</div>
-    <div class="blog-excerpt">${p.desc || ''}</div>
-    <div class="blog-footer"><span class="read-time">${p.readTime || ''}</span><span class="btn-ghost" style="font-size:11px">Ler</span></div>
+    ${cardKicker(p)}
+    <div class="blog-title">${escapeHtml(p.title || '')}</div>
+    <div class="blog-excerpt">${escapeHtml(p.desc || '')}</div>
+    <div class="blog-footer">
+      <span class="read-time">${p.readTime || ''}</span>
+      <span class="blog-arrow" aria-hidden="true">→</span>
+    </div>
   </div>
 </a>`;
 }
 
 function featuredCard(p) {
-  const cats    = getCategories(p);
-  const thumb   = p.cover
-    ? `<img src="${p.cover}" alt="${p.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover" data-fallback-cat="${cats[0] || ''}" onerror="handleImgError(this)"/>`
-    : thumbPlaceholder(cats[0]);
-  const catTags = cats.map(c => `<span class="blog-cat">${c}</span>`).join('');
+  const cats = getCategories(p);
   return `
 <a href="blog-post.html?id=${p.id}" class="blog-featured-card">
-  <div class="blog-featured-thumb">${thumb}</div>
+  <span class="blog-accent-line" aria-hidden="true"></span>
+  <div class="blog-featured-thumb">${cardThumb(p, cats)}${seriesBadge(p)}</div>
   <div class="blog-featured-body">
-    <div class="blog-meta" style="gap:6px">${catTags}<span class="blog-date">${p.date || ''}</span></div>
-    <div class="blog-featured-title">${p.title}</div>
-    <p style="font-size:14px;color:var(--muted2);line-height:1.8;margin-bottom:16px">${p.desc || ''}</p>
-    <div style="display:flex;align-items:center;justify-content:space-between">
+    ${cardKicker(p)}
+    <div class="blog-featured-title">${escapeHtml(p.title || '')}</div>
+    <p class="blog-featured-excerpt">${p.desc || ''}</p>
+    <div class="blog-footer">
       <span class="read-time">${p.readTime || ''}</span>
-      <span class="btn-ghost">Ler artigo</span>
+      <span class="blog-arrow" aria-hidden="true">→</span>
     </div>
   </div>
 </a>`;
@@ -764,7 +1015,11 @@ async function loadBlogPost() {
       hero.innerHTML = `
         <div class="container" style="position:relative;z-index:2">
           <div style="margin-bottom:12px"><a href="blog.html" style="font-family:var(--font-mono);font-size:11px;color:var(--muted2);letter-spacing:.08em">← Blog</a></div>
-          <div class="blog-meta" style="margin-bottom:14px;gap:8px;flex-wrap:wrap">${catTags}<span class="blog-date">${meta.date || ''}</span><span class="read-time">· ${meta.readTime || ''}</span></div>
+          <div class="post-meta">
+            ${catTags}
+            ${meta.date ? `<span class="blog-date">${escapeHtml(meta.date)}</span>` : ''}
+            ${meta.readTime ? `<span class="post-meta-sep" aria-hidden="true">·</span><span class="read-time">${escapeHtml(meta.readTime)}</span>` : ''}
+          </div>
           <h1 class="section-title" style="max-width:760px">${meta.title}</h1>
           ${cover}
         </div>
@@ -796,7 +1051,7 @@ async function loadBlogPost() {
     }
 
     initTOCSpy(); initCarousels(); initReveal(); initBodyMediaErrors();
-    initLightbox(); initReadingProgress();
+    initLightbox(); initReadingProgress(); initContentEffects();
     loadRelatedPosts(id, meta.related);
   } catch (e) {
     container.innerHTML = '<p class="error-msg">Não foi possível carregar o post.</p>';
@@ -818,6 +1073,28 @@ async function loadRelatedPosts(currentId, related) {
 }
 
 /* ══════════════════════════════════════
+   GITHUB
+══════════════════════════════════════ */
+const GITHUB_MARK = '<svg class="gh-mark" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>';
+
+// "https://github.com/Cabacadosinformaticos/fieldnote" -> "Cabacadosinformaticos/fieldnote"
+function repoPath(url) {
+  return String(url)
+    .replace(/^https?:\/\/(www\.)?github\.com\//i, '')
+    .replace(/\.git$/i, '')
+    .replace(/\/+$/, '');
+}
+
+function repoCard(url) {
+  return `<aside class="repo-card">
+    <span class="repo-kicker">Código aberto</span>
+    <span class="repo-path">${escapeHtml(repoPath(url))}</span>
+    <p class="repo-text">Explora o código, a documentação e o histórico do projeto.</p>
+    <a class="repo-btn" href="${escapeHtml(url)}" target="_blank" rel="noopener">${GITHUB_MARK}<span>Abrir no GitHub</span><span class="repo-arrow" aria-hidden="true">→</span></a>
+  </aside>`;
+}
+
+/* ══════════════════════════════════════
    PROJECTS LIST
 ══════════════════════════════════════ */
 async function loadProjectsList() {
@@ -834,7 +1111,7 @@ async function loadProjectsList() {
     grid.innerHTML = projects.map(p => projectCard(p)).join('');
     initFilters('project');
   } catch (e) {
-    grid.innerHTML = '<p class="error-msg">Não foi possível carregar os projectos.</p>';
+    grid.innerHTML = '<p class="error-msg">Não foi possível carregar os projetos.</p>';
     console.error(e);
   }
 }
@@ -842,7 +1119,7 @@ async function loadProjectsList() {
 function projectCard(p, linkPrefix = '') {
   const cats      = getCategories(p);
   const thumb     = p.cover
-    ? `<img src="${p.cover}" alt="${p.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover" data-fallback-cat="${cats[0] || ''}" onerror="handleImgError(this)"/>`
+    ? `<img src="${p.cover}" alt="${escapeHtml(p.title || '')}" loading="lazy" style="width:100%;height:100%;object-fit:cover" data-fallback-cat="${cats[0] || ''}" onerror="handleImgError(this)"/>`
     : thumbPlaceholder(cats[0]);
   const stackTags = Array.isArray(p.stack) ? p.stack.slice(0, 3).map(t => `<span class="project-tag">${t}</span>`).join('') : '';
   return `
@@ -851,12 +1128,12 @@ function projectCard(p, linkPrefix = '') {
   <div class="project-thumb">${thumb}</div>
   <div class="project-body">
     <div class="project-tags">${stackTags}</div>
-    <div class="project-name">${p.title}</div>
-    <div class="project-desc">${p.desc || ''}</div>
+    <div class="project-name">${escapeHtml(p.title || '')}</div>
+    <div class="project-desc">${escapeHtml(p.desc || '')}</div>
     <div class="project-links">
-      <a href="${linkPrefix}project-detail.html?id=${p.id}" class="btn-ghost">Ver projecto</a>
-      ${p.github ? `<a href="${p.github}" target="_blank" class="btn-ghost" style="margin-left:16px;color:var(--muted2)">GitHub</a>` : ''}
-      ${p.live   ? `<a href="${p.live}"   target="_blank" class="btn-ghost" style="margin-left:16px;color:var(--muted2)">Live</a>` : ''}
+      <a href="${linkPrefix}project-detail.html?id=${p.id}" class="btn-ghost">Ver projeto</a>
+      ${p.github ? `<a href="${p.github}" target="_blank" rel="noopener" class="project-link-pill">${GITHUB_MARK}Código</a>` : ''}
+      ${p.live   ? `<a href="${p.live}"   target="_blank" rel="noopener" class="project-link-pill project-link-pill-live">Online</a>` : ''}
     </div>
   </div>
 </div>`;
@@ -869,7 +1146,7 @@ async function loadProjectDetail() {
   const container = document.getElementById('project-container');
   if (!container) return;
   const id = new URLSearchParams(window.location.search).get('id');
-  if (!id) { container.innerHTML = '<p class="error-msg">Projecto não encontrado.</p>'; return; }
+  if (!id) { container.innerHTML = '<p class="error-msg">Projeto não encontrado.</p>'; return; }
   try {
     const raw = await fetchMD(`content/projects/${id}.md`);
     const { meta, body } = parseFrontmatter(raw);
@@ -902,15 +1179,18 @@ async function loadProjectDetail() {
     const hero = document.getElementById('project-hero');
     if (hero) {
       const stackTags = Array.isArray(meta.stack) ? meta.stack.map(t => `<span class="project-tag">${t}</span>`).join('') : '';
+      const githubCta = meta.github ? `
+            <a href="${escapeHtml(meta.github)}" target="_blank" rel="noopener" class="btn btn-primary github-cta">
+              ${GITHUB_MARK}<span>Ver código no GitHub</span><span class="github-cta-arrow" aria-hidden="true">→</span>
+              <span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span><span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+            </a>` : '';
+      const liveCta = meta.live ? `\n            <a href="${escapeHtml(meta.live)}" target="_blank" rel="noopener" class="btn btn-outline">Ver online <span aria-hidden="true">→</span></a>` : '';
       hero.innerHTML = `
         <div class="container" style="position:relative;z-index:2">
-          <div style="margin-bottom:12px"><a href="projects.html" style="font-family:var(--font-mono);font-size:11px;color:var(--muted2);letter-spacing:.08em">← Projectos</a></div>
+          <div style="margin-bottom:12px"><a href="projects.html" style="font-family:var(--font-mono);font-size:11px;color:var(--muted2);letter-spacing:.08em">← Projetos</a></div>
           <div class="project-tags" style="margin-bottom:16px">${stackTags}</div>
           <h1 class="section-title">${meta.title}</h1>
-          <div style="display:flex;gap:16px;margin-top:20px;flex-wrap:wrap">
-            ${meta.live   ? `<a href="${meta.live}"   target="_blank" class="btn btn-primary">Ver live →</a>` : ''}
-            ${meta.github ? `<a href="${meta.github}" target="_blank" class="btn btn-outline">GitHub →</a>` : ''}
-          </div>
+          ${(githubCta || liveCta) ? `<div class="project-hero-actions">${githubCta}${liveCta}</div>` : ''}
         </div>
         <div class="page-hero-bg">PROJECT</div>`;
     }
@@ -928,6 +1208,7 @@ async function loadProjectDetail() {
         : meta.status === 'Em desenvolvimento' ? 'var(--accent)'
         : 'var(--muted2)';
       sidebar.innerHTML = `
+        ${meta.github ? repoCard(meta.github) : ''}
         <div class="detail-info-card">
           ${meta.year     ? `<div class="detail-info-row"><span>Ano</span><span>${meta.year}</span></div>` : ''}
           ${meta.type     ? `<div class="detail-info-row"><span>Tipo</span><span>${meta.type}</span></div>` : ''}
@@ -936,7 +1217,7 @@ async function loadProjectDetail() {
           ${cats.length   ? `<div class="detail-info-row" style="flex-direction:column;align-items:flex-start;gap:6px"><span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">Categorias</span><div>${catTags}</div></div>` : ''}
           ${meta.stack    ? `<div class="detail-info-row" style="flex-direction:column;align-items:flex-start;gap:8px;border-bottom:none"><span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">Stack</span><div>${stackList}</div></div>` : ''}
         </div>`;
-      // Índice no sidebar quando o projecto tem 3 ou mais secções.
+      // Índice no sidebar quando o projeto tem 3 ou mais secções.
       if ((html.match(/<h2 id="/g) || []).length >= 3) sidebar.innerHTML += buildTOC(html);
     }
 
@@ -944,9 +1225,10 @@ async function loadProjectDetail() {
     if (bodyEl) bodyEl.innerHTML = html;
 
     initCarousels(); initReveal(); initTOCSpy(); initBodyMediaErrors(); initLightbox();
+    initContentEffects();
     loadRelatedProjects(id, meta.related);
   } catch (e) {
-    container.innerHTML = '<p class="error-msg">Não foi possível carregar o projecto.</p>';
+    container.innerHTML = '<p class="error-msg">Não foi possível carregar o projeto.</p>';
     console.error(e);
   }
 }
@@ -984,12 +1266,8 @@ async function loadIndexPreviews() {
   const blogGrid = document.getElementById('index-blog');
   if (blogGrid) {
     try {
-      const index = await fetchMD('data/posts-index.json').then(t => JSON.parse(t));
-      const posts  = await Promise.all(index.slice(0, 3).map(async id => {
-        const raw = await fetchMD(`content/posts/${id}.md`);
-        const { meta } = parseFrontmatter(raw);
-        return { id, ...meta };
-      }));
+      // A lista completa dá os totais das séries para o selo dos cards.
+      const posts = (await loadAllPostsMeta()).slice(0, 3);
       blogGrid.innerHTML = posts.map(p => blogCard(p, 'pages/')).join('');
     } catch {}
   }

@@ -5,13 +5,6 @@
 /* Hero em ecrã inteiro no desktop (mobile mantém a altura base) */
 @media (min-width: 901px) {
   #hero { min-height: calc(100vh - var(--nav-h)); }
-
-  /* Footer no desktop: esquerda à esquerda, meio ao centro,
-     direita à esquerda mas empurrada um pouco para a direita. */
-  .footer-top { align-items: start; }
-  .footer-top .footer-col:nth-child(2) { text-align: center; }
-  .footer-top .footer-col:nth-child(2) .footer-links { align-items: center; }
-  .footer-top .footer-col:nth-child(3) { padding-left: 48px; }
 }
 
 @media (max-width: 1100px) {
@@ -143,7 +136,9 @@
   .post-layout { grid-template-columns: 1fr; }
   .post-sidebar { position: static; }
 
-  .footer-top { grid-template-columns: 1fr 1fr; }
+  /* Rodapé: marca em cima, três colunas de links por baixo. */
+  .footer-top { grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+  .footer-brand { grid-column: 1 / -1; }
 
   .blog-featured { grid-template-columns: 1fr; }
   .services-full-grid { grid-template-columns: 1fr; }
@@ -164,17 +159,18 @@
   .blog-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .process-steps { grid-template-columns: 1fr 1fr; }
-  .footer-top { grid-template-columns: 1fr; gap: 32px; }
 
-  /* Footer todo centrado no mobile */
-  .footer-top { text-align: center; }
-  .footer-brand { display: flex; flex-direction: column; align-items: center; }
+  /* Rodapé no mobile: convite empilhado, links em duas colunas,
+     barra de baixo centrada. */
+  .footer-cta { flex-direction: column; align-items: stretch; gap: 28px; }
+  .footer-cta-side { align-items: stretch; }
+  .footer-cta-side .btn { justify-content: center; }
+  .footer-cta-email-row { gap: 10px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+  .footer-brand { grid-column: 1 / -1; }
   .footer-tagline { max-width: none; }
-  .footer-social { justify-content: center; }
-  .footer-links { align-items: center; }
-  .footer-col:nth-child(3) { padding-left: 0; }
-  footer .status { justify-content: center; }
   .footer-bottom { flex-direction: column; gap: 12px; justify-content: center; text-align: center; }
+  .footer-bottom-links { gap: 16px; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { width: 100%; justify-content: center; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -211,7 +207,12 @@
   }
   .related-projects { grid-template-columns: 1fr; }
   .not-found-links { flex-direction: column; align-items: center; }
-  .author-card { flex-direction: column; }
+
+  /* Cartão de autor: avatar ao centro, texto e botões por baixo. */
+  .author-card { flex-direction: column; align-items: center; text-align: center; gap: 24px; }
+  .author-avatar { width: 112px; height: 112px; }
+  .author-bio { max-width: none; }
+  .author-actions { justify-content: center; }
 }
 
 @media (max-width: 400px) {
@@ -238,4 +239,36 @@
   .lightbox { padding: 16px; }
   .lightbox-close { top: 12px; right: 12px; }
   .lightbox-figure img { max-height: calc(100vh - 180px); }
+
+  /* Código: menos padding, as linhas longas continuam a rolar dentro do bloco */
+  .code-bar { padding: 0 10px 0 12px; }
+  .code-block pre { padding: 14px 14px 16px; }
+
+  /* Timeline horizontal: passa a uma faixa com scroll e desvanecimento à direita */
+  .timeline-card-h { position: relative; }
+  .timeline-h-scroll {
+    margin-right: -22px;
+    padding-right: 22px;
+    scroll-snap-type: x mandatory;
+  }
+  /* O desvanecimento fica no cartão (que não rola) e não na faixa. */
+  .timeline-card-h::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    bottom: 18px;
+    right: 0;
+    width: 44px;
+    background: linear-gradient(90deg, rgba(4,6,15,0), var(--surface));
+    pointer-events: none;
+  }
+  .timeline-h-item { scroll-snap-align: start; flex: 0 0 68%; }
+  .timeline-h { gap: 22px; }
+
+  /* Timeline compacta: coluna da data mais estreita */
+  .timeline-c-item { grid-template-columns: 84px 16px minmax(0, 1fr); }
+  .timeline-c-date { font-size: 10px; }
+
+  /* Timeline em grelha: uma coluna */
+  .timeline-g { grid-template-columns: 1fr; }
 }

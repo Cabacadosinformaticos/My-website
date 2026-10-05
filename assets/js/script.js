@@ -192,6 +192,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ── Copiar email do rodapé ── */
+  const copyToClipboard = text => {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise((resolve, reject) => {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-1000px';
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        ok ? resolve() : reject(new Error('copy falhou'));
+      } catch (err) {
+        reject(err);
+      }
+    });
+  };
+
+  document.querySelectorAll('.copy-btn[data-copy]').forEach(btn => {
+    const row = btn.parentElement;
+    const status = row ? row.querySelector('.copy-status') : null;
+
+    btn.addEventListener('click', () => {
+      copyToClipboard(btn.dataset.copy).then(() => {
+        btn.classList.add('is-copied');
+        if (status) status.textContent = 'Copiado';
+      }).catch(() => {
+        if (status) status.textContent = 'Falhou';
+      }).then(() => {
+        setTimeout(() => {
+          btn.classList.remove('is-copied');
+          if (status) status.textContent = '';
+        }, 1500);
+      });
+    });
+  });
+
   /* ── Página escondida ──
      O coração do rodapé e a palavra "bros" escrita no teclado levam lá. */
   const ownScript = document.querySelector('script[src$="assets/js/script.js"]');
