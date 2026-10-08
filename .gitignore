@@ -1,16 +1,15 @@
-# Generated files.
-htdocs/robots.txt
-htdocs/sitemap.xml
-htdocs/blog/index.php
-
-# Docker
-docker-compose.yml
-
-# Misc.
+# Operating system files
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Composer
-composer.phar
-/vendor/
-#composer.lock
+# Editor folders
+.vscode/
+.idea/
+
+# Python caches from tools/
+__pycache__/
+*.pyc
+
+# Local scratch folders
+.tmp-*/

@@ -1,149 +1,129 @@
-# 🌐 Personal Website & Portfolio
+<p align="center">
+  <img src="docs/readme-banner.png" alt="Tiago Cabaça, personal website and portfolio" width="100%">
+</p>
 
-## 📌 Overview
+<p align="center">
+  <a href="https://cabacatech.com/"><strong>cabacatech.com</strong></a>
+  &nbsp;·&nbsp; Portfolio, case studies and a technical blog, in European Portuguese
+</p>
 
-This repository contains the source code for my personal website and portfolio.
+---
 
-As a software engineering student, I wanted a real place on the web that is mine: somewhere to document what I build, what I learn, and how I think. Not just a CV, but a living record of my growth as a developer. This site is that place.
+Source of my personal website: the projects I have built, written up as case studies, and a blog about what I learn along the way, from web development to running my own servers. It is a static site with no framework and no build step, driven by a small content engine that turns Markdown files into pages.
 
-The site runs entirely on the client side, with no build step, no local dependencies, and no server required.
+This repository is public so the work behind the site can be seen, not as a template to run. The content engine is free to reuse; the content and the design are personal (see [License](#license)).
 
+<p align="center">
+  <img src="docs/preview-desktop.png" alt="Home page on desktop" width="72%">
+  &nbsp;
+  <img src="docs/preview-mobile.png" alt="Blog post on mobile" width="22%">
+</p>
 
-## 🎯 Objectives
+## How content works
 
-* Build a professional personal portfolio
-* Showcase academic and personal projects
-* Create a platform for continuous updates and experimentation
+Every project and blog post is a Markdown file with a frontmatter block. Two JSON files list which ones appear on the site and in what order.
 
-
-## 📈 Personal Development Goals
-
-* Improve front-end development skills
-* Experiment with UI/UX design
-* Explore modern web technologies and best practices
-* Deploy a real-world web project
-
-
-## 📝 Why Markdown-Based Content
-
-One of the core decisions in this project was to drive all content, blog posts and projects, through plain `.md` files instead of dedicated HTML pages.
-
-The reason is simple: without this system, adding a new project or writing a new post would mean creating a new HTML page from scratch every single time, wiring up the layout, the styles, the navigation. That gets old fast, and it creates a maintenance nightmare as the site grows.
-
-With this approach, adding a new project is just writing a `.md` file and registering its ID in a JSON index. The content engine picks it up, parses the frontmatter, renders the Markdown, and injects everything into a single shared template. One page to maintain, infinite content to add.
-
-It also means content stays completely separate from presentation. Rewriting the layout does not touch the content, and writing new content does not touch a single line of HTML or CSS.
-
-
-## 🚀 Features
-
-* Fully responsive design (desktop, tablet, mobile)
-* Markdown-based content system: posts and projects are written in `.md` files and rendered dynamically, with no new HTML page required per entry
-* Dedicated sections:
-  * Home
-  * About Me
-  * Projects / Portfolio
-  * Blog
-  * Services
-  * Uses
-  * Contact
-* Clean and modern user interface
-* Easy navigation and structured layout
-
-
-## 🛠️ Technologies Used
-
-### Frontend
-
-* HTML5
-* CSS3
-* JavaScript (vanilla)
-* [marked.js](https://marked.js.org/) for Markdown rendering (loaded via CDN)
-* Google Fonts: Bebas Neue + Epilogue + DM Mono
-
-
-## 📁 Project Structure
-
-```
-MyWebsite/
-├── index.html                        → Homepage
-├── pages/
-│   ├── about.html                    → About me
-│   ├── projects.html                 → Projects list (dynamic)
-│   ├── project-detail.html           → Individual project page (dynamic)
-│   ├── blog.html                     → Blog post list (dynamic)
-│   ├── blog-post.html                → Individual blog post (dynamic)
-│   ├── services.html                 → Services
-│   ├── uses.html                     → Setup & tools
-│   ├── contact.html                  → Contact
-│   └── 404.html                      → Error page
-├── assets/
-│   ├── css/
-│   │   ├── style.css                 → Global styles and CSS variables
-│   │   ├── content.css               → Content block styles
-│   │   └── responsive.css            → Media queries
-│   ├── js/
-│   │   ├── script.js                 → UI (nav, animations, counters, etc.)
-│   │   └── content-engine.js         → Content engine (reads .md, renders)
-│   └── images/
-│       └── projects/                 → Project images (one folder per project)
-├── content/
-│   ├── posts/                        → Blog post .md files
-│   └── projects/                     → Project .md files
-├── data/
-│   ├── posts-index.json              → Post ID list
-│   └── projects-index.json           → Project ID list
-└── README.md
+```text
+content/projects/<id>.md   ->  data/projects-index.json  ->  pages/project-detail.html?id=<id>
+content/posts/<id>.md      ->  data/posts-index.json     ->  pages/blog-post.html?id=<id>
 ```
 
+`assets/js/content-engine.js` reads the index, fetches the file, parses the frontmatter, expands the custom blocks, renders the Markdown with [marked](https://marked.js.org/) and injects the result into a shared template. Adding an entry means writing one Markdown file and adding its id to the index; no HTML or CSS changes.
 
-## 🌍 Deployment
+### Custom blocks
 
-This website is deployed using **GitHub Pages**.
+On top of standard Markdown (tables, code, images), the engine understands blocks opened with `:::name` and closed with `:::`:
 
-🔗 Live version: [https://cabacatech.com/](https://cabacatech.com/)
+| Block | Renders |
+|---|---|
+| `callout`, `info`, `tip`, `warning`, `danger` | Highlighted notes and warnings |
+| `specs` | A key and value spec sheet |
+| `decision` | A technical decision set apart from the text |
+| `resource` | A recommended external link with context |
+| `details` | A collapsible section, closed by default |
+| `timeline` | A timeline, with `horizontal`, `compact` and `grid` layouts |
+| `stats` | Highlighted figures |
+| `compare` | Two options side by side |
+| `carousel` | An image carousel with optional captions |
+| `video` | A YouTube, Vimeo or local video |
+| `image-placeholder` | A reserved slot for an image still to be added |
 
+Two frontmatter keys link content together:
 
-## 📸 Preview
+- `series` and `seriesPart` group posts into a series, with a contents box at the top and previous and next links at the end.
+- `related: [post:<id>, project:<id>]` picks the cards shown at the end of a page. Without it, the page shows the first entries of the index.
 
-> *(Under construction)*
+## Publishing
 
+The site is served by GitHub Pages from the `main` branch, with a custom domain (`CNAME`) and `.nojekyll` so files are served as they are.
 
-## 📈 Future Improvements
+```bash
+python tools/build_feeds.py   # regenerates feed.xml and sitemap.xml from the indexes
+git push
+```
 
-* Add dynamic project filtering
-* Improve animations and interactions
-* Optimize performance and SEO
+`tools/build_feeds.py` takes the RSS dates from each post's `date` and the sitemap `lastmod` values from the last commit that touched each file, so it runs after committing the content.
 
+## Project structure
 
-## 🧠 Development Approach
+```text
+index.html                  Home
+pages/                      About, projects, blog, services, uses, contact, privacy, and the two content templates
+content/posts/              Blog posts (Markdown)
+content/projects/           Project case studies (Markdown)
+data/                       posts-index.json and projects-index.json
+assets/js/content-engine.js The content engine
+assets/js/script.js         Navigation, reveal animations, page interactions
+assets/css/style.css        Design tokens, layout and components
+assets/css/content.css      Content blocks
+assets/css/responsive.css   Breakpoints
+assets/css/fonts.css        Self-hosted font faces
+assets/fonts/               Bebas Neue, DM Mono and Epilogue (WOFF2, with their OFL licences)
+tools/build_feeds.py        RSS and sitemap generator
+feed.xml, sitemap.xml       Generated, committed
+llms.txt, robots.txt        Machine-readable site summary and crawler rules
+site.webmanifest            Icons and theme colour
+```
 
-This project follows a modular and scalable structure, allowing easy maintenance and future expansion.
+## Decisions worth knowing
 
-The development focuses on:
+**No framework, no CMS, no build.** The site is small and I wanted to understand every layer under it instead of working through abstractions. The cost is a little duplicated markup across the static pages (the header and footer are repeated in each HTML file).
 
-* Clean and readable code
-* Separation of concerns (HTML / CSS / JS)
-* Reusability of components
-* User experience and accessibility
+**Markdown plus a JSON index.** One template per content type instead of one HTML page per entry. Content and presentation change independently.
 
+**Animations run once.** Elements animate when they first enter the viewport and then stay still. Nothing loops or re-triggers on scroll, and `prefers-reduced-motion` shows the final state immediately.
 
-## 📄 License
+**No cookies, no analytics.** The site stores nothing in the browser and does not track visitors, so it needs no cookie banner. The privacy page lists the external services the browser contacts.
 
-This project is licensed under the MIT License.
+**Self-hosted fonts.** The fonts are served from this repository instead of Google Fonts, so visitors' IP addresses are not sent to Google, and the site has one less external dependency.
 
-⚠️ Note:
-The design, content, and branding of this website are personal and should not be copied, reproduced, or reused without explicit permission.
+**marked is pinned.** The only remote script is marked, pinned to an exact version (15.0.12) with a Subresource Integrity hash. An unpinned CDN URL can change behaviour, or break the blog, without any change in this repository.
 
+**In-content navigation never uses `<nav>`.** The global `nav` rule styles the fixed top bar. Navigation inside content (series links) uses `<div role="navigation">` instead.
 
-## 👤 Author
+## Status
 
-**Tiago Cabaça**, also known as **CabacadosInformaticos**
+Checked on 11 October 2026.
 
-* GitHub: [github.com/Cabacadosinformaticos](https://github.com/Cabacadosinformaticos)
-* LinkedIn: [linkedin.com/in/tiago-cabaça](https://www.linkedin.com/in/tiago-cabaça)
+- Live and working: home, about, projects, blog, services, uses, contact and privacy pages; 10 project case studies and 9 posts.
+- The contact form is visible but disabled on purpose until it has a working backend; email works.
+- Several pages still show image placeholders, which will be replaced with real photographs and screenshots.
+- Content is rendered in the browser. Search engines that run JavaScript see everything; crawlers that do not see only the static pages.
 
+## License
 
-## ⭐ Notes
+The repository mixes reusable code with personal material, under different terms. See [LICENSE](LICENSE) for the full text.
 
-This project is continuously evolving and will be updated with new features, improvements, and design changes over time.
+| Material | Terms |
+|---|---|
+| `assets/js/content-engine.js` and `tools/build_feeds.py` | MIT: reuse them freely, keeping the copyright notice |
+| Written content, HTML pages, images, the TC mark and the visual design | All rights reserved |
+| Fonts in `assets/fonts/` | SIL Open Font License 1.1 |
+
+If you want to reuse something from the second group, ask first.
+
+## Author
+
+**Tiago Cabaça**, computer engineering student at IADE, Lisbon.
+
+[cabacatech.com](https://cabacatech.com) · [GitHub](https://github.com/Cabacadosinformaticos) · [LinkedIn](https://www.linkedin.com/in/tiago-caba%C3%A7a)

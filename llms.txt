@@ -4,34 +4,45 @@ CabacaTech is the personal website and portfolio of Tiago Cabaça.
 
 ## About Tiago Cabaça
 
-Tiago Cabaça is a developer and informatics student based in Lisbon, Portugal. He studies computer engineering and management informatics at IADE, works on web development projects, and is available for freelance work.
+Tiago Cabaça is a computer engineering student at IADE, Universidade Europeia, in Lisbon, Portugal, taking a double degree in Computer Engineering and Management Informatics. He builds web applications, Android apps, backends and APIs, and runs a self-hosted homelab with two Proxmox servers. He is available for freelance work.
 
-He builds websites, web apps, APIs, technical tools and open source projects. His main technologies include JavaScript, TypeScript, React, Node.js, Python, Kotlin, SQL and Git.
+Main technologies: JavaScript, TypeScript, React, Next.js, Python, FastAPI, PHP, Kotlin, Java, SQL (PostgreSQL, MySQL), Docker, Linux, Proxmox VE and Git.
 
 ## Main pages
 
 - Home: https://cabacatech.com/
 - About: https://cabacatech.com/pages/about.html
 - Projects: https://cabacatech.com/pages/projects.html
-- Services: https://cabacatech.com/pages/services.html
 - Blog: https://cabacatech.com/pages/blog.html
+- Services: https://cabacatech.com/pages/services.html
 - Contact: https://cabacatech.com/pages/contact.html
 - Uses: https://cabacatech.com/pages/uses.html
+- Privacy: https://cabacatech.com/pages/privacidade.html
 
 ## Projects
 
-- PSP Lisboa App: Android application project related to PSP Lisboa.
-- Track Manager: open source web app for managing audio and subtitle tracks in video files, using React, TypeScript, FastAPI, Python, FFmpeg and MKVToolNix.
-- Africana Virtual Airways: full stack flight booking platform with search, seat selection, PNR and administration backoffice.
-- Xplored: Android project created in an academic context.
+- Fieldnote: distributed, fault-tolerant platform for diary studies (FastAPI, PostgreSQL with Patroni, RabbitMQ quorum queues, Garage S3, React Native). Academic, in development. https://cabacatech.com/pages/project-detail.html?id=fieldnote
+- IADE Horarios: web app over the public IADE class timetables, with version history and comparison (Python, FastAPI, PostgreSQL). Live at https://iade-horarios.cabacatech.com. https://cabacatech.com/pages/project-detail.html?id=iade-horarios
+- Homelab: two Minisforum MS-A1 servers with Proxmox VE, private by default, public sites through Cloudflare Tunnels. https://cabacatech.com/pages/project-detail.html?id=homelab-proxmox-servidorzinho
+- CabacaLab: private cloud on the homelab with PostgreSQL, Redis, Garage S3, Caddy, Coolify and monitoring. https://cabacatech.com/pages/project-detail.html?id=cabacalab
+- AEIADE website: new website of the IADE student association (Next.js, Payload CMS, PostgreSQL). In development. https://cabacatech.com/pages/project-detail.html?id=aeiade-website
+- Mafra no Bolso: Android and iOS visit advisor for the municipality of Mafra (Flutter, Laravel, PostGIS). In development. https://cabacatech.com/pages/project-detail.html?id=mafra-no-bolso
+- Africana Virtual Airways: virtual airline platform with multi-leg flight search, PNR bookings and an admin backoffice (PHP 8, MySQL). Academic. https://cabacatech.com/pages/project-detail.html?id=africana-virtual-airways
+- PSP Lisboa App: native Android app built in 48 hours at the Tech4Good 2026 Tech Jam for a PSP challenge. https://cabacatech.com/pages/project-detail.html?id=psp-lisboa-app
+- Track Manager: open source web app to manage audio and subtitle tracks in MKV and MP4 files (React, TypeScript, FastAPI, FFmpeg, MKVToolNix). https://cabacatech.com/pages/project-detail.html?id=track-manager
+- Xplored: Android app for discovering places with GPS check-in, points and route challenges (Kotlin, Jetpack Compose, Spring Boot, MySQL). Academic. https://cabacatech.com/pages/project-detail.html?id=xplored
+
+## Blog
+
+Articles in European Portuguese. Main series: "Diário do Homelab", seven parts on building and running a homelab (Proxmox, Minecraft servers, AdGuard Home DNS, operations, public sites without open ports, Jellyfin and TrueNAS, a second server). Start: https://cabacatech.com/pages/blog-post.html?id=como-comecei-o-meu-homelab
 
 ## Services
 
-Tiago Cabaça offers freelance services in web development, UI/UX design, technical consulting, performance optimization and technical SEO.
+Freelance web development, UI/UX design, performance and technical SEO, and technical consulting.
 
 ## Contact
 
 Preferred contact: tiagocabaca@proton.me
 
 GitHub: https://github.com/Cabacadosinformaticos
-Reddit: https://www.reddit.com/u/TiagoCabaca007
+LinkedIn: https://www.linkedin.com/in/tiago-caba%C3%A7a

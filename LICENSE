@@ -1,6 +1,16 @@
-MIT License
+Copyright (c) 2026 Tiago Cabaça
 
-Copyright (c) 2026 Luminux
+This repository contains two kinds of material under different terms.
+
+
+1. Code released under the MIT License
+
+The following files are free to reuse under the MIT License below:
+
+  - assets/js/content-engine.js   (the Markdown content engine)
+  - tools/build_feeds.py          (the RSS and sitemap generator)
+
+MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +29,24 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+2. Everything else: all rights reserved
+
+All other material in this repository is the personal work of Tiago Cabaça and
+is not licensed for reuse. This includes, without limitation:
+
+  - the written content in content/, llms.txt and the HTML pages;
+  - photographs, images, icons and the "TC" mark;
+  - the visual design and identity of the site (layout, styles in assets/css/,
+    colour palette, typographic choices and page templates).
+
+You may read and study this material on GitHub. You may not copy, republish or
+redistribute it, in whole or in substantial part, without written permission.
+To ask, write to tiagocabaca@proton.me.
+
+
+3. Third-party material
+
+The fonts in assets/fonts/ (Bebas Neue, DM Mono, Epilogue) are distributed under
+the SIL Open Font License 1.1; their licence texts are in that folder.
