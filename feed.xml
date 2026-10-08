@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog de Tiago Cabaça</title>
+    <link>https://cabacatech.com/pages/blog.html</link>
+    <description>Projetos, homelab e o que vou aprendendo, do desenvolvimento web à infraestrutura.</description>
+    <language>pt-PT</language>
+    <lastBuildDate>Thu, 01 Oct 2026 09:00:00 +0000</lastBuildDate>
+    <atom:link href="https://cabacatech.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>A MediaBox reformou-se. Chega o bifrost</title>
+      <link>https://cabacatech.com/pages/blog-post.html?id=chega-o-bifrost</link>
+      <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=chega-o-bifrost</guid>
+      <pubDate>Thu, 01 Oct 2026 09:00:00 +0000</pubDate>
+      <description>O homelab ganhou um segundo MS-A1, dedicado aos serviços abertos à Internet. Porque separar o público do privado, porque não fiz um cluster, como os dois servidores se ligam, e de onde vêm os nomes.</description>
+      <category>Homelab</category>
+      <category>Proxmox</category>
+      <category>Infraestrutura</category>
+    </item>
+    <item>
+      <title>Jellyfin e TrueNAS, e porque desliguei tudo</title>
+      <link>https://cabacatech.com/pages/blog-post.html?id=jellyfin-e-truenas-o-que-aprendi</link>
+      <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=jellyfin-e-truenas-o-que-aprendi</guid>
+      <pubDate>Thu, 01 Oct 2026 09:00:00 +0000</pubDate>
+      <description>Montei um servidor de media com Jellyfin e uma NAS com TrueNAS num mini PC, liguei os dois e passei semanas a afinar. Funcionou, ensinou-me muito e não era a solução certa para mim. O que aprendi e o que procuro agora.</description>
+      <category>Homelab</category>
+      <category>Media Server</category>
+      <category>Storage</category>
+    </item>
+    <item>
+      <title>Pôr um site na Internet sem abrir portas</title>
+      <link>https://cabacatech.com/pages/blog-post.html?id=publicar-um-site-sem-abrir-portas</link>
+      <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=publicar-um-site-sem-abrir-portas</guid>
+      <pubDate>Tue, 01 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Como abri o IADE Horários ao público a partir de casa, sem abrir uma única porta no router, com um Cloudflare Tunnel e uma VM isolada. As três opções que pesei e porque escolhi a mais trabalhosa.</description>
+      <category>Homelab</category>
+      <category>Redes</category>
+      <category>Segurança</category>
+    </item>
+    <item>
+      <title>O lado menos glamoroso de ter servidores em casa</title>
+      <link>https://cabacatech.com/pages/blog-post.html?id=o-lado-menos-glamoroso-do-homelab</link>
+      <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=o-lado-menos-glamoroso-do-homelab</guid>
+      <pubDate>Sat, 01 Aug 2026 09:00:00 +0000</pubDate>
+      <description>Updates, DNS, backups, discos, segurança e outras partes pouco bonitas de manter um homelab.</description>
+      <category>Homelab</category>
+      <category>Segurança</category>
+      <category>Infraestrutura</category>
+    </item>
+    <item>
+      <title>DNS em casa com AdGuard Home</title>
+      <link>https://cabacatech.com/pages/blog-post.html?id=dns-em-casa-com-adguard-home</link>
+      <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=dns-em-casa-com-adguard-home</guid>
+      <pubDate>Wed, 01 Jul 2026 09:00:00 +0000</pubDate>
+      <description>Como pus toda a rede de casa a resolver nomes através de um container de 1 GB, o que isso bloqueia, o que não bloqueia, e o dia em que um limite escondido começou a deitar pedidos fora em silêncio.</description>
+      <category>Homelab</category>
+      <category>Redes</category>
+      <category>Segurança</category>
+    </item>
+    <item>
+      <title>Ter um servidor de Minecraft em casa é mais trabalhoso do que parece</title>
+      <link>https://cabacatech.com/pages/blog-post.html?id=servidor-minecraft-em-casa</link>
+      <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=servidor-minecraft-em-casa</guid>
+      <pubDate>Mon, 01 Jun 2026 09:00:00 +0000</pubDate>
+      <description>Entre AMP, mods, Docker, updates e amigos à espera, montar um servidor de Minecraft próprio acabou por ser uma escola de administração de sistemas.</description>
+      <category>Minecraft</category>
+      <category>Homelab</category>
+      <category>Servidores</category>
+    </item>
+    <item>
+      <title>Como comecei o meu homelab</title>
+      <link>https://cabacatech.com/pages/blog-post.html?id=como-comecei-o-meu-homelab</link>
+      <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=como-comecei-o-meu-homelab</guid>
+      <pubDate>Mon, 01 Jun 2026 09:00:00 +0000</pubDate>
+      <description>A história de como um achado no OLX virou o início do meu pequeno laboratório de servidores em casa.</description>
+      <category>Homelab</category>
+      <category>Servidores</category>
+      <category>Pessoal</category>
+    </item>
+    <item>
+      <title>Olá, Mundo. A minha jornada até aqui</title>
+      <link>https://cabacatech.com/pages/blog-post.html?id=ola-mundo</link>
+      <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=ola-mundo</guid>
+      <pubDate>Fri, 01 May 2026 09:00:00 +0000</pubDate>
+      <description>De disquetes aos oito anos ao Vice-presidente do CFD, passando por Pascal, COBOL, servidores e um professor que mudou tudo.</description>
+      <category>Pessoal</category>
+    </item>
+    <item>
+      <title>Como este site foi feito</title>
+      <link>https://cabacatech.com/pages/blog-post.html?id=como-este-site-foi-feito</link>
+      <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=como-este-site-foi-feito</guid>
+      <pubDate>Fri, 01 May 2026 09:00:00 +0000</pubDate>
+      <description>A arquitetura por trás do site, as decisões técnicas e o porquê de tudo funcionar com ficheiros Markdown.</description>
+      <category>Web Dev</category>
+    </item>
+  </channel>
+</rss>
