@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Tiago Cabaça. Released under the MIT License.
-"""Generate feed.xml (RSS 2.0), sitemap.xml and llms-full.txt from the content indexes.
+"""Generate feed.xml (RSS 2.0) and sitemap.xml from the content indexes.
 
 The site has no build step. Run this before publishing, from the repository root:
 
@@ -23,7 +23,6 @@ MONTHS = {"jan": 1, "fev": 2, "mar": 3, "abr": 4, "mai": 5, "jun": 6,
           "jul": 7, "ago": 8, "set": 9, "out": 10, "nov": 11, "dez": 12}
 
 FRONTMATTER_RE = re.compile(r"^---\r?\n(.*?)\r?\n---\r?\n?", re.S)
-COMMENT_RE = re.compile(r"<!--.*?-->\n?", re.S)
 
 STATIC_PAGES = [
     ("index.html", "/", "1.0"),
@@ -50,12 +49,6 @@ def frontmatter(path: Path) -> dict:
                     value = value[1:-1]
                 meta[key.strip()] = value
     return meta
-
-
-def body(path: Path) -> str:
-    text = path.read_text(encoding="utf-8")
-    text = FRONTMATTER_RE.sub("", text, count=1)
-    return COMMENT_RE.sub("", text).strip()
 
 
 def post_date(value: str) -> datetime:
@@ -132,38 +125,14 @@ def build_sitemap(posts: list, projects: list) -> str:
 """
 
 
-def build_llms_full(posts: list, projects: list) -> str:
-    parts = ["# Tiago Cabaça (CabacaTech): full text", "",
-             "> Full Markdown text of every project case study and blog post on "
-             "https://cabacatech.com, in European Portuguese. The summary and links are in "
-             "https://cabacatech.com/llms.txt. Blocks opened with `:::name` are site components "
-             "(spec sheets, callouts, timelines, comparisons) and read as plain text.", ""]
-    sections = (("projects", projects, "project-detail", "Projects"),
-                ("posts", posts, "blog-post", "Blog posts"))
-    for kind, ids, page, heading in sections:
-        parts += [f"# {heading}", ""]
-        for item in ids:
-            path = ROOT / "content" / kind / f"{item}.md"
-            meta = frontmatter(path)
-            facts = [f"URL: {BASE}/pages/{page}.html?id={item}"]
-            for key in ("date", "year", "status", "type", "stack", "category", "github", "live"):
-                if meta.get(key):
-                    facts.append(f"{key.capitalize()}: {meta[key].strip('[]')}")
-            parts += [f"## {meta.get('title', item)}", "", meta.get("desc", ""), "",
-                      *[f"- {fact}" for fact in facts], "", body(path), "", "---", ""]
-    return "\n".join(parts)
-
-
 def main() -> None:
     posts = load_index("posts-index.json")
     projects = load_index("projects-index.json")
     (ROOT / "feed.xml").write_text(build_feed(posts), encoding="utf-8", newline="\n")
     (ROOT / "sitemap.xml").write_text(build_sitemap(posts, projects), encoding="utf-8",
                                       newline="\n")
-    (ROOT / "llms-full.txt").write_text(build_llms_full(posts, projects), encoding="utf-8",
-                                        newline="\n")
-    print(f"feed.xml: {len(posts)} posts; llms-full.txt: {len(posts) + len(projects)} "
-          f"entries; sitemap.xml: {len(STATIC_PAGES) + len(posts) + len(projects)} URLs")
+    print(f"feed.xml: {len(posts)} posts; "
+          f"sitemap.xml: {len(STATIC_PAGES) + len(posts) + len(projects)} URLs")
 
 
 if __name__ == "__main__":
