@@ -1,48 +1,67 @@
-# CabacaTech
+# Tiago Cabaça (CabacaTech)
 
-CabacaTech is the personal website and portfolio of Tiago Cabaça.
+> Personal website, portfolio and technical blog of Tiago Cabaça, a computer engineering student at IADE, Universidade Europeia, in Lisbon, Portugal. It presents his software projects as case studies (web apps, Android apps, distributed systems, a self-hosted homelab) and a blog in European Portuguese about what he builds and learns. He is available for freelance work.
 
-## About Tiago Cabaça
+The site renders its pages in the browser from Markdown files. Every project and post below links to its Markdown source, which is the cleanest version to read. The full text of all projects and posts is in https://cabacatech.com/llms-full.txt.
 
-Tiago Cabaça is a computer engineering student at IADE, Universidade Europeia, in Lisbon, Portugal, taking a double degree in Computer Engineering and Management Informatics. He builds web applications, Android apps, backends and APIs, and runs a self-hosted homelab with two Proxmox servers. He is available for freelance work.
+Content is written in European Portuguese (pt-PT). Status labels on projects: "Em produção" (live), "Concluído" (finished), "Em desenvolvimento" (in development).
 
-Main technologies: JavaScript, TypeScript, React, Next.js, Python, FastAPI, PHP, Kotlin, Java, SQL (PostgreSQL, MySQL), Docker, Linux, Proxmox VE and Git.
+## About Tiago
 
-## Main pages
-
-- Home: https://cabacatech.com/
-- About: https://cabacatech.com/pages/about.html
-- Projects: https://cabacatech.com/pages/projects.html
-- Blog: https://cabacatech.com/pages/blog.html
-- Services: https://cabacatech.com/pages/services.html
-- Contact: https://cabacatech.com/pages/contact.html
-- Uses: https://cabacatech.com/pages/uses.html
-- Privacy: https://cabacatech.com/pages/privacidade.html
+- Studies a double degree in Computer Engineering (Engenharia Informática) and Management Informatics (Informática de Gestão) at IADE, Universidade Europeia, Lisbon, since 2024.
+- Previous education: CTeSP in Informatics at Academia de Ensino Superior de Mafra (2021 to 2023); professional course in Management and Programming of Computer Systems at Escola Secundária José Saramago (2018 to 2021).
+- Work experience: two internships at Algoritmo, Soluções Informáticas (2021 and 2023): WordPress and PrestaShop sites, remote IT support, network installation. Freelance web development since 2025.
+- Student life: member of the IADE students' association (AEIADE) since his first year, Vice-president of its CFD (Conselho Fiscal e Disciplinar); founding member of the IADE Tech Club; volunteer with the geography team of the Mafra municipality (ArcGIS).
+- Languages: Portuguese and English.
+- Main technologies: JavaScript, TypeScript, React, Next.js, Python (FastAPI), PHP, Kotlin (Android), Java (Spring Boot), PostgreSQL, MySQL, Docker, Linux, Proxmox VE, Git.
+- Interests outside code: analogue photography, open source, automation, indie games.
 
 ## Projects
 
-- Fieldnote: distributed, fault-tolerant platform for diary studies (FastAPI, PostgreSQL with Patroni, RabbitMQ quorum queues, Garage S3, React Native). Academic, in development. https://cabacatech.com/pages/project-detail.html?id=fieldnote
-- IADE Horarios: web app over the public IADE class timetables, with version history and comparison (Python, FastAPI, PostgreSQL). Live at https://iade-horarios.cabacatech.com. https://cabacatech.com/pages/project-detail.html?id=iade-horarios
-- Homelab: two Minisforum MS-A1 servers with Proxmox VE, private by default, public sites through Cloudflare Tunnels. https://cabacatech.com/pages/project-detail.html?id=homelab-proxmox-servidorzinho
-- CabacaLab: private cloud on the homelab with PostgreSQL, Redis, Garage S3, Caddy, Coolify and monitoring. https://cabacatech.com/pages/project-detail.html?id=cabacalab
-- AEIADE website: new website of the IADE student association (Next.js, Payload CMS, PostgreSQL). In development. https://cabacatech.com/pages/project-detail.html?id=aeiade-website
-- Mafra no Bolso: Android and iOS visit advisor for the municipality of Mafra (Flutter, Laravel, PostGIS). In development. https://cabacatech.com/pages/project-detail.html?id=mafra-no-bolso
-- Africana Virtual Airways: virtual airline platform with multi-leg flight search, PNR bookings and an admin backoffice (PHP 8, MySQL). Academic. https://cabacatech.com/pages/project-detail.html?id=africana-virtual-airways
-- PSP Lisboa App: native Android app built in 48 hours at the Tech4Good 2026 Tech Jam for a PSP challenge. https://cabacatech.com/pages/project-detail.html?id=psp-lisboa-app
-- Track Manager: open source web app to manage audio and subtitle tracks in MKV and MP4 files (React, TypeScript, FastAPI, FFmpeg, MKVToolNix). https://cabacatech.com/pages/project-detail.html?id=track-manager
-- Xplored: Android app for discovering places with GPS check-in, points and route challenges (Kotlin, Jetpack Compose, Spring Boot, MySQL). Academic. https://cabacatech.com/pages/project-detail.html?id=xplored
+- [Fieldnote](https://cabacatech.com/content/projects/fieldnote.md): distributed, fault-tolerant platform for diary studies and mobile ethnography. Three logical nodes with PostgreSQL replicated by Patroni, RabbitMQ quorum queues, Garage S3, idempotent uploads, transactional outbox and a constraint-satisfaction scheduler. Academic (5th semester, five courses), in development, built with César Oliveira. Public repository: https://github.com/Cabacadosinformaticos/fieldnote
+- [IADE Horários](https://cabacatech.com/content/projects/iade-horarios.md): web app over the public IADE class timetables, with search by class, room, teacher or course, version history, comparison and past views. Python, FastAPI, PostgreSQL. Live at https://iade-horarios.cabacatech.com, published through a Cloudflare Tunnel from his homelab.
+- [Homelab](https://cabacatech.com/content/projects/homelab-proxmox-servidorzinho.md): two Minisforum MS-A1 servers with Proxmox VE (Servidorzinho for private services, bifrost for public ones), private by default, public sites through tunnels with no open router ports.
+- [CabacaLab](https://cabacatech.com/content/projects/cabacalab.md): private cloud on the homelab offering PostgreSQL with PostGIS, Redis, Garage S3, Caddy with HTTPS, Coolify deploys, Prometheus, Grafana, Loki and Uptime Kuma to his projects.
+- [AEIADE website](https://cabacatech.com/content/projects/aeiade-website.md): new website of the IADE students' association, bilingual and managed by the association itself. Next.js, Payload CMS, PostgreSQL. In development; only motivation and technologies are public.
+- [Mafra no Bolso](https://cabacatech.com/content/projects/mafra-no-bolso.md): Android and iOS visit advisor for the municipality of Mafra that suggests what to do next from where the user is. Flutter, Laravel, PostgreSQL with PostGIS. In development.
+- [Africana Virtual Airways](https://cabacatech.com/content/projects/africana-virtual-airways.md): virtual airline platform with multi-leg flight search, PNR bookings, live flight map and an admin backoffice. PHP 8 without framework, MySQL. Academic (4th semester), team of three. Repository: https://github.com/Cabacadosinformaticos/Africana-Virtual-Airways
+- [PSP Lisboa App](https://cabacatech.com/content/projects/psp-lisboa-app.md): native Android app built in 48 hours at the Tech4Good 2026 Tech Jam at IADE, answering a challenge from the Portuguese police (PSP) to help citizens find the right police station for each service. Tiago was lead developer and UI/UX designer in a team of seven.
+- [Track Manager](https://cabacatech.com/content/projects/track-manager.md): open source web app to manage the audio and subtitle tracks of MKV and MP4 files without re-encoding. React, TypeScript, FastAPI, FFmpeg, MKVToolNix. Repository: https://github.com/Cabacadosinformaticos/Track-Manager
+- [Xplored](https://cabacatech.com/content/projects/xplored.md): Android app for discovering places with GPS check-in, points, coupons, route challenges and a leaderboard. Kotlin with Jetpack Compose, Spring Boot, MySQL. Academic (3rd semester). Repository: https://github.com/Cabacadosinformaticos/Xplored
 
 ## Blog
 
-Articles in European Portuguese. Main series: "Diário do Homelab", seven parts on building and running a homelab (Proxmox, Minecraft servers, AdGuard Home DNS, operations, public sites without open ports, Jellyfin and TrueNAS, a second server). Start: https://cabacatech.com/pages/blog-post.html?id=como-comecei-o-meu-homelab
+The main series is "Diário do Homelab", seven parts on building and running a homelab, in order:
+
+- [Como comecei o meu homelab](https://cabacatech.com/content/posts/como-comecei-o-meu-homelab.md): how a second-hand Minisforum MS-A1 became the start of the homelab, and the first organisational decisions.
+- [Ter um servidor de Minecraft em casa é mais trabalhoso do que parece](https://cabacatech.com/content/posts/servidor-minecraft-em-casa.md): AMP, modded servers, Docker instances, updates and troubleshooting.
+- [DNS em casa com AdGuard Home](https://cabacatech.com/content/posts/dns-em-casa-com-adguard-home.md): network-wide DNS filtering in an LXC container, its limits, and a hidden rate limit that silently dropped queries.
+- [O lado menos glamoroso de ter servidores em casa](https://cabacatech.com/content/posts/o-lado-menos-glamoroso-do-homelab.md): updates, DNS, security, storage, monitoring, backups and documentation.
+- [Pôr um site na Internet sem abrir portas](https://cabacatech.com/content/posts/publicar-um-site-sem-abrir-portas.md): publishing a site from home behind CGNAT with a Cloudflare Tunnel and an isolated VM.
+- [Jellyfin e TrueNAS, e porque desliguei tudo](https://cabacatech.com/content/posts/jellyfin-e-truenas-o-que-aprendi.md): a media server and a NAS experiment, Direct Play versus transcoding, and why TrueNAS was too heavy on RAM.
+- [A MediaBox reformou-se. Chega o bifrost](https://cabacatech.com/content/posts/chega-o-bifrost.md): a second server for public services, why there is no Proxmox cluster, and the Norse naming of the machines.
+
+Other posts:
+
+- [Olá, Mundo. A minha jornada até aqui](https://cabacatech.com/content/posts/ola-mundo.md): Tiago's path from a laptop with floppy disks at eight to computer engineering, the people who shaped it, and student life.
+- [Como este site foi feito](https://cabacatech.com/content/posts/como-este-site-foi-feito.md): the site's architecture, a custom Markdown content engine with no framework and no build step.
 
 ## Services
 
-Freelance web development, UI/UX design, performance and technical SEO, and technical consulting.
+Freelance work, directly with clients, in Portuguese or English: websites and web apps (design to deploy), UI/UX design with Figma prototypes, performance and technical SEO audits, and technical consulting (code review, architecture, stack choices). Details: https://cabacatech.com/pages/services.html
 
 ## Contact
 
-Preferred contact: tiagocabaca@proton.me
+- Email (preferred): tiagocabaca@proton.me
+- GitHub: https://github.com/Cabacadosinformaticos
+- LinkedIn: https://www.linkedin.com/in/tiago-caba%C3%A7a
+- Contact page: https://cabacatech.com/pages/contact.html
 
-GitHub: https://github.com/Cabacadosinformaticos
-LinkedIn: https://www.linkedin.com/in/tiago-caba%C3%A7a
+## Optional
+
+- [Full text of all projects and posts](https://cabacatech.com/llms-full.txt)
+- [RSS feed of the blog](https://cabacatech.com/feed.xml)
+- [About page](https://cabacatech.com/pages/about.html): background, experience and education.
+- [Uses](https://cabacatech.com/pages/uses.html): hardware, homelab, editor, preferred stack and tools.
+- [Privacy policy](https://cabacatech.com/pages/privacidade.html): the site sets no cookies and uses no analytics.
+- [Source code of the site](https://github.com/Cabacadosinformaticos/My-website): the content engine is MIT licensed; content and design are all rights reserved.
