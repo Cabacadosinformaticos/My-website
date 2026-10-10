@@ -58,7 +58,7 @@ Two frontmatter keys link content together:
 The site is served by GitHub Pages from the `main` branch, with a custom domain (`CNAME`) and `.nojekyll` so files are served as they are.
 
 ```bash
-python tools/build_feeds.py   # regenerates feed.xml and sitemap.xml from the indexes
+python tools/build_feeds.py   # regenerates feed.xml, sitemap.xml and llms-full.txt
 git push
 ```
 
@@ -79,9 +79,10 @@ assets/css/content.css      Content blocks
 assets/css/responsive.css   Breakpoints
 assets/css/fonts.css        Self-hosted font faces
 assets/fonts/               Bebas Neue, DM Mono and Epilogue (WOFF2, with their OFL licences)
-tools/build_feeds.py        RSS and sitemap generator
+tools/build_feeds.py        Generator for the RSS feed, sitemap and llms-full.txt
 feed.xml, sitemap.xml       Generated, committed
-llms.txt, robots.txt        Machine-readable site summary and crawler rules
+llms-full.txt               Generated: full text of every project and post for language models
+llms.txt, robots.txt        Site summary for language models (llmstxt.org format) and crawler rules
 site.webmanifest            Icons and theme colour
 ```
 
