@@ -112,29 +112,62 @@ function renderInnerMarkdown(text) {
   return html.replace(/^<p>/, '').replace(/<\/p>\s*$/, '');
 }
 
+/* ── Ícones inline dos avisos (um por tipo) ── */
+function calloutIcon(type) {
+  const icons = {
+    info: `<circle cx="12" cy="12" r="9"/><path d="M12 11.2v5.4"/><circle cx="12" cy="7.9" r="1.05" fill="currentColor" stroke="none"/>`,
+    tip: `<path d="M12 3.2a5.6 5.6 0 00-3.2 10.2v2.4h6.4v-2.4A5.6 5.6 0 0012 3.2z"/><path d="M9.6 19h4.8"/><path d="M10.4 21.4h3.2"/>`,
+    warning: `<path d="M12 4.2l8.6 15.4H3.4L12 4.2z"/><path d="M12 10v4.6"/><circle cx="12" cy="17.4" r="1.05" fill="currentColor" stroke="none"/>`,
+    danger: `<path d="M8.8 3.2h6.4L20.8 8.8v6.4l-5.6 5.6H8.8L3.2 15.2V8.8L8.8 3.2z"/><path d="M12 7.6v5.6"/><circle cx="12" cy="16.9" r="1.05" fill="currentColor" stroke="none"/>`,
+    decision: `<circle cx="6" cy="4.6" r="2.1"/><circle cx="18" cy="4.6" r="2.1"/><circle cx="12" cy="19.4" r="2.1"/><path d="M6 6.7v3.1a1.8 1.8 0 001.8 1.8h8.4A1.8 1.8 0 0018 9.8V6.7"/><path d="M12 11.6v5.7"/>`
+  };
+  return `<span class="content-callout-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icons[type] || icons.info}</svg></span>`;
+}
+
+/* Cantos em L: motivo da identidade, usados em vários blocos. */
+function cornerMarks() {
+  return '<span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span><span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>';
+}
+
 function renderCalloutBlock(type, attrText, inner) {
   const attrs = parseBlockAttrs(attrText);
+  const icon  = calloutIcon(type);
   const title = attrs.title || ({
     callout: 'Nota',
     info: 'Nota',
     tip: 'Dica',
     warning: 'Atencao',
-    danger: 'Cuidado'
+    danger: 'Cuidado',
+    decision: 'Decisão'
   }[type] || 'Nota');
-  return `<aside class="content-callout content-callout-${type}"><div class="content-callout-kicker">${escapeHtml(title)}</div><div class="content-callout-body">${renderInnerMarkdown(inner)}</div></aside>`;
+  // A decisão técnica tem um bloco próprio: cantos e kicker destacados.
+  const extra = type === 'decision' ? cornerMarks() : '';
+  return `<aside class="content-callout content-callout-${type}">${extra}<div class="content-callout-kicker">${icon}${escapeHtml(title)}</div><div class="content-callout-body">${renderInnerMarkdown(inner)}</div></aside>`;
 }
 
 function renderSpecBlock(attrText, inner) {
   const attrs = parseBlockAttrs(attrText);
-  const title = attrs.title || 'Especificacoes';
-  const rows = inner.trim().split('\n').map(line => {
+  const title = attrs.title || 'Especificações';
+  const rows = inner.trim().split('\n').map((line, i) => {
     const col = line.indexOf(':');
     if (col === -1) return '';
     const key = line.slice(0, col).trim();
     const value = line.slice(col + 1).trim();
-    return `<div class="spec-row"><span>${escapeHtml(key)}</span><strong>${escapeHtml(value)}</strong></div>`;
+    return `<div class="spec-row" style="--i:${i}"><span>${escapeHtml(key)}</span><strong>${escapeHtml(value)}</strong></div>`;
   }).filter(Boolean).join('');
-  return `<section class="spec-card"><h3>${escapeHtml(title)}</h3><div class="spec-grid">${rows}</div></section>`;
+  return `<section class="spec-card">${cornerMarks()}<span class="spec-scan" aria-hidden="true"></span><div class="spec-head"><span class="spec-kicker">Especificações</span><h3>${escapeHtml(title)}</h3></div><div class="spec-grid">${rows}</div></section>`;
+}
+
+/* Domínio do recurso, para o cartão mostrar de onde vem o link. */
+function resourceDomain(url) {
+  if (!url || url === '#') return '';
+  try {
+    const parsed = new URL(url, window.location.href);
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return '';
+    // Links internos ficam sem domínio: não dizem nada ao leitor.
+    if (parsed.origin === window.location.origin) return '';
+    return parsed.hostname.replace(/^www\./, '');
+  } catch { return ''; }
 }
 
 function renderResourceBlock(attrText, inner) {
@@ -142,8 +175,9 @@ function renderResourceBlock(attrText, inner) {
   const title = attrs.title || 'Recurso';
   const url = attrs.url || '#';
   const label = attrs.label || 'Abrir recurso';
+  const domain = resourceDomain(url);
   const body = inner.trim() ? `<p>${renderInnerMarkdown(inner)}</p>` : '';
-  return `<aside class="resource-card"><div><span class="resource-kicker">Recurso recomendado</span><h3>${escapeHtml(title)}</h3>${body}</div><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a></aside>`;
+  return `<aside class="resource-card">${cornerMarks()}<div class="resource-main"><span class="resource-kicker">Recurso recomendado</span><h3>${escapeHtml(title)}</h3>${domain ? `<span class="resource-domain">${escapeHtml(domain)}</span>` : ''}${body}</div><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}<span class="resource-arrow" aria-hidden="true">→</span></a></aside>`;
 }
 
 function renderImagePlaceholder(attrText, inner) {
@@ -174,7 +208,7 @@ function renderDetailsBlock(attrText, inner, fences, deferred) {
   const attrs = parseBlockAttrs(attrText);
   const title = attrs.title || 'Detalhes';
   const body  = pushDeferred(deferred, renderMarkdown(restoreFences(inner, fences).trim()));
-  return `<details class="content-details"><summary>${escapeHtml(title)}</summary><div class="content-details-body">${body}</div></details>`;
+  return `<details class="content-details"><summary aria-expanded="false"><span class="details-chevron" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5l6 6 6-6"/></svg></span><span class="details-title">${escapeHtml(title)}</span><span class="details-hint" aria-hidden="true">expandir</span></summary><div class="content-details-body"><div class="content-details-inner">${body}</div></div></details>`;
 }
 
 /* ── Linha do tempo: data | título | texto ──
@@ -199,11 +233,23 @@ function renderTimelineBlock(attrText, inner) {
 
   if (layout === 'horizontal') {
     const steps = items.map((it, i) => `<li class="timeline-h-item" style="--i:${i}">
+        <span class="timeline-h-num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
         <span class="timeline-h-date">${escapeHtml(it.date)}</span>
         <strong class="timeline-h-title">${escapeHtml(it.title)}</strong>
         ${it.text ? `<div class="timeline-h-text">${renderInnerMarkdown(it.text)}</div>` : ''}
       </li>`).join('');
-    return `<section class="timeline-card timeline-card-h">${heading}<div class="timeline-h-scroll" tabindex="0" role="region" aria-label="Linha do tempo, desliza para ver mais"><ol class="timeline-h" style="--steps:${items.length}">${steps}</ol></div></section>`;
+    // O invólucro `timeline-h-stage` é o palco fixo (sticky) do scroll
+    // horizontal: o JS dá altura à secção e desloca a faixa em X.
+    return `<section class="timeline-card timeline-card-h" data-timeline-h>
+      <div class="timeline-h-stage">
+        ${heading}
+        <div class="timeline-h-bar">
+          <span class="timeline-h-progress" aria-hidden="true"><i class="timeline-h-fill"></i></span>
+          <span class="timeline-h-hint" aria-hidden="true">Scroll<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14"/><path d="M12.5 6.5L18 12l-5.5 5.5"/></svg></span>
+        </div>
+        <div class="timeline-h-scroll" tabindex="0" role="region" aria-label="Linha do tempo, desliza para ver mais"><ol class="timeline-h" style="--steps:${items.length}">${steps}</ol></div>
+      </div>
+    </section>`;
   }
 
   if (layout === 'compact') {
@@ -230,23 +276,34 @@ function renderTimelineBlock(attrText, inner) {
 }
 
 function renderStatsBlock(inner) {
-  const tiles = inner.trim().split('\n').filter(l => l.trim()).map(line => {
+  const tiles = inner.trim().split('\n').filter(l => l.trim()).map((line, i) => {
     const col   = line.indexOf('|');
     const value = (col === -1 ? line : line.slice(0, col)).trim();
     const label = col === -1 ? '' : line.slice(col + 1).trim();
-    return `<div class="stat-tile"><span class="stat-value">${escapeHtml(value)}</span><span class="stat-label">${escapeHtml(label)}</span></div>`;
+    return `<div class="stat-tile" style="--i:${i}"><span class="stat-value">${escapeHtml(value)}</span><span class="stat-label">${escapeHtml(label)}</span></div>`;
   });
   // Máximo de 4 por linha no desktop (a classe fixa as colunas).
   const count = Math.min(tiles.length, 4) || 1;
   return `<div class="stats-block stats-count-${count}">${tiles.join('')}</div>`;
 }
 
+/* Marcadores SVG das listas do bloco de comparação. */
+const COMPARE_MARKS = {
+  left:  '<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2.5 7h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  right: '<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2.5 7.4l3 3L11.5 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+};
+
+function decorateCompareList(html, side) {
+  const mark = `<span class="compare-mark" aria-hidden="true">${COMPARE_MARKS[side]}</span>`;
+  return html.replace(/<li>/g, `<li class="compare-item">${mark}`);
+}
+
 function renderCompareBlock(attrText, inner, fences, deferred) {
   const attrs = parseBlockAttrs(attrText);
   const [left = '', right = ''] = inner.split(/^[ \t]*\|\|\|[ \t]*\r?$/m);
   const heading = attrs.title ? `<h3>${escapeHtml(attrs.title)}</h3>` : '';
-  const col = (name, text) => `<div class="compare-col"><h4>${escapeHtml(name)}</h4>${pushDeferred(deferred, renderMarkdown(restoreFences(text, fences).trim()))}</div>`;
-  return `<section class="compare-card">${heading}<div class="compare-grid">${col(attrs.left || 'Antes', left)}${col(attrs.right || 'Depois', right)}</div></section>`;
+  const col = (name, text, side) => `<div class="compare-col compare-col-${side}"><h4><span class="compare-tag${side === 'right' ? ' compare-tag-accent' : ''}">${escapeHtml(name)}</span></h4>${pushDeferred(deferred, decorateCompareList(renderMarkdown(restoreFences(text, fences).trim()), side))}</div>`;
+  return `<section class="compare-card">${heading}<div class="compare-grid">${col(attrs.left || 'Antes', left, 'left')}<span class="compare-vs" aria-hidden="true">VS</span>${col(attrs.right || 'Depois', right, 'right')}</div></section>`;
 }
 
 /* ── Blocos de código ──
@@ -317,7 +374,7 @@ function processBlocks(md) {
     renderResourceBlock(attrText, inner)
   );
   md = md.replace(/:::decision([^\n]*)\n([\s\S]*?):::/g, (_, attrText, inner) =>
-    renderCalloutBlock('info', attrText || ' title="Decisao tecnica"', inner)
+    renderCalloutBlock('decision', attrText, inner)
   );
   md = md.replace(/:::image-placeholder([^\n]*)\n([\s\S]*?):::/g, (_, attrText, inner) =>
     renderImagePlaceholder(attrText, inner)
@@ -754,11 +811,239 @@ function initStats(root = document) {
   });
 }
 
+/* ══════════════════════════════════════
+   TABELAS - moldura, cantos e fade lateral
+══════════════════════════════════════ */
+// A tabela só rola dentro da moldura; o fade só aparece
+// quando há mesmo conteúdo para a direita.
+function updateTableOverflow(wrap) {
+  const scroll = wrap.querySelector('.table-scroll');
+  if (!scroll) return;
+  const max = scroll.scrollWidth - scroll.clientWidth;
+  wrap.classList.toggle('has-scroll', max > 2);
+  wrap.classList.toggle('at-end', scroll.scrollLeft >= max - 2);
+}
+
+function wrapTables(root) {
+  root.querySelectorAll('table').forEach(table => {
+    if (table.closest('.table-wrap')) return;
+    const wrap   = document.createElement('div');
+    const scroll = document.createElement('div');
+    wrap.className   = 'table-wrap';
+    scroll.className = 'table-scroll';
+    table.parentNode.insertBefore(wrap, table);
+    scroll.appendChild(table);
+    wrap.appendChild(scroll);
+    wrap.insertAdjacentHTML('beforeend', `${cornerMarks()}<span class="table-fade" aria-hidden="true"></span>`);
+    // Entrada escalonada: o atraso de cada linha vem daqui.
+    [...table.querySelectorAll('tr')].forEach((tr, i) => tr.style.setProperty('--i', i));
+    scroll.addEventListener('scroll', () => updateTableOverflow(wrap), { passive: true });
+    updateTableOverflow(wrap);
+    initOnce(wrap);
+  });
+}
+
+/* ── Listas do corpo: marca própria, sem tocar nas listas de componentes ── */
+function markBodyLists(root) {
+  root.querySelectorAll('ul, ol').forEach(list => {
+    if (list.closest('.timeline-card, .compare-col, .compare-grid, .series-box, .stats-block, .carousel, .toc-list, .table-wrap, .post-toc')) return;
+    list.classList.add('list-marked');
+  });
+}
+
+/* ── Blocos `:::details`: abertura e fecho com altura animada ── */
+function initDetailsBlocks(root = document) {
+  root.querySelectorAll('details.content-details').forEach(details => {
+    if (details.dataset.detailsReady) return;
+    details.dataset.detailsReady = '1';
+    const summary = details.querySelector('summary');
+    const body    = details.querySelector('.content-details-body');
+    const inner   = details.querySelector('.content-details-inner');
+    const hint    = details.querySelector('.details-hint');
+    if (!summary || !body || !inner) return;
+
+    const sync = open => {
+      details.classList.toggle('is-open', open);
+      summary.setAttribute('aria-expanded', String(open));
+      if (hint) hint.textContent = open ? 'recolher' : 'expandir';
+    };
+    sync(details.open);
+
+    // Com movimento reduzido fica o comportamento nativo, sem animação.
+    if (prefersReducedMotion() || typeof body.animate !== 'function') return;
+
+    summary.addEventListener('click', event => {
+      event.preventDefault();
+      if (details.dataset.animating) return;
+      details.dataset.animating = '1';
+      const opening = !details.open;
+      const from    = body.getBoundingClientRect().height;
+      details.open  = true; // o conteúdo tem de estar visível para medir
+      const to      = opening ? inner.getBoundingClientRect().height : 0;
+      const anim = body.animate(
+        [{ height: (opening ? 0 : from) + 'px' }, { height: to + 'px' }],
+        { duration: 320, easing: 'cubic-bezier(.2,.8,.2,1)' }
+      );
+      sync(opening);
+      const finish = () => {
+        body.style.height = '';
+        if (!opening) details.open = false;
+        delete details.dataset.animating;
+        // Tabelas lá dentro só ganham largura quando o bloco abre.
+        details.querySelectorAll('.table-wrap').forEach(updateTableOverflow);
+      };
+      anim.onfinish = finish;
+      anim.oncancel = () => { delete details.dataset.animating; };
+    });
+  });
+}
+
+/* ══════════════════════════════════════
+   LINHA DO TEMPO HORIZONTAL
+   A partir de 900px (e sem movimento reduzido)
+   a secção fica fixa e a faixa anda em X
+   enquanto se faz scroll vertical.
+══════════════════════════════════════ */
+const TIMELINE_PIN_MIN = 900;
+
+function navHeightPx() {
+  return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 68;
+}
+
+function setupHorizontalTimeline(section) {
+  if (!section || section.dataset.tlReady) return;
+  const stage = section.querySelector('.timeline-h-stage');
+  const strip = section.querySelector('.timeline-h-scroll');
+  const track = section.querySelector('.timeline-h');
+  const items = [...section.querySelectorAll('.timeline-h-item')];
+  if (!stage || !strip || !track || !items.length) return;
+  section.dataset.tlReady = '1';
+
+  let maxX = 0;
+  let pinned = false;
+  let ticking = false;
+  let lastX = null;
+
+  // A secção sai da coluna do artigo até à largura do viewport.
+  function applyBleed() {
+    const doc    = document.documentElement;
+    const parent = section.parentElement;
+    const rect   = parent ? parent.getBoundingClientRect() : { left: 0, right: doc.clientWidth };
+    section.style.setProperty('--bleed-l', Math.max(0, Math.round(rect.left)) + 'px');
+    section.style.setProperty('--bleed-r', Math.max(0, Math.round(doc.clientWidth - rect.right)) + 'px');
+  }
+
+  function measure() {
+    if (!pinned) return;
+    applyBleed();
+    maxX = Math.max(0, track.scrollWidth - strip.clientWidth);
+    const stageH = stage.offsetHeight;
+    // Sobra uma cauda no fim para a secção libertar sem corte abrupto.
+    section.style.setProperty('--tl-outer', Math.round(stageH + maxX + stageH * 0.16) + 'px');
+    lastX = null;
+    update();
+  }
+
+  function update() {
+    if (!pinned) return;
+    const scrolled = Math.min(Math.max(navHeightPx() - section.getBoundingClientRect().top, 0), maxX);
+    if (scrolled !== lastX) {
+      lastX = scrolled;
+      track.style.setProperty('--tl-x', (-scrolled) + 'px');
+      section.style.setProperty('--tl-progress', String(maxX ? scrolled / maxX : 1));
+      section.classList.toggle('tl-moved', scrolled > 10);
+      section.classList.toggle('tl-at-end', maxX > 0 && scrolled >= maxX - 1);
+    }
+    // Passo ativo: o mais próximo do centro da faixa.
+    const stripRect = strip.getBoundingClientRect();
+    const centre    = stripRect.left + stripRect.width / 2;
+    let active = -1;
+    let best   = Infinity;
+    items.forEach((el, i) => {
+      const rect = el.getBoundingClientRect();
+      const dist = Math.abs(rect.left + rect.width / 2 - centre);
+      if (dist < best) { best = dist; active = i; }
+    });
+    items.forEach((el, i) => el.classList.toggle('is-active', i === active));
+    // Se a faixa já está a deslizar, os passos têm de estar visíveis.
+    if (!section.classList.contains('is-in') && section.getBoundingClientRect().top < window.innerHeight) section.classList.add('is-in');
+  }
+
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { ticking = false; update(); });
+  };
+  const onResize = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { ticking = false; measure(); });
+  };
+
+  function enable() {
+    if (pinned) return;
+    pinned = true;
+    section.classList.add('is-pinned');
+    measure();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+  }
+
+  function disable() {
+    if (!pinned) return;
+    pinned = false;
+    section.classList.remove('is-pinned');
+    window.removeEventListener('scroll', onScroll);
+    window.removeEventListener('resize', onResize);
+    ['--tl-outer', '--bleed-l', '--bleed-r', '--tl-progress'].forEach(prop => section.style.removeProperty(prop));
+    track.style.removeProperty('--tl-x');
+    section.classList.remove('tl-moved', 'tl-at-end');
+    items.forEach(el => el.classList.remove('is-active'));
+  }
+
+  const mode = () => {
+    const wide = window.matchMedia(`(min-width: ${TIMELINE_PIN_MIN}px)`).matches;
+    wide && !prefersReducedMotion() ? enable() : disable();
+  };
+  mode();
+
+  const mq = window.matchMedia(`(min-width: ${TIMELINE_PIN_MIN}px)`);
+  const rmq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  [mq, rmq].forEach(query => {
+    if (query.addEventListener) query.addEventListener('change', mode);
+    else if (query.addListener) query.addListener(mode);
+  });
+
+  // Na faixa nativa (<900px ou movimento reduzido) o aviso desaparece ao
+  // primeiro deslize e o desvanecimento da direita só aparece se houver mais
+  // passos por ver.
+  function stripUpdate() {
+    if (pinned) return;
+    const max = strip.scrollWidth - strip.clientWidth;
+    section.classList.toggle('tl-moved', strip.scrollLeft > 10);
+    section.classList.toggle('tl-at-end', max <= 2 || strip.scrollLeft >= max - 2);
+  }
+  strip.addEventListener('scroll', () => { stripUpdate(); }, { passive: true });
+  window.addEventListener('resize', () => { stripUpdate(); }, { passive: true });
+  stripUpdate();
+
+  // As fontes mudam a largura do texto: re-medir depois de carregarem.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measure(); });
+}
+
+function initHorizontalTimelines(root = document) {
+  root.querySelectorAll('[data-timeline-h]').forEach(setupHorizontalTimeline);
+}
+
 /* ── Efeitos do conteúdo carregado por Markdown ── */
 function initContentEffects(root = document) {
   initCodeBlocks(root);
   initStats(root);
-  root.querySelectorAll('.timeline-card, .content-callout, .repo-card').forEach(el => initOnce(el));
+  wrapTables(root);
+  markBodyLists(root);
+  initDetailsBlocks(root);
+  initHorizontalTimelines(root);
+  root.querySelectorAll('.timeline-card, .content-callout, .repo-card, .spec-card, .compare-card, .resource-card, .content-details, .post-body h2, .project-content h2, .privacy-page h2, .post-body blockquote, .project-content blockquote').forEach(el => initOnce(el));
 }
 
 /* ── Reveal ── */
@@ -1332,5 +1617,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (path.includes('blog-post.html'))                                      loadBlogPost();
   if (path.includes('projects.html') && !path.includes('project-detail'))  loadProjectsList();
   if (path.includes('project-detail.html'))                                 loadProjectDetail();
+  // Página de privacidade: conteúdo estático, mas com tabela e índice próprios.
+  if (path.includes('privacidade.html')) initContentEffects(document.querySelector('.privacy-page') || document);
   initReveal();
 });

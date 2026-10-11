@@ -234,6 +234,49 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ── Rodapé ──
+     Entrada uma só vez, wordmark ajustado à largura e voltar ao topo. */
+  const footer = document.querySelector('.site-footer');
+  if (footer) {
+    const footerObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        footerObs.unobserve(e.target);
+        footer.classList.add('is-in');
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+    footerObs.observe(footer);
+
+    // "TIAGO CABAÇA" ocupa exactamente a largura do contentor.
+    const wordmark = footer.querySelector('.footer-wordmark');
+    const wordmarkBox = footer.querySelector('.footer-wordmark-box');
+    if (wordmark && wordmarkBox) {
+      let fitFrame = null;
+      const fitWordmark = () => {
+        fitFrame = null;
+        const available = wordmarkBox.clientWidth;
+        if (!available) return;
+        wordmark.style.fontSize = '100px';
+        const natural = wordmark.scrollWidth || 1;
+        const size = Math.max(28, Math.min(260, Math.floor((available / natural) * 100)));
+        wordmark.style.fontSize = size + 'px';
+      };
+      const queueFit = () => { if (fitFrame === null) fitFrame = requestAnimationFrame(fitWordmark); };
+      fitWordmark();
+      window.addEventListener('resize', queueFit);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(queueFit);
+      window.addEventListener('load', queueFit);
+    }
+
+    footer.querySelectorAll('.footer-top-link').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      });
+    });
+  }
+
   /* ── Página escondida ──
      O coração do rodapé e a palavra "bros" escrita no teclado levam lá. */
   const ownScript = document.querySelector('script[src$="assets/js/script.js"]');

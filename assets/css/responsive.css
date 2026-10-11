@@ -120,7 +120,6 @@
   .section { padding: 72px 28px; }
   #hero { padding: 76px 28px 64px; }
   .page-hero { padding: 60px 28px 48px; }
-  footer { padding: 48px 28px 0; }
 
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
   .about-layout { grid-template-columns: 1fr; }
@@ -136,9 +135,15 @@
   .post-layout { grid-template-columns: 1fr; }
   .post-sidebar { position: static; }
 
-  /* Rodapé: marca em cima, três colunas de links por baixo. */
-  .footer-top { grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
-  .footer-brand { grid-column: 1 / -1; }
+  /* Rodapé: uma coluna, contacto em cima e links por baixo. */
+  .footer-inner { padding: 56px 28px 20px; }
+  .footer-rule { left: 28px; right: 28px; }
+  .site-footer .corner.tl { left: 28px; }
+  .site-footer .corner.tr { right: 28px; }
+  .site-footer .corner.bl { left: 28px; }
+  .site-footer .corner.br { right: 28px; }
+  .footer-main { grid-template-columns: 1fr; gap: 40px; padding-bottom: 36px; }
+  .footer-statement { font-size: clamp(44px, 9vw, 64px); margin-bottom: 22px; }
 
   .blog-featured { grid-template-columns: 1fr; }
   .services-full-grid { grid-template-columns: 1fr; }
@@ -151,7 +156,6 @@
   .section { padding: 56px 20px; }
   #hero { padding: 72px 20px 56px; }
   .page-hero { padding: 48px 20px 40px; }
-  footer { padding: 40px 20px 0; }
   nav { padding: 0 20px; }
 
   .projects-grid,
@@ -160,17 +164,21 @@
   .services-grid { grid-template-columns: 1fr; }
   .process-steps { grid-template-columns: 1fr 1fr; }
 
-  /* Rodapé no mobile: convite empilhado, links em duas colunas,
-     barra de baixo centrada. */
-  .footer-cta { flex-direction: column; align-items: stretch; gap: 28px; }
-  .footer-cta-side { align-items: stretch; }
-  .footer-cta-side .btn { justify-content: center; }
-  .footer-cta-email-row { gap: 10px; }
-  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
-  .footer-brand { grid-column: 1 / -1; }
-  .footer-tagline { max-width: none; }
-  .footer-bottom { flex-direction: column; gap: 12px; justify-content: center; text-align: center; }
-  .footer-bottom-links { gap: 16px; }
+  /* Rodapé no mobile: contacto em cima, links em duas colunas,
+     wordmark à largura e barra de baixo centrada. */
+  .footer-inner { padding: 44px 20px 18px; }
+  .footer-rule { left: 20px; right: 20px; }
+  .site-footer .corner.tl { left: 20px; }
+  .site-footer .corner.tr { right: 20px; }
+  .site-footer .corner.bl { left: 20px; }
+  .site-footer .corner.br { right: 20px; }
+  .footer-statement { font-size: clamp(40px, 12vw, 56px); }
+  .footer-email-row { gap: 10px; }
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
+  .footer-socials { gap: 10px; }
+  .footer-social { width: 44px; height: 44px; }
+  .footer-wordmark-box { margin-top: 4px; }
+  .footer-bottom { flex-direction: column; gap: 10px; justify-content: center; text-align: center; padding-top: 18px; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { width: 100%; justify-content: center; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -244,31 +252,80 @@
   .code-bar { padding: 0 10px 0 12px; }
   .code-block pre { padding: 14px 14px 16px; }
 
-  /* Timeline horizontal: passa a uma faixa com scroll e desvanecimento à direita */
-  .timeline-card-h { position: relative; }
-  .timeline-h-scroll {
-    margin-right: -22px;
-    padding-right: 22px;
-    scroll-snap-type: x mandatory;
-  }
-  /* O desvanecimento fica no cartão (que não rola) e não na faixa. */
-  .timeline-card-h::after {
-    content: '';
-    position: absolute;
-    top: 20px;
-    bottom: 18px;
-    right: 0;
-    width: 44px;
-    background: linear-gradient(90deg, rgba(4,6,15,0), var(--surface));
-    pointer-events: none;
-  }
-  .timeline-h-item { scroll-snap-align: start; flex: 0 0 68%; }
-  .timeline-h { gap: 22px; }
-
   /* Timeline compacta: coluna da data mais estreita */
   .timeline-c-item { grid-template-columns: 84px 16px minmax(0, 1fr); }
   .timeline-c-date { font-size: 10px; }
 
   /* Timeline em grelha: uma coluna */
   .timeline-g { grid-template-columns: 1fr; }
+}
+
+/* ── Faixa horizontal nativa: abaixo do limiar do modo fixo ── */
+@media (max-width: 899px) {
+  .timeline-card-h { padding: 14px 0; }
+  .timeline-h-bar { gap: 14px; margin-bottom: 16px; }
+  .timeline-h-scroll { scroll-snap-type: x mandatory; }
+  .timeline-h { gap: 18px; }
+  .timeline-h-item {
+    flex: 0 0 auto;
+    width: 80vw;
+    max-width: 360px;
+    scroll-snap-align: start;
+    padding: 20px 20px 22px;
+  }
+  .timeline-h-num { font-size: 48px; margin-bottom: 12px; }
+}
+
+/* ── Componentes de conteúdo no mobile ── */
+@media (max-width: 640px) {
+  /* Tabelas: menos respiro, cabeçalho mais pequeno, rolagem interna */
+  .post-body th, .project-content th, .privacy-page th { padding: 10px 12px; font-size: 10px; }
+  .post-body td, .project-content td, .privacy-page td { padding: 10px 12px; font-size: 12.5px; }
+  .table-wrap { margin: 22px 0; }
+  .table-fade { width: 36px; }
+
+  /* Listas: marcas mais perto do texto */
+  .post-body ul.list-marked,
+  .post-body ol.list-marked,
+  .project-content ul.list-marked,
+  .project-content ol.list-marked { padding-left: 24px; }
+
+  /* Especificações: uma coluna e linhas mais apertadas */
+  .spec-card { padding: 18px 16px 8px; }
+  .spec-row { padding: 12px 10px 12px 0; }
+
+  /* Comparação: blocos empilhados com o selo VS entre eles */
+  .compare-col { padding: 16px; }
+  .compare-vs {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: -23px auto;
+    width: 42px;
+    height: 42px;
+  }
+  .compare-card .compare-vs,
+  .compare-card:not(.is-in) .compare-vs,
+  .compare-card.is-in .compare-vs { opacity: 1; animation: none; }
+
+  /* Callouts e recursos: menos padding */
+  .content-callout { padding: 16px 16px; }
+  .resource-card { padding: 16px 18px; }
+
+  /* Detalhes: resumo e corpo mais apertados */
+  .content-details summary { padding: 14px 16px; gap: 10px; }
+  .content-details-body { padding: 16px 16px 4px; }
+  .details-hint { letter-spacing: 0.1em; }
+
+  /* Citação: marca e recuo mais pequenos */
+  .post-body blockquote,
+  .project-content blockquote { padding: 18px 18px 18px 22px; }
+  .post-body blockquote::before,
+  .project-content blockquote::before { font-size: 44px; }
+
+  /* Privacidade: painel compacto por cima do texto */
+  .privacy-layout .post-sidebar { gap: 18px; }
+  .privacy-card { padding: 18px; }
+  .privacy-list { gap: 10px; }
 }
