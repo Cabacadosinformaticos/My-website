@@ -138,10 +138,7 @@
   /* Rodapé: uma coluna, contacto em cima e links por baixo. */
   .footer-inner { padding: 56px 28px 20px; }
   .footer-rule { left: 28px; right: 28px; }
-  .site-footer .corner.tl { left: 28px; }
-  .site-footer .corner.tr { right: 28px; }
-  .site-footer .corner.bl { left: 28px; }
-  .site-footer .corner.br { right: 28px; }
+  .footer-wordmark-box { left: 28px; right: 28px; }
   .footer-main { grid-template-columns: 1fr; gap: 40px; padding-bottom: 36px; }
   .footer-statement { font-size: clamp(44px, 9vw, 64px); margin-bottom: 22px; }
 
@@ -168,16 +165,12 @@
      wordmark à largura e barra de baixo centrada. */
   .footer-inner { padding: 44px 20px 18px; }
   .footer-rule { left: 20px; right: 20px; }
-  .site-footer .corner.tl { left: 20px; }
-  .site-footer .corner.tr { right: 20px; }
-  .site-footer .corner.bl { left: 20px; }
-  .site-footer .corner.br { right: 20px; }
   .footer-statement { font-size: clamp(40px, 12vw, 56px); }
   .footer-email-row { gap: 10px; }
   .footer-cols { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
   .footer-socials { gap: 10px; }
-  .footer-social { width: 44px; height: 44px; }
-  .footer-wordmark-box { margin-top: 4px; }
+  .footer-social { min-height: 52px; padding: 0 18px 0 14px; }
+  .footer-wordmark-box { left: 20px; right: 20px; top: 38%; }
   .footer-bottom { flex-direction: column; gap: 10px; justify-content: center; text-align: center; padding-top: 18px; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { width: 100%; justify-content: center; }

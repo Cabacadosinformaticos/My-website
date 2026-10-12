@@ -266,6 +266,26 @@ document.addEventListener('DOMContentLoaded', () => {
       window.addEventListener('resize', queueFit);
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(queueFit);
       window.addEventListener('load', queueFit);
+
+      // Deslize lento do nome com o scroll enquanto o rodapé está visível.
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduceMotion) {
+        let shiftFrame = null;
+        const shiftWordmark = () => {
+          shiftFrame = null;
+          const rect = footer.getBoundingClientRect();
+          const vh = window.innerHeight;
+          if (rect.top > vh || rect.bottom < 0) return;
+          // Garantia: se o observador ainda não disparou, as letras entram já.
+          if (rect.top < vh - 40) footer.classList.add('is-in');
+          const progress = Math.min(1, Math.max(0, (vh - rect.top) / (vh + rect.height)));
+          wordmark.style.setProperty('--wm-shift', ((0.5 - progress) * 80).toFixed(1) + 'px');
+        };
+        window.addEventListener('scroll', () => {
+          if (shiftFrame === null) shiftFrame = requestAnimationFrame(shiftWordmark);
+        }, { passive: true });
+        shiftWordmark();
+      }
     }
 
     footer.querySelectorAll('.footer-top-link').forEach(link => {

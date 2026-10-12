@@ -873,16 +873,13 @@ nav.scrolled { border-bottom-color: var(--border2); }
   left: 48px;
   right: 48px;
   height: 1px;
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--border2), var(--border2) 60%, transparent);
   transform-origin: left;
 }
-.site-footer .corner { width: 18px; height: 18px; border-color: var(--accent); opacity: .75; }
-.site-footer .corner.tl { top: 0; left: 48px; border-width: 1px 0 0 1px; }
-.site-footer .corner.tr { top: 0; right: 48px; border-width: 1px 1px 0 0; }
-.site-footer .corner.bl { bottom: 0; left: 48px; border-width: 0 0 1px 1px; }
-.site-footer .corner.br { bottom: 0; right: 48px; border-width: 0 1px 1px 0; }
 
 /* ── Contacto + links ── */
+.footer-main,
+.footer-bottom { position: relative; z-index: 1; }
 .footer-main {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
@@ -1003,28 +1000,41 @@ nav.scrolled { border-bottom-color: var(--border2); }
 .footer-social {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
+  gap: 12px;
+  min-height: 56px;
+  padding: 0 22px 0 18px;
   border: 1px solid var(--border2);
   border-radius: var(--radius);
-  color: var(--muted2);
-  transition: color .2s, border-color .2s, background .2s;
+  background: rgba(4,6,15,0.7);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  transition: color .2s, border-color .2s, background .2s, transform .2s;
 }
+.footer-social svg { width: 24px; height: 24px; }
 .footer-social svg { flex-shrink: 0; }
 .footer-social:hover {
   color: var(--accent);
   border-color: var(--accent);
   background: var(--accent-dim);
+  transform: translateY(-2px);
 }
+.footer-social:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
 
 /* ── Wordmark contornado ──
    O tamanho certo é calculado em script.js: o texto ocupa
    exactamente a largura do contentor. */
 .footer-wordmark-box {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 8px;
+  /* Fica atrás do contacto e dos links, a toda a largura do contentor. */
+  position: absolute;
+  left: 48px;
+  right: 48px;
+  top: 50%;
+  transform: translateY(-58%);
+  z-index: 0;
+  pointer-events: none;
+  text-align: center;
 }
 .footer-wordmark {
   /* inline-block: o script mede a largura real do texto para o ajustar ao contentor. */
@@ -1035,11 +1045,14 @@ nav.scrolled { border-bottom-color: var(--border2); }
   letter-spacing: -0.01em;
   text-transform: uppercase;
   white-space: nowrap;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--border2);
+  color: rgba(255,255,255,0.012);
+  -webkit-text-stroke: 1px rgba(36,48,96,0.75);
   -webkit-user-select: none;
   user-select: none;
+  will-change: transform;
+  transform: translateX(var(--wm-shift, 0px));
 }
+.wm-l { display: inline-block; }
 @supports not (-webkit-text-stroke: 1px #fff) {
   .footer-wordmark { color: var(--border2); }
 }
@@ -1059,6 +1072,7 @@ nav.scrolled { border-bottom-color: var(--border2); }
 }
 .footer-copy,
 .footer-note { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.footer-heart { color: var(--accent); }
 .footer-privacy-link {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -1087,12 +1101,21 @@ nav.scrolled { border-bottom-color: var(--border2); }
 @media (prefers-reduced-motion: no-preference) {
   .site-footer:not(.is-in) .footer-rule { transform: scaleX(0); }
   .site-footer.is-in .footer-rule { animation: rule-draw .7s ease-out both; }
-  .site-footer.is-in .footer-wordmark { animation: wordmark-sweep 1.1s ease-out .12s both; }
+  .site-footer:not(.is-in) .wm-l { opacity: 0; transform: translateY(18%); }
+  .site-footer.is-in .wm-l {
+    animation: wm-letter .7s cubic-bezier(.2,.7,.2,1) both;
+    animation-delay: calc(var(--i) * 55ms);
+  }
+  .site-footer.is-in .footer-wordmark { animation: wordmark-sweep 1.6s ease-out .5s both; }
+}
+@keyframes wm-letter {
+  from { opacity: 0; transform: translateY(18%); }
+  to   { opacity: 1; transform: none; }
 }
 @keyframes wordmark-sweep {
-  0%   { -webkit-text-stroke-color: var(--border2); }
+  0%   { -webkit-text-stroke-color: rgba(36,48,96,0.75); }
   45%  { -webkit-text-stroke-color: rgba(232,255,71,0.42); }
-  100% { -webkit-text-stroke-color: var(--border2); }
+  100% { -webkit-text-stroke-color: rgba(36,48,96,0.75); }
 }
 
 /* ══════════════════════════════════════
