@@ -992,35 +992,91 @@ nav.scrolled { border-bottom-color: var(--border2); }
 
 .footer-socials {
   grid-column: 1 / -1;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   margin-top: 8px;
 }
 .footer-social {
+  position: relative;
   display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 56px;
-  padding: 0 22px 0 18px;
+  align-items: stretch;
+  min-width: 0;
   border: 1px solid var(--border2);
   border-radius: var(--radius);
-  background: rgba(4,6,15,0.7);
+  background: rgba(4,6,15,0.78);
   color: var(--text);
+  overflow: hidden;
+  isolation: isolate;
+  transition: border-color .25s, transform .25s;
+}
+/* Preenchimento que entra da esquerda ao passar o rato. */
+.footer-social::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, var(--accent-dim), rgba(232,255,71,0.03));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s cubic-bezier(.2,.7,.2,1);
+}
+.fs-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--border2);
+  color: var(--text);
+  transition: background .25s, color .25s, border-color .25s;
+}
+.fs-icon svg { width: 24px; height: 24px; }
+.fs-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  padding: 12px 10px 12px 14px;
+  flex: 1;
+  min-width: 0;
+}
+.fs-name {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text);
+}
+.fs-handle {
   font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  transition: color .2s, border-color .2s, background .2s, transform .2s;
+  font-size: 10.5px;
+  letter-spacing: 0;
+  color: var(--muted2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.footer-social svg { width: 24px; height: 24px; }
-.footer-social svg { flex-shrink: 0; }
-.footer-social:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  background: var(--accent-dim);
-  transform: translateY(-2px);
+.fs-arrow {
+  display: grid;
+  place-items: center;
+  padding: 0 14px 0 0;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--muted2);
+  transition: transform .25s, color .25s;
 }
+.footer-social:hover,
+.footer-social:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
+.footer-social:hover::before,
+.footer-social:focus-visible::before { transform: scaleX(1); }
+.footer-social:hover .fs-icon,
+.footer-social:focus-visible .fs-icon { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.footer-social:hover .fs-arrow,
+.footer-social:focus-visible .fs-arrow { color: var(--accent); transform: translate(3px, -3px); }
 .footer-social:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .footer-social, .footer-social::before, .fs-icon, .fs-arrow { transition: none; }
+}
 
 /* ── Wordmark contornado ──
    O tamanho certo é calculado em script.js: o texto ocupa

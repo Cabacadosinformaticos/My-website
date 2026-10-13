@@ -169,7 +169,7 @@
   .footer-email-row { gap: 10px; }
   .footer-cols { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
   .footer-socials { gap: 10px; }
-  .footer-social { min-height: 52px; padding: 0 18px 0 14px; }
+  .footer-socials { grid-template-columns: 1fr; }
   .footer-wordmark-box { margin-top: -24px; }
   .footer-bottom { flex-direction: column; gap: 10px; justify-content: center; text-align: center; padding-top: 18px; }
   .hero-actions { flex-direction: column; }
