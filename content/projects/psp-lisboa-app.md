@@ -38,7 +38,6 @@ O impacto esperado também era claro: menos tempo perdido e menos idas à esquad
 
 ## Da pergunta à ideia
 
-<!-- REVER (Tiago): esta secção foi escrita a partir do enquadramento do pitch. Acrescentar o que a equipa discutiu e descartou durante o evento. -->
 
 Antes de pensar em ecrãs, reduzimos o desafio à pergunta que o cidadão faz quando precisa da polícia para alguma coisa que não é uma emergência: **onde é que devo ir?** Com 120 estruturas e 13 áreas de serviço, a resposta não é óbvia, e a informação existia mas estava espalhada.
 
