@@ -138,7 +138,7 @@
   /* Rodapé: uma coluna, contacto em cima e links por baixo. */
   .footer-inner { padding: 56px 28px 20px; }
   .footer-rule { left: 28px; right: 28px; }
-  .footer-wordmark-box { left: 28px; right: 28px; }
+  .footer-wordmark-box { margin-top: -90px; }
   .footer-main { grid-template-columns: 1fr; gap: 40px; padding-bottom: 36px; }
   .footer-statement { font-size: clamp(44px, 9vw, 64px); margin-bottom: 22px; }
 
@@ -170,7 +170,7 @@
   .footer-cols { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
   .footer-socials { gap: 10px; }
   .footer-social { min-height: 52px; padding: 0 18px 0 14px; }
-  .footer-wordmark-box { left: 20px; right: 20px; top: 38%; }
+  .footer-wordmark-box { margin-top: -24px; }
   .footer-bottom { flex-direction: column; gap: 10px; justify-content: center; text-align: center; padding-top: 18px; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { width: 100%; justify-content: center; }

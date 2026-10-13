@@ -1026,13 +1026,11 @@ nav.scrolled { border-bottom-color: var(--border2); }
    O tamanho certo é calculado em script.js: o texto ocupa
    exactamente a largura do contentor. */
 .footer-wordmark-box {
-  /* Fica atrás do contacto e dos links, a toda a largura do contentor. */
-  position: absolute;
-  left: 48px;
-  right: 48px;
-  top: 50%;
-  transform: translateY(-58%);
+  /* Assenta na linha da barra de baixo e sobe por trás do contacto e dos links. */
+  position: relative;
   z-index: 0;
+  margin-top: -150px;
+  line-height: 0;
   pointer-events: none;
   text-align: center;
 }
@@ -1041,7 +1039,10 @@ nav.scrolled { border-bottom-color: var(--border2); }
   display: inline-block;
   font-family: var(--font-head);
   font-size: 120px;
-  line-height: 1.12;
+  /* Altura de linha igual à das maiúsculas: a base das letras toca na linha. */
+  line-height: 0.74;
+  vertical-align: bottom;
+  margin-bottom: -0.062em;
   letter-spacing: -0.01em;
   text-transform: uppercase;
   white-space: nowrap;
