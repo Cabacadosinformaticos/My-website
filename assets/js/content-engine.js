@@ -345,6 +345,7 @@ function renderCodeBlock(code, lang, title) {
 
 /* ── Blocos especiais ── */
 function processBlocks(md) {
+  md = md.replace(/\r\n?/g, '\n');
   const fences = [];
   md = md.replace(/```[\s\S]*?```/g, block => {
     const token = `@@CODE_FENCE_${fences.length}@@`;
@@ -495,8 +496,13 @@ function renderMarkdown(md) {
       const lang = rawInfo.replace(/\s*title="[^"]*"/, '').trim();
       return renderCodeBlock(code, lang, titleMatch ? titleMatch[1] : '');
     };
-    renderer.image = (href, title, alt) =>
-      `<figure class="post-figure"><img src="${href}" alt="${alt || ''}" loading="lazy"/>${alt ? `<figcaption>${alt}</figcaption>` : ''}</figure>`;
+    renderer.image = function(imageOrHref, title, alt) {
+      const href = typeof imageOrHref === 'object' && imageOrHref !== null
+        ? imageOrHref.href : imageOrHref;
+      const caption = typeof imageOrHref === 'object' && imageOrHref !== null
+        ? imageOrHref.text || '' : alt || '';
+      return `<figure class="post-figure"><img src="${escapeHtml(href || '')}" alt="${escapeHtml(caption)}" loading="lazy"/>${caption ? `<figcaption>${escapeHtml(caption)}</figcaption>` : ''}</figure>`;
+    };
     renderer.heading = function(text, level) {
       const t = typeof text === 'object' ? text.text : text;
       const l = typeof text === 'object' ? text.depth : level;
