@@ -8,13 +8,18 @@ duration: Semestre, revisto em Out 2026
 status: Concluído
 github: https://github.com/Cabacadosinformaticos/Xplored
 stack: [Kotlin, Jetpack Compose, Retrofit, Google Maps SDK, Spring Boot 3, Java 21, MySQL 8]
-cover: ""
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513975/cabacatech/2026-11/covers/projects/xplored-dd9b7f150c.webp
 related: [project:psp-lisboa-app, project:africana-virtual-airways]
 ---
 
-O Xplored é uma app para explorar uma zona da cidade como se fosse um jogo. O utilizador descobre locais no mapa, faz check-in por GPS quando lá está, ganha pontos, troca-os por cupões, faz desafios de percurso e compara-se com os outros numa tabela de classificação. Foi o projeto do 3.º semestre, e foi o primeiro em que trabalhei numa app Android nativa com um backend próprio.
+O Xplored é uma app para explorar uma zona da cidade como se fosse um jogo. O utilizador descobre locais no mapa, faz check-in por GPS quando lá está, ganha pontos, troca-os por cupões, faz desafios de percurso e compara-se com os outros numa tabela de classificação. Foi o projeto do 3.º semestre e foi o primeiro em que trabalhei numa app Android nativa com um backend próprio.
 
-:::image-placeholder title="Ecrãs da app" desc="Carrossel com os screenshots reais do emulador: mapa, detalhe de local, desafio de percurso, classificação, cupões e modo escuro." ratio="16:9"
+:::carousel
+https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794514009/cabacatech/2026-11/screenshots/xplored/map-f5a5b36425.webp | Mapa de locais no Xplored.
+https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794514010/cabacatech/2026-11/screenshots/xplored/place-detail-ce9eb0082f.webp | Detalhe de um local.
+https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794514011/cabacatech/2026-11/screenshots/xplored/route-game-310a5adba6.webp | Percurso com desafios.
+https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794514013/cabacatech/2026-11/screenshots/xplored/coupons-df7a0422c9.webp | Cupões da aplicação.
+https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794514014/cabacatech/2026-11/screenshots/xplored/dark-mode-bcd6b06664.webp | Mapa em modo escuro.
 :::
 
 ## A equipa e o meu papel
@@ -61,10 +66,10 @@ Os locais de exemplo ficam no Parque das Nações e em Moscavide, à volta do ca
 
 ## A revisão de outubro de 2026
 
-Um ano depois, voltei ao Xplored para o pôr a funcionar como devia. Fiz uma auditoria ao backend, que encontrou 16 defeitos, e acrescentei 8 funcionalidades. Os problemas mais interessantes:
+Um ano depois, voltei ao Xplored para o pôr a funcionar como devia. Fiz uma auditoria ao backend, que encontrou 16 defeitos e acrescentei 8 funcionalidades. Os problemas mais interessantes:
 
 :::details title="O mapa abria no meio do oceano"
-Ao abrir o mapa focado num local, as coordenadas chegavam como `NaN` quando não havia foco. Um `NaN` passa na verificação `!= null`, e o mapa centrava-se em (0, 0), no golfo da Guiné. A verificação passou a confirmar que o valor é um número válido.
+Ao abrir o mapa focado num local, as coordenadas chegavam como `NaN` quando não havia foco. Um `NaN` passa na verificação `!= null` e o mapa centrava-se em (0, 0), no golfo da Guiné. A verificação passou a confirmar que o valor é um número válido.
 :::
 
 :::details title="Os códigos de recuperação expiravam no momento em que eram criados"
