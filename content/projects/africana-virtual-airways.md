@@ -8,13 +8,15 @@ duration: Abr 2026 a Mai 2026
 status: Concluído
 github: https://github.com/Cabacadosinformaticos/Africana-Virtual-Airways
 stack: [PHP 8, MySQL 8, JavaScript, HTML, CSS, JWT, REST API, Leaflet]
-cover: ""
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513971/cabacatech/2026-11/covers/projects/africana-virtual-airways-dc7454034c.webp
 related: [project:xplored, project:psp-lisboa-app, post:como-este-site-foi-feito]
 ---
 
 O Africana Virtual Airways foi o projeto principal do 4.º semestre. O desafio era construir a plataforma digital completa de uma companhia aérea, desde o passageiro que pesquisa e reserva um voo até às ferramentas de gestão da administração. Foi o primeiro projeto de escala real em que trabalhei: dez tabelas relacionadas, uma API REST, integrações externas e dois tipos de utilizador com experiências diferentes.
 
-:::image-placeholder title="Página inicial e pesquisa de voos" desc="Screenshot real da homepage com a caixa de pesquisa (existem capturas na documentação do projeto)." ratio="16:9"
+:::carousel
+https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794514015/cabacatech/2026-11/screenshots/africana-virtual-airways/homepage-hero-3de37c070d.webp | Página inicial da aplicação web académica.
+https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794514017/cabacatech/2026-11/screenshots/africana-virtual-airways/homepage-search-8b8750491f.webp | Pesquisa de voos na interface real do projeto.
 :::
 
 ## A equipa e o meu papel
@@ -44,7 +46,7 @@ Fomos três: eu, o Muhammad Sacoor e o César Oliveira.
 
 ## Arquitetura
 
-A versão final é PHP 8 sem framework e sem Composer, com MySQL 8 através de PDO. As páginas são renderizadas no servidor, e a parte dinâmica fala com uma API REST em JSON. O código partilhado (ligação à base de dados, autenticação, funções auxiliares e a lógica da rede de voos) vive numa pasta comum.
+A versão final é PHP 8 sem framework e sem Composer, com MySQL 8 através de PDO. As páginas são renderizadas no servidor e a parte dinâmica fala com uma API REST em JSON. O código partilhado (ligação à base de dados, autenticação, funções auxiliares e a lógica da rede de voos) vive numa pasta comum.
 
 ```text title="estrutura"
 *.php            -> páginas renderizadas no servidor
@@ -80,9 +82,9 @@ Em Windows, sem os certificados configurados no PHP (`openssl.cafile` e `curl.ca
 :::
 
 :::details title="O teste de usabilidade contrariou as nossas suposições"
-Testámos a plataforma com 35 pessoas. Só 4 usaram telemóvel, e 19 descreveram o processo de reserva como longo ou confuso. São números menos simpáticos do que esperávamos, e são os mais úteis do projeto: mostram exatamente onde a próxima versão teria de mudar.
+Testámos a plataforma com 35 pessoas. Só 4 usaram telemóvel e 19 descreveram o processo de reserva como longo ou confuso. São números menos simpáticos do que esperávamos e são os mais úteis do projeto: mostram exatamente onde a próxima versão teria de mudar.
 :::
 
 ## O que aprendi
 
-A maior parte do trabalho num projeto deste tipo é tomar decisões de arquitetura que depois são difíceis de mudar. O schema que desenhei no início determinou a facilidade de todas as queries que vieram depois, e a migração de framework a meio mostrou o custo de mudar a base quando já há documentação escrita sobre ela.
+A maior parte do trabalho num projeto deste tipo é tomar decisões de arquitetura que depois são difíceis de mudar. O schema que desenhei no início determinou a facilidade de todas as queries que vieram depois e a migração de framework a meio mostrou o custo de mudar a base quando já há documentação escrita sobre ela.
