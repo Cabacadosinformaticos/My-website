@@ -4,7 +4,7 @@ desc: A história de como um achado no OLX virou o início do meu pequeno labora
 category: [Homelab, Servidores, Pessoal]
 date: Jun 2026
 readTime: 12 min
-cover: ""
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513983/cabacatech/2026-11/covers/posts/como-comecei-o-meu-homelab-2b755df25c.webp
 series: Diário do Homelab
 seriesPart: 1
 related: [project:homelab-proxmox-servidorzinho, post:servidor-minecraft-em-casa, post:chega-o-bifrost]

@@ -4,7 +4,7 @@ desc: Entre AMP, mods, Docker, updates e amigos à espera, montar um servidor de
 category: [Minecraft, Homelab, Servidores]
 date: Jun 2026
 readTime: 13 min
-cover: ""
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513982/cabacatech/2026-11/covers/posts/servidor-minecraft-em-casa-43ad4a99f7.webp
 series: Diário do Homelab
 seriesPart: 2
 related: [post:o-lado-menos-glamoroso-do-homelab, project:homelab-proxmox-servidorzinho, post:dns-em-casa-com-adguard-home]

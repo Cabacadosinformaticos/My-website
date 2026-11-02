@@ -4,7 +4,7 @@ desc: De disquetes aos oito anos à licenciatura em Engenharia Informática, pas
 category: Pessoal
 date: Mai 2026
 readTime: 9 min
-cover: /assets/images/posts/ola-mundo-cover.jpg
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513985/cabacatech/2026-11/covers/posts/ola-mundo-0ba69b811e.webp
 related: [post:como-este-site-foi-feito, post:como-comecei-o-meu-homelab, project:africana-virtual-airways]
 ---
 

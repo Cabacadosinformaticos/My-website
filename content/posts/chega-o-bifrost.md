@@ -4,7 +4,7 @@ desc: O homelab ganhou um segundo MS-A1, dedicado aos serviços abertos à Inter
 category: [Homelab, Proxmox, Infraestrutura]
 date: Out 2026
 readTime: 8 min
-cover: ""
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513977/cabacatech/2026-11/covers/posts/chega-o-bifrost-166828df5a.webp
 series: Diário do Homelab
 seriesPart: 7
 related: [project:homelab-proxmox-servidorzinho, post:publicar-um-site-sem-abrir-portas, post:jellyfin-e-truenas-o-que-aprendi]
