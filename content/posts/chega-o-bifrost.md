@@ -1,89 +1,92 @@
 ---
-title: A MediaBox reformou-se. Chega o bifrost
-desc: O homelab ganhou um segundo MS-A1, dedicado aos serviços abertos à Internet. Porque separar o público do privado, porque não fiz um cluster, como os dois servidores se ligam, e de onde vêm os nomes.
+title: Chega o bifrost, o segundo servidor do homelab
+desc: O segundo MS-A1 já corre Proxmox e recebeu as VMs públicas. Como distribuí os serviços, porque mantive os servidores independentes e onde termina a separação entre eles.
 category: [Homelab, Proxmox, Infraestrutura]
-date: Out 2026
-readTime: 8 min
+date: Nov 2026
+readTime: 7 min
 cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513977/cabacatech/2026-11/covers/posts/chega-o-bifrost-166828df5a.webp
 series: Diário do Homelab
 seriesPart: 7
-related: [project:homelab-proxmox-servidorzinho, post:publicar-um-site-sem-abrir-portas, post:jellyfin-e-truenas-o-que-aprendi]
+related: [project:homelab-proxmox-servidorzinho, post:backups-do-homelab-com-pbs, post:publicar-um-site-sem-abrir-portas]
 ---
 
-O homelab mudou de forma. A MediaBox, o mini PC que corria o Jellyfin e o TrueNAS, deixou de ser servidor e vai ser o meu computador de secretária. O lugar dela é ocupado por um segundo Minisforum MS-A1, igual por fora ao Servidorzinho, com um papel muito específico: correr tudo o que está aberto à Internet.
+O bifrost já está a trabalhar. Instalei o Proxmox no segundo Minisforum MS-A1 a 9 de novembro e passei para lá as VMs do IADE Horários e do site da AEIADE. O Servidorzinho ficou com o DNS da casa, os servidores de jogos, a VPN e a plataforma privada CabacaLab.
 
-Chama-se **bifrost**.
+Em outubro, esta mudança ainda era um plano. Entretanto, mudou também a história da MediaBox: vendi o Lenovo M90q Gen 5 onde tinha experimentado o Jellyfin e o TrueNAS. O meu computador de secretária é o mimir, outro Lenovo, um M90q Gen 6. São máquinas diferentes.
 
-:::image-placeholder title="Os dois MS-A1" desc="Foto do Servidorzinho e do bifrost lado a lado, ligados pelo cabo direto." ratio="16:9"
-:::
+O bifrost entrou para tirar trabalho público do servidor principal. Acabou também por receber o armazenamento e os backups do homelab. A distribuição dos serviços segue o uso de cada máquina, com regras de acesso próprias para cada aplicação.
 
-## Porque um segundo servidor
+![Papéis das máquinas e ligação direta entre os hosts Proxmox.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513995/cabacatech/2026-11/diagrams/homelab-overview-dffd84138c.webp)
 
-Em setembro abri os primeiros serviços ao público: o [IADE Horários](project-detail.html?id=iade-horarios) e o site da AEIADE, cada um na sua VM isolada, com um túnel e regras de firewall (contei como na [parte 5](blog-post.html?id=publicar-um-site-sem-abrir-portas)). Funciona, mas essas VMs vivem no mesmo servidor que o meu DNS, os servidores de jogos, as bases de dados de desenvolvimento e a minha VPN.
+## O que ficou em cada servidor
 
-A separação por firewall é boa. A separação física é melhor. Com o bifrost, a regra fica simples de explicar:
+O Servidorzinho continua a ser o centro dos serviços de casa e do ambiente de desenvolvimento. A CabacaLab mantém as suas VMs de bases de dados, aplicações, staging e serviços geográficos. O DNS não mudou de máquina e os jogos também ficaram onde estavam.
 
-| Servidor | Papel |
+No bifrost, cada aplicação pública mantém a sua VM. O IADE Horários e o site da AEIADE continuam a chegar à Internet através dos respetivos Cloudflare Tunnels. A mudança de máquina não juntou as duas aplicações num sistema operativo comum.
+
+| Servidor | Serviços atuais |
 |---|---|
-| Servidorzinho | Tudo o que é privado: DNS da casa, servidores de jogos, VPN, a plataforma de desenvolvimento |
-| bifrost | Tudo o que é público: IADE Horários, site da AEIADE, a VM do projeto Fieldnote |
+| Servidorzinho | AdGuard Home, jogos, VPN e CabacaLab privada |
+| bifrost | VMs públicas, Fieldnote privado, Proxmox Backup Server e NAS |
 
-Se alguma coisa exposta à Internet correr mal, fica num servidor que não tem nada de privado.
+O Fieldnote corre numa VM própria no bifrost, com acesso através de Tailscale. O PBS e a NAS também vivem neste servidor. As VMs públicas têm a sua exposição controlada pelos túneis e pelas regras de rede. Os serviços privados mantêm os seus próprios caminhos de acesso.
 
-:::specs title="bifrost"
+Mover as VMs públicas para outro equipamento reduz a concentração de serviços no Servidorzinho. A separação por VM continua a definir onde corre cada aplicação e as regras de rede definem com que serviços ela pode comunicar.
+
+## A capacidade que existe na prática
+
+O segundo MS-A1 tem um Ryzen 7 8700G, 32 GB de RAM e um NVMe de 512 GB. O formato é igual ao do Servidorzinho, mas o interior e os recursos disponíveis são diferentes.
+
+:::specs title="bifrost, instalado a 9 de novembro"
 Máquina: Minisforum MS-A1
-CPU: AMD Ryzen 7 8700G
-RAM: 32 GB DDR5
-Storage: 512 GB NVMe
+CPU: AMD Ryzen 7 8700G, 8 núcleos e 16 threads
+RAM instalada: 32 GB DDR5
+RAM visível no sistema: cerca de 28 GiB
+Disco interno: NVMe de 512 GB
+Rede: duas portas de 2,5 GbE
 Base: Proxmox VE
-Papel: Serviços abertos à Internet
 :::
 
-## Porque não fiz um cluster
+A diferença entre a memória instalada e a visível obrigou-me a olhar para o orçamento das VMs. A GPU integrada tem 2 GiB reservados e existem outras reservas do sistema. Somar as atribuições até chegar aos 32 GB da caixa seria uma má forma de planear.
 
-Com dois servidores Proxmox, a ideia óbvia é juntá-los num cluster: uma só consola, VMs que migram de um lado para o outro. Decidi não o fazer.
+Mantive a reserva da GPU para uma eventual utilização futura. Para já, os conteúdos da família são servidos por DLNA, uma solução mais pequena que explico no [artigo sobre a NAS](blog-post.html?id=nas-com-samba-e-cockpit).
 
-:::decision title="Dois servidores independentes"
-Um cluster Proxmox decide quem manda por maioria (quórum). Com dois nós, se um cair, o outro fica sozinho, sem maioria, e por segurança bloqueia a gestão das VMs. Para resolver isto é preciso um terceiro voto, um QDevice, noutra máquina. É mais uma peça para manter, para ganhar uma funcionalidade de que não preciso: as minhas VMs podem passar de um servidor para o outro com backup e restauro, em minutos.
+## Dois Proxmox independentes
+
+Os servidores não formam um cluster Proxmox. Cada um tem a sua gestão e as suas VMs. Para esta escala, prefiro conseguir explicar como recuperar um serviço sem depender de uma configuração de alta disponibilidade que ainda não preciso de manter.
+
+Um cluster com apenas dois nós traz a questão do quórum quando um deles deixa de estar disponível. É possível acrescentar um terceiro voto com um QDevice, mas isso acrescentaria outro componente ao meu desenho. Ter duas máquinas também não dá automaticamente alta disponibilidade às aplicações ou aos discos.
+
+:::decision title="Migração por backup e restauro"
+Mantive os hosts independentes. A passagem das VMs usa backup e restauro, em vez de migração dentro de um cluster. Aceito uma intervenção manual e uma interrupção planeada quando preciso de mudar uma VM de máquina.
 :::
 
-## Um cabo entre os dois
+Esta opção também torna as intervenções explícitas: escolho o destino, preparo o backup e acompanho o arranque da VM restaurada. Para os serviços que tenho em casa, essa operação manual é um custo que aceito.
 
-Os dois servidores ligam-se por um cabo direto de 2,5 GbE, fora da rede de casa. Esse cabo serve para duas coisas:
+## O cabo direto ganhou um uso concreto
 
-- **Mover VMs** de um servidor para o outro, sem passar pelo router.
-- **Backups cruzados**: cada servidor guarda cópias das VMs do outro. É o plano para resolver a falha que mais me preocupa hoje, a de não ter cópias fora da máquina onde os dados vivem.
+Liguei as segundas portas de rede dos dois MS-A1 por um cabo direto de 2,5 GbE. Esta ligação dá ao Servidorzinho um caminho até ao PBS sem passar pelo router de casa.
 
-```text title="a ligação"
-Servidorzinho  <== 2,5 GbE direto ==>  bifrost
-      |                                    |
-   rede de casa                     túneis para a Internet
+O plano inicial falava em backups cruzados. A implementação ficou diferente: os dois servidores enviam os backups para um Proxmox Backup Server no bifrost. O datastore fica num disco USB de 10 TB, separado do NVMe que contém as VMs desse host.
+
+```text title="O destino dos backups"
+Servidorzinho ── ligação direta ──> PBS no bifrost
+                                       ↑
+                                VMs do bifrost
+                                       |
+                                disco USB de 10 TB
 ```
 
-## E a MediaBox?
+O disco USB também guarda as partilhas da NAS, em datasets separados do datastore de backups. Essa organização permite definir limites de espaço por função e acompanhar o crescimento dos ficheiros e dos pontos de recuperação.
 
-O M90q tem um i5 de 35 W, 32 GB de RAM e dois slots NVMe. É fraco para servidor de armazenamento, como contei no [post sobre o Jellyfin e o TrueNAS](blog-post.html?id=jellyfin-e-truenas-o-que-aprendi), e ótimo para computador de secretária sempre ligado, que uso à distância pela mesma rede privada Tailscale.
+## Nomes que ajudam a reconhecer as máquinas
 
-## Os nomes
+O bifrost recebeu o nome da ponte da mitologia nórdica, por ser o servidor que passou a receber as aplicações expostas à Internet. O mimir ficou com o nome do sábio que aconselha Odin. O Servidorzinho mantém o nome antigo.
 
-Com mais máquinas, "servidor 2" deixou de chegar. Escolhi uma família de nomes da mitologia nórdica:
+Escolher o nome antes de instalar o Proxmox evitou uma alteração posterior na identidade do nó. Neste caso, foi uma pequena decisão tomada a tempo, sem necessidade de transformar a reorganização do homelab numa renomeação de todas as máquinas.
 
-| Máquina | Nome | Porquê |
-|---|---|---|
-| MS-A1 novo | bifrost | A ponte entre o mundo dos deuses e o dos humanos: é a máquina virada para a Internet |
-| M90q | mimir | O sábio que aconselha Odin, e que é só uma cabeça. Assenta bem numa máquina pequenina |
-| Portátil | sleipnir | O cavalo de Odin, que viaja entre mundos |
-| Desktop futuro | odin | O principal |
+## A recuperação ainda depende do mesmo local
 
-O Servidorzinho mantém o nome. No Proxmox, o nome do nó está gravado na estrutura de configuração do próprio Proxmox, onde vivem as definições de todas as VMs, e mudá-lo a sério implica praticamente reinstalar. O nome nórdico dele seria yggdrasil, a árvore que segura os nove mundos, como ele segura as VMs todas. Fica para quando houver uma reinstalação a sério.
+As aplicações públicas saíram do Servidorzinho e os dois hosts têm um destino de backup configurado. O armazenamento do PBS continua ligado ao bifrost, na mesma casa. As partilhas da NAS ainda têm uma única cópia e o restauro completo de uma VM está por ensaiar.
 
-:::tip title="Escolhe o nome antes de instalar"
-No Proxmox, decide o nome do nó antes da instalação. Depois, mudar custa muito mais do que parece.
-:::
-
-## O que vem a seguir
-
-1. Instalar o Proxmox no bifrost e configurar a firewall antes de qualquer VM.
-2. Mover as VMs públicas do Servidorzinho para o bifrost, uma de cada vez.
-3. Ligar os backups cruzados pelo cabo direto e testar um restauro completo.
-4. Escrever aqui como correu.
+A [parte seguinte](blog-post.html?id=backups-do-homelab-com-pbs) descreve a configuração do PBS, a retenção e a diferença entre guardar uma VM e recuperar os seus serviços.

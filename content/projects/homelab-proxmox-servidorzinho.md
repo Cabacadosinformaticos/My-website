@@ -1,98 +1,103 @@
 ---
 title: Homelab
-desc: O meu laboratório de servidores em casa. Dois Minisforum MS-A1 com Proxmox, uma cloud privada para os meus projetos, DNS para a casa toda, servidores de jogos e sites abertos à Internet sem portas abertas no router.
+desc: Dois servidores Proxmox em casa para os serviços da família, uma plataforma de desenvolvimento e aplicações públicas. Com backups em PBS, partilhas Samba e acesso privado por Tailscale.
 category: [Homelab, Proxmox, Infraestrutura]
 year: 2026
 type: Pessoal
 duration: Desde 2026, em evolução
 status: Em produção
-stack: [Proxmox VE, Debian, Ubuntu, Docker, ZFS, Tailscale, Cloudflare Tunnel, AdGuard Home, AMP]
-cover: ""
-related: [project:cabacalab, post:como-comecei-o-meu-homelab, post:chega-o-bifrost, project:iade-horarios]
+stack: [Proxmox VE, Debian, Ubuntu, Docker, ZFS, Proxmox Backup Server, Samba, Cockpit, Tailscale, Cloudflare Tunnel, AdGuard Home, AMP]
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513965/cabacatech/2026-11/covers/projects/homelab-proxmox-servidorzinho-a4620d2d43.webp
+related: [project:cabacalab, post:chega-o-bifrost, post:backups-do-homelab-com-pbs, post:nas-com-samba-e-cockpit]
 ---
 
-O homelab começou com uma vontade antiga: ter um servidor meu em casa para experimentar virtualização e, claro, ter um servidor de Minecraft. Hoje são dois servidores Proxmox que correm os serviços da casa, uma plataforma de desenvolvimento para os meus projetos e os sites que tenho abertos à Internet.
+O homelab começou com um servidor de Minecraft e cresceu para dois hosts Proxmox. Hoje corre o DNS de casa, os jogos, uma plataforma de desenvolvimento e aplicações abertas à Internet. Desde 9 de novembro, tem também um Proxmox Backup Server e uma NAS com Samba e Cockpit.
 
-Esta página é o mapa. Os detalhes de cada parte, com o que correu bem e o que correu mal, estão na série [Diário do Homelab](blog-post.html?id=como-comecei-o-meu-homelab).
+Esta página reúne o desenho atual. Na série [Diário do Homelab](blog-post.html?id=como-comecei-o-meu-homelab), conto as decisões de cada etapa e os problemas que as motivaram.
 
-:::image-placeholder title="Mapa do homelab" desc="Diagrama dos dois servidores, a ligação direta entre eles, a rede de casa, a rede Tailscale e os túneis para a Internet." ratio="16:9"
-:::
+![Distribuição dos serviços entre o Servidorzinho e o bifrost, com ligação direta entre os hosts e armazenamento USB para o PBS e a NAS.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513995/cabacatech/2026-11/diagrams/homelab-overview-dffd84138c.webp)
 
 :::stats
-2 | Servidores Proxmox
-9 | VMs e containers
-0 | Portas abertas no router
-96 GB | De RAM entre os dois
+2 | Hosts Proxmox
+96 GB | RAM instalada
+2,5 GbE | Ligação direta
+9 | Partes no diário
 :::
 
-## As máquinas
+## As máquinas e os seus papéis
 
 | Máquina | Hardware | Papel |
 |---|---|---|
-| Servidorzinho | Minisforum MS-A1, Ryzen 9 7900, 64 GB DDR5, 2x 2 TB NVMe | Tudo o que é privado: DNS, jogos, VPN, a plataforma de desenvolvimento |
-| bifrost | Minisforum MS-A1, Ryzen 7 8700G, 32 GB DDR5, 512 GB NVMe | Tudo o que é público: sites e projetos abertos à Internet |
+| Servidorzinho | Minisforum MS-A1, Ryzen 9 7900, 64 GB DDR5, 2 × 2 TB NVMe | DNS, jogos, VPN e plataforma privada CabacaLab |
+| bifrost | Minisforum MS-A1, Ryzen 7 8700G, 32 GB DDR5, 512 GB NVMe | VMs públicas, Fieldnote privado, PBS e NAS |
 
-Os dois ligam-se por um cabo direto de 2,5 GbE, fora da rede de casa, para mover VMs e trocar backups. Não formam um cluster, e expliquei porquê em [A MediaBox reformou-se. Chega o bifrost](blog-post.html?id=chega-o-bifrost).
+Os dois hosts ligam-se por um cabo direto de 2,5 GbE. O Servidorzinho usa essa ligação para chegar ao PBS no bifrost. Cada host mantém a sua gestão independente e as VMs passam de uma máquina para a outra por backup e restauro. A [parte 7](blog-post.html?id=chega-o-bifrost) explica esta escolha.
 
-## O que corre
+As aplicações públicas têm VMs próprias e entram na Internet através de Cloudflare Tunnels. Os serviços de administração e as aplicações privadas usam a rede local ou Tailscale, conforme a sua configuração. O Fieldnote, por exemplo, corre no bifrost com acesso privado através de Tailscale.
 
-| Serviço | Onde | Para quê |
+## O que corre em cada host
+
+| Serviço | Host e ambiente | Função |
 |---|---|---|
-| AdGuard Home | Container LXC | DNS da casa toda, com bloqueio de tracking, malware e phishing |
-| AMP | VM Debian | Servidores de Minecraft com mods, um container por mundo |
-| Gateway VPN | VM | Saída para a Internet por VPN, para os meus dispositivos fora de casa |
-| [CabacaLab](project-detail.html?id=cabacalab) | 4 VMs | Bases de dados, cache, S3, HTTPS, deploys, monitorização e mapas para os meus projetos |
-| [IADE Horários](project-detail.html?id=iade-horarios) | VM pública | Horários do IADE, aberto à Internet |
-| [Site da AEIADE](project-detail.html?id=aeiade-website) | VM pública | Em desenvolvimento |
+| AdGuard Home | Servidorzinho, LXC | DNS da casa e filtragem de pedidos |
+| AMP | Servidorzinho, VM | Gestão dos servidores de jogos |
+| Gateway VPN | Servidorzinho, VM | Saída para a Internet por VPN |
+| [CabacaLab](project-detail.html?id=cabacalab) | Servidorzinho, VMs próprias | Bases de dados, cache, S3, HTTPS, deploys, monitorização e mapas |
+| [IADE Horários](project-detail.html?id=iade-horarios) | bifrost, VM pública | Consulta pública dos horários do IADE |
+| [Site da AEIADE](project-detail.html?id=aeiade-website) | bifrost, VM própria | Alojamento do site através do seu túnel |
+| [Fieldnote](project-detail.html?id=fieldnote) | bifrost, VM privada | Ambiente do projeto, acessível por Tailscale |
+| Proxmox Backup Server | bifrost, LXC | Destino dos backups dos dois hosts |
+| Samba, Cockpit e DLNA | bifrost, LXC | Partilhas de ficheiros e biblioteca familiar na rede local |
 
-## Os princípios
+## Como organizo os serviços
 
-Ao fim de meses a montar, partir e corrigir, o homelab segue meia dúzia de regras. Cada uma veio de um problema concreto.
-
-:::decision title="Privado por defeito"
-Os painéis de administração (Proxmox, AMP, bases de dados, monitorização) só existem dentro de casa e na minha rede Tailscale. O que é público entra por túneis de saída, sem portas abertas, em VMs isoladas. Ver [Pôr um site na Internet sem abrir portas](blog-post.html?id=publicar-um-site-sem-abrir-portas).
+:::decision title="Um ambiente por função"
+Os serviços correm em VMs ou containers próprios. Uso LXC para serviços como DNS, PBS e Samba. As aplicações com Docker e os ambientes com redes próprias correm em VMs. O host Proxmox gere os recursos, a rede e o armazenamento ZFS.
 :::
 
-:::decision title="Nada instalado no host"
-O Proxmox só corre o Proxmox. Cada serviço vive na sua VM ou no seu container. Um serviço partido parte-se sozinho.
+:::decision title="Acesso definido por aplicação"
+As aplicações públicas têm túneis próprios e regras de rede por VM. Para os serviços privados, uso a rede local e Tailscale. A distribuição física dos serviços complementa essa configuração.
 :::
 
-:::decision title="Container quando chega, VM quando é preciso"
-Serviços leves e simples, como o DNS, correm em containers LXC. Serviços com Docker, redes próprias ou requisitos de isolamento correm em VMs. A gateway VPN, por exemplo, é uma VM porque o encaminhamento do WireGuard dava problemas num container sem privilégios.
+:::decision title="Memória e arranque planeados"
+Atribuo memória a cada serviço e deixo folga para os picos dos jogos e das aplicações. No Servidorzinho, o DNS arranca primeiro e os serviços seguintes têm uma ordem definida. No bifrost, a ARC do ZFS tem um limite de 2 GiB.
 :::
 
-:::decision title="Planear para os picos"
-Um servidor de jogos está calmo 90% do tempo e precisa de folga nos outros 10%. A memória é distribuída a pensar nos picos, e a ordem de arranque garante que a infraestrutura (DNS primeiro) está de pé antes dos serviços que dependem dela.
-:::
+## Backups e ficheiros têm coberturas diferentes
 
-:::decision title="Testar o que se diz que funciona"
-Testei o reboot completo do servidor de propósito, um dia depois de montar a plataforma. Quando houve duas falhas de luz no fim de setembro, todas as VMs voltaram sozinhas.
-:::
+Os dois hosts têm jobs noturnos configurados para o PBS. O datastore fica num dataset ZFS do disco USB de 10 TB ligado ao bifrost, com quota de 3 TB. A retenção conserva 7 pontos diários, 4 semanais e 6 mensais. A verificação tem uma tarefa semanal.
+
+O mesmo disco contém os datasets das partilhas Samba, separados do datastore. A partilha pessoal tem quota de 1 TB e a familiar de 500 GB. O Cockpit gere as partilhas e as identidades. O DLNA serve a biblioteca familiar na rede local.
+
+As partilhas têm uma única cópia. Os backups dos containers cobrem os seus sistemas de raiz, mas excluem os datasets montados a partir do host. Também falta uma cópia fora de casa e um ensaio de restauro completo de uma VM. Estes são os próximos pontos de trabalho na recuperação do homelab.
 
 ## Como chegou aqui
 
 :::timeline
 O início | O achado no OLX | Um MS-A1 em segunda mão com 64 GB de RAM. Nasce o Servidorzinho.
-Primeiros serviços | Minecraft e DNS | O AMP para os servidores de jogos e o AdGuard Home para a casa toda.
-Segundo servidor | A MediaBox | Um segundo servidor para Jellyfin e TrueNAS, que acabou por não ser a solução certa.
-Set 2026 | CabacaLab | Um segundo disco de 2 TB e uma cloud privada para os meus projetos, montada num dia.
-Set 2026 | Os primeiros sites públicos | IADE Horários e o site da AEIADE, por túneis e em VMs isoladas.
-Out 2026 | Chega o bifrost | Um segundo MS-A1 só para o que é público.
+Primeiros serviços | Minecraft e DNS | AMP para os jogos e AdGuard Home para a casa.
+A experiência de media | MediaBox | Jellyfin e TrueNAS num Lenovo M90q Gen 5. A experiência termina e a máquina acaba por ser vendida.
+Set 2026 | CabacaLab | Um segundo NVMe de 2 TB recebe a plataforma privada de desenvolvimento.
+Set 2026 | Primeiros sites públicos | IADE Horários e o site da AEIADE passam a ter VMs e túneis próprios.
+Out 2026 | Preparar a nova distribuição | O segundo MS-A1 já chegou. O desktop passa a ser o mimir, um M90q Gen 6 separado da antiga MediaBox.
+9 Nov 2026 | bifrost instalado | Proxmox instalado e VMs públicas transferidas. Fieldnote privado, PBS e NAS entram neste host.
 :::
 
-## A série
+## Diário do Homelab
 
 1. [Como comecei o meu homelab](blog-post.html?id=como-comecei-o-meu-homelab)
 2. [Ter um servidor de Minecraft em casa é mais trabalhoso do que parece](blog-post.html?id=servidor-minecraft-em-casa)
 3. [DNS em casa com AdGuard Home](blog-post.html?id=dns-em-casa-com-adguard-home)
 4. [O lado menos glamoroso de ter servidores em casa](blog-post.html?id=o-lado-menos-glamoroso-do-homelab)
 5. [Pôr um site na Internet sem abrir portas](blog-post.html?id=publicar-um-site-sem-abrir-portas)
-6. [Jellyfin e TrueNAS, e porque desliguei tudo](blog-post.html?id=jellyfin-e-truenas-o-que-aprendi)
-7. [A MediaBox reformou-se. Chega o bifrost](blog-post.html?id=chega-o-bifrost)
+6. [Jellyfin e TrueNAS e porque desliguei tudo](blog-post.html?id=jellyfin-e-truenas-o-que-aprendi)
+7. [Chega o bifrost, o segundo servidor do homelab](blog-post.html?id=chega-o-bifrost)
+8. [Backups do homelab com Proxmox Backup Server](blog-post.html?id=backups-do-homelab-com-pbs)
+9. [Uma NAS com Samba e Cockpit depois do TrueNAS](blog-post.html?id=nas-com-samba-e-cockpit)
 
 ## O que vem a seguir
 
-- Montar o bifrost e mover para lá as VMs públicas.
-- Backups cruzados entre os dois servidores, com um restauro completo testado.
-- Escolher uma solução de armazenamento mais leve do que o TrueNAS, com painel web, drive de rede, S3 e espaço para os backups de cada serviço.
-- Voltar a pôr o disco de 10 TB a trabalhar.
+- Restaurar uma VM num ambiente isolado, confirmar os serviços e registar o tempo de recuperação.
+- Criar uma segunda cópia dos ficheiros das partilhas da NAS.
+- Definir um destino de backup fora de casa.
+- Acompanhar os resultados dos jobs do PBS e a evolução do espaço usado.
