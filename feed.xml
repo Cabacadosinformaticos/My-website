@@ -5,20 +5,70 @@
     <link>https://cabacatech.com/pages/blog.html</link>
     <description>Projetos, homelab e o que vou aprendendo, do desenvolvimento web à infraestrutura.</description>
     <language>pt-PT</language>
-    <lastBuildDate>Thu, 01 Oct 2026 09:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 01 Nov 2026 09:00:00 +0000</lastBuildDate>
     <atom:link href="https://cabacatech.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
-      <title>A MediaBox reformou-se. Chega o bifrost</title>
+      <title>Agendar pedidos de diário com restrições</title>
+      <link>https://cabacatech.com/pages/blog-post.html?id=fieldnote-agendar-sem-interromper</link>
+      <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=fieldnote-agendar-sem-interromper</guid>
+      <pubDate>Sun, 01 Nov 2026 09:00:00 +0000</pubDate>
+      <description>Como o agendador do Fieldnote escolhe horários, distribui a carga e devolve um plano parcial quando precisa. Com os resultados de uma demonstração e da avaliação.</description>
+      <category>Algoritmos</category>
+      <category>Python</category>
+      <category>Sistemas Distribuídos</category>
+    </item>
+    <item>
+      <title>Como o Fieldnote recupera quando um serviço falha</title>
+      <link>https://cabacatech.com/pages/blog-post.html?id=fieldnote-quando-um-no-falha</link>
+      <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=fieldnote-quando-um-no-falha</guid>
+      <pubDate>Sun, 01 Nov 2026 09:00:00 +0000</pubDate>
+      <description>Replicação, reenvio seguro e recuperação automática num protótipo para estudos de diário. As decisões de engenharia e os resultados de nove cenários no servidor.</description>
+      <category>Sistemas Distribuídos</category>
+      <category>Backend</category>
+      <category>PostgreSQL</category>
+    </item>
+    <item>
+      <title>Uma NAS com Samba e Cockpit depois do TrueNAS</title>
+      <link>https://cabacatech.com/pages/blog-post.html?id=nas-com-samba-e-cockpit</link>
+      <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=nas-com-samba-e-cockpit</guid>
+      <pubDate>Sun, 01 Nov 2026 09:00:00 +0000</pubDate>
+      <description>O disco de 10 TB voltou ao homelab. Samba serve as partilhas, Cockpit dá-lhes um painel e DLNA leva os conteúdos da família à televisão. O desenho, as quotas e o que falta proteger.</description>
+      <category>Homelab</category>
+      <category>Storage</category>
+      <category>Linux</category>
+    </item>
+    <item>
+      <title>Backups do homelab com Proxmox Backup Server</title>
+      <link>https://cabacatech.com/pages/blog-post.html?id=backups-do-homelab-com-pbs</link>
+      <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=backups-do-homelab-com-pbs</guid>
+      <pubDate>Sun, 01 Nov 2026 09:00:00 +0000</pubDate>
+      <description>Os dois hosts Proxmox já têm backups noturnos configurados para um PBS no bifrost. O destino, a retenção, a verificação e os dados que continuam sem segunda cópia.</description>
+      <category>Homelab</category>
+      <category>Proxmox</category>
+      <category>Backups</category>
+    </item>
+    <item>
+      <title>mimir, um desktop que fica em casa</title>
+      <link>https://cabacatech.com/pages/blog-post.html?id=mimir-desktop-remoto</link>
+      <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=mimir-desktop-remoto</guid>
+      <pubDate>Thu, 01 Oct 2026 09:00:00 +0000</pubDate>
+      <description>Um ThinkCentre Tiny que fica em casa, acessível pela rede privada. Hardware, acesso ao Windows e as escolhas para manter uma segunda máquina de trabalho disponível.</description>
+      <category>Homelab</category>
+      <category>Windows</category>
+      <category>Redes</category>
+    </item>
+    <item>
+      <title>Chega o bifrost, o segundo servidor do homelab</title>
       <link>https://cabacatech.com/pages/blog-post.html?id=chega-o-bifrost</link>
       <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=chega-o-bifrost</guid>
-      <pubDate>Thu, 01 Oct 2026 09:00:00 +0000</pubDate>
-      <description>O homelab ganhou um segundo MS-A1, dedicado aos serviços abertos à Internet. Porque separar o público do privado, porque não fiz um cluster, como os dois servidores se ligam, e de onde vêm os nomes.</description>
+      <pubDate>Sun, 01 Nov 2026 09:00:00 +0000</pubDate>
+      <description>O segundo MS-A1 já corre Proxmox e recebeu as VMs públicas. Como distribuí os serviços, porque mantive os servidores independentes e onde termina a separação entre eles.</description>
       <category>Homelab</category>
       <category>Proxmox</category>
       <category>Infraestrutura</category>
     </item>
     <item>
-      <title>Jellyfin e TrueNAS, e porque desliguei tudo</title>
+      <title>Jellyfin e TrueNAS e porque desliguei tudo</title>
       <link>https://cabacatech.com/pages/blog-post.html?id=jellyfin-e-truenas-o-que-aprendi</link>
       <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=jellyfin-e-truenas-o-que-aprendi</guid>
       <pubDate>Thu, 01 Oct 2026 09:00:00 +0000</pubDate>
@@ -52,7 +102,7 @@
       <link>https://cabacatech.com/pages/blog-post.html?id=dns-em-casa-com-adguard-home</link>
       <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=dns-em-casa-com-adguard-home</guid>
       <pubDate>Wed, 01 Jul 2026 09:00:00 +0000</pubDate>
-      <description>Como pus toda a rede de casa a resolver nomes através de um container de 1 GB, o que isso bloqueia, o que não bloqueia, e o dia em que um limite escondido começou a deitar pedidos fora em silêncio.</description>
+      <description>Como pus toda a rede de casa a resolver nomes através de um container de 1 GB, o que isso bloqueia, o que não bloqueia e o dia em que um limite escondido começou a deitar pedidos fora em silêncio.</description>
       <category>Homelab</category>
       <category>Redes</category>
       <category>Segurança</category>
