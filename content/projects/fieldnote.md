@@ -7,7 +7,7 @@ type: Académico
 duration: Set 2026 a Dez 2026
 status: Em desenvolvimento
 stack: [Python 3.12, FastAPI, PostgreSQL 17, Patroni, etcd, RabbitMQ, Garage S3, Traefik, Tailscale, React Native, React, Docker, Prometheus]
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513962/cabacatech/2026-11/covers/projects/fieldnote-826e1312bb.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654850/cabacatech/2026-11/covers/projects/fieldnote-097a5c156a.webp
 github: https://github.com/Cabacadosinformaticos/fieldnote
 related: [post:fieldnote-quando-um-no-falha, post:fieldnote-agendar-sem-interromper, project:cabacalab]
 ---

@@ -4,7 +4,7 @@ desc: Como o agendador do Fieldnote escolhe horários, distribui a carga e devol
 category: [Algoritmos, Python, Sistemas Distribuídos]
 date: Nov 2026
 readTime: 6 min
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513991/cabacatech/2026-11/covers/posts/fieldnote-agendar-sem-interromper-f6f18d82d7.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654834/cabacatech/2026-11/covers/posts/fieldnote-agendar-sem-interromper-cdb3c9320e.webp
 related: [project:fieldnote, post:fieldnote-quando-um-no-falha]
 ---
 

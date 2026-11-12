@@ -4,7 +4,7 @@ desc: Como abri o IADE Horários ao público a partir de casa, sem abrir uma ún
 category: [Homelab, Redes, Segurança]
 date: Set 2026
 readTime: 9 min
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513979/cabacatech/2026-11/covers/posts/publicar-um-site-sem-abrir-portas-240beaa7bc.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654843/cabacatech/2026-11/covers/posts/publicar-um-site-sem-abrir-portas-16ac02ae7a.webp
 series: Diário do Homelab
 seriesPart: 5
 related: [project:iade-horarios, project:cabacalab, post:chega-o-bifrost]

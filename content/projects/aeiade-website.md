@@ -7,7 +7,7 @@ type: Associação
 duration: Mai 2026, em evolução
 status: Em desenvolvimento
 stack: [Next.js, Payload CMS, PostgreSQL, TypeScript, Tailwind CSS, Docker]
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513967/cabacatech/2026-11/covers/projects/aeiade-website-d35c5a0cf5.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654846/cabacatech/2026-11/covers/projects/aeiade-website-7ba81f965f.webp
 related: [project:cabacalab, post:como-este-site-foi-feito]
 ---
 

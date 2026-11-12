@@ -8,7 +8,7 @@ duration: 12 dias
 status: Concluído
 github: https://github.com/Cabacadosinformaticos/Track-Manager
 stack: [React 19, TypeScript, Vite, Tailwind CSS, Framer Motion, dnd-kit, Python 3.12, FastAPI, FFmpeg, MKVToolNix]
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513974/cabacatech/2026-11/covers/projects/track-manager-947f6d99a3.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654856/cabacatech/2026-11/covers/projects/track-manager-86f8f5a919.webp
 related: [post:como-este-site-foi-feito, project:iade-horarios]
 ---
 

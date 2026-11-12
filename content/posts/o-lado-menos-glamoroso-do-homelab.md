@@ -4,7 +4,7 @@ desc: Updates, DNS, backups, discos, segurança e outras partes pouco bonitas de
 category: [Homelab, Segurança, Infraestrutura]
 date: Ago 2026
 readTime: 11 min
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513980/cabacatech/2026-11/covers/posts/o-lado-menos-glamoroso-do-homelab-2d816de744.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654841/cabacatech/2026-11/covers/posts/o-lado-menos-glamoroso-do-homelab-9f16f37d88.webp
 series: Diário do Homelab
 seriesPart: 4
 related: [post:servidor-minecraft-em-casa, post:dns-em-casa-com-adguard-home, project:cabacalab]

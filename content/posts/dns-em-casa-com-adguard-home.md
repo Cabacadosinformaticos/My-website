@@ -4,7 +4,7 @@ desc: Como pus toda a rede de casa a resolver nomes através de um container de 
 category: [Homelab, Redes, Segurança]
 date: Jul 2026
 readTime: 11 min
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513981/cabacatech/2026-11/covers/posts/dns-em-casa-com-adguard-home-593cd0367e.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654833/cabacatech/2026-11/covers/posts/dns-em-casa-com-adguard-home-139168a9bf.webp
 series: Diário do Homelab
 seriesPart: 3
 related: [project:homelab-proxmox-servidorzinho, post:o-lado-menos-glamoroso-do-homelab, post:servidor-minecraft-em-casa]

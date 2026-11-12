@@ -8,7 +8,7 @@ duration: Abr 2026 a Mai 2026
 status: Concluído
 github: https://github.com/Cabacadosinformaticos/Africana-Virtual-Airways
 stack: [PHP 8, MySQL 8, JavaScript, HTML, CSS, JWT, REST API, Leaflet]
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513971/cabacatech/2026-11/covers/projects/africana-virtual-airways-dc7454034c.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654847/cabacatech/2026-11/covers/projects/africana-virtual-airways-01f7b87778.webp
 related: [project:xplored, project:psp-lisboa-app, post:como-este-site-foi-feito]
 ---
 

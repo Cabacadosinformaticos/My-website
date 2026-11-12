@@ -4,7 +4,7 @@ desc: Os dois hosts Proxmox já têm backups noturnos configurados para um PBS n
 category: [Homelab, Proxmox, Backups]
 date: Nov 2026
 readTime: 7 min
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513987/cabacatech/2026-11/covers/posts/backups-do-homelab-com-pbs-225561f746.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654827/cabacatech/2026-11/covers/posts/backups-do-homelab-com-pbs-d5d72faa84.webp
 series: Diário do Homelab
 seriesPart: 8
 related: [post:chega-o-bifrost, post:nas-com-samba-e-cockpit, project:homelab-proxmox-servidorzinho]

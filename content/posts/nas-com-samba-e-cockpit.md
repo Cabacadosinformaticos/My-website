@@ -4,7 +4,7 @@ desc: O disco de 10 TB voltou ao homelab. Samba serve as partilhas, Cockpit dá-
 category: [Homelab, Storage, Linux]
 date: Nov 2026
 readTime: 7 min
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513988/cabacatech/2026-11/covers/posts/nas-com-samba-e-cockpit-82aec14817.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654839/cabacatech/2026-11/covers/posts/nas-com-samba-e-cockpit-255e0e2204.webp
 series: Diário do Homelab
 seriesPart: 9
 related: [post:jellyfin-e-truenas-o-que-aprendi, post:backups-do-homelab-com-pbs, project:homelab-proxmox-servidorzinho]

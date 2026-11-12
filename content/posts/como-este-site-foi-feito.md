@@ -4,7 +4,7 @@ desc: A arquitetura por trás do site, as decisões técnicas e o porquê de tud
 category: Web Dev
 date: Mai 2026
 readTime: 6 min
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513986/cabacatech/2026-11/covers/posts/como-este-site-foi-feito-f7b8519be9.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654831/cabacatech/2026-11/covers/posts/como-este-site-foi-feito-3d3f58a843.webp
 related: [post:ola-mundo, project:track-manager, project:aeiade-website]
 ---
 

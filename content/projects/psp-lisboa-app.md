@@ -7,7 +7,7 @@ type: Tech Jam
 duration: 48 horas
 status: Concluído
 stack: [Kotlin, Android, Material Design 3, Firebase, Google Maps SDK]
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513973/cabacatech/2026-11/covers/projects/psp-lisboa-app-3a52d577f0.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654855/cabacatech/2026-11/covers/projects/psp-lisboa-app-5dbeecbd83.webp
 related: [project:xplored, post:ola-mundo, project:africana-virtual-airways]
 ---
 

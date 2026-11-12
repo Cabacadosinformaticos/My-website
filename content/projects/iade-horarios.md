@@ -7,7 +7,7 @@ type: Pessoal
 duration: Set 2026, em evolução
 status: Em produção
 stack: [Python, FastAPI, PostgreSQL, JavaScript, Docker, Coolify, Cloudflare Tunnel]
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513964/cabacatech/2026-11/covers/projects/iade-horarios-858f0ac746.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654852/cabacatech/2026-11/covers/projects/iade-horarios-2562a3bc5a.webp
 live: https://iade-horarios.cabacatech.com
 related: [post:publicar-um-site-sem-abrir-portas, project:cabacalab, project:homelab-proxmox-servidorzinho]
 ---

@@ -7,7 +7,7 @@ type: Pessoal
 duration: Set 2026, em evolução
 status: Em produção
 stack: [Proxmox VE, Ubuntu, Docker, Caddy, PostgreSQL, PostGIS, Redis, Garage S3, Coolify, Prometheus, Grafana, Loki, ZFS, Tailscale]
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513966/cabacatech/2026-11/covers/projects/cabacalab-5bdf3b8f15.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654849/cabacatech/2026-11/covers/projects/cabacalab-982f751dd8.webp
 related: [project:homelab-proxmox-servidorzinho, post:publicar-um-site-sem-abrir-portas, project:iade-horarios, project:mafra-no-bolso]
 ---
 

@@ -4,7 +4,7 @@ desc: O segundo MS-A1 já corre Proxmox e recebeu as VMs públicas. Como distrib
 category: [Homelab, Proxmox, Infraestrutura]
 date: Nov 2026
 readTime: 7 min
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513977/cabacatech/2026-11/covers/posts/chega-o-bifrost-166828df5a.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654828/cabacatech/2026-11/covers/posts/chega-o-bifrost-64d6175814.webp
 series: Diário do Homelab
 seriesPart: 7
 related: [project:homelab-proxmox-servidorzinho, post:backups-do-homelab-com-pbs, post:publicar-um-site-sem-abrir-portas]

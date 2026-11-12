@@ -4,7 +4,7 @@ desc: Um ThinkCentre Tiny que fica em casa, acessível pela rede privada. Hardwa
 category: [Homelab, Windows, Redes]
 date: Out 2026
 readTime: 5 min
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513989/cabacatech/2026-11/covers/posts/mimir-desktop-remoto-dc5fbbd8da.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654838/cabacatech/2026-11/covers/posts/mimir-desktop-remoto-d301066888.webp
 related: [project:homelab-proxmox-servidorzinho, post:chega-o-bifrost]
 ---
 

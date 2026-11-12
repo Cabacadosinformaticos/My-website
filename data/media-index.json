@@ -1,219 +1,219 @@
 {
   "covers/projects/fieldnote": {
-    "public_id": "cabacatech/2026-11/covers/projects/fieldnote-826e1312bb",
-    "version": 1794513962,
+    "public_id": "cabacatech/2026-11/covers/projects/fieldnote-097a5c156a",
+    "version": 1794654850,
     "width": 1600,
     "height": 900,
-    "bytes": 145540,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513962/cabacatech/2026-11/covers/projects/fieldnote-826e1312bb.webp",
-    "sha256": "826e1312bb99b51847a6dfe45c2a192d42202880afa1f767af77eed7ac602d17"
+    "bytes": 54142,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654850/cabacatech/2026-11/covers/projects/fieldnote-097a5c156a.webp",
+    "sha256": "097a5c156a1bb8c64b198f2f4f370c52351be16a64b1b188a20538930bef82b8"
   },
   "covers/projects/iade-horarios": {
-    "public_id": "cabacatech/2026-11/covers/projects/iade-horarios-858f0ac746",
-    "version": 1794513964,
+    "public_id": "cabacatech/2026-11/covers/projects/iade-horarios-2562a3bc5a",
+    "version": 1794654852,
     "width": 1600,
     "height": 900,
-    "bytes": 116140,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513964/cabacatech/2026-11/covers/projects/iade-horarios-858f0ac746.webp",
-    "sha256": "858f0ac746714eb59265c1e6cfafb09f10d9b5581a14e0db42ad245778f4ee09"
+    "bytes": 51492,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654852/cabacatech/2026-11/covers/projects/iade-horarios-2562a3bc5a.webp",
+    "sha256": "2562a3bc5aef940aa8cea3bbaff235e67f6e3f7a88c9e33ac23d5e739858f212"
   },
   "covers/projects/homelab-proxmox-servidorzinho": {
-    "public_id": "cabacatech/2026-11/covers/projects/homelab-proxmox-servidorzinho-a4620d2d43",
-    "version": 1794513965,
+    "public_id": "cabacatech/2026-11/covers/projects/homelab-proxmox-servidorzinho-054aa27752",
+    "version": 1794654851,
     "width": 1600,
     "height": 900,
-    "bytes": 29100,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513965/cabacatech/2026-11/covers/projects/homelab-proxmox-servidorzinho-a4620d2d43.webp",
-    "sha256": "a4620d2d432075d545f740a3cbcc200b239c3e8665f5bf5603ec04b18a447b4b"
+    "bytes": 57838,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654851/cabacatech/2026-11/covers/projects/homelab-proxmox-servidorzinho-054aa27752.webp",
+    "sha256": "054aa277529b9a83833d3ab1ec150a4ab5d8d6b079a0b3e82895e00c2b609e3a"
   },
   "covers/projects/cabacalab": {
-    "public_id": "cabacatech/2026-11/covers/projects/cabacalab-5bdf3b8f15",
-    "version": 1794513966,
+    "public_id": "cabacatech/2026-11/covers/projects/cabacalab-982f751dd8",
+    "version": 1794654849,
     "width": 1600,
     "height": 900,
-    "bytes": 40962,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513966/cabacatech/2026-11/covers/projects/cabacalab-5bdf3b8f15.webp",
-    "sha256": "5bdf3b8f1528a872279db0d94c20891e86f177704429c95fff8f1cf5298e3dab"
+    "bytes": 40040,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654849/cabacatech/2026-11/covers/projects/cabacalab-982f751dd8.webp",
+    "sha256": "982f751dd89ad144bc12b365048ea1fa54188424f61052e4a59224c51ac336c8"
   },
   "covers/projects/aeiade-website": {
-    "public_id": "cabacatech/2026-11/covers/projects/aeiade-website-d35c5a0cf5",
-    "version": 1794513967,
+    "public_id": "cabacatech/2026-11/covers/projects/aeiade-website-7ba81f965f",
+    "version": 1794654846,
     "width": 1600,
     "height": 900,
-    "bytes": 31410,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513967/cabacatech/2026-11/covers/projects/aeiade-website-d35c5a0cf5.webp",
-    "sha256": "d35c5a0cf5acbf5e4f41ec7596f51b14c8b40a7ba2c2446ccfbad8709ea66875"
+    "bytes": 133508,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654846/cabacatech/2026-11/covers/projects/aeiade-website-7ba81f965f.webp",
+    "sha256": "7ba81f965fadd0d5b696a9d4b3aa5c1a9cf932239c8121daa8ac4d59e3585f48"
   },
   "covers/projects/mafra-no-bolso": {
-    "public_id": "cabacatech/2026-11/covers/projects/mafra-no-bolso-b7b64b731e",
-    "version": 1794513969,
+    "public_id": "cabacatech/2026-11/covers/projects/mafra-no-bolso-8f9b8d6157",
+    "version": 1794654854,
     "width": 1600,
     "height": 900,
-    "bytes": 359818,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513969/cabacatech/2026-11/covers/projects/mafra-no-bolso-b7b64b731e.webp",
-    "sha256": "b7b64b731e38ec6c1f9da83c51f4930af05f8a5d0b9987ca54cefced63b58447"
+    "bytes": 118736,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654854/cabacatech/2026-11/covers/projects/mafra-no-bolso-8f9b8d6157.webp",
+    "sha256": "8f9b8d6157c392fbb32939df081ab4b1afb57215576d9dfd8056ee16e0005968"
   },
   "covers/projects/africana-virtual-airways": {
-    "public_id": "cabacatech/2026-11/covers/projects/africana-virtual-airways-dc7454034c",
-    "version": 1794513971,
+    "public_id": "cabacatech/2026-11/covers/projects/africana-virtual-airways-01f7b87778",
+    "version": 1794654847,
     "width": 1600,
     "height": 900,
-    "bytes": 620322,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513971/cabacatech/2026-11/covers/projects/africana-virtual-airways-dc7454034c.webp",
-    "sha256": "dc7454034c7d2f4f5e1b0afa5f8a38cffb2e3a6e14b4439bb1925ba8100c0f24"
+    "bytes": 61436,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654847/cabacatech/2026-11/covers/projects/africana-virtual-airways-01f7b87778.webp",
+    "sha256": "01f7b87778e6330be9fbd7f48f7478c828a050c13eb3e350d975185d54a954c3"
   },
   "covers/projects/psp-lisboa-app": {
-    "public_id": "cabacatech/2026-11/covers/projects/psp-lisboa-app-3a52d577f0",
-    "version": 1794513973,
+    "public_id": "cabacatech/2026-11/covers/projects/psp-lisboa-app-5dbeecbd83",
+    "version": 1794654855,
     "width": 1600,
     "height": 900,
-    "bytes": 226396,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513973/cabacatech/2026-11/covers/projects/psp-lisboa-app-3a52d577f0.webp",
-    "sha256": "3a52d577f0edb6b8d907d98fff9be2f9377ac58f33008b95e3fdc0a6d1b3a9f4"
+    "bytes": 36176,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654855/cabacatech/2026-11/covers/projects/psp-lisboa-app-5dbeecbd83.webp",
+    "sha256": "5dbeecbd836ac6f6d225788c3a05f6f47efa8b9436f436dca1639a79305d2a42"
   },
   "covers/projects/track-manager": {
-    "public_id": "cabacatech/2026-11/covers/projects/track-manager-947f6d99a3",
-    "version": 1794513974,
+    "public_id": "cabacatech/2026-11/covers/projects/track-manager-86f8f5a919",
+    "version": 1794654856,
     "width": 1600,
     "height": 900,
-    "bytes": 77476,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513974/cabacatech/2026-11/covers/projects/track-manager-947f6d99a3.webp",
-    "sha256": "947f6d99a3fbb9f29ac7aa1c84a73d808ec4d38c10a9913479826cc9f1ffbac2"
+    "bytes": 50196,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654856/cabacatech/2026-11/covers/projects/track-manager-86f8f5a919.webp",
+    "sha256": "86f8f5a919a43419ce43264e424cbff1677b34c5a2a068d32c2c03f9f23bb3ef"
   },
   "covers/projects/xplored": {
-    "public_id": "cabacatech/2026-11/covers/projects/xplored-dd9b7f150c",
-    "version": 1794513975,
+    "public_id": "cabacatech/2026-11/covers/projects/xplored-cb1183b502",
+    "version": 1794654857,
     "width": 1600,
     "height": 900,
-    "bytes": 279632,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513975/cabacatech/2026-11/covers/projects/xplored-dd9b7f150c.webp",
-    "sha256": "dd9b7f150c27e17c588d8852bc3e9cc92f94ca1bc04f9cbbc43414c0e3ee9dad"
+    "bytes": 179774,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654857/cabacatech/2026-11/covers/projects/xplored-cb1183b502.webp",
+    "sha256": "cb1183b502259fbbf40dec37f07e3c5a77aeafcd3bb9b34551fae5b79e0b33f4"
   },
   "covers/posts/chega-o-bifrost": {
-    "public_id": "cabacatech/2026-11/covers/posts/chega-o-bifrost-166828df5a",
-    "version": 1794513977,
+    "public_id": "cabacatech/2026-11/covers/posts/chega-o-bifrost-64d6175814",
+    "version": 1794654828,
     "width": 1600,
     "height": 900,
-    "bytes": 27838,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513977/cabacatech/2026-11/covers/posts/chega-o-bifrost-166828df5a.webp",
-    "sha256": "166828df5a42136e7a130f0e5082a49517e6bdce65243d21309d05b67f536fe8"
+    "bytes": 44520,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654828/cabacatech/2026-11/covers/posts/chega-o-bifrost-64d6175814.webp",
+    "sha256": "64d61758146016fddaa7ade86281ac4ab663109c2c3bed153b32825b15baa0f8"
   },
   "covers/posts/jellyfin-e-truenas-o-que-aprendi": {
-    "public_id": "cabacatech/2026-11/covers/posts/jellyfin-e-truenas-o-que-aprendi-9216c82566",
-    "version": 1794513978,
+    "public_id": "cabacatech/2026-11/covers/posts/jellyfin-e-truenas-o-que-aprendi-1a06618964",
+    "version": 1794654836,
     "width": 1600,
     "height": 900,
-    "bytes": 19988,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513978/cabacatech/2026-11/covers/posts/jellyfin-e-truenas-o-que-aprendi-9216c82566.webp",
-    "sha256": "9216c8256633ac86b5034cd87887eadec13a81b7e8d7e1b54d1e55c34b7a0426"
+    "bytes": 52604,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654836/cabacatech/2026-11/covers/posts/jellyfin-e-truenas-o-que-aprendi-1a06618964.webp",
+    "sha256": "1a06618964e2b1359e4e641a6121566a58c4f685552494458e5603f1047405bf"
   },
   "covers/posts/publicar-um-site-sem-abrir-portas": {
-    "public_id": "cabacatech/2026-11/covers/posts/publicar-um-site-sem-abrir-portas-240beaa7bc",
-    "version": 1794513979,
+    "public_id": "cabacatech/2026-11/covers/posts/publicar-um-site-sem-abrir-portas-16ac02ae7a",
+    "version": 1794654843,
     "width": 1600,
     "height": 900,
-    "bytes": 22638,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513979/cabacatech/2026-11/covers/posts/publicar-um-site-sem-abrir-portas-240beaa7bc.webp",
-    "sha256": "240beaa7bc0829e323eb057f006d2e8e04a86ee04481a63cb1e178ac2bd5bbda"
+    "bytes": 167960,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654843/cabacatech/2026-11/covers/posts/publicar-um-site-sem-abrir-portas-16ac02ae7a.webp",
+    "sha256": "16ac02ae7a24f80f52d8ce1f1d930d8122c3b9a7f4a2d07c1a1ac5c9357b9684"
   },
   "covers/posts/o-lado-menos-glamoroso-do-homelab": {
-    "public_id": "cabacatech/2026-11/covers/posts/o-lado-menos-glamoroso-do-homelab-2d816de744",
-    "version": 1794513980,
+    "public_id": "cabacatech/2026-11/covers/posts/o-lado-menos-glamoroso-do-homelab-9f16f37d88",
+    "version": 1794654841,
     "width": 1600,
     "height": 900,
-    "bytes": 25848,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513980/cabacatech/2026-11/covers/posts/o-lado-menos-glamoroso-do-homelab-2d816de744.webp",
-    "sha256": "2d816de744b94688226b78538133e432a345a1ce55f5a02a3650652afa1e766b"
+    "bytes": 269956,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654841/cabacatech/2026-11/covers/posts/o-lado-menos-glamoroso-do-homelab-9f16f37d88.webp",
+    "sha256": "9f16f37d88f3aca8fa90a32c9a895108697e74c584a42e8ba62130bc4cebe475"
   },
   "covers/posts/dns-em-casa-com-adguard-home": {
-    "public_id": "cabacatech/2026-11/covers/posts/dns-em-casa-com-adguard-home-593cd0367e",
-    "version": 1794513981,
+    "public_id": "cabacatech/2026-11/covers/posts/dns-em-casa-com-adguard-home-139168a9bf",
+    "version": 1794654833,
     "width": 1600,
     "height": 900,
-    "bytes": 22446,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513981/cabacatech/2026-11/covers/posts/dns-em-casa-com-adguard-home-593cd0367e.webp",
-    "sha256": "593cd0367e523d0ee2ef51d55a27e48a7081ccb2c56bfc6f2ce36132d0e95d94"
+    "bytes": 268252,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654833/cabacatech/2026-11/covers/posts/dns-em-casa-com-adguard-home-139168a9bf.webp",
+    "sha256": "139168a9bf4f660cfd1bdf81766ebcd71a26bb443ce465fc1691bd4844dd2f6b"
   },
   "covers/posts/servidor-minecraft-em-casa": {
-    "public_id": "cabacatech/2026-11/covers/posts/servidor-minecraft-em-casa-43ad4a99f7",
-    "version": 1794513982,
+    "public_id": "cabacatech/2026-11/covers/posts/servidor-minecraft-em-casa-4520358e6d",
+    "version": 1794654845,
     "width": 1600,
     "height": 900,
-    "bytes": 16418,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513982/cabacatech/2026-11/covers/posts/servidor-minecraft-em-casa-43ad4a99f7.webp",
-    "sha256": "43ad4a99f742b9b7bb09398931d29426e3962fb92fd6a4368cc70b67c0c06b89"
+    "bytes": 52548,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654845/cabacatech/2026-11/covers/posts/servidor-minecraft-em-casa-4520358e6d.webp",
+    "sha256": "4520358e6d681275ab7d1cf6c04b1f4bdd07b9174269d04ca1fdf5863c62e2bd"
   },
   "covers/posts/como-comecei-o-meu-homelab": {
-    "public_id": "cabacatech/2026-11/covers/posts/como-comecei-o-meu-homelab-2b755df25c",
-    "version": 1794513983,
+    "public_id": "cabacatech/2026-11/covers/posts/como-comecei-o-meu-homelab-858dd0c8a6",
+    "version": 1794654830,
     "width": 1600,
     "height": 900,
-    "bytes": 20814,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513983/cabacatech/2026-11/covers/posts/como-comecei-o-meu-homelab-2b755df25c.webp",
-    "sha256": "2b755df25c23ea25b2d7ef50ec85fc521b662246600898c0cce3ca04a5c52e45"
+    "bytes": 330770,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654830/cabacatech/2026-11/covers/posts/como-comecei-o-meu-homelab-858dd0c8a6.webp",
+    "sha256": "858dd0c8a61f80886044039a356ef3bff4299044f1b2a03cc8ad3a1fb8c08b72"
   },
   "covers/posts/ola-mundo": {
-    "public_id": "cabacatech/2026-11/covers/posts/ola-mundo-0ba69b811e",
-    "version": 1794513985,
+    "public_id": "cabacatech/2026-11/covers/posts/ola-mundo-20b30c4f2a",
+    "version": 1794654842,
     "width": 1600,
     "height": 900,
-    "bytes": 19188,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513985/cabacatech/2026-11/covers/posts/ola-mundo-0ba69b811e.webp",
-    "sha256": "0ba69b811e9dc72c4eb517b414044d5de3f74c3fb055c92325a404eed9927d89"
+    "bytes": 70118,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654842/cabacatech/2026-11/covers/posts/ola-mundo-20b30c4f2a.webp",
+    "sha256": "20b30c4f2a46b4ef256b4c2af2d629fd06a9075855cf4f3dc51ada5c8cba10a5"
   },
   "covers/posts/como-este-site-foi-feito": {
-    "public_id": "cabacatech/2026-11/covers/posts/como-este-site-foi-feito-f7b8519be9",
-    "version": 1794513986,
+    "public_id": "cabacatech/2026-11/covers/posts/como-este-site-foi-feito-3d3f58a843",
+    "version": 1794654831,
     "width": 1600,
     "height": 900,
-    "bytes": 23624,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513986/cabacatech/2026-11/covers/posts/como-este-site-foi-feito-f7b8519be9.webp",
-    "sha256": "f7b8519be97c479543b03d8f5298135c737fa73143ff8d619f807244f1ed9952"
+    "bytes": 65048,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654831/cabacatech/2026-11/covers/posts/como-este-site-foi-feito-3d3f58a843.webp",
+    "sha256": "3d3f58a8430108a6bc037f2a1275aa1de0b3fd65f5fafa2f14e8ea564e93c727"
   },
   "covers/posts/backups-do-homelab-com-pbs": {
-    "public_id": "cabacatech/2026-11/covers/posts/backups-do-homelab-com-pbs-225561f746",
-    "version": 1794513987,
+    "public_id": "cabacatech/2026-11/covers/posts/backups-do-homelab-com-pbs-d5d72faa84",
+    "version": 1794654827,
     "width": 1600,
     "height": 900,
-    "bytes": 28636,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513987/cabacatech/2026-11/covers/posts/backups-do-homelab-com-pbs-225561f746.webp",
-    "sha256": "225561f7467f2555e4106276891dd88f4838cfaa9bc142ca00058795cc8fcd8f"
+    "bytes": 99910,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654827/cabacatech/2026-11/covers/posts/backups-do-homelab-com-pbs-d5d72faa84.webp",
+    "sha256": "d5d72faa8483ed7bf0bf401702c26be798960dea7ab7abdee760ac1e5fd78fa5"
   },
   "covers/posts/nas-com-samba-e-cockpit": {
-    "public_id": "cabacatech/2026-11/covers/posts/nas-com-samba-e-cockpit-82aec14817",
-    "version": 1794513988,
+    "public_id": "cabacatech/2026-11/covers/posts/nas-com-samba-e-cockpit-255e0e2204",
+    "version": 1794654839,
     "width": 1600,
     "height": 900,
-    "bytes": 23490,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513988/cabacatech/2026-11/covers/posts/nas-com-samba-e-cockpit-82aec14817.webp",
-    "sha256": "82aec14817b0a08775683ba81633bcd05180d2c702aeee35e078ec2dcb9b9f9f"
+    "bytes": 94794,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654839/cabacatech/2026-11/covers/posts/nas-com-samba-e-cockpit-255e0e2204.webp",
+    "sha256": "255e0e22041fab56cff42c834a07c61ac1c2eb0ea8a632373e1929a8d6396dab"
   },
   "covers/posts/mimir-desktop-remoto": {
-    "public_id": "cabacatech/2026-11/covers/posts/mimir-desktop-remoto-dc5fbbd8da",
-    "version": 1794513989,
+    "public_id": "cabacatech/2026-11/covers/posts/mimir-desktop-remoto-d301066888",
+    "version": 1794654838,
     "width": 1600,
     "height": 900,
-    "bytes": 15406,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513989/cabacatech/2026-11/covers/posts/mimir-desktop-remoto-dc5fbbd8da.webp",
-    "sha256": "dc5fbbd8da205cd7e1a35671b8e08cab90cf68855f74c068400ffe2edf8d46bc"
+    "bytes": 83568,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654838/cabacatech/2026-11/covers/posts/mimir-desktop-remoto-d301066888.webp",
+    "sha256": "d30106688836daa2a65282a3b7fd028622605deb986ec2a73479e13c4554e826"
   },
   "covers/posts/fieldnote-quando-um-no-falha": {
-    "public_id": "cabacatech/2026-11/covers/posts/fieldnote-quando-um-no-falha-be7a355695",
-    "version": 1794513990,
+    "public_id": "cabacatech/2026-11/covers/posts/fieldnote-quando-um-no-falha-e555e37b5a",
+    "version": 1794654835,
     "width": 1600,
     "height": 900,
-    "bytes": 26354,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513990/cabacatech/2026-11/covers/posts/fieldnote-quando-um-no-falha-be7a355695.webp",
-    "sha256": "be7a3556951a470792b5779359d79c740ebc6209e6b353cd9393db1e0777d023"
+    "bytes": 81732,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654835/cabacatech/2026-11/covers/posts/fieldnote-quando-um-no-falha-e555e37b5a.webp",
+    "sha256": "e555e37b5a002d5f5f356ff31c57ce2fe47db82d5055742b80cec27f1222cde1"
   },
   "covers/posts/fieldnote-agendar-sem-interromper": {
-    "public_id": "cabacatech/2026-11/covers/posts/fieldnote-agendar-sem-interromper-f6f18d82d7",
-    "version": 1794513991,
+    "public_id": "cabacatech/2026-11/covers/posts/fieldnote-agendar-sem-interromper-cdb3c9320e",
+    "version": 1794654834,
     "width": 1600,
     "height": 900,
-    "bytes": 32038,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513991/cabacatech/2026-11/covers/posts/fieldnote-agendar-sem-interromper-f6f18d82d7.webp",
-    "sha256": "f6f18d82d736e66d74788d9d0fc5c78ab3436593011477af9670e4e8e9a1bb4e"
+    "bytes": 109192,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654834/cabacatech/2026-11/covers/posts/fieldnote-agendar-sem-interromper-cdb3c9320e.webp",
+    "sha256": "cdb3c9320ef8d1d2ca699c1412518fc34e45c04bb847ef2e474a9fe305dd1a7e"
   },
   "diagrams/cabacalab-platform": {
     "public_id": "cabacatech/2026-11/diagrams/cabacalab-platform-2fa0d4a008",

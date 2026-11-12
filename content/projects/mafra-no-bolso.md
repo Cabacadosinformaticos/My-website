@@ -7,7 +7,7 @@ type: Pessoal
 duration: Set 2026, em evolução
 status: Em desenvolvimento
 stack: [Flutter, Riverpod, Laravel, PostgreSQL, PostGIS, Redis, OpenStreetMap]
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513969/cabacatech/2026-11/covers/projects/mafra-no-bolso-b7b64b731e.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654854/cabacatech/2026-11/covers/projects/mafra-no-bolso-8f9b8d6157.webp
 related: [project:cabacalab, project:homelab-proxmox-servidorzinho]
 ---
 

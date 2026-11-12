@@ -7,7 +7,7 @@ type: Pessoal
 duration: Desde 2026, em evolução
 status: Em produção
 stack: [Proxmox VE, Debian, Ubuntu, Docker, ZFS, Proxmox Backup Server, Samba, Cockpit, Tailscale, Cloudflare Tunnel, AdGuard Home, AMP]
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513965/cabacatech/2026-11/covers/projects/homelab-proxmox-servidorzinho-a4620d2d43.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654851/cabacatech/2026-11/covers/projects/homelab-proxmox-servidorzinho-054aa27752.webp
 related: [project:cabacalab, post:chega-o-bifrost, post:backups-do-homelab-com-pbs, post:nas-com-samba-e-cockpit]
 ---
 

@@ -4,7 +4,7 @@ desc: Montei um servidor de media com Jellyfin e uma NAS com TrueNAS num mini PC
 category: [Homelab, Media Server, Storage]
 date: Out 2026
 readTime: 11 min
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513978/cabacatech/2026-11/covers/posts/jellyfin-e-truenas-o-que-aprendi-9216c82566.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654836/cabacatech/2026-11/covers/posts/jellyfin-e-truenas-o-que-aprendi-1a06618964.webp
 series: Diário do Homelab
 seriesPart: 6
 related: [post:nas-com-samba-e-cockpit, post:mimir-desktop-remoto, project:homelab-proxmox-servidorzinho]

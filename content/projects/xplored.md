@@ -8,7 +8,7 @@ duration: Semestre, revisto em Out 2026
 status: Concluído
 github: https://github.com/Cabacadosinformaticos/Xplored
 stack: [Kotlin, Jetpack Compose, Retrofit, Google Maps SDK, Spring Boot 3, Java 21, MySQL 8]
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513975/cabacatech/2026-11/covers/projects/xplored-dd9b7f150c.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654857/cabacatech/2026-11/covers/projects/xplored-cb1183b502.webp
 related: [project:psp-lisboa-app, project:africana-virtual-airways]
 ---
 

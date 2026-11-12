@@ -4,7 +4,7 @@ desc: Replicação, reenvio seguro e recuperação automática num protótipo pa
 category: [Sistemas Distribuídos, Backend, PostgreSQL]
 date: Nov 2026
 readTime: 6 min
-cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513990/cabacatech/2026-11/covers/posts/fieldnote-quando-um-no-falha-be7a355695.webp
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654835/cabacatech/2026-11/covers/posts/fieldnote-quando-um-no-falha-e555e37b5a.webp
 related: [project:fieldnote, post:fieldnote-agendar-sem-interromper]
 ---
 
