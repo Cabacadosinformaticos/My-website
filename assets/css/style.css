@@ -535,7 +535,9 @@ nav.scrolled { border-bottom-color: var(--border2); }
 .project-card:hover { background: var(--surface); }
 
 .project-thumb {
-  height: 180px;
+  /* Capa 16:9: o card mostra a imagem inteira, sem cortes. */
+  aspect-ratio: 16 / 9;
+  height: auto;
   background: var(--surface);
   display: flex;
   align-items: center;
@@ -543,6 +545,12 @@ nav.scrolled { border-bottom-color: var(--border2); }
   border-bottom: 1px solid var(--border);
   overflow: hidden;
   position: relative;
+}
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 .project-num {
   font-family: var(--font-head);
@@ -637,8 +645,10 @@ nav.scrolled { border-bottom-color: var(--border2); }
 .blog-featured-card:hover .blog-accent-line { transform: scaleX(1); }
 
 .blog-thumb {
+  /* Capa 16:9: o card mostra a imagem inteira, sem cortes. */
   position: relative;
-  height: 160px;
+  aspect-ratio: 16 / 9;
+  height: auto;
   background: var(--bg2);
   display: flex;
   align-items: center;
@@ -646,7 +656,9 @@ nav.scrolled { border-bottom-color: var(--border2); }
   border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
-.thumb-media { width: 100%; height: 100%; }
+.thumb-media { position: absolute; inset: 0; width: 100%; height: 100%; }
+.blog-thumb img,
+.blog-featured-thumb img { object-fit: cover; object-position: center; }
 .blog-thumb-icon {
   font-family: var(--font-head);
   font-size: 56px;
@@ -1751,8 +1763,10 @@ nav.scrolled { border-bottom-color: var(--border2); }
 }
 .blog-featured-card:hover { background: var(--surface2); border-color: var(--border2); }
 .blog-featured-thumb {
+  /* Capa 16:9: o card mostra a imagem inteira, sem cortes. */
   position: relative;
-  height: 220px;
+  aspect-ratio: 16 / 9;
+  height: auto;
   background: var(--bg);
   display: flex; align-items: center; justify-content: center;
   border-bottom: 1px solid var(--border);
