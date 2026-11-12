@@ -7,16 +7,15 @@ type: Pessoal
 duration: Set 2026, em evolução
 status: Em produção
 stack: [Proxmox VE, Ubuntu, Docker, Caddy, PostgreSQL, PostGIS, Redis, Garage S3, Coolify, Prometheus, Grafana, Loki, ZFS, Tailscale]
-cover: ""
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513966/cabacatech/2026-11/covers/projects/cabacalab-5bdf3b8f15.webp
 related: [project:homelab-proxmox-servidorzinho, post:publicar-um-site-sem-abrir-portas, project:iade-horarios, project:mafra-no-bolso]
 ---
 
 Cada projeto novo pedia a mesma coisa: uma base de dados, um sítio para guardar ficheiros, HTTPS, uma forma de fazer deploy e alguma maneira de saber se está vivo. Montar isto de raiz para cada projeto é trabalho repetido e é a forma mais rápida de acabar com cinco instalações diferentes de PostgreSQL, cada uma configurada à sua maneira.
 
-O CabacaLab é a resposta: uma plataforma que corre no [Servidorzinho](project-detail.html?id=homelab-proxmox-servidorzinho) e que oferece estes serviços a qualquer projeto. A plataforma não conhece as aplicações. Cada projeto recebe a sua base de dados, o seu utilizador, o seu bucket e o seu subdomínio, e é isso.
+O CabacaLab é a resposta: uma plataforma que corre no [Servidorzinho](project-detail.html?id=homelab-proxmox-servidorzinho) e que oferece estes serviços a qualquer projeto. A plataforma não conhece as aplicações. Cada projeto recebe a sua base de dados, o seu utilizador, o seu bucket e o seu subdomínio e é isso.
 
-:::image-placeholder title="Diagrama do CabacaLab" desc="Diagrama das VMs da plataforma e dos serviços em cada uma, sem IPs nem nomes de domínio." ratio="16:9"
-:::
+![Diagrama do CabacaLab e dos seus serviços partilhados.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513992/cabacatech/2026-11/diagrams/cabacalab-platform-2fa0d4a008.webp)
 
 :::stats
 6 | VMs na plataforma
@@ -55,7 +54,7 @@ Todas as VMs nascem do mesmo template: Ubuntu 24.04, Docker, Tailscale e a mesma
 
 ## Privado por defeito
 
-Os painéis e serviços só existem dentro da rede de casa e da minha rede privada Tailscale. O HTTPS termina no proxy, e os registos DNS apontam para endereços privados, por isso um nome de domínio público não abre caminho nenhum para quem está de fora.
+Os painéis e serviços só existem dentro da rede de casa e da minha rede privada Tailscale. O HTTPS termina no proxy e os registos DNS apontam para endereços privados, por isso um nome de domínio público não abre caminho nenhum para quem está de fora.
 
 Dentro da VM principal há duas redes Docker separadas: uma para o proxy e outra para os dados. Um container que não está na rede de dados não consegue sequer ver as bases de dados.
 
@@ -72,13 +71,13 @@ A plataforma tem um disco NVMe de 2 TB só para ela, com um pool ZFS:
 - `pg_dump` diário das bases de dados, guardado 30 dias.
 
 :::warning title="Um snapshot não é um backup"
-Os snapshots e os dumps vivem no mesmo disco que os dados. Protegem contra um erro meu, não contra a morte do disco. A cópia para fora do servidor é o próximo passo, e é uma das razões para ter um [segundo servidor](blog-post.html?id=chega-o-bifrost).
+Os snapshots e os dumps vivem no mesmo disco que os dados. Protegem contra um erro meu, não contra a morte do disco. A cópia para fora do servidor é o próximo passo e é uma das razões para ter um [segundo servidor](blog-post.html?id=chega-o-bifrost).
 :::
 
 ## Problemas que resolvi
 
 :::details title="O Coolify não conseguia ligar ao serviço de tempo real"
-O painel do Coolify mostrava "Cannot connect to real-time service". O Coolify usa WebSockets em portas próprias, e o Caddy só encaminhava o tráfego HTTP normal. Em vez de abrir mais portas, encaminhei os caminhos de WebSocket pelo mesmo endereço HTTPS e configurei o Coolify para usar a porta 443.
+O painel do Coolify mostrava "Cannot connect to real-time service". O Coolify usa WebSockets em portas próprias e o Caddy só encaminhava o tráfego HTTP normal. Em vez de abrir mais portas, encaminhei os caminhos de WebSocket pelo mesmo endereço HTTPS e configurei o Coolify para usar a porta 443.
 :::
 
 :::details title="Um certificado wildcard só cobre um nível"
@@ -90,7 +89,7 @@ Testei o reboot completo do servidor de propósito, um dia depois de montar tudo
 :::
 
 :::details title="Um deploy é push e pull"
-Durante dois dias, a página inicial da plataforma mostrou a versão antiga. Os commits estavam feitos, mas não tinham sido enviados para o repositório, e por isso o servidor não tinha nada de novo para puxar. Desde então, um deploy só está feito quando o servidor mostra a versão nova.
+Durante dois dias, a página inicial da plataforma mostrou a versão antiga. Os commits estavam feitos, mas não tinham sido enviados para o repositório e por isso o servidor não tinha nada de novo para puxar. Desde então, um deploy só está feito quando o servidor mostra a versão nova.
 :::
 
 ## O que corre lá hoje

@@ -7,17 +7,19 @@ type: Pessoal
 duration: Set 2026, em evolução
 status: Em desenvolvimento
 stack: [Flutter, Riverpod, Laravel, PostgreSQL, PostGIS, Redis, OpenStreetMap]
-cover: ""
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513969/cabacatech/2026-11/covers/projects/mafra-no-bolso-b7b64b731e.webp
 related: [project:cabacalab, project:homelab-proxmox-servidorzinho]
 ---
 
-Quem visita Mafra costuma ir ao Palácio e à Ericeira e voltar para casa. O concelho tem muito mais do que isso, mas a informação está espalhada: os mapas mostram pontos sem organizar uma visita, e o site da câmara não foi pensado para ser usado na rua, de telemóvel na mão. O Mafra no Bolso tenta resolver isso.
+Quem visita Mafra costuma ir ao Palácio e à Ericeira e voltar para casa. O concelho tem muito mais do que isso, mas a informação está espalhada: os mapas mostram pontos sem organizar uma visita e o site da câmara não foi pensado para ser usado na rua, de telemóvel na mão. O Mafra no Bolso tenta resolver isso.
 
 :::callout title="Projeto em desenvolvimento"
 As fases 0 e 1 estão concluídas e a fase 2 está em curso. A app ainda não foi publicada nas lojas.
 :::
 
-:::image-placeholder title="Ecrã inicial da app" desc="Screenshot do ecrã inicial com sugestões para o momento." ratio="9:16"
+:::carousel
+https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794514022/cabacatech/2026-11/screenshots/mafra-no-bolso/mafra-home-pt-9e5b425641.webp | Início do Mafra no Bolso, capturado no emulador Android.
+https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794514023/cabacatech/2026-11/screenshots/mafra-no-bolso/mafra-detail-pt-d201c11a9b.webp | Detalhe da Basílica de Mafra na aplicação.
 :::
 
 ## Um conselheiro, não um catálogo
@@ -36,9 +38,9 @@ Esta é a decisão de que tudo o resto depende. Um catálogo responde a "o que e
 
 ## Como as sugestões são calculadas
 
-O motor de sugestões é determinístico: pontuações e regras explícitas, em vez de uma caixa preta. Cada recomendação mostra a razão por que aparece, por exemplo a distância, o horário de abertura ou a meteorologia. Uma sugestão em que o utilizador consegue ver a razão é uma sugestão em que pode confiar, e é fácil de corrigir quando está errada.
+O motor de sugestões é determinístico: pontuações e regras explícitas, em vez de uma caixa preta. Cada recomendação mostra a razão por que aparece, por exemplo a distância, o horário de abertura ou a meteorologia. Uma sugestão em que o utilizador consegue ver a razão é uma sugestão em que pode confiar e é fácil de corrigir quando está errada.
 
-A app pede ao servidor sugestões para a posição e o tempo disponível, e o servidor cruza:
+A app pede ao servidor sugestões para a posição e o tempo disponível e o servidor cruza:
 
 - a localização, com consultas geográficas em PostGIS;
 - os horários de cada sítio;
@@ -57,7 +59,7 @@ A app pede ao servidor sugestões para a posição e o tempo disponível, e o se
 
 Escolhi Flutter pela interface rica em mobile e Laravel porque já conhecia PHP. A API e a base de dados correm no [CabacaLab](project-detail.html?id=cabacalab), a plataforma que montei no meu servidor.
 
-Não há contas de utilizador. As rotas ficam associadas ao dispositivo, e as estatísticas de uso são agregadas por local e por dia, sem guardar dados por pessoa.
+Não há contas de utilizador. As rotas ficam associadas ao dispositivo e as estatísticas de uso são agregadas por local e por dia, sem guardar dados por pessoa.
 
 :::stats
 17 | Locais com guia próprio
@@ -72,11 +74,11 @@ Cada local tem um guia: história, lendas, como visitar, destaques, natureza e d
 ## Problemas pelo caminho
 
 :::details title="O modo escuro mostrava o mapa claro"
-O estilo do mapa base não tinha um identificador, e por isso os dois temas partilhavam a mesma cache de tiles. Mudar para escuro continuava a mostrar tiles claros já guardados. Dar um identificador a cada estilo resolveu.
+O estilo do mapa base não tinha um identificador e por isso os dois temas partilhavam a mesma cache de tiles. Mudar para escuro continuava a mostrar tiles claros já guardados. Dar um identificador a cada estilo resolveu.
 :::
 
 :::details title="Rotas com paragens no meio do Atlântico"
-As paragens de algumas rotas apareciam nas coordenadas 0, 0. A consulta que carregava as rotas não incluía as colunas de latitude e longitude das paragens, e os valores em falta chegavam à app como zero.
+As paragens de algumas rotas apareciam nas coordenadas 0, 0. A consulta que carregava as rotas não incluía as colunas de latitude e longitude das paragens e os valores em falta chegavam à app como zero.
 :::
 
 :::details title="Testes que falhavam sozinhos"

@@ -7,7 +7,7 @@ type: Pessoal
 duration: Set 2026, em evolução
 status: Em produção
 stack: [Python, FastAPI, PostgreSQL, JavaScript, Docker, Coolify, Cloudflare Tunnel]
-cover: ""
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513964/cabacatech/2026-11/covers/projects/iade-horarios-858f0ac746.webp
 live: https://iade-horarios.cabacatech.com
 related: [post:publicar-um-site-sem-abrir-portas, project:cabacalab, project:homelab-proxmox-servidorzinho]
 ---
@@ -18,15 +18,14 @@ Os horários das turmas do IADE são públicos, mas estão num site estático: u
 O IADE Horários não é afiliado à instituição. Usa apenas informação que já é pública e respeita o site de origem: pede só o que mudou e espera entre pedidos.
 :::
 
-:::image-placeholder title="Vista de horário" desc="Screenshot da grelha semanal de uma turma, em modo escuro." ratio="16:9"
-:::
+![Captura real da grelha semanal do IADE Horários em modo escuro.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794514020/cabacatech/2026-11/screenshots/iade-horarios/iade-week-dark-6c0c1c59ba.webp)
 
 ## O que faz
 
 - Consulta por **turma, sala, professor ou cadeira**, com pesquisa que tolera acentos.
 - **Sobreposição** de vários horários na mesma grelha, para comparar turmas ou encontrar uma hora livre em comum.
 - **Salas livres** num dado momento.
-- **Histórico de alterações**: o que mudou, quando, e a diferença entre versões.
+- **Histórico de alterações**: o que mudou, quando e a diferença entre versões.
 - **Viagem no tempo**: ver qualquer horário tal como estava num dia do passado, desde 11 de setembro de 2026.
 
 :::stats
@@ -42,7 +41,7 @@ O sistema tem duas partes que partilham a base de dados: um scraper que recolhe 
 
 ### A recolha
 
-O scraper corre de 6 em 6 horas. Em cada página envia os cabeçalhos `If-None-Match` e `If-Modified-Since`, e o servidor do IADE responde `304 Not Modified` quando nada mudou. Na segunda recolha completa, todas as páginas responderam 304: o scraper quase não gera tráfego quando os horários estão estáveis. Entre pedidos há uma pausa de 0,3 segundos.
+O scraper corre de 6 em 6 horas. Em cada página envia os cabeçalhos `If-None-Match` e `If-Modified-Since` e o servidor do IADE responde `304 Not Modified` quando nada mudou. Na segunda recolha completa, todas as páginas responderam 304: o scraper quase não gera tráfego quando os horários estão estáveis. Entre pedidos há uma pausa de 0,3 segundos.
 
 Cada página é uma grelha de meia em meia hora, em que a duração de uma aula vem do `rowspan` da célula. O parser converte a grelha numa lista de aulas, ordena-a e calcula um hash. Só quando o hash muda é que se guarda uma versão nova. É assim que o histórico existe sem guardar 754 cópias iguais a cada 6 horas.
 
@@ -68,11 +67,11 @@ A página índice do site do IADE tem um bloco `<noframes>`. As versões recente
 :::
 
 :::details title="Aulas sobrepostas e blocos minúsculos no telemóvel"
-Algumas turmas têm aulas ao mesmo tempo (desdobramentos, e-learning). Na primeira versão os blocos ficavam uns por cima dos outros e havia alvos de toque com menos de 44 px. Passei a posicionar os blocos de forma absoluta, com faixas paralelas para as sobreposições, e testei a 375, 768 e 1280 px em modo claro e escuro. O contraste mínimo do texto principal ficou em 5,52:1.
+Algumas turmas têm aulas ao mesmo tempo (desdobramentos, e-learning). Na primeira versão os blocos ficavam uns por cima dos outros e havia alvos de toque com menos de 44 px. Passei a posicionar os blocos de forma absoluta, com faixas paralelas para as sobreposições e testei a 375, 768 e 1280 px em modo claro e escuro. O contraste mínimo do texto principal ficou em 5,52:1.
 :::
 
 :::details title="Um ficheiro de configuração que não atualizava"
-O Caddy continuava a servir a configuração antiga depois de um `git pull`. O Git substitui o ficheiro por um novo (novo inode), e o container continuava montado no antigo. A solução foi montar pastas em vez de ficheiros individuais.
+O Caddy continuava a servir a configuração antiga depois de um `git pull`. O Git substitui o ficheiro por um novo (novo inode) e o container continuava montado no antigo. A solução foi montar pastas em vez de ficheiros individuais.
 :::
 
 ## Pôr o site na Internet

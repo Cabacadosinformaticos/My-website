@@ -7,7 +7,7 @@ type: Associação
 duration: Mai 2026, em evolução
 status: Em desenvolvimento
 stack: [Next.js, Payload CMS, PostgreSQL, TypeScript, Tailwind CSS, Docker]
-cover: ""
+cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513967/cabacatech/2026-11/covers/projects/aeiade-website-d35c5a0cf5.webp
 related: [project:cabacalab, post:como-este-site-foi-feito]
 ---
 
@@ -17,8 +17,7 @@ Faço parte da Associação de Estudantes do IADE desde o primeiro ano. Este pro
 O site está a ser desenvolvido para a associação e ainda não foi lançado na versão final. Por isso esta página fala da motivação, das tecnologias e do tipo de trabalho envolvido, sem mostrar o produto em detalhe nem dados internos.
 :::
 
-:::image-placeholder title="Identidade do site" desc="Imagem genérica com a identidade visual, sem conteúdo interno nem dados de membros." ratio="16:9"
-:::
+
 
 ## Porque um site novo
 
@@ -32,9 +31,9 @@ Os outros requisitos vieram daí:
 
 ## Do PHP ao Next.js
 
-O projeto já passou por várias versões. A primeira proposta pedia uma solução simples em PHP, sem React. Construí essa versão (PHP, conteúdo em JSON, sessões, proteção CSRF e um backoffice), e foi ao usá-la que ficou claro que não chegava: gerir conteúdo bilingue, permissões e ficheiros à mão ia transformar cada funcionalidade nova num projeto.
+O projeto já passou por várias versões. A primeira proposta pedia uma solução simples em PHP, sem React. Construí essa versão (PHP, conteúdo em JSON, sessões, proteção CSRF e um backoffice) e foi ao usá-la que ficou claro que não chegava: gerir conteúdo bilingue, permissões e ficheiros à mão ia transformar cada funcionalidade nova num projeto.
 
-A versão atual usa Next.js com o Payload CMS. O Payload é ao mesmo tempo o CMS e o painel de administração, e corre dentro da própria aplicação. Isto dá um painel à medida da associação sem ter de escrever um backoffice do zero.
+A versão atual usa Next.js com o Payload CMS. O Payload é ao mesmo tempo o CMS e o painel de administração e corre dentro da própria aplicação. Isto dá um painel à medida da associação sem ter de escrever um backoffice do zero.
 
 :::timeline title="Versões"
 Mai 2026 | Versão em PHP | Simples, sem framework. Mostrou os limites de gerir tudo à mão.
@@ -59,11 +58,11 @@ Hoje | Novas fases | Novas secções e redesenho, a caminho do lançamento.
 ## Decisões que já valeram a pena
 
 :::decision title="A aplicação não guarda nada no próprio disco"
-A primeira publicação foi num alojamento serverless, e aprendi da pior forma que o disco desses servidores é temporário: o ficheiro de base de dados desapareceu. Hoje a base de dados e os ficheiros vivem fora da aplicação. Mudar de servidor passou a ser uma questão de configuração e de copiar dados, e já tive de o fazer uma vez sem perder nada.
+A primeira publicação foi num alojamento serverless e aprendi da pior forma que o disco desses servidores é temporário: o ficheiro de base de dados desapareceu. Hoje a base de dados e os ficheiros vivem fora da aplicação. Mudar de servidor passou a ser uma questão de configuração e de copiar dados e já tive de o fazer uma vez sem perder nada.
 :::
 
 :::decision title="Páginas geradas a pedido"
-Na primeira versão as páginas do CMS eram geradas no build. Cada notícia nova obrigava a publicar o site outra vez. Passei a gerá-las a pedido, e o build deixou de precisar da base de dados.
+Na primeira versão as páginas do CMS eram geradas no build. Cada notícia nova obrigava a publicar o site outra vez. Passei a gerá-las a pedido e o build deixou de precisar da base de dados.
 :::
 
 :::decision title="Apagar é mandar para o lixo"
@@ -80,5 +79,5 @@ Com várias pessoas a editar, alguém vai apagar a coisa errada. O conteúdo apa
 ## O que estou a aprender
 
 - Desenhar para quem vem depois de mim: documentação, permissões e um painel que não precisa de explicação.
-- Fusos horários são traiçoeiros. Uma data escolhida num formulário era lida como UTC, e as sessões de verão apareciam marcadas uma hora mais tarde. Agora há uma função própria para a hora de Lisboa, testada nas duas mudanças de hora.
+- Fusos horários são traiçoeiros. Uma data escolhida num formulário era lida como UTC e as sessões de verão apareciam marcadas uma hora mais tarde. Agora há uma função própria para a hora de Lisboa, testada nas duas mudanças de hora.
 - Alterações à base de dados feitas à mão, por fora da aplicação, acabam desfeitas pela própria aplicação. Tudo passa pela API do CMS.
