@@ -57,7 +57,7 @@ He documents his decisions and mistakes in a blog in European Portuguese, which 
 - [DNS em casa com AdGuard Home](https://cabacatech.com/content/posts/dns-em-casa-com-adguard-home.md): network-wide DNS filtering, and diagnosing a hidden limit that silently dropped requests.
 - [O lado menos glamoroso de ter servidores em casa](https://cabacatech.com/content/posts/o-lado-menos-glamoroso-do-homelab.md): updates, backups, monitoring and documentation.
 - [Como este site foi feito](https://cabacatech.com/content/posts/como-este-site-foi-feito.md): a custom Markdown content engine with no framework and no build step.
-- [Diário do Homelab, part 1](https://cabacatech.com/content/posts/como-comecei-o-meu-homelab.md): start of a seven-part series on building and running servers.
+- [Diário do Homelab, part 1](https://cabacatech.com/content/posts/como-comecei-o-meu-homelab.md): start of a nine-part series on building and running servers.
 
 ## Contact
 

@@ -16,8 +16,7 @@ O problema é que quando se começa a pesquisar hardware para servidores, é mui
 
 Eu queria algo compacto, forte e que não me prendesse logo no primeiro mês.
 
-:::image-placeholder title="Foto inicial do setup" desc="Foto dos dois mini PCs ou do espaço onde o homelab está montado." ratio="16:9"
-:::
+![Mapa atual do homelab, desenhado a partir da configuração documentada.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513995/cabacatech/2026-11/diagrams/homelab-overview-dffd84138c.webp)
 
 ## Porque isto me interessava tanto
 
@@ -127,11 +126,10 @@ Esta foi uma das decisões que mais me deixou confortável. Eu queria poder aced
 O segundo servidor apareceu porque o primeiro não era ideal para tudo. O Servidorzinho tem muito CPU, mas para vídeo eu queria Intel Quick Sync. Daí nasceu a MediaBox, um Lenovo ThinkCentre M90q Gen 5 com um i5 14500T e Intel UHD Graphics 770, para media, Jellyfin, transcodificação e experiências com NAS.
 
 :::callout title="Atualização de outubro de 2026"
-A MediaBox já não é servidor. Contei o que aprendi com ela na [parte 6](blog-post.html?id=jellyfin-e-truenas-o-que-aprendi), e quem ocupa agora o lugar dela na [parte 7](blog-post.html?id=chega-o-bifrost).
+A MediaBox já não é servidor. Contei o que aprendi com ela na [parte 6](blog-post.html?id=jellyfin-e-truenas-o-que-aprendi) e quem ocupa agora o lugar dela na [parte 7](blog-post.html?id=chega-o-bifrost).
 :::
 
-:::image-placeholder title="Servidorzinho e MediaBox" desc="Foto dos dois servidores lado a lado ou nos seus locais finais." ratio="16:9"
-:::
+![Diagrama da antiga experiência com MediaBox, TrueNAS e disco USB.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513998/cabacatech/2026-11/diagrams/truenas-usb-previous-60f6acbe66.webp)
 
 ## O que eu faria diferente
 

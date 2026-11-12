@@ -27,22 +27,22 @@ Já não está cá para ver o que construí até hoje. Mas cada vez que abro um 
 :::timeline title="Percurso" layout="horizontal"
 Aos 8 anos | O primeiro portátil | Disquetes, Pascal e COBOL, com o meu pai como professor.
 Curso técnico | Primeiro estágio | A primeira vez num contexto de trabalho real, com alguém a contar comigo.
-CTeSP | Segundo estágio | Outra equipa, outros problemas, e a certeza de que a área tem muitas faces.
+CTeSP | Segundo estágio | Outra equipa, outros problemas e a certeza de que a área tem muitas faces.
 Licenciatura | Engenharia Informática no IADE | Associação de Estudantes, projetos de grupo e o Tech Club.
 2025 | Voluntariado na Câmara de Mafra | ArcGIS e projetos geográficos ao lado de geógrafos.
 2026 | Tech Jam Tech4Good | O [PSP Lisboa App](project-detail.html?id=psp-lisboa-app), feito em 48 horas.
 2026 | O homelab | O [Servidorzinho](project-detail.html?id=homelab-proxmox-servidorzinho) e tudo o que veio depois.
 :::
 
-Depois do básico e do secundário, fiz um curso técnico na área de informática. Foi aí que a teoria começou a tocar na prática, e foi também onde fiz o meu primeiro estágio: tarefas reais e alguém a contar comigo para as cumprir. Adorei. Percebi que era ali que queria estar.
+Depois do básico e do secundário, fiz um curso técnico na área de informática. Foi aí que a teoria começou a tocar na prática e foi também onde fiz o meu primeiro estágio: tarefas reais e alguém a contar comigo para as cumprir. Adorei. Percebi que era ali que queria estar.
 
-A seguir veio o CTeSP, mais focado e mais técnico, com um segundo estágio que me pôs à frente de problemas diferentes e de uma equipa diferente. Dois estágios em contextos distintos mostraram-me que a área tem muitas faces, e ajudaram-me a perceber o que me interessava dentro dela.
+A seguir veio o CTeSP, mais focado e mais técnico, com um segundo estágio que me pôs à frente de problemas diferentes e de uma equipa diferente. Dois estágios em contextos distintos mostraram-me que a área tem muitas faces e ajudaram-me a perceber o que me interessava dentro dela.
 
 Estou agora no quarto semestre da licenciatura. Há semestres que custam, mas nenhum me fez querer estar noutro sítio.
 
 ## A vida dentro da universidade
 
-Desde o primeiro ano que faço parte da Associação de Estudantes. Entrei sem grande plano, só com vontade de participar em algo para além das aulas, e acabei por me envolver bem mais do que esperava: eventos, iniciativas, reuniões que nunca acabam. No segundo ano passei a Vice-presidente do CFD, cargo que ainda ocupo. É um papel com responsabilidade real: processos, decisões, situações que não têm manual de instruções. Aprende-se mais a gerir pessoas e expectativas do que qualquer cadeira consegue ensinar.
+Desde o primeiro ano que faço parte da Associação de Estudantes. Entrei sem grande plano, só com vontade de participar em algo para além das aulas e acabei por me envolver bem mais do que esperava: eventos, iniciativas, reuniões que nunca acabam. No segundo ano passei a Vice-presidente do CFD, cargo que ainda ocupo. É um papel com responsabilidade real: processos, decisões, situações que não têm manual de instruções. Aprende-se mais a gerir pessoas e expectativas do que qualquer cadeira consegue ensinar.
 
 Hoje esse envolvimento também passa pelo código: estou a desenvolver o [novo site da AEIADE](project-detail.html?id=aeiade-website), um projeto que ainda está em desenvolvimento e que junta duas coisas de que gosto, a associação e construir software que as pessoas usam.
 
@@ -50,25 +50,25 @@ Entre o primeiro e o segundo ano fiz voluntariado na Câmara de Mafra, a trabalh
 
 ## Os projetos que me marcaram
 
-Nas cadeiras, os projetos que mais me marcaram foram o [Xplored](project-detail.html?id=xplored) e o [Africana Virtual Airways](project-detail.html?id=africana-virtual-airways). O Xplored foi o meu primeiro projeto sério em Kotlin para Android nativo, no terceiro semestre, e obrigou-me a pensar de forma diferente do desenvolvimento web a que estava habituado. O Africana Virtual Airways, no quarto semestre, foi o primeiro projeto de escala real que construí: uma plataforma full-stack de reservas de voos com API REST, base de dados relacional e dois tipos de utilizador com permissões diferentes.
+Nas cadeiras, os projetos que mais me marcaram foram o [Xplored](project-detail.html?id=xplored) e o [Africana Virtual Airways](project-detail.html?id=africana-virtual-airways). O Xplored foi o meu primeiro projeto sério em Kotlin para Android nativo, no terceiro semestre e obrigou-me a pensar de forma diferente do desenvolvimento web a que estava habituado. O Africana Virtual Airways, no quarto semestre, foi o primeiro projeto de escala real que construí: uma plataforma full-stack de reservas de voos com API REST, base de dados relacional e dois tipos de utilizador com permissões diferentes.
 
-A maioria desses projetos foi feita com o César e o Muhammad. Somos um grupo que, olhando de fora, provavelmente parece caótico, e não estou a dizer que não é. Mas entregamos sempre o que temos de entregar, e as nossas apresentações são invariavelmente diferentes de tudo o resto, no bom sentido. O tipo de apresentações que nos surpreendem a nós próprios quando acabam. É o género de grupo de trabalho que não se encontra com facilidade.
+A maioria desses projetos foi feita com o César e o Muhammad. Somos um grupo que, olhando de fora, provavelmente parece caótico e não estou a dizer que não é. Mas entregamos sempre o que temos de entregar e as nossas apresentações são invariavelmente diferentes de tudo o resto, no bom sentido. O tipo de apresentações que nos surpreendem a nós próprios quando acabam. É o género de grupo de trabalho que não se encontra com facilidade.
 
-Fora das cadeiras fui acumulando projetos pessoais. O [Track Manager](project-detail.html?id=track-manager), uma web app para gerir faixas de áudio e legendas em ficheiros de vídeo sem tocar na linha de comandos, é um deles. Montei também os meus próprios servidores para correr serviços e experimentar: servidores de Minecraft, DNS local, e mais tarde uma pequena cloud privada. Tudo isso vai ter uma [série própria no blog](blog-post.html?id=como-comecei-o-meu-homelab).
+Fora das cadeiras fui acumulando projetos pessoais. O [Track Manager](project-detail.html?id=track-manager), uma web app para gerir faixas de áudio e legendas em ficheiros de vídeo sem tocar na linha de comandos, é um deles. Montei também os meus próprios servidores para correr serviços e experimentar: servidores de Minecraft, DNS local e mais tarde uma pequena cloud privada. Tudo isso vai ter uma [série própria no blog](blog-post.html?id=como-comecei-o-meu-homelab).
 
-E depois há o Tech4Good, o Tech Jam da minha escola para onde o Professor Nathan Campos me empurrou. Fizemos o PSP Lisboa App em 48 horas, a responder a um desafio real da PSP. Confirmou uma coisa que eu já suspeitava: trabalho bem sob pressão extrema, e até gosto.
+E depois há o Tech4Good, o Tech Jam da minha escola para onde o Professor Nathan Campos me empurrou. Fizemos o PSP Lisboa App em 48 horas, a responder a um desafio real da PSP. Confirmou uma coisa que eu já suspeitava: trabalho bem sob pressão extrema e até gosto.
 
 ## Uma nota especial ao Professor Nathan Campos
 
 Há professores que cumprem o programa. E há professores que te fazem crescer de uma forma que vai muito além de qualquer plano curricular.
 
-O Professor Nathan Campos é, sem dúvida, o segundo tipo. Ao longo da licenciatura foi a pessoa que mais consistentemente me empurrou para fora da zona de conforto, e fê-lo sempre com propósito. Não é o tipo de professor que diz "vai pesquisar". É o tipo que diz "olha, eu conheço isto, experimenta, depois falamos".
+O Professor Nathan Campos é, sem dúvida, o segundo tipo. Ao longo da licenciatura foi a pessoa que mais consistentemente me empurrou para fora da zona de conforto e fê-lo sempre com propósito. Não é o tipo de professor que diz "vai pesquisar". É o tipo que diz "olha, eu conheço isto, experimenta, depois falamos".
 
 Foi por causa dele que acabei por comprar e montar os meus próprios servidores, uma decisão que mudou a forma como penso sobre infraestrutura. Foi ele que me apresentou ao Proxmox e ao mundo da virtualização, hoje uma das áreas que mais me fascina. Foi graças a ele que me envolvi no Tech4Good, o melhor evento da minha escola.
 
 E depois há o Tech Club.
 
-Durante muito tempo insisti com ele para avançar com a criação de um clube de tecnologia na universidade. Finalmente aconteceu: o Professor Nathan Campos como coordenador, eu como membro fundador, e um grupo de colegas com a mesma curiosidade que eu. É um espaço fora das aulas onde se fala de redes, hardware, sistemas e IT, de tudo aquilo que não cabe dentro de um semestre. Um sítio onde se aprende porque se quer aprender, não porque vai sair no teste.
+Durante muito tempo insisti com ele para avançar com a criação de um clube de tecnologia na universidade. Finalmente aconteceu: o Professor Nathan Campos como coordenador, eu como membro fundador e um grupo de colegas com a mesma curiosidade que eu. É um espaço fora das aulas onde se fala de redes, hardware, sistemas e IT, de tudo aquilo que não cabe dentro de um semestre. Um sítio onde se aprende porque se quer aprender, não porque vai sair no teste.
 
 Não consigo fazer justiça aqui a tudo o que o Tech Club já representou para mim. Ficará para posts dedicados. Mas não queria deixar de dizer claramente: Professor Nathan Campos, obrigado. Por tudo.
 

@@ -46,7 +46,7 @@ Disco: Cerca de 250 GB SSD
 Gestor: AMP da CubeCoders
 :::
 
-Pode parecer muito, e é. Mas muitos dos servidores que quero correr usam modpacks pesados, alguns com mais de 50 mods. Preferi dar margem à VM e depois ir ajustando se fosse preciso. Foi o que aconteceu: comecei com 20 GB e, quando a plataforma de desenvolvimento chegou ao mesmo servidor, baixei para 18 GiB e pus a VM a arrancar só depois dos serviços de infraestrutura, como o DNS. Um servidor de jogos pode esperar uns segundos; a rede da casa não.
+Pode parecer muito e é. Mas muitos dos servidores que quero correr usam modpacks pesados, alguns com mais de 50 mods. Preferi dar margem à VM e depois ir ajustando se fosse preciso. Foi o que aconteceu: comecei com 20 GB e, quando a plataforma de desenvolvimento chegou ao mesmo servidor, baixei para 18 GiB e pus a VM a arrancar só depois dos serviços de infraestrutura, como o DNS. Um servidor de jogos pode esperar uns segundos; a rede da casa não.
 
 O mais importante para mim não era usar o mínimo possível. Era evitar que o servidor ficasse sem margem durante geração de chunks, arranque de modpacks ou picos com vários jogadores. Um servidor de jogo pode estar calmo 90% do tempo e mesmo assim precisar de respirar nos outros 10%.
 
@@ -66,7 +66,7 @@ Mesmo assim, prefiro isto a gerir tudo à mão. O AMP dá-me uma forma visual de
 
 ## Instâncias, containers e camadas
 
-A forma como isto está organizado pode parecer confusa no início. Há um painel principal do AMP que gere várias instâncias. Cada instância representa um servidor ou mundo específico, e por baixo cada uma corre isolada em Docker.
+A forma como isto está organizado pode parecer confusa no início. Há um painel principal do AMP que gere várias instâncias. Cada instância representa um servidor ou mundo específico e por baixo cada uma corre isolada em Docker.
 
 ```text title="modelo mental"
 VM Debian

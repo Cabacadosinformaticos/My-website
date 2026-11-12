@@ -1,6 +1,6 @@
 ---
 title: DNS em casa com AdGuard Home
-desc: Como pus toda a rede de casa a resolver nomes através de um container de 1 GB, o que isso bloqueia, o que não bloqueia, e o dia em que um limite escondido começou a deitar pedidos fora em silêncio.
+desc: Como pus toda a rede de casa a resolver nomes através de um container de 1 GB, o que isso bloqueia, o que não bloqueia e o dia em que um limite escondido começou a deitar pedidos fora em silêncio.
 category: [Homelab, Redes, Segurança]
 date: Jul 2026
 readTime: 11 min
@@ -10,7 +10,7 @@ seriesPart: 3
 related: [project:homelab-proxmox-servidorzinho, post:o-lado-menos-glamoroso-do-homelab, post:servidor-minecraft-em-casa]
 ---
 
-O AdGuard Home é o serviço mais pequeno do meu homelab e um dos que tem mais impacto. Corre num container LXC com 1 GB de RAM e 8 GB de disco, e todos os dispositivos da casa lhe perguntam onde fica cada domínio antes de abrirem o que quer que seja. Se o domínio estiver numa lista de bloqueio, a resposta é "não existe".
+O AdGuard Home é o serviço mais pequeno do meu homelab e um dos que tem mais impacto. Corre num container LXC com 1 GB de RAM e 8 GB de disco e todos os dispositivos da casa lhe perguntam onde fica cada domínio antes de abrirem o que quer que seja. Se o domínio estiver numa lista de bloqueio, a resposta é "não existe".
 
 :::image-placeholder title="Dashboard do AdGuard Home" desc="Screenshot da dashboard com estatísticas gerais, sem clientes, IPs nem domínios pessoais." ratio="16:9"
 :::
@@ -27,12 +27,12 @@ Dispositivo na rede
                  -> bloqueia, ou pergunta a um DNS externo e devolve a resposta
 ```
 
-O AdGuard Home não vê nem filtra o tráfego. Filtra nomes. Um domínio bloqueado deixa de existir para a rede, e qualquer anúncio, script de tracking ou página de phishing alojado nesse domínio deixa de carregar.
+O AdGuard Home não vê nem filtra o tráfego. Filtra nomes. Um domínio bloqueado deixa de existir para a rede e qualquer anúncio, script de tracking ou página de phishing alojado nesse domínio deixa de carregar.
 
 :::compare left="O que um DNS local faz" right="O que não faz"
 - Bloqueia domínios de tracking, telemetria, malware e phishing
 - Protege dispositivos onde não dá para instalar extensões: TVs, consolas, telemóveis
-- Mostra que dispositivos fazem mais pedidos, e a quê
+- Mostra que dispositivos fazem mais pedidos e a quê
 - Uma configuração para a casa toda
 |||
 - Não remove anúncios servidos pelo mesmo domínio do conteúdo
@@ -93,7 +93,7 @@ Se o container estiver desligado ou mudar de IP, a rede deixa de resolver nomes.
 
 ## O servidor não depende do DNS que serve
 
-Há uma armadilha aqui. Se o próprio Proxmox usar o AdGuard Home como DNS, e o AdGuard Home for um container desse Proxmox, o servidor fica dependente de um serviço que só existe depois de ele arrancar. Configurei o host com DNS externo próprio e testei com o container desligado: o servidor continua a resolver nomes e a atualizar-se normalmente.
+Há uma armadilha aqui. Se o próprio Proxmox usar o AdGuard Home como DNS e o AdGuard Home for um container desse Proxmox, o servidor fica dependente de um serviço que só existe depois de ele arrancar. Configurei o host com DNS externo próprio e testei com o container desligado: o servidor continua a resolver nomes e a atualizar-se normalmente.
 
 ## As listas que uso
 
@@ -114,7 +114,7 @@ Quando uma app ou um site deixa de funcionar:
 1. Vejo que dispositivo teve o problema e a que horas.
 2. Abro o registo de pedidos e filtro por esse dispositivo e esse momento.
 3. Encontro o domínio bloqueado e a lista que o bloqueou.
-4. Crio uma exceção só para esse domínio, e só se fizer sentido.
+4. Crio uma exceção só para esse domínio e só se fizer sentido.
 
 A tentação é permitir tudo o que aparece no registo até a app funcionar. Isso desfaz o trabalho das listas. Uma exceção por domínio, depois de perceber para que serve, é mais lento e muito mais limpo.
 :::
@@ -123,7 +123,7 @@ A tentação é permitir tudo o que aparece no registo até a app funcionar. Iss
 
 Depois de publicar este post, durante semanas, de vez em quando, uma página demorava a abrir sem razão aparente. Nada de grave, o tipo de coisa que se atribui ao Wi-Fi.
 
-A 5 de outubro fiz um teste com 100 pedidos seguidos e só 95 tiveram resposta. A causa era uma opção por defeito do AdGuard Home: um limite de 20 pedidos por segundo por cliente. O problema é que o limite contava a sub-rede inteira como um só cliente. Toda a casa partilhava os mesmos 20 pedidos por segundo, e os que passavam o limite eram deitados fora sem erro nenhum. Uma página moderna faz dezenas de pedidos DNS ao abrir; com vários dispositivos ativos, o limite chegava depressa.
+A 5 de outubro fiz um teste com 100 pedidos seguidos e só 95 tiveram resposta. A causa era uma opção por defeito do AdGuard Home: um limite de 20 pedidos por segundo por cliente. O problema é que o limite contava a sub-rede inteira como um só cliente. Toda a casa partilhava os mesmos 20 pedidos por segundo e os que passavam o limite eram deitados fora sem erro nenhum. Uma página moderna faz dezenas de pedidos DNS ao abrir; com vários dispositivos ativos, o limite chegava depressa.
 
 Desliguei o limite (numa rede de casa, atrás do router, não protege de nada), configurei dois servidores externos por DNS over HTTPS e um DNS normal de recurso. O mesmo teste com 200 pedidos deu 200 respostas.
 
@@ -147,4 +147,4 @@ Quando o DNS falha, procurar a solução na Internet fica difícil, porque a Int
 
 ## O resultado
 
-O impacto é discreto, que é exatamente o objetivo. Um serviço de DNS que chama a atenção é um serviço com problemas. Este instala-se numa tarde, gasta quase nada, protege todos os dispositivos da casa, e ensina mais sobre redes do que qualquer outro serviço do homelab.
+O impacto é discreto, que é exatamente o objetivo. Um serviço de DNS que chama a atenção é um serviço com problemas. Este instala-se numa tarde, gasta quase nada, protege todos os dispositivos da casa e ensina mais sobre redes do que qualquer outro serviço do homelab.

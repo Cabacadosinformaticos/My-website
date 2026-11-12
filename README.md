@@ -103,11 +103,12 @@ site.webmanifest            Icons and theme colour
 
 ## Status
 
-Checked on 11 October 2026.
+Checked locally on 12 November 2026.
 
-- Live and working: home, about, projects, blog, services, uses, contact and privacy pages; 10 project case studies and 9 posts.
+- Prepared locally: home, about, projects, blog, services, uses, contact and privacy pages; 10 project case studies and 14 posts. The homelab series has 9 parts. Publication remains pending.
 - The contact form is visible but disabled on purpose until it has a working backend; email works.
-- Several pages still show image placeholders, which will be replaced with real photographs and screenshots.
+- Versioned Cloudinary URLs serve 24 covers, 6 diagrams and 21 real interface captures. Four capture slots remain: Proxmox, AdGuard, Minecraft and AMP.
+- Run `node tools/check_content_rendering.mjs` to check Markdown image tokens and Windows line endings in carousel blocks. No dependencies are needed for this check.
 - Content is rendered in the browser. Search engines that run JavaScript see everything; crawlers that do not see only the static pages.
 
 ## License

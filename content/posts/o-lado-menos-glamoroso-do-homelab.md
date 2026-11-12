@@ -14,8 +14,7 @@ Quando se fala de homelab, é fácil mostrar a parte bonita: dashboards, mini PC
 
 Mas há uma parte menos glamorosa que aparece depressa: manter tudo isso a funcionar.
 
-:::image-placeholder title="O lado real do setup" desc="Foto do setup com cabos, disco, mini PCs e a parte menos perfeita da infraestrutura." ratio="16:9"
-:::
+![Visão geral dos papéis das máquinas do homelab.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513995/cabacatech/2026-11/diagrams/homelab-overview-dffd84138c.webp)
 
 ## A diferença entre montar e manter
 
@@ -49,7 +48,7 @@ O AdGuard Home é um ótimo exemplo de um serviço pequeno com impacto gigante. 
 Um container com 1 GB de RAM pode ser essencial para a rede toda. O tamanho de um serviço não diz nada sobre o impacto da sua falha.
 :::
 
-Isto mudou a forma como olho para serviços "simples". Expliquei como o montei, e o limite escondido que andava a deitar pedidos fora, na [parte 3](blog-post.html?id=dns-em-casa-com-adguard-home).
+Isto mudou a forma como olho para serviços "simples". Expliquei como o montei e o limite escondido que andava a deitar pedidos fora, na [parte 3](blog-post.html?id=dns-em-casa-com-adguard-home).
 
 ## Segurança não é só firewall
 
@@ -89,8 +88,7 @@ De repente, o disco grande já não parece tão grande.
 
 Pior: espaço não é segurança. Um disco de 10 TB continua a ser um único disco. Se falhar, falhou.
 
-:::image-placeholder title="Storage e NAS experimental" desc="Foto ou diagrama simples do disco externo, MediaBox e VM TrueNAS." ratio="16:9"
-:::
+![Diagrama da experiência anterior com TrueNAS e armazenamento por USB.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513998/cabacatech/2026-11/diagrams/truenas-usb-previous-60f6acbe66.webp)
 
 ## Monitorizar não é opcional para sempre
 

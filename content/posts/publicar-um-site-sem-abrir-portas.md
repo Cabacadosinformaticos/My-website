@@ -10,16 +10,15 @@ seriesPart: 5
 related: [project:iade-horarios, project:cabacalab, post:chega-o-bifrost]
 ---
 
-Até setembro, tudo o que corria no meu homelab era privado: só existia dentro de casa e na minha rede Tailscale. Depois fiz o [IADE Horários](project-detail.html?id=iade-horarios), uma app para os meus colegas consultarem os horários das turmas, e pela primeira vez precisei que pessoas de fora chegassem a um serviço meu.
+Até setembro, tudo o que corria no meu homelab era privado: só existia dentro de casa e na minha rede Tailscale. Depois fiz o [IADE Horários](project-detail.html?id=iade-horarios), uma app para os meus colegas consultarem os horários das turmas e pela primeira vez precisei que pessoas de fora chegassem a um serviço meu.
 
-A forma clássica de o fazer é abrir uma porta no router e apontá-la para o servidor. Não o fiz, e este post explica porquê e o que fiz em vez disso.
+A forma clássica de o fazer é abrir uma porta no router e apontá-la para o servidor. Não o fiz e este post explica porquê e o que fiz em vez disso.
 
-:::image-placeholder title="O caminho de um pedido" desc="Diagrama: visitante, Cloudflare, túnel de saída, VM pública, e a firewall a separá-la do resto do servidor." ratio="16:9"
-:::
+![Percurso de um pedido público pelo Cloudflare Tunnel até à VM da aplicação.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513996/cabacatech/2026-11/diagrams/cloudflare-publication-702c68fa03.webp)
 
 ## Primeiro problema: não dá para abrir portas
 
-Mesmo que quisesse, a minha ligação está atrás de CGNAT: a operadora partilha o mesmo IP público entre vários clientes. Um pedido que chega a esse IP não sabe para que casa ir, e o reencaminhamento de portas no meu router nunca o vê.
+Mesmo que quisesse, a minha ligação está atrás de CGNAT: a operadora partilha o mesmo IP público entre vários clientes. Um pedido que chega a esse IP não sabe para que casa ir e o reencaminhamento de portas no meu router nunca o vê.
 
 Isto parecia um obstáculo e acabou por me empurrar para a solução mais segura.
 
@@ -66,9 +65,9 @@ Uma VM separada só vale alguma coisa se não conseguir falar com o resto. Ative
 
 - não consigam abrir ligações para as outras VMs do servidor, a não ser o estritamente necessário;
 - não tenham Tailscale, para não ficarem dentro da minha rede privada;
-- recebam os deploys a partir do painel, e não o contrário.
+- recebam os deploys a partir do painel e não o contrário.
 
-Do lado da aplicação, o site liga-se à base de dados com um utilizador só de leitura, e cada consulta tem um limite de 5 segundos. Mesmo que alguém encontre uma forma de abusar de uma pesquisa, não consegue alterar dados nem prender a base de dados.
+Do lado da aplicação, o site liga-se à base de dados com um utilizador só de leitura e cada consulta tem um limite de 5 segundos. Mesmo que alguém encontre uma forma de abusar de uma pesquisa, não consegue alterar dados nem prender a base de dados.
 
 :::stats
 0 | Portas abertas no router
@@ -78,7 +77,7 @@ Do lado da aplicação, o site liga-se à base de dados com um utilizador só de
 
 ## O que ainda não está perfeito
 
-A separação entre as VMs públicas e as privadas é feita pela firewall do Proxmox, e não por uma rede separada (VLAN). Para o risco que tenho hoje é suficiente, mas o passo seguinte natural é tirar os serviços públicos do servidor principal de vez. É uma das razões para o [segundo servidor](blog-post.html?id=chega-o-bifrost).
+A separação entre as VMs públicas e as privadas é feita pela firewall do Proxmox e não por uma rede separada (VLAN). Para o risco que tenho hoje é suficiente, mas o passo seguinte natural é tirar os serviços públicos do servidor principal de vez. É uma das razões para o [segundo servidor](blog-post.html?id=chega-o-bifrost).
 
 ## O que aprendi
 

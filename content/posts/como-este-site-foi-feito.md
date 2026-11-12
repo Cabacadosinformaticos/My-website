@@ -8,7 +8,7 @@ cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v17945139
 related: [post:ola-mundo, project:track-manager, project:aeiade-website]
 ---
 
-Este site não foi feito com WordPress, nem com Next.js, nem com nenhum gerador estático. É HTML, CSS e JavaScript vanilla, e funciona sem um único servidor, sem nenhum processo de build, e sem dependências instaladas localmente.
+Este site não foi feito com WordPress, nem com Next.js, nem com nenhum gerador estático. É HTML, CSS e JavaScript vanilla e funciona sem um único servidor, sem nenhum processo de build e sem dependências instaladas localmente.
 
 Isto foi uma escolha deliberada. Queria perceber como as coisas funcionam por baixo antes de usar abstrações que as escondem. E o resultado surpreendeu-me pela positiva.
 
@@ -16,7 +16,7 @@ Isto foi uma escolha deliberada. Queria perceber como as coisas funcionam por ba
 
 A abordagem mais óbvia para um site como este seria criar uma página HTML para cada projeto e cada post. Funciona, mas escala mal. Cada nova entrada significa duplicar estrutura, remendar estilos, garantir que a navegação está consistente. Com o tempo, o site torna-se difícil de manter.
 
-A alternativa era usar um CMS ou um framework, mas isso introduz complexidade que não justifica o tamanho do projeto, e afasta-me do objetivo: perceber o que estou a construir.
+A alternativa era usar um CMS ou um framework, mas isso introduz complexidade que não justifica o tamanho do projeto e afasta-me do objetivo: perceber o que estou a construir.
 
 A solução foi criar um motor de conteúdo próprio.
 
@@ -90,10 +90,10 @@ Isto significa que o repositório pode ser clonado e aberto diretamente no brows
 
 ## Deploy
 
-O site está alojado no GitHub Pages, que serve ficheiros estáticos diretamente de um repositório. Commit, push, e o site está atualizado. Não podia ser mais simples.
+O site está alojado no GitHub Pages, que serve ficheiros estáticos diretamente de um repositório. Commit, push e o site está atualizado. Não podia ser mais simples.
 
 ## O que aprendi
 
 Construir isto do zero, sem framework, obrigou-me a resolver problemas que normalmente ficam escondidos: como fazer fetch de ficheiros locais no browser, como parsear frontmatter manualmente antes de passar o corpo ao marked, como gerir o estado da navegação com query strings.
 
-Não é a solução mais sofisticada, mas é completamente minha, entendo cada linha, e funciona bem para o que precisa de fazer.
+Não é a solução mais sofisticada, mas é completamente minha, entendo cada linha e funciona bem para o que precisa de fazer.
