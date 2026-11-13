@@ -232,47 +232,33 @@ function renderTimelineBlock(attrText, inner) {
   const items   = parseTimelineItems(inner);
 
   if (layout === 'horizontal') {
+    // Todos os passos ficam à vista numa grelha, sem scroll. `--cols` é o
+    // máximo de colunas: com 5 ou 6 passos usa 3 (3+2, 3+3) para a última
+    // linha não ficar com um só passo; com 7 ou 8 usa 4.
+    const n    = items.length;
+    const cols = n <= 4 ? Math.max(n, 1) : [4, 3].reduce((best, c) => ((n % c || c) > (n % best || best) ? c : best), 4);
     const steps = items.map((it, i) => `<li class="timeline-h-item" style="--i:${i}">
-        <span class="timeline-h-num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
         <span class="timeline-h-date">${escapeHtml(it.date)}</span>
         <strong class="timeline-h-title">${escapeHtml(it.title)}</strong>
         ${it.text ? `<div class="timeline-h-text">${renderInnerMarkdown(it.text)}</div>` : ''}
       </li>`).join('');
-    // O invólucro `timeline-h-stage` é o palco fixo (sticky) do scroll
-    // horizontal: o JS dá altura à secção e desloca a faixa em X.
-    return `<section class="timeline-card timeline-card-h" data-timeline-h>
-      <div class="timeline-h-stage">
-        ${heading}
-        <div class="timeline-h-bar">
-          <span class="timeline-h-progress" aria-hidden="true"><i class="timeline-h-fill"></i></span>
-          <span class="timeline-h-hint" aria-hidden="true">Scroll<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14"/><path d="M12.5 6.5L18 12l-5.5 5.5"/></svg></span>
-        </div>
-        <div class="timeline-h-scroll" tabindex="0" role="region" aria-label="Linha do tempo, desliza para ver mais"><ol class="timeline-h" style="--steps:${items.length}">${steps}</ol></div>
-      </div>
-    </section>`;
-  }
-
-  if (layout === 'compact') {
-    const rows = items.map((it, i) => `<li class="timeline-c-item" style="--i:${i}">
-        <span class="timeline-c-date">${escapeHtml(it.date)}</span>
-        <span class="timeline-c-mark" aria-hidden="true"></span>
-        <div class="timeline-c-body"><strong class="timeline-c-title">${escapeHtml(it.title)}</strong>${it.text ? `<div class="timeline-c-text">${renderInnerMarkdown(it.text)}</div>` : ''}</div>
-      </li>`).join('');
-    return `<section class="timeline-card timeline-card-c">${heading}<ol class="timeline-c">${rows}</ol></section>`;
+    return `<section class="timeline-card timeline-card-h">${heading}<ol class="timeline-h" style="--cols:${cols}">${steps}</ol></section>`;
   }
 
   if (layout === 'grid') {
     const cells = items.map((it, i) => `<li class="timeline-g-item" style="--i:${i}">
-        <span class="timeline-g-num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
-        <span class="timeline-g-date">${escapeHtml(it.date)}</span>
+        <div class="timeline-g-meta"><span class="timeline-g-num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><span class="timeline-g-date">${escapeHtml(it.date)}</span></div>
         <strong class="timeline-g-title">${escapeHtml(it.title)}</strong>
         ${it.text ? `<div class="timeline-g-text">${renderInnerMarkdown(it.text)}</div>` : ''}
       </li>`).join('');
     return `<section class="timeline-card timeline-card-g">${heading}<ol class="timeline-g">${cells}</ol></section>`;
   }
 
+  // Vertical e compacta partilham o desenho (data | linha | texto);
+  // a compacta só muda a densidade, por isso é uma classe extra.
+  const compact = layout === 'compact';
   const list = items.map((it, i) => `<li class="timeline-item" style="--i:${i}"><span class="timeline-date">${escapeHtml(it.date)}</span><div class="timeline-body"><strong class="timeline-title">${escapeHtml(it.title)}</strong>${it.text ? renderInnerMarkdown(it.text) : ''}</div></li>`).join('');
-  return `<section class="timeline-card">${heading}<ol class="timeline">${list}</ol></section>`;
+  return `<section class="timeline-card${compact ? ' timeline-card-c' : ''}">${heading}<ol class="timeline${compact ? ' timeline-c' : ''}">${list}</ol></section>`;
 }
 
 function renderStatsBlock(inner) {
@@ -904,40 +890,6 @@ function initDetailsBlocks(root = document) {
   });
 }
 
-/* ══════════════════════════════════════
-   LINHA DO TEMPO HORIZONTAL
-   A partir de 900px (e sem movimento reduzido)
-   a secção fica fixa e a faixa anda em X
-   enquanto se faz scroll vertical.
-══════════════════════════════════════ */
-// Faixa horizontal com scroll nativo e snap, dentro da coluna do artigo.
-// O modo fixo que convertia o scroll vertical em horizontal partia a página
-// (saía da coluna, tapava a barra lateral e deixava um ecrã vazio), por isso
-// foi retirado.
-function setupHorizontalTimeline(section) {
-  if (!section || section.dataset.tlReady) return;
-  const strip = section.querySelector('.timeline-h-scroll');
-  if (!strip) return;
-  section.dataset.tlReady = '1';
-
-  // O aviso desaparece ao primeiro deslize e o desvanecimento da direita só
-  // aparece se houver mais passos por ver.
-  function stripUpdate() {
-    const max = strip.scrollWidth - strip.clientWidth;
-    section.classList.toggle('tl-moved', strip.scrollLeft > 10);
-    section.classList.toggle('tl-at-end', max <= 2 || strip.scrollLeft >= max - 2);
-    section.style.setProperty('--tl-progress', String(max > 2 ? strip.scrollLeft / max : 1));
-  }
-  strip.addEventListener('scroll', stripUpdate, { passive: true });
-  window.addEventListener('resize', stripUpdate, { passive: true });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(stripUpdate);
-  stripUpdate();
-}
-
-function initHorizontalTimelines(root = document) {
-  root.querySelectorAll('[data-timeline-h]').forEach(setupHorizontalTimeline);
-}
-
 /* ── Efeitos do conteúdo carregado por Markdown ── */
 function initContentEffects(root = document) {
   initCodeBlocks(root);
@@ -945,7 +897,6 @@ function initContentEffects(root = document) {
   wrapTables(root);
   markBodyLists(root);
   initDetailsBlocks(root);
-  initHorizontalTimelines(root);
   root.querySelectorAll('.timeline-card, .content-callout, .repo-card, .spec-card, .compare-card, .resource-card, .content-details, .post-body h2, .project-content h2, .privacy-page h2, .post-body blockquote, .project-content blockquote').forEach(el => initOnce(el));
 }
 

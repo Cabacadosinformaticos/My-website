@@ -1840,15 +1840,26 @@ nav.scrolled { border-bottom-color: var(--border2); }
   font-size: 12px;
   color: var(--muted2);
   transition: color .2s;
-  padding-left: 10px;
-  border-left: 2px solid transparent;
-  transition: all .2s;
+  position: relative;
+  padding-left: 14px;
+  transition: color .2s;
 }
-.toc-link:hover,
-.toc-link.active {
-  color: var(--accent);
-  border-left-color: var(--accent);
+/* Marca quadrada, igual às listas do corpo, só no item ativo. */
+.toc-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .62em;
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+  opacity: 0;
+  transform: scale(.4);
+  transition: opacity .2s, transform .2s;
 }
+.toc-link:hover { color: var(--text); }
+.toc-link.active { color: var(--accent); }
+.toc-link.active::before { opacity: 1; transform: none; }
 .post-body h2 {
   font-family: var(--font-head);
   font-size: 32px;
