@@ -20,9 +20,9 @@ Eu queria algo compacto, forte e que não me prendesse logo no primeiro mês.
 
 ## Porque isto me interessava tanto
 
-O que me puxava para a ideia de ter um homelab não era só ter "um servidor". Era ter um sítio meu para aprender coisas que, de outra forma, ficam muito abstratas.
+O que me puxava para o homelab era ter um sítio meu para aprender coisas que, de outra forma, ficam muito abstratas.
 
-Virtualização parece simples quando se vê num vídeo. DNS parece simples quando tudo funciona. Backups parecem óbvios quando ainda não perdeste nada. Mas quando tens máquinas reais, serviços reais e dados que queres mesmo manter, a conversa muda.
+Num vídeo, virtualização, DNS e backups parecem simples. Com máquinas reais e dados que queres mesmo manter, a conversa muda.
 
 Eu queria um ambiente onde pudesse fazer perguntas práticas:
 
@@ -32,7 +32,7 @@ Eu queria um ambiente onde pudesse fazer perguntas práticas:
 - Como recupero se uma atualização partir um serviço?
 - Quanto hardware é realmente necessário para isto?
 
-O homelab nasceu dessa curiosidade. Minecraft foi a desculpa perfeita, mas o objetivo maior era aprender infraestrutura de forma prática.
+O homelab nasceu dessa curiosidade. O Minecraft foi o primeiro serviço, mas o objetivo maior era aprender infraestrutura na prática.
 
 ## O achado no OLX
 
@@ -57,7 +57,7 @@ Isso levou-me a montar uma máquina com bastante margem:
 
 Olhando agora, tenho de admitir que foi um bocado exagerado. Com tudo o que tenho feito, raramente uso uma parte relevante do processador. Mas também é verdade que esta margem me deu liberdade para experimentar sem estar sempre preocupado com limites.
 
-Há aqui uma lição que só percebi depois: comprar hardware com margem é confortável, mas também pode esconder más decisões. Se tens CPU e RAM a mais, é fácil resolver tudo atirando recursos para cima do problema. A parte difícil é perceber se o serviço precisa mesmo desses recursos ou se está mal configurado.
+Com CPU e RAM a mais, é fácil resolver tudo atirando recursos para cima do problema. Isso pode esconder um serviço mal configurado, e só medindo o uso real se percebe se precisa mesmo desses recursos.
 
 :::specs title="Servidor principal"
 Nome: Servidorzinho
@@ -80,7 +80,7 @@ Para isso acabei por usar uma VM com Debian 13.2.0-amd64 e AMP, da CubeCoders. O
 
 O lado bom é que tudo fica muito mais confortável de gerir. O lado menos bom é que updates continuam a ser updates. Às vezes corre tudo bem. Outras vezes um mundo decide que já não quer arrancar e lá se vai a hora que era para jogar.
 
-Foi aqui que o projeto deixou de ser só "tenho um servidor de Minecraft" e passou a ser "tenho um serviço para manter". A diferença parece pequena, mas não é. Um serviço tem utilizadores, expectativas, atualizações, permissões e dados que não queres perder.
+Foi aqui que o projeto deixou de ser só "tenho um servidor de Minecraft" e passou a ser "tenho um serviço para manter". Um serviço tem utilizadores, expectativas, atualizações, permissões e dados que não queres perder.
 
 ## O segundo objetivo: aprender
 
@@ -113,13 +113,11 @@ Estas escolhas fizeram-me perceber que infraestrutura é muito mais sobre fronte
 
 Uma coisa que decidi cedo foi evitar expor dashboards diretamente à internet. É tentador abrir uma porta no router e aceder a tudo de fora, mas isso pode trazer riscos sérios.
 
-Para resolver a parte do acesso remoto, comecei a usar Tailscale. Assim consigo chegar aos serviços quando estou fora de casa, mas sem deixar painéis administrativos abertos para o mundo.
+Para resolver a parte do acesso remoto, comecei a usar Tailscale. Assim consigo chegar ao Proxmox e ao AMP quando estou fora de casa, sem deixar painéis administrativos abertos para o mundo.
 
 :::resource title="Tailscale" url="https://tailscale.com/docs"
 Uso Tailscale para aceder ao homelab através de uma rede privada.
 :::
-
-Esta foi uma das decisões que mais me deixou confortável. Eu queria poder aceder ao Proxmox e ao AMP fora de casa, mas não queria que a solução fosse abrir painéis administrativos ao mundo. Tailscale deu-me uma forma simples de manter essa administração num espaço privado.
 
 ## Depois veio a MediaBox
 
@@ -149,4 +147,4 @@ Aprendi que um homelab nunca está acabado. Há sempre uma atualização, um ser
 
 Também aprendi que o hardware é só a parte visível. A parte realmente interessante está nas decisões pequenas: como aceder de fora, como separar serviços, como fazer backups, como lidar com DNS, como documentar o que foi feito e como recuperar quando algo parte.
 
-E talvez a maior surpresa seja esta: o mais divertido não é ter tudo pronto. É construir, perceber, errar e corrigir.
+A maior surpresa foi o gosto que me dá construir, errar e corrigir.

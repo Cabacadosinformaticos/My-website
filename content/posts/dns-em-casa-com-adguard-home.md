@@ -41,10 +41,6 @@ O AdGuard Home não vê nem filtra o tráfego. Filtra nomes. Um domínio bloquea
 - Pode ser contornado por apps que usam o seu próprio DNS
 :::
 
-:::tip title="DNS não é firewall"
-Bloquear por DNS é uma camada útil. Não substitui uma firewall, atualizações, boas permissões ou cuidado com o que se executa.
-:::
-
 ## Porque um LXC e não uma VM
 
 O AdGuard Home faz uma coisa só e gasta muito pouco. Um container LXC partilha o kernel do Proxmox, arranca em segundos e ocupa uma fração de uma VM. Fica separado do host, com IP próprio, sem estar instalado diretamente no Proxmox.
@@ -56,7 +52,7 @@ O AdGuard Home faz uma coisa só e gasta muito pouco. Um container LXC partilha 
 | IP próprio | Fácil de apontar no router |
 | Separado do host | O Proxmox não depende dele |
 
-Por ser crítico para a rede, configurei-o para ser o primeiro serviço a arrancar quando o servidor liga.
+Como a casa toda depende dele, configurei-o para ser o primeiro serviço a arrancar quando o servidor liga.
 
 ## A instalação
 
@@ -133,7 +129,7 @@ Desliguei o limite (numa rede de casa, atrás do router, não protege de nada), 
 1 GB | RAM do container
 :::
 
-A lição é a mesma que aparece em quase tudo no homelab: os valores por defeito foram pensados para outro cenário. Vale a pena saber o que cada um faz antes de confiar nele.
+Este valor por defeito foi pensado para outro cenário, não para uma rede de casa atrás de um router.
 
 ## Plano de recuperação
 
@@ -147,4 +143,4 @@ Quando o DNS falha, procurar a solução na Internet fica difícil, porque a Int
 
 ## O resultado
 
-O impacto é discreto, que é exatamente o objetivo. Um serviço de DNS que chama a atenção é um serviço com problemas. Este instala-se numa tarde, gasta quase nada, protege todos os dispositivos da casa e ensina mais sobre redes do que qualquer outro serviço do homelab.
+O impacto é discreto, que é o objetivo. Instala-se numa tarde, gasta quase nada e protege todos os dispositivos da casa. Depois de desligar o limite, o teste de 200 pedidos deu 200 respostas.

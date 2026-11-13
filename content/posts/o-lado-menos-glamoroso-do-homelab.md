@@ -10,9 +10,7 @@ seriesPart: 4
 related: [post:servidor-minecraft-em-casa, post:dns-em-casa-com-adguard-home, project:cabacalab]
 ---
 
-Quando se fala de homelab, é fácil mostrar a parte bonita: dashboards, mini PCs, serviços próprios, media server, Minecraft, DNS local e acesso remoto.
-
-Mas há uma parte menos glamorosa que aparece depressa: manter tudo isso a funcionar.
+Durante semanas, o meu AdGuard Home deitou fora cerca de 5 em cada 100 pedidos DNS sem eu dar por isso (conto na [parte 3](blog-post.html?id=dns-em-casa-com-adguard-home)). É o tipo de coisa que não aparece nas fotografias de um homelab, e que aparece depressa: manter tudo a funcionar.
 
 ![Visão geral dos papéis das máquinas do homelab.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513995/cabacatech/2026-11/diagrams/homelab-overview-dffd84138c.webp)
 
@@ -20,9 +18,7 @@ Mas há uma parte menos glamorosa que aparece depressa: manter tudo isso a funci
 
 Montar um serviço é a parte entusiasmante. Escolher a ferramenta, criar a VM ou LXC, abrir a dashboard pela primeira vez e ver tudo a funcionar dá aquela sensação boa de progresso.
 
-Manter é outra coisa. Manter é lembrar que aquele serviço existe quando há updates. É saber onde estão os dados. É perceber se há backups. É descobrir porque algo que funcionava ontem deixou de funcionar hoje.
-
-Foi essa diferença que o homelab me mostrou mais depressa do que eu esperava.
+Manter é outra coisa: lembrar que o serviço existe quando há updates, saber onde estão os dados, ver se há backups e descobrir porque algo que funcionava ontem deixou de funcionar hoje.
 
 ## Updates que aparecem na pior altura
 
@@ -32,53 +28,21 @@ No servidor de Minecraft, por exemplo, atualizar não é só carregar num botão
 
 Contei o processo completo, com os comandos, na [parte 2](blog-post.html?id=servidor-minecraft-em-casa).
 
-:::warning title="O update não é o problema, a falta de plano é"
-Antes de atualizar serviços importantes, convém saber como voltar atrás. Backups e snapshots não são glamour, mas salvam tempo.
-:::
-
-O problema dos updates não é só o comando. É o contexto. Atualizar um serviço isolado é uma coisa. Atualizar algo que tem dados, utilizadores, dependências e hábitos à volta é outra.
-
-No Minecraft, um update pode envolver AMP, containers, mods e versões do cliente. No Jellyfin, pode envolver metadata, permissões e storage. No Proxmox, pode afetar a base onde tudo corre. A palavra "update" parece sempre pequena demais para aquilo que pode implicar.
+O Jellyfin envolve metadata, permissões e storage. No Proxmox, um update pode afetar a base onde tudo corre.
 
 ## DNS é invisível até falhar
 
-O AdGuard Home é um ótimo exemplo de um serviço pequeno com impacto gigante. Enquanto funciona, ninguém repara. Quando falha, parece que a internet inteira morreu: a ligação está boa, mas nenhum nome resolve.
+O AdGuard Home corre num container com 1 GB de RAM. Enquanto funciona, ninguém repara. Quando falha, parece que a internet inteira morreu: a ligação está boa, mas nenhum nome resolve.
 
-:::danger title="Serviços pequenos também podem ser críticos"
-Um container com 1 GB de RAM pode ser essencial para a rede toda. O tamanho de um serviço não diz nada sobre o impacto da sua falha.
-:::
-
-Isto mudou a forma como olho para serviços "simples". Expliquei como o montei e o limite escondido que andava a deitar pedidos fora, na [parte 3](blog-post.html?id=dns-em-casa-com-adguard-home).
+Expliquei como o montei, e o limite escondido que deitava pedidos fora, na [parte 3](blog-post.html?id=dns-em-casa-com-adguard-home).
 
 ## Segurança não é só firewall
 
-Uma das decisões mais importantes foi não expor dashboards administrativos diretamente à internet. Proxmox, AMP, TrueNAS e outros painéis são úteis, mas não precisam de estar abertos ao mundo.
+Não exponho dashboards administrativos (Proxmox, AMP, TrueNAS) à internet. O acesso remoto é por Tailscale, como contei na [parte 1](blog-post.html?id=como-comecei-o-meu-homelab). Também escondo dados em screenshots e confirmo scripts antes de os executar.
 
-Para acesso remoto, uso Tailscale. Assim consigo chegar aos serviços fora de casa sem abrir portas desnecessárias no router.
+## Scripts que se executam às cegas
 
-:::resource title="Tailscale" url="https://tailscale.com/docs"
-Uso Tailscale para acesso privado aos serviços do homelab.
-:::
-
-Segurança também é esconder dados em screenshots, usar permissões certas, não partilhar tokens, confirmar scripts antes de executar e não fingir que "é só uma rede doméstica".
-
-Também é separar papéis. Acesso para jogar não é acesso para administrar. Acesso para ver media não é acesso para alterar storage. Acesso por Tailscale não elimina a necessidade de permissões no serviço final.
-
-## Scripts mágicos são confortáveis, mas perigosos
-
-Usei os Proxmox VE Helper-Scripts para instalar o AdGuard Home. Foi prático e funcionou bem.
-
-Mas um comando que faz `curl` de um script remoto e o passa diretamente para `bash` deve sempre levantar uma sobrancelha.
-
-:::resource title="Proxmox VE Helper-Scripts" url="https://community-scripts.org/"
-Projeto comunitário útil para instalar serviços no Proxmox, desde que se leia o que vai ser executado.
-:::
-
-:::danger title="Não executes scripts às cegas"
-Se um comando vem da internet e corre como root ou com permissões elevadas, ele pode fazer praticamente tudo no sistema. Lê primeiro, executa depois.
-:::
-
-Isto não quer dizer que scripts comunitários sejam maus. Pelo contrário, podem poupar imenso tempo. Mas há uma diferença entre usar uma ferramenta e abdicar de perceber o que ela faz.
+Instalei o AdGuard Home com os Proxmox VE Helper-Scripts, que fazem `curl` de um script remoto direto para `bash`. Por isso leio o script antes de o correr. O aviso completo está na [parte 3](blog-post.html?id=dns-em-casa-com-adguard-home).
 
 ## Storage cresce sempre
 
@@ -108,11 +72,9 @@ Ainda não tenho isto tão bem montado como quero, mas já percebi que "vou vend
 
 ## Backups são a parte que ninguém quer fazer
 
-Toda a gente sabe que backups são importantes. Quase ninguém quer gastar tempo com eles até perder alguma coisa.
+No homelab há muitas camadas para proteger: VMs, LXCs, configurações, ficheiros, mundos de Minecraft, bibliotecas de media e serviços com estado.
 
-No homelab, esta parte é ainda mais importante porque há muitas camadas: VMs, LXCs, configurações, ficheiros, mundos de Minecraft, bibliotecas de media e serviços com estado.
-
-Um backup bom não é só "tenho uma cópia". É saber:
+Um backup só conta se souber responder a:
 
 - O que está incluído.
 - Onde está guardado.
@@ -139,8 +101,4 @@ Daqui a seis meses, eu já não vou lembrar todos os detalhes. Documentar é uma
 
 ## O que compensa
 
-Mesmo com tudo isto, continuo a achar que vale a pena.
-
-Ter servidores em casa obriga-me a aprender de forma prática. Não é ler um artigo sobre DNS, é partir o DNS e perceber porque nada abre. Não é ver um vídeo sobre storage, é montar uma VM com TrueNAS e descobrir as limitações de um disco USB. Não é só instalar Minecraft, é manter um serviço que outras pessoas usam.
-
-O lado menos glamoroso é precisamente o lado que mais ensina.
+Ter servidores em casa obriga-me a aprender na prática. Foi ao montar uma VM com TrueNAS que descobri as limitações de um disco USB.

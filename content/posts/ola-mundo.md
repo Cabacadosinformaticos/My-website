@@ -1,5 +1,5 @@
 ---
-title: Olá, Mundo. A minha jornada até aqui
+title: Olá, Mundo. Como cheguei aqui
 desc: De disquetes aos oito anos à licenciatura em Engenharia Informática, passando por Pascal, COBOL, dois estágios, servidores em casa e um professor que mudou tudo.
 category: Pessoal
 date: Mai 2026
@@ -10,11 +10,9 @@ related: [post:como-este-site-foi-feito, post:como-comecei-o-meu-homelab, projec
 
 
 
-Toda a gente tem uma história de como chegou à tecnologia. A minha começa antes de eu sequer perceber o que era um computador.
-
 ## O meu primeiro professor
 
-O meu pai era engenheiro informático. Mas não o tipo que deixa o trabalho no escritório. Era o tipo que falava de tecnologia ao jantar, que tinha opinião sobre hardware descontinuado há anos, que lia sobre sistemas por prazer. Crescer com ele foi crescer num ambiente onde a curiosidade sobre como as coisas funcionam era completamente normal.
+O meu pai era engenheiro informático e falava de tecnologia ao jantar, tinha opinião sobre hardware descontinuado há anos e lia sobre sistemas por prazer. Crescer com ele foi crescer num ambiente onde a curiosidade sobre como as coisas funcionam era completamente normal.
 
 Aos oito anos pôs nas minhas mãos um portátil antigo com disquetes e disse-me para experimentar. Sem tutoriais, sem objetivos, sem pressão. Só para mexer e ver o que acontecia. Olhando para trás, foi provavelmente a melhor coisa que podia ter feito por mim.
 
@@ -60,11 +58,9 @@ E depois há o Tech4Good, o Tech Jam da minha escola para onde o Professor Natha
 
 ## Uma nota especial ao Professor Nathan Campos
 
-Há professores que cumprem o programa. E há professores que te fazem crescer de uma forma que vai muito além de qualquer plano curricular.
+O Professor Nathan Campos foi, ao longo da licenciatura, a pessoa que mais consistentemente me empurrou para fora da zona de conforto, sempre com propósito. Em vez de "vai pesquisar", diz "olha, eu conheço isto, experimenta, depois falamos".
 
-O Professor Nathan Campos é, sem dúvida, o segundo tipo. Ao longo da licenciatura foi a pessoa que mais consistentemente me empurrou para fora da zona de conforto e fê-lo sempre com propósito. Não é o tipo de professor que diz "vai pesquisar". É o tipo que diz "olha, eu conheço isto, experimenta, depois falamos".
-
-Foi por causa dele que acabei por comprar e montar os meus próprios servidores, uma decisão que mudou a forma como penso sobre infraestrutura. Foi ele que me apresentou ao Proxmox e ao mundo da virtualização, hoje uma das áreas que mais me fascina. Foi graças a ele que me envolvi no Tech4Good, o melhor evento da minha escola.
+Foi por causa dele que acabei por comprar e montar os meus próprios servidores, uma decisão que mudou a forma como penso sobre infraestrutura. Apresentou-me o Proxmox e o mundo da virtualização, hoje uma das áreas que mais me fascina. E empurrou-me para o Tech4Good, o melhor evento da minha escola.
 
 E depois há o Tech Club.
 
@@ -78,8 +74,8 @@ Sinto que estou onde devia estar.
 
 Não é uma coisa fácil de dizer, porque implica olhar para trás e gostar do que se vê, mesmo as partes difíceis. E há partes difíceis: semestres pesados, alturas em que custa mais, momentos de dúvida que qualquer pessoa honesta tem.
 
-Mas quando olho para o conjunto, para o que faço, para as pessoas que me rodeiam, para o que estou a aprender dentro e fora das aulas, a resposta é sempre a mesma. É aqui.
+Mas quando olho para o conjunto, para o que faço, para as pessoas que me rodeiam, para o que estou a aprender dentro e fora das aulas, continuo a achar que é aqui.
 
-Este site é mais um passo nesse caminho. Um lugar para documentar o que construo, o que aprendo e o que penso. Um registo honesto de uma jornada que está longe de acabar.
+Este site é o sítio onde vou documentar o que construo, o que aprendo e o que penso. O próximo passo é a [série sobre o homelab](blog-post.html?id=como-comecei-o-meu-homelab).
 
 Obrigado por estares aqui desde o início.

@@ -14,8 +14,6 @@ Uma das grandes razões para eu querer um servidor em casa era Minecraft. Eu que
 
 Na minha cabeça, isto era simples: montava o servidor, criava o mundo, convidava os amigos e estava feito.
 
-Claro que não foi assim tão simples.
-
 :::image-placeholder title="Servidor de Minecraft" desc="Screenshot de um mundo de Minecraft ou da lista de servidores, sem IP público visível." ratio="16:9"
 :::
 
@@ -48,7 +46,7 @@ Gestor: AMP da CubeCoders
 
 Pode parecer muito e é. Mas muitos dos servidores que quero correr usam modpacks pesados, alguns com mais de 50 mods. Preferi dar margem à VM e depois ir ajustando se fosse preciso. Foi o que aconteceu: comecei com 20 GB e, quando a plataforma de desenvolvimento chegou ao mesmo servidor, baixei para 18 GiB e pus a VM a arrancar só depois dos serviços de infraestrutura, como o DNS. Um servidor de jogos pode esperar uns segundos; a rede da casa não.
 
-O mais importante para mim não era usar o mínimo possível. Era evitar que o servidor ficasse sem margem durante geração de chunks, arranque de modpacks ou picos com vários jogadores. Um servidor de jogo pode estar calmo 90% do tempo e mesmo assim precisar de respirar nos outros 10%.
+Queria evitar que o servidor ficasse sem margem durante a geração de chunks, o arranque de modpacks ou picos com vários jogadores. Um servidor de jogo pode estar calmo 90% do tempo e mesmo assim precisar de folga nos outros 10%.
 
 ## O papel do AMP
 
@@ -96,9 +94,9 @@ Quando uma instância não arranca, a causa pode estar em vários sítios:
 | Jogadores não conseguem entrar | Versão do cliente diferente ou autenticação |
 | Lag forte | CPU, RAM, geração de chunks ou modpack pesado |
 
-Isto ensinou-me a não assumir logo que "o servidor está partido". Às vezes é só um mod. Às vezes é rede. Às vezes é uma atualização a meio. Às vezes é a camada por baixo.
+Isto ensinou-me a não assumir logo que "o servidor está partido". Às vezes é só um mod, outras vezes uma atualização a meio.
 
-## Updates: o inimigo natural da paz
+## Atualizar o AMP
 
 Minecraft tem uma relação complicada com versões. O cliente muda, o servidor muda, os mods mudam, os plugins mudam e a autenticação também pode começar a implicar com versões antigas.
 
@@ -147,13 +145,9 @@ E de repente a sessão de Minecraft virou administração de sistemas.
 
 ## O lado bom
 
-Apesar disso tudo, continuo a achar que vale muito a pena. Ter controlo total sobre os mundos é excelente. Posso criar servidores para amigos, dar permissões específicas, separar instâncias e deixar cada pessoa mexer no seu espaço.
+Ter controlo total sobre os mundos é excelente. Posso criar servidores para amigos, dar permissões específicas, separar instâncias e deixar cada pessoa mexer no seu espaço.
 
-Com Tailscale, também consigo aceder à administração sem expor o painel diretamente à internet.
-
-:::warning title="Não publiques painéis administrativos na internet sem proteção"
-Se precisas de aceder ao AMP fora de casa, usa uma abordagem segura. Abrir portas no router para painéis internos pode dar problemas sérios.
-:::
+Com Tailscale, também consigo aceder à administração sem expor o painel diretamente à internet. Explico isso na [parte 1](blog-post.html?id=como-comecei-o-meu-homelab).
 
 ## Porque continuo a preferir isto
 
@@ -161,10 +155,8 @@ Podia pagar por hosting de Minecraft. Provavelmente dava menos trabalho. Mas tam
 
 Com isto, controlo a máquina, a VM, o painel, os backups, as permissões e a rede. Quando algo falha, sou obrigado a perceber onde falhou. E quando funciona, sei exatamente o que está a acontecer por baixo.
 
-Para mim, essa é a graça toda.
-
 ## O que isto me ensinou
 
-O servidor de Minecraft acabou por ser uma desculpa perfeita para aprender coisas mais sérias: Linux, Docker, permissões, updates, rede, backups e troubleshooting.
+O servidor de Minecraft serviu para aprender coisas mais sérias: Linux, Docker, permissões, updates, rede, backups e troubleshooting.
 
 No fim, eu queria jogar Minecraft com amigos. Acabei a aprender administração de sistemas porque os mods decidiram que era esse o caminho.

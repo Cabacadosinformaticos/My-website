@@ -12,15 +12,13 @@ related: [project:iade-horarios, project:cabacalab, post:chega-o-bifrost]
 
 Até setembro, tudo o que corria no meu homelab era privado: só existia dentro de casa e na minha rede Tailscale. Depois fiz o [IADE Horários](project-detail.html?id=iade-horarios), uma app para os meus colegas consultarem os horários das turmas e pela primeira vez precisei que pessoas de fora chegassem a um serviço meu.
 
-A forma clássica de o fazer é abrir uma porta no router e apontá-la para o servidor. Não o fiz e este post explica porquê e o que fiz em vez disso.
+A forma clássica de o fazer é abrir uma porta no router e apontá-la para o servidor. Não o fiz.
 
 ![Percurso de um pedido público pelo Cloudflare Tunnel até à VM da aplicação.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513996/cabacatech/2026-11/diagrams/cloudflare-publication-702c68fa03.webp)
 
 ## Primeiro problema: não dá para abrir portas
 
 Mesmo que quisesse, a minha ligação está atrás de CGNAT: a operadora partilha o mesmo IP público entre vários clientes. Um pedido que chega a esse IP não sabe para que casa ir e o reencaminhamento de portas no meu router nunca o vê.
-
-Isto parecia um obstáculo e acabou por me empurrar para a solução mais segura.
 
 ## Como funciona um túnel de saída
 
@@ -83,4 +81,4 @@ A separação entre as VMs públicas e as privadas é feita pela firewall do Pro
 
 - Não poder abrir portas foi uma vantagem. Um túnel de saída é mais seguro do que uma porta aberta bem configurada.
 - O sítio onde o túnel acaba importa tanto como o túnel. A pergunta certa é "se isto for comprometido, a que é que dá acesso?".
-- A segurança faz-se em camadas: a Cloudflare à frente, uma VM isolada, uma firewall, um utilizador de base de dados sem permissões de escrita. Nenhuma chega sozinha.
+- A proteção tem várias camadas: a Cloudflare à frente, uma VM isolada, uma firewall e um utilizador de base de dados sem permissões de escrita.
