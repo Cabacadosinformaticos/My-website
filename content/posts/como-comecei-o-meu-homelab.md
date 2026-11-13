@@ -16,7 +16,7 @@ O problema é que quando se começa a pesquisar hardware para servidores, é mui
 
 Eu queria algo compacto, forte e que não me prendesse logo no primeiro mês.
 
-![Mapa atual do homelab, desenhado a partir da configuração documentada.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513995/cabacatech/2026-11/diagrams/homelab-overview-dffd84138c.webp)
+![Mapa atual do homelab, desenhado a partir da configuração documentada.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662557/cabacatech/2026-11/diagrams/homelab-overview-94b6f844de.webp)
 
 ## Porque isto me interessava tanto
 
@@ -127,7 +127,7 @@ O segundo servidor apareceu porque o primeiro não era ideal para tudo. O Servid
 A MediaBox já não é servidor. Contei o que aprendi com ela na [parte 6](blog-post.html?id=jellyfin-e-truenas-o-que-aprendi) e quem ocupa agora o lugar dela na [parte 7](blog-post.html?id=chega-o-bifrost).
 :::
 
-![Diagrama da antiga experiência com MediaBox, TrueNAS e disco USB.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513998/cabacatech/2026-11/diagrams/truenas-usb-previous-60f6acbe66.webp)
+![Diagrama da antiga experiência com MediaBox, TrueNAS e disco USB.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662560/cabacatech/2026-11/diagrams/truenas-usb-previous-f8b10c7377.webp)
 
 ## O que eu faria diferente
 

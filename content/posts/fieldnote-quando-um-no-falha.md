@@ -12,7 +12,7 @@ Quando parámos a base de dados primária do Fieldnote, o Patroni promoveu outra
 
 O Fieldnote é um projeto que desenvolvo com o César Oliveira para estudos de diário e etnografia móvel. O investigador define atividades. Os participantes enviam texto, fotografias, áudio ou vídeo a partir do telemóvel. Um registo pode descrever um momento que não volta a acontecer, por isso o que significa «guardado» pesa na arquitetura.
 
-![Topologia lógica do Fieldnote usada nos ensaios de recuperação.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513994/cabacatech/2026-11/diagrams/fieldnote-logical-nodes-9fb8929971.webp)
+![Topologia lógica do Fieldnote usada nos ensaios de recuperação.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662555/cabacatech/2026-11/diagrams/fieldnote-logical-nodes-fe943ca831.webp)
 
 ## Três nós numa só máquina
 

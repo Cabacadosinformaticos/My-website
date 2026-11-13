@@ -15,7 +15,7 @@ O homelab começou com um servidor de Minecraft e cresceu para dois hosts Proxmo
 
 Esta página reúne o desenho atual. Na série [Diário do Homelab](blog-post.html?id=como-comecei-o-meu-homelab), conto as decisões de cada etapa e os problemas que as motivaram.
 
-![Distribuição dos serviços entre o Servidorzinho e o bifrost, com ligação direta entre os hosts e armazenamento USB para o PBS e a NAS.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513995/cabacatech/2026-11/diagrams/homelab-overview-dffd84138c.webp)
+![Distribuição dos serviços entre o Servidorzinho e o bifrost, com ligação direta entre os hosts e armazenamento USB para o PBS e a NAS.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662557/cabacatech/2026-11/diagrams/homelab-overview-94b6f844de.webp)
 
 :::stats
 2 | Hosts Proxmox

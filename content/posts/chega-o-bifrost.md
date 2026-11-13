@@ -14,7 +14,7 @@ O segundo Minisforum MS-A1 chegou e a 9 de novembro instalei-lhe o Proxmox. Cham
 
 Em outubro isto ainda era um plano. Pelo meio vendi o Lenovo M90q Gen 5 onde tinha experimentado o Jellyfin e o TrueNAS. O meu computador de secretária é o mimir, outro Lenovo, um M90q Gen 6. São máquinas diferentes.
 
-![Papéis das máquinas e ligação direta entre os hosts Proxmox.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513999/cabacatech/2026-11/diagrams/homelab-overview-dffd84138c.webp)
+![Papéis das máquinas e ligação direta entre os hosts Proxmox.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662557/cabacatech/2026-11/diagrams/homelab-overview-94b6f844de.webp)
 
 ## O que ficou em cada servidor
 

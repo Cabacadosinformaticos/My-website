@@ -15,7 +15,7 @@ Cada projeto novo pedia a mesma coisa: uma base de dados, um sítio para guardar
 
 O CabacaLab é a resposta: uma plataforma que corre no [Servidorzinho](project-detail.html?id=homelab-proxmox-servidorzinho) e que oferece estes serviços a qualquer projeto. A plataforma não conhece as aplicações. Cada projeto recebe a sua base de dados, o seu utilizador, o seu bucket e o seu subdomínio e é isso.
 
-![Diagrama do CabacaLab e dos seus serviços partilhados.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513992/cabacatech/2026-11/diagrams/cabacalab-platform-2fa0d4a008.webp)
+![Diagrama do CabacaLab e dos seus serviços partilhados.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662552/cabacatech/2026-11/diagrams/cabacalab-platform-31bebf9696.webp)
 
 :::stats
 6 | VMs na plataforma

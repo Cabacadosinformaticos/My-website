@@ -14,7 +14,7 @@ Até setembro, tudo o que corria no meu homelab era privado: só existia dentro 
 
 A forma clássica de o fazer é abrir uma porta no router e apontá-la para o servidor. Não o fiz.
 
-![Percurso de um pedido público pelo Cloudflare Tunnel até à VM da aplicação.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513996/cabacatech/2026-11/diagrams/cloudflare-publication-702c68fa03.webp)
+![Percurso de um pedido público pelo Cloudflare Tunnel até à VM da aplicação.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662553/cabacatech/2026-11/diagrams/cloudflare-publication-84103ec235.webp)
 
 ## Primeiro problema: não dá para abrir portas
 

@@ -41,7 +41,7 @@ https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794514026/caba
 
 ## Topologia
 
-![Três nós lógicos do Fieldnote dentro de uma única VM.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513994/cabacatech/2026-11/diagrams/fieldnote-logical-nodes-9fb8929971.webp)
+![Três nós lógicos do Fieldnote dentro de uma única VM.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662555/cabacatech/2026-11/diagrams/fieldnote-logical-nodes-fe943ca831.webp)
 
 O Docker Compose separa os serviços em três nós lógicos. Cada um inclui uma réplica da API e um membro dos clusters com estado. Dois gateways permitem entrar na plataforma por HTTPS através do Tailscale.
 

@@ -16,7 +16,7 @@ Passei a ter duas partilhas, uma pessoal e outra para a família, num container 
 
 O ponto de partida foi o [post do Jellyfin e do TrueNAS](blog-post.html?id=jellyfin-e-truenas-o-que-aprendi). O TrueNAS ensinou-me ZFS e permissões, mas a RAM que pedia era demasiada para eu abrir uma pasta no computador. Nextcloud e Immich ficaram para quando houver uma necessidade concreta de sincronização ou de gerir fotografias.
 
-![Separação lógica dos backups e partilhas no disco USB do bifrost.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513999/cabacatech/2026-11/diagrams/pbs-and-nas-586f72e274.webp)
+![Separação lógica dos backups e partilhas no disco USB do bifrost.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662559/cabacatech/2026-11/diagrams/pbs-and-nas-4f0ffaf013.webp)
 
 ## Como está montado
 

@@ -153,13 +153,13 @@
     "sha256": "858dd0c8a61f80886044039a356ef3bff4299044f1b2a03cc8ad3a1fb8c08b72"
   },
   "covers/posts/ola-mundo": {
-    "public_id": "cabacatech/2026-11/covers/posts/ola-mundo-20b30c4f2a",
-    "version": 1794654842,
+    "public_id": "cabacatech/2026-11/covers/posts/ola-mundo-de506b76ca",
+    "version": 1794662561,
     "width": 1600,
     "height": 900,
-    "bytes": 70118,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654842/cabacatech/2026-11/covers/posts/ola-mundo-20b30c4f2a.webp",
-    "sha256": "20b30c4f2a46b4ef256b4c2af2d629fd06a9075855cf4f3dc51ada5c8cba10a5"
+    "bytes": 69428,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662561/cabacatech/2026-11/covers/posts/ola-mundo-de506b76ca.webp",
+    "sha256": "de506b76ca32302979cff36ec45621d9680b8956c282012aa0ec519affc23535"
   },
   "covers/posts/como-este-site-foi-feito": {
     "public_id": "cabacatech/2026-11/covers/posts/como-este-site-foi-feito-3d3f58a843",
@@ -216,58 +216,58 @@
     "sha256": "cdb3c9320ef8d1d2ca699c1412518fc34e45c04bb847ef2e474a9fe305dd1a7e"
   },
   "diagrams/cabacalab-platform": {
-    "public_id": "cabacatech/2026-11/diagrams/cabacalab-platform-2fa0d4a008",
-    "version": 1794513992,
-    "width": 1600,
-    "height": 900,
-    "bytes": 52406,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513992/cabacatech/2026-11/diagrams/cabacalab-platform-2fa0d4a008.webp",
-    "sha256": "2fa0d4a0089a28052737e29e913185b3db8d18f56171151b7e3692737e95eeea"
+    "public_id": "cabacatech/2026-11/diagrams/cabacalab-platform-31bebf9696",
+    "version": 1794662552,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 213098,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662552/cabacatech/2026-11/diagrams/cabacalab-platform-31bebf9696.webp",
+    "sha256": "31bebf969600574dacc9800e2a31f76cd229f7196fafab007f7fac3c02a4852b"
   },
   "diagrams/fieldnote-logical-nodes": {
-    "public_id": "cabacatech/2026-11/diagrams/fieldnote-logical-nodes-9fb8929971",
-    "version": 1794513994,
-    "width": 1600,
-    "height": 900,
-    "bytes": 64842,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513994/cabacatech/2026-11/diagrams/fieldnote-logical-nodes-9fb8929971.webp",
-    "sha256": "9fb89299719d74a223f0e224e7aeb678e1abd71df9cf5f3f2e6a50c55c20eb37"
+    "public_id": "cabacatech/2026-11/diagrams/fieldnote-logical-nodes-fe943ca831",
+    "version": 1794662555,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 186762,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662555/cabacatech/2026-11/diagrams/fieldnote-logical-nodes-fe943ca831.webp",
+    "sha256": "fe943ca831f649f606dff46ffc7c3a5d7c3d99b9838da85b68fcb133c2a1a8b8"
   },
   "diagrams/homelab-overview": {
-    "public_id": "cabacatech/2026-11/diagrams/homelab-overview-dffd84138c",
-    "version": 1794513995,
-    "width": 1600,
-    "height": 900,
-    "bytes": 45818,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513995/cabacatech/2026-11/diagrams/homelab-overview-dffd84138c.webp",
-    "sha256": "dffd84138cf4d2d34766d7a275436f66aae047894a858c0597406ed5646156b5"
+    "public_id": "cabacatech/2026-11/diagrams/homelab-overview-94b6f844de",
+    "version": 1794662557,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 205988,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662557/cabacatech/2026-11/diagrams/homelab-overview-94b6f844de.webp",
+    "sha256": "94b6f844de427b591336c9d2c16ca762d2bf6469fd0637ee7f1f568207e169f6"
   },
   "diagrams/cloudflare-publication": {
-    "public_id": "cabacatech/2026-11/diagrams/cloudflare-publication-702c68fa03",
-    "version": 1794513996,
-    "width": 1600,
-    "height": 900,
-    "bytes": 46460,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513996/cabacatech/2026-11/diagrams/cloudflare-publication-702c68fa03.webp",
-    "sha256": "702c68fa03e8d921254ba82021d6e1ac52885e1ae74b9cd469cb5b133ca12f43"
+    "public_id": "cabacatech/2026-11/diagrams/cloudflare-publication-84103ec235",
+    "version": 1794662553,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 146504,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662553/cabacatech/2026-11/diagrams/cloudflare-publication-84103ec235.webp",
+    "sha256": "84103ec2354a366de7be1e0c5cc1480073e3397ae7dcb2a314619f52ce3b9cf0"
   },
   "diagrams/truenas-usb-previous": {
-    "public_id": "cabacatech/2026-11/diagrams/truenas-usb-previous-60f6acbe66",
-    "version": 1794513998,
-    "width": 1600,
-    "height": 900,
-    "bytes": 51992,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513998/cabacatech/2026-11/diagrams/truenas-usb-previous-60f6acbe66.webp",
-    "sha256": "60f6acbe667fe81b1c02cb7b7d11db8a20d94ebe4182ced7c9b4aafb0c23d3a2"
+    "public_id": "cabacatech/2026-11/diagrams/truenas-usb-previous-f8b10c7377",
+    "version": 1794662560,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 154784,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662560/cabacatech/2026-11/diagrams/truenas-usb-previous-f8b10c7377.webp",
+    "sha256": "f8b10c7377f3230ac5698ba78946a666141e7fba589a2170d9bbcf051873c9b9"
   },
   "diagrams/pbs-and-nas": {
-    "public_id": "cabacatech/2026-11/diagrams/pbs-and-nas-586f72e274",
-    "version": 1794513999,
-    "width": 1600,
-    "height": 900,
-    "bytes": 64034,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513999/cabacatech/2026-11/diagrams/pbs-and-nas-586f72e274.webp",
-    "sha256": "586f72e274240a58fa6b73461866edb7f1e0ad66198ffc16cf36e3e5db45afa9"
+    "public_id": "cabacatech/2026-11/diagrams/pbs-and-nas-4f0ffaf013",
+    "version": 1794662559,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 209942,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662559/cabacatech/2026-11/diagrams/pbs-and-nas-4f0ffaf013.webp",
+    "sha256": "4f0ffaf0133e4ee35f2cff2acc6f40c65f2cff55258e86019dd782f9fc0a2504"
   },
   "screenshots/psp-lisboa-app/01-inicio": {
     "public_id": "cabacatech/2026-11/screenshots/psp-lisboa-app/01-inicio-7a4a8273ed",

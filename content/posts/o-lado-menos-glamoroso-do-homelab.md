@@ -12,7 +12,7 @@ related: [post:servidor-minecraft-em-casa, post:dns-em-casa-com-adguard-home, pr
 
 Durante semanas, o meu AdGuard Home deitou fora cerca de 5 em cada 100 pedidos DNS sem eu dar por isso (conto na [parte 3](blog-post.html?id=dns-em-casa-com-adguard-home)). É o tipo de coisa que não aparece nas fotografias de um homelab, e que aparece depressa: manter tudo a funcionar.
 
-![Visão geral dos papéis das máquinas do homelab.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513995/cabacatech/2026-11/diagrams/homelab-overview-dffd84138c.webp)
+![Visão geral dos papéis das máquinas do homelab.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662557/cabacatech/2026-11/diagrams/homelab-overview-94b6f844de.webp)
 
 ## A diferença entre montar e manter
 
@@ -52,7 +52,7 @@ De repente, o disco grande já não parece tão grande.
 
 Pior: espaço não é segurança. Um disco de 10 TB continua a ser um único disco. Se falhar, falhou.
 
-![Diagrama da experiência anterior com TrueNAS e armazenamento por USB.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513998/cabacatech/2026-11/diagrams/truenas-usb-previous-60f6acbe66.webp)
+![Diagrama da experiência anterior com TrueNAS e armazenamento por USB.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662560/cabacatech/2026-11/diagrams/truenas-usb-previous-f8b10c7377.webp)
 
 ## Monitorizar não é opcional para sempre
 

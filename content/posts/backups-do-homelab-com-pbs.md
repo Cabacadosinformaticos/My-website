@@ -14,7 +14,7 @@ Até 9 de novembro nenhum dos meus dois servidores tinha backups das VMs fora de
 
 O PBS corre num container LXC não privilegiado, com 2 GiB de RAM e 8 GB de disco. O datastore não está nesse disco. Fica num dataset ZFS do disco USB de 10 TB, montado no container, ao lado das partilhas da [NAS](blog-post.html?id=nas-com-samba-e-cockpit).
 
-![Os dois hosts enviam backups para o PBS. NAS e backups usam datasets separados no mesmo disco USB.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513999/cabacatech/2026-11/diagrams/pbs-and-nas-586f72e274.webp)
+![Os dois hosts enviam backups para o PBS. NAS e backups usam datasets separados no mesmo disco USB.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794662559/cabacatech/2026-11/diagrams/pbs-and-nas-4f0ffaf013.webp)
 
 ## Porque o PBS
 
