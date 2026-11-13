@@ -3,19 +3,17 @@ title: Jellyfin e TrueNAS e porque desliguei tudo
 desc: Montei um servidor de media com Jellyfin e uma NAS com TrueNAS num mini PC, liguei os dois e passei semanas a afinar. Funcionou, ensinou-me muito e não era a solução certa para mim. O que aprendi e o que procuro agora.
 category: [Homelab, Media Server, Storage]
 date: Out 2026
-readTime: 11 min
+readTime: 7 min
 cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654836/cabacatech/2026-11/covers/posts/jellyfin-e-truenas-o-que-aprendi-1a06618964.webp
 series: Diário do Homelab
 seriesPart: 6
 related: [post:nas-com-samba-e-cockpit, post:mimir-desktop-remoto, project:homelab-proxmox-servidorzinho]
 ---
 
-Durante uns meses, o meu homelab teve um segundo servidor dedicado a media: a MediaBox, um Lenovo ThinkCentre M90q Gen 5. Corria Jellyfin para ver a minha biblioteca em qualquer dispositivo e uma VM com TrueNAS Scale a gerir um disco de 10 TB. Mexi bastante nos dois e passei muito tempo a pô-los a trabalhar em conjunto.
-
-Em outubro, desliguei os dois serviços. Este post conta o que montei, o que aprendi e porque decidi parar.
+Durante uns meses o meu homelab teve um segundo servidor só para media. Era a MediaBox, um Lenovo ThinkCentre M90q Gen 5, com Proxmox, o Jellyfin para ver a biblioteca em qualquer dispositivo e uma VM de TrueNAS Scale a gerir um disco de 10 TB. Passei semanas a pôr os dois a trabalhar em conjunto. Em outubro desliguei-os.
 
 :::info title="Atualização de 12 de novembro de 2026"
-Vendi a MediaBox. O computador de secretária é outra máquina, o [mimir, um M90q Gen 6](blog-post.html?id=mimir-desktop-remoto). A 9 de novembro, o disco de 10 TB voltou ao homelab no bifrost, com [Samba, Cockpit e DLNA](blog-post.html?id=nas-com-samba-e-cockpit). O texto abaixo conserva a experiência que levou a essa mudança.
+Vendi a MediaBox. O computador de secretária é outra máquina, o [mimir, um M90q Gen 6](blog-post.html?id=mimir-desktop-remoto). A 9 de novembro, o disco de 10 TB voltou ao homelab no bifrost, com [Samba, Cockpit e DLNA](blog-post.html?id=nas-com-samba-e-cockpit). O texto abaixo conta a experiência que levou a essa mudança.
 :::
 
 ## O setup
@@ -29,7 +27,7 @@ Base: Proxmox VE
 Storage de media: Seagate Expansion 10 TB, por USB
 :::
 
-A ideia era separar a media do servidor principal. O [Servidorzinho](project-detail.html?id=homelab-proxmox-servidorzinho) tem um Ryzen 9 com muito CPU, mas para vídeo eu queria o Intel Quick Sync: a GPU integrada da Intel tem hardware dedicado a codificar e descodificar vídeo e faz em tempo real, com poucos watts, o que um CPU faria com esforço.
+Queria tirar a media do [Servidorzinho](project-detail.html?id=homelab-proxmox-servidorzinho). Esse tem um Ryzen 9 com CPU de sobra, mas para vídeo eu queria o Quick Sync da Intel, que codifica e descodifica em hardware, em tempo real e com poucos watts.
 
 ```text title="como estava ligado"
 MediaBox (Proxmox)
@@ -41,59 +39,39 @@ MediaBox (Proxmox)
        -> transcodifica com Quick Sync quando é preciso
 ```
 
-## O que aprendi com o Jellyfin
+## O Jellyfin
 
-O Jellyfin é um servidor de media open source: organiza filmes, séries e música com capas e metadados e serve-os para a TV, o telemóvel ou o browser. A parte que mais me ensinou foi perceber quando é que o servidor trabalha.
+A parte que mais me ensinou foi perceber quando o servidor trabalha. Se o dispositivo consegue reproduzir o ficheiro original, o Jellyfin limita-se a enviá-lo (direct play) e quase não gasta CPU. Se o dispositivo não aceita o codec, a resolução ou o bitrate, o servidor converte o vídeo em tempo real. É aí que o Quick Sync faz diferença. Legendas em imagem também podem obrigar a converter.
 
-:::compare left="Direct Play" right="Transcode"
-- O dispositivo consegue reproduzir o ficheiro original
-- O servidor só envia o ficheiro
-- Quase não gasta CPU nem GPU
-- É o cenário ideal
-|||
-- O dispositivo não suporta o codec, a resolução ou o bitrate
-- O servidor converte o vídeo em tempo real
-- É aqui que o Quick Sync faz diferença
-- Legendas em imagem também podem obrigar a converter
-:::
+Isto mudou a forma como penso numa biblioteca. Interessa-me guardar os ficheiros em formatos que os meus dispositivos reproduzem diretamente. Um servidor que transcodifica tudo está a compensar escolhas erradas de formato.
 
-Isto mudou a forma como penso numa biblioteca. Guardar ficheiros não chega: interessa guardá-los em formatos que os dispositivos onde vou ver conseguem reproduzir diretamente. Um servidor que transcodifica tudo está a compensar más escolhas de formato.
+O resto foi manutenção que não se vê à primeira: capas erradas, nomes mal interpretados, legendas fora de tempo, clientes que se comportam de forma diferente. Nenhuma é grave sozinha. Juntas, são o custo de ter o serviço em casa.
 
-Também aprendi que a manutenção invisível existe: capas erradas, nomes mal interpretados, legendas fora de tempo, clientes que se comportam de forma diferente. Nada disto é grave sozinho, mas tudo junto é o custo real de ter o próprio serviço.
+## O TrueNAS
 
-## O que aprendi com o TrueNAS
+O TrueNAS Scale é um sistema de NAS construído sobre ZFS. Pu-lo numa VM, com o disco USB passado diretamente pelo Proxmox. Foi assim que aprendi como funcionam pools, datasets, permissões e partilhas de rede. Aprendi também a ligar o Jellyfin ao armazenamento de outro sistema.
 
-O TrueNAS Scale é um sistema operativo de NAS construído sobre ZFS. Pô-lo numa VM, com o disco passado diretamente, ensinou-me como funcionam pools, datasets, permissões e partilhas de rede e como ligar um serviço (o Jellyfin) ao armazenamento de outro.
+Passar um disco USB a uma VM funciona mas tem limites. A ponte USB pode esconder o estado de saúde do disco, desligar-se num pico de consumo ou mudar de identificador depois de um reboot. Para aprender serve. Para dados que não posso perder, não.
 
-:::details title="Passar um disco USB a uma VM"
-O Proxmox permite entregar um dispositivo físico diretamente a uma VM, em vez de lhe dar um disco virtual. Nesta instalação, passei o disco USB à VM para o TrueNAS gerir diretamente esse armazenamento.
+E 10 TB num só disco continuam a ser um só disco. Se falhar, falha tudo.
 
-Por USB, isto funciona, mas tem limites: a ponte USB do disco pode esconder informação de saúde do disco, desligar-se num pico de consumo, ou mudar de identificador depois de um reboot. Para aprender serve. Para guardar dados importantes, não.
-:::
-
-:::danger title="Um disco não é um backup"
-10 TB num só disco continuam a ser um só disco. Se falhar, falhou tudo. Capacidade e segurança são coisas diferentes.
-:::
+Quando listei o disco em novembro, para o reutilizar, o dataset `Jellyfin` do pool estava vazio. Os 105 GiB que lá estavam eram filmes e séries antigos de um PC (7 filmes e 2 séries), noutro dataset.
 
 ## Porque desliguei tudo
 
-O problema principal foi a memória. O ZFS usa a RAM como cache (a ARC) e o TrueNAS foi desenhado para uma máquina dedicada: o projeto recomenda no mínimo 8 GB só para ele. Numa VM, num mini PC que também tinha de correr o Jellyfin e outras experiências, isso pesava demasiado para aquilo que eu precisava.
+O problema foi a memória. O ZFS usa a RAM como cache (a ARC) e o TrueNAS foi pensado para uma máquina dedicada: o projeto recomenda um mínimo de 8 GB só para ele. Numa VM, num mini PC que também corria o Jellyfin e outras experiências, isso pesava demais para o que eu precisava.
 
-E quando olhei para o que eu realmente usava, percebi que não precisava de uma NAS completa. Precisava de:
+Quando listei o que usava de facto, vi que não queria uma NAS completa. Queria:
 
-- um painel web para gerir os ficheiros;
-- poder usar o armazenamento como uma drive de rede nos meus computadores;
-- um armazenamento compatível com S3, com Garage, para as aplicações;
+- um painel web para gerir ficheiros;
+- usar o armazenamento como unidade de rede nos meus computadores;
+- armazenamento compatível com S3, com Garage, para as aplicações;
 - um sítio onde cada serviço do homelab guarde os seus backups.
 
-O TrueNAS faz tudo isto e muito mais e esse "muito mais" tem um custo de RAM que não se justificava. O Jellyfin desliguei-o ao mesmo tempo: sem o armazenamento por trás, não fazia sentido mantê-lo sozinho. Hei de voltar a ele.
+O TrueNAS faz tudo isto e muito mais. Esse "muito mais" custava RAM que eu não tinha para dar. O Jellyfin desliguei-o ao mesmo tempo, porque sem o armazenamento por trás não fazia sentido mantê-lo sozinho. Hei de voltar a ele.
 
-## O que vem a seguir
+## O que veio a seguir
 
-Quando desliguei estes serviços, preparava a entrada do segundo MS-A1, o [bifrost](blog-post.html?id=chega-o-bifrost) e procurava uma forma de voltar a usar o disco de 10 TB.
+Quando desliguei tudo, estava a preparar a entrada do segundo MS-A1, o [bifrost](blog-post.html?id=chega-o-bifrost). Procurava também uma forma de reutilizar o disco de 10 TB. Em novembro ficou decidido: [Samba e Cockpit para as partilhas](blog-post.html?id=nas-com-samba-e-cockpit) e [PBS para os backups das VMs](blog-post.html?id=backups-do-homelab-com-pbs). O armazenamento S3 das aplicações continua na CabacaLab.
 
-Essa escolha ficou fechada em novembro: [Samba e Cockpit para as partilhas](blog-post.html?id=nas-com-samba-e-cockpit) e [PBS para os backups das VMs](blog-post.html?id=backups-do-homelab-com-pbs). O armazenamento S3 das aplicações continua na CabacaLab.
-
-## Valeu a pena?
-
-Sim. Desligar um serviço depois de o montar parece um passo atrás, mas foi o resultado de perceber o que eu precisava. Sem ter passado semanas com o Jellyfin e o TrueNAS, não saberia escrever a lista do que procuro agora, nem saberia porque é que a RAM é o recurso que mais conta numa máquina de armazenamento.
+Sem estas semanas com o Jellyfin e o TrueNAS não teria conseguido escrever a lista de cima. Foi com elas que percebi que, numa máquina de armazenamento, a RAM é o recurso que mais pesa.

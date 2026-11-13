@@ -8,47 +8,68 @@ cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v17946548
 related: [project:fieldnote, post:fieldnote-agendar-sem-interromper]
 ---
 
-Parar a base de dados primária do Fieldnote deu-nos uma medição concreta: o Patroni promoveu outra réplica em 23,8 segundos. Esse número veio de um ensaio no servidor, em 9 de novembro de 2026. A recuperação automática já faz parte do protótipo e conseguimos observar como os serviços reagem quando uma componente deixa de responder.
+Quando parámos a base de dados primária do Fieldnote, o Patroni promoveu outra réplica em 23,8 segundos. Medimos isso no servidor a 9 de novembro de 2026, com um script que mata o contentor e fica a ver o que acontece. O objetivo que tínhamos escrito era 45 segundos.
 
-O Fieldnote é um projeto que estou a desenvolver com o César Oliveira para estudos de diário e etnografia móvel. Um investigador define atividades. Os participantes enviam texto, fotografias, áudio ou vídeo a partir do telemóvel. Um registo pode descrever um momento que não volta a acontecer. Por isso, o significado de «guardado» tem consequências na arquitetura.
+O Fieldnote é um projeto que desenvolvo com o César Oliveira para estudos de diário e etnografia móvel. O investigador define atividades. Os participantes enviam texto, fotografias, áudio ou vídeo a partir do telemóvel. Um registo pode descrever um momento que não volta a acontecer, por isso o que significa «guardado» pesa na arquitetura.
 
 ![Topologia lógica do Fieldnote usada nos ensaios de recuperação.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513994/cabacatech/2026-11/diagrams/fieldnote-logical-nodes-9fb8929971.webp)
 
-## Três nós dentro da mesma máquina
+## Três nós numa só máquina
 
-O protótipo corre numa única VM, num único servidor físico. Dentro dela, o Docker Compose organiza os serviços em três nós lógicos. Cada grupo inclui uma réplica da API e membros dos clusters com estado. Existem ainda dois gateways de entrada.
+O protótipo corre numa VM do bifrost (Ubuntu 24.04, hoje com 5 cores e 10 GiB), num único servidor físico. Lá dentro, o Docker Compose organiza 30 contentores em três nós lógicos. Cada nó tem uma réplica da API e membros dos clusters com estado. Há ainda dois gateways de entrada. Depois de reiniciar a VM, os 30 contentores voltaram a subir sozinhos.
 
-Parar os contentores de um grupo permite observar a perda conjunta desses serviços. Isolar o grupo da rede permite ensaiar uma partição. Estes testes exercitam os protocolos de replicação e recuperação.
-
-A demonstração concentra-se na recuperação dos serviços: os três grupos partilham a VM e o host físico. Essa topologia permite reproduzir o cluster num ambiente académico e ensaiar os protocolos de replicação. A disponibilidade perante a perda de hardware exigiria distribuir as réplicas por máquinas independentes.
+Parar os contentores de um nó simula a perda desses serviços. Isolar o nó da rede simula uma partição. Isto testa os protocolos de replicação e recuperação. Não testa a perda de hardware, porque os três nós partilham a VM e a máquina física. Para isso, as réplicas teriam de estar em máquinas independentes.
 
 ## Confirmar exige mais do que receber
 
-O PostgreSQL usa Patroni com modo síncrono estrito e uma réplica síncrona. O objetivo é impedir que a aplicação confirme uma escrita enquanto a cópia necessária não a recebeu. Perder a réplica pode, por isso, obrigar a esperar por outra antes de continuar a confirmar escritas.
+O PostgreSQL corre com Patroni em modo síncrono estrito e uma réplica síncrona. Esta é a parte da configuração que conta:
 
-O RabbitMQ usa quorum queues para o trabalho assíncrono. O Garage guarda os ficheiros através de uma interface S3 com replicação. São estados diferentes: um registo na base de dados, um trabalho para processar e um ficheiro enviado. Ter três APIs não resolve sozinho nenhum destes três problemas.
+```yaml
+bootstrap:
+  dcs:
+    ttl: 30
+    loop_wait: 10
+    retry_timeout: 10
+    synchronous_mode: true
+    synchronous_mode_strict: true
+```
 
-Também interessa aceitar períodos de indisponibilidade. Durante uma promoção de base de dados, um pedido pode falhar ou demorar. O cliente precisa de saber repetir sem criar um segundo registo. A recuperação do servidor e o comportamento do telemóvel fazem parte do mesmo percurso.
+A API só confirma um registo depois de ele estar escrito em dois nós da base de dados. Se a réplica síncrona cai, o Patroni passa outra réplica a síncrona. Durante essa troca as escritas esperam em vez de ficarem confirmadas num só nó.
+
+A documentação do Patroni avisa que, mesmo em modo estrito, uma transação pode perder-se se a espera pela réplica for cancelada, porque o commit já está escrito no primário. Por isso a API não define nenhum timeout que possa cancelar essa espera. Só confirma depois de o commit voltar com sucesso e qualquer outro resultado chega à app como falha.
+
+O RabbitMQ usa quorum queues para o trabalho assíncrono. O Garage guarda os ficheiros com uma interface S3 replicada. São três estados diferentes: um registo na base de dados, um trabalho por processar e um ficheiro enviado. Ter três APIs não resolve nenhum deles.
 
 ## O pedido pode chegar duas vezes
 
-A app gera o UUID do registo antes de o enviar. A API associa esse identificador ao conteúdo. Se recebe novamente o mesmo UUID com o mesmo conteúdo, reconhece o reenvio. Se o conteúdo é diferente, responde com conflito.
+Durante uma promoção da base de dados, um pedido pode falhar ou demorar. O telemóvel tem de saber repetir sem criar um segundo registo.
 
-Imaginemos que o servidor guarda a resposta e a ligação cai antes de o telemóvel receber a confirmação. O cliente ficou sem saber o resultado. Voltar a enviar o mesmo identificador permite resolver essa dúvida sem contar duas respostas no estudo.
+A app gera o UUID do registo antes de o enviar. A API associa esse UUID ao conteúdo. Se receber o mesmo UUID com o mesmo conteúdo, reconhece o reenvio. Se o conteúdo for diferente, responde com conflito. Assim, se o servidor guarda a resposta e a ligação cai antes de o telemóvel a receber, o reenvio resolve a dúvida sem contar duas respostas no estudo. Funciona mesmo quando duas réplicas recebem o mesmo UUID quase ao mesmo tempo, porque a inserção na base de dados também trata o conflito.
 
-Esta propriedade chama-se idempotência. Não depende de a rede entregar cada pedido uma única vez. Depende de a aplicação reconhecer as repetições, incluindo quando duas réplicas recebem o mesmo UUID quase em simultâneo. A inserção na base de dados trata também desse conflito.
+A app conhece os dois gateways. Se um pedido falha por erro de rede ou com 502, 503 ou 504, tenta uma vez no outro. Cada tentativa espera cerca de 10 segundos. No emulador, com o gateway 1 parado e a app arrancada a frio, o convite abriu pelo gateway 2 passados esses 10 segundos. Falta repetir isto no telemóvel físico.
 
-## Ligar o registo ao processamento
+## Da gravação ao processamento
 
-Depois de guardar um registo com media, a aplicação precisa de pedir o processamento do ficheiro. Gravar primeiro e publicar depois deixaria um intervalo perigoso: uma falha entre as duas operações podia guardar o registo sem deixar trabalho no broker.
+Depois de gravar um registo com media, a aplicação tem de pedir o processamento do ficheiro. Se gravasse primeiro e publicasse depois, uma falha entre as duas operações deixava o registo guardado e nenhum trabalho no broker.
 
-Usamos uma transactional outbox. A transação que grava o registo grava também um evento numa tabela. Um relay lê os eventos pendentes, publica no RabbitMQ com confirmação e marca-os como publicados. Vários relays podem trabalhar com `FOR UPDATE SKIP LOCKED`.
+Usamos uma transactional outbox. A transação que grava o registo grava também um evento numa tabela. Um relay lê os eventos por publicar, publica-os no RabbitMQ com confirmação e marca-os como publicados. Vários relays podem trabalhar em simultâneo porque cada um reserva os eventos com:
 
-Ainda pode haver uma repetição: o relay publica e cai antes de marcar o evento. Na próxima passagem volta a publicá-lo. A entrega é pelo menos uma vez e o processamento tem de reconhecer o trabalho já tratado. A outbox fecha o intervalo entre a escrita e a intenção de publicar; não transforma duas operações numa entrega mágica de uma única vez.
+```sql
+SELECT ... FOR UPDATE SKIP LOCKED
+```
+
+Pode haver repetições. Se o relay publica e cai antes de marcar o evento, na passagem seguinte volta a publicá-lo. A entrega é pelo menos uma vez. Quem processa tem de reconhecer o trabalho que já fez.
 
 ## O que medimos no servidor
 
-Os scripts de falhas passaram em nove cenários: API, nó lógico completo, primário, réplica síncrona, Garage, RabbitMQ, partição de rede, gateway e agendador.
+Os scripts de falhas passaram nos nove cenários: API, nó lógico completo, primário, réplica síncrona, Garage, RabbitMQ, partição de rede, gateway e agendador. Correm a partir do repositório, um por cenário:
+
+```sh
+docker compose -f infra/deploy/compose.cluster.yaml exec -T pg1 patronictl list
+bash infra/chaos/fs3-kill-primary.sh
+```
+
+Cada script mostra o estado antes, injeta a falha, mede, repõe o serviço, espera que o cluster volte a estar saudável e termina com `PASS` ou `FAIL`.
 
 | Ensaio | Resultado observado |
 |---|---|
@@ -58,10 +79,8 @@ Os scripts de falhas passaram em nove cenários: API, nó lógico completo, prim
 | Parar o primeiro gateway durante tráfego gerado | 120 registos confirmados, sem perdas nem duplicados |
 | Parar o agendador ativo | A reserva assumiu em 15,2 s, sem planos duplicados |
 
-Os 120 registos vieram de clientes de carga que simulavam dez telemóveis. Os ensaios usam dados de demonstração e permitem repetir as condições. Nos testes de armazenamento e gateway verificámos contagens e duplicados. Nos restantes, a tabela apresenta os indicadores de disponibilidade e recuperação recolhidos.
+Os 120 registos vieram de clientes de carga que simulavam dez telemóveis e eram só de texto: com o gateway 1 parado, um registo com media não consegue ser criado, porque o endpoint S3 do cluster passa por esse gateway. O envio de media com um nó de armazenamento perdido foi o ensaio das 45 fotografias. Usámos dados de demonstração. Nestes dois ensaios verificámos contagens e duplicados. Nos restantes, a tabela mostra os tempos de disponibilidade e recuperação.
 
-## Do ensaio ao uso no telemóvel
+## Próximo passo: o telemóvel
 
-A app inclui uma fila offline para conservar os registos até recuperar a ligação. A validação seguinte leva esse percurso ao telemóvel físico, incluindo o modo de avião e o reenvio. O restauro do backup cifrado já passou na stack de desenvolvimento, num ensaio separado dos nove cenários do servidor.
-
-Para cada falha guardamos o que parámos, como a detetámos, o efeito no cliente e como voltou a redundância. Este método permite comparar o comportamento esperado com o observado e repetir a experiência depois de alterar a implementação. É a base para continuar a validar o percurso completo, desde o registo guardado no dispositivo até à consulta pelo investigador.
+A app tem uma fila offline que guarda os registos até voltar a ligação. A validação seguinte leva esse percurso ao telemóvel físico, com modo de avião e reenvio. O restauro do backup cifrado já passou na stack de desenvolvimento, num ensaio à parte dos nove cenários do servidor.

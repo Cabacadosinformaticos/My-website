@@ -1,83 +1,83 @@
 ---
 title: Backups do homelab com Proxmox Backup Server
-desc: Os dois hosts Proxmox já têm backups noturnos configurados para um PBS no bifrost. O destino, a retenção, a verificação e os dados que continuam sem segunda cópia.
+desc: Os dois hosts Proxmox já têm backups noturnos para um PBS no bifrost. A configuração, a agenda, o primeiro backup e os dados que continuam sem segunda cópia.
 category: [Homelab, Proxmox, Backups]
 date: Nov 2026
-readTime: 7 min
+readTime: 6 min
 cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794654827/cabacatech/2026-11/covers/posts/backups-do-homelab-com-pbs-d5d72faa84.webp
 series: Diário do Homelab
 seriesPart: 8
 related: [post:chega-o-bifrost, post:nas-com-samba-e-cockpit, project:homelab-proxmox-servidorzinho]
 ---
 
-Configurei o Proxmox Backup Server para receber os backups dos dois servidores do homelab. O PBS corre num container no bifrost e guarda o datastore num disco USB de 10 TB. As tarefas noturnas ficaram definidas a 9 de novembro.
+Até 9 de novembro nenhum dos meus dois servidores tinha backups das VMs fora dele próprio. Havia dumps das bases de dados e snapshots locais da CabacaLab, que servem para voltar atrás numa alteração e morrem com o disco onde estão. Nessa noite montei um Proxmox Backup Server no bifrost e deixei os dois hosts a enviar-lhe as VMs todas as madrugadas.
 
-Até aqui, a CabacaLab já produzia dumps das bases de dados e snapshots locais. Eram úteis para voltar atrás numa alteração, mas continuavam dependentes do armazenamento do servidor. A falta de um destino separado aparecia repetidamente na lista de coisas por resolver.
-
-Com um destino próprio, passei a poder definir a retenção das VMs e acompanhar as tarefas dos dois hosts no mesmo serviço. A decisão seguinte foi dividir o disco entre esse histórico de backups e os ficheiros da NAS.
+O PBS corre num container LXC não privilegiado, com 2 GiB de RAM e 8 GB de disco. O datastore não está nesse disco. Fica num dataset ZFS do disco USB de 10 TB, montado no container, ao lado das partilhas da [NAS](blog-post.html?id=nas-com-samba-e-cockpit).
 
 ![Os dois hosts enviam backups para o PBS. NAS e backups usam datasets separados no mesmo disco USB.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794513999/cabacatech/2026-11/diagrams/pbs-and-nas-586f72e274.webp)
 
-## Porque escolhi o PBS
+## Porque o PBS
 
-Queria um destino comum para as VMs e os containers dos dois hosts Proxmox. Podia ter ficado com ficheiros de backup completos num disco de rede. Escolhi o PBS pela integração com o Proxmox e pela deduplicação dos dados guardados.
+A alternativa era guardar ficheiros de `vzdump` completos numa pasta de rede. Escolhi o PBS porque deduplica: dois pontos de recuperação da mesma VM partilham quase todos os blocos e só se paga o que mudou. No primeiro backup, os 12 guests dos dois hosts ocuparam 105 GiB no datastore, com compressão de 1,20x.
 
-A deduplicação permite reutilizar blocos que já existem no datastore. Isso é útil quando vários pontos de recuperação contêm grande parte dos mesmos dados: o histórico pode manter versões sucessivas sem guardar repetidamente todos os blocos iguais.
+Também queria um único sítio onde ver o histórico e o resultado das tarefas dos dois servidores, em vez de abrir pastas à procura de ficheiros.
 
-O PBS também reúne as tarefas de retenção e de verificação. A vantagem prática é ter um local onde consultar os backups e o resultado das operações, em vez de depender apenas da existência de ficheiros numa pasta.
+## O disco e a quota
 
-:::decision title="Um destino comum para os dois hosts"
-O Servidorzinho envia os seus backups pela ligação direta ao bifrost. O bifrost usa o mesmo PBS. A solução centraliza a gestão, mas concentra o destino de recuperação numa só máquina e num só disco.
-:::
+O host gere o pool ZFS e o container só recebe o caminho do datastore. O dataset dos backups tem uma quota de 3 TB, para o histórico das VMs não comer o espaço das partilhas pessoais no mesmo disco:
 
-## Onde ficam os dados
+```bash
+zfs set quota=3T tank/backups
+```
 
-O PBS está num LXC não privilegiado com 2 GiB de RAM e um disco de sistema de 8 GB. O datastore está fora desse disco de sistema: usa um dataset ZFS do disco USB, montado no container.
+Uma quota não escolhe o que apagar. Quando o datastore enche, os backups novos falham e os antigos ficam onde estão, por isso o que limpa o espaço é a retenção.
 
-Separei esse dataset das partilhas da NAS. O espaço de backup tem uma quota ZFS de 3 TB. A quota limita o crescimento do datastore para que a retenção de VMs não ocupe todo o disco partilhado com os ficheiros pessoais.
+Cada host tem o seu token de API no PBS, com o papel `DatastoreBackup` só neste datastore. Pode fazer backups e restauros e não pode apagar nada. Se um dos servidores for comprometido, o histórico não vai com ele.
 
-O host continua a gerir o pool ZFS. O container recebe o caminho de que precisa para o PBS, sem receber o disco USB inteiro. Isto também ajuda a perceber o que depende de quê: se o pool deixar de estar disponível no host, o PBS perde o seu armazenamento de backup.
+Instalar tudo teve um tropeção. O primeiro `datastore create` falhou em silêncio porque lhe passei `--notes`, que esse comando não aceita. Como o datastore não existia, o `pvesm add` seguinte também falhou. Voltei a criá-lo sem a opção e gerei os tokens outra vez.
 
-:::warning title="Uma quota não apaga backups antigos"
-Quando o datastore atinge o limite, novos backups podem falhar. A quota não escolhe automaticamente que pontos de recuperação deve eliminar. A retenção e a recolha de espaço têm tarefas próprias e precisam de ser acompanhadas.
-:::
+## A agenda
 
-Os dois hosts usam credenciais próprias, com permissões de backup e restauro no datastore. As credenciais dos hosts não têm permissão para apagar backups. A manutenção da retenção fica do lado do PBS. É uma forma de limitar o que uma credencial usada diariamente pode fazer.
+Desfasei os dois servidores para espalhar o trabalho pela madrugada. A retenção corre depois dos backups.
 
-## A agenda que deixei configurada
-
-Desfasei as tarefas dos dois servidores para distribuir o trabalho ao longo da madrugada. Os backups começam primeiro e a aplicação da retenção fica para depois.
-
-| Operação | Agenda configurada |
+| Operação | Quando |
 |---|---|
 | Backup do Servidorzinho | Todos os dias às 01:30 |
 | Backup do bifrost | Todos os dias às 02:30 |
-| Aplicação da retenção | Todos os dias às 05:30 |
+| Retenção (prune) | Todos os dias às 05:30 |
 | Garbage collection | Sábado às 05:00 |
 | Verificação | Domingo às 06:00 |
 
-Os jobs dos hosts abrangem todos os guests e usam o modo snapshot. A política conserva 7 pontos diários, 4 semanais e 6 mensais. Estas categorias definem a seleção dos pontos a manter. Não correspondem necessariamente a 17 cópias completas diferentes de cada VM.
+Os jobs abrangem todos os guests e usam o modo snapshot. A retenção guarda 7 pontos diários, 4 semanais e 6 mensais, mas são pontos de recuperação e não 17 cópias completas de cada VM. A garbage collection só liberta o espaço dos blocos que já nenhum ponto usa, por isso apagar um backup antigo não devolve de imediato tudo o que parecia ocupar.
 
-A retenção escolhe os pontos de recuperação que permanecem. A garbage collection trata dos dados que deixaram de ser necessários. Separar as duas operações evita esperar que a eliminação de um ponto liberte imediatamente todo o espaço que parecia ocupar.
+A verificação ignora os backups já verificados e repete-os ao fim de 30 dias.
 
-Na rotina de acompanhamento, interessa consultar o resultado de cada job e confirmar os pontos de recuperação disponíveis por VM. Uma falha por falta de espaço pede uma resposta diferente de uma falha de comunicação com o datastore. O histórico das tarefas ajuda a encontrar essa diferença.
+## O primeiro backup
 
-## Verificar os dados e recuperar o serviço
+Lancei-o à mão antes de confiar na agenda. O Servidorzinho levou cerca de 14 minutos para 8 guests, dos quais 8,5 foram só para o AMP, que tem 250 GiB. O bifrost levou 2 minutos para 4. Os dois terminaram sem erros e uma verificação manual do datastore deu 0 erros.
 
-A verificação semanal está configurada para ignorar backups já verificados e voltar a verificá-los após 30 dias. O objetivo é detetar problemas nos dados guardados, em vez de só descobrir uma falha quando precisar deles.
+Só depois disso apaguei as VMs antigas que tinha deixado paradas no Servidorzinho depois da mudança para o bifrost.
 
-Essa verificação cobre uma camada diferente do arranque da aplicação. Um restauro completo precisa ainda de confirmar a configuração da VM, os discos e o funcionamento dos serviços depois do arranque. Nas aplicações com bases de dados, também quero confirmar o estado dos dados e o acesso pela aplicação.
+Para ver se um host fala com o PBS:
 
-Um ensaio de recuperação deve começar por uma VM com poucas dependências, restaurada num ambiente isolado. Isso permite testar o caminho de recuperação sem criar conflitos com o serviço que continua em produção. Depois faz sentido avançar para uma aplicação que dependa de vários serviços.
+```bash
+pvesm status
+```
 
-## O que falta proteger e testar
+No container, o histórico das tarefas está em `proxmox-backup-manager task list`. Uma falha por falta de espaço e uma falha de ligação ao datastore não têm a mesma solução. O histórico mostra qual das duas aconteceu.
 
-A configuração ficou feita a 9 de novembro. O restauro completo de uma VM ainda está por ensaiar. Esse exercício deve confirmar a aplicação e registar o tempo gasto, além de verificar os dados que o PBS guarda.
+## O que ainda não está protegido
 
-O disco do PBS é um único disco. O ZFS consegue detetar corrupção, mas neste pool não existe outra cópia redundante que permita reparar automaticamente os dados. A ponte USB também impede a leitura do SMART do disco, o que reduz a informação de saúde disponível.
+O restauro completo de uma VM ainda não foi ensaiado. A verificação do PBS garante que os blocos guardados estão intactos. Não prova que a VM arranca nem que a aplicação responde. O primeiro teste vai ser numa VM com poucas dependências, restaurada num ambiente isolado, para não colidir com a original. Depois tentarei uma aplicação com base de dados.
 
-No caso do bifrost, o destino está separado do NVMe das VMs, mas continua ligado ao mesmo host. Uma falha desse host pode impedir o acesso imediato às cópias. Um incidente em casa pode atingir os servidores e o disco ao mesmo tempo.
+O disco é um só. O ZFS deteta corrupção mas, sem outra cópia no pool, não a consegue reparar. A ponte USB também não deixa ler o SMART. Também não sei o modelo do disco que está lá dentro.
 
-Há ainda uma exclusão que merece ficar escrita: os backups dos containers PBS e NAS cobrem os respetivos sistemas de ficheiros de raiz. Os datasets montados a partir do host, incluindo os ficheiros das partilhas da NAS, não entram nesses backups. Restaurar o container da NAS não recria os documentos guardados na partilha.
+O destino dos backups está separado do NVMe das VMs, mas está ligado ao mesmo host e na mesma casa. Uma falha do bifrost corta o acesso às cópias e um incidente em casa apanha servidores e disco ao mesmo tempo.
 
-O próximo trabalho é criar uma segunda cópia desses ficheiros e definir um destino fora de casa. Entretanto, a rotina precisa de incluir a leitura dos resultados das tarefas e um teste de restauro. Ter o PBS instalado dá-me as ferramentas para fazer esse trabalho; o acompanhamento é que vai mostrar se a proteção continua a funcionar ao longo dos meses.
+Os backups dos containers PBS e NAS cobrem só o sistema de ficheiros de raiz. Os datasets montados a partir do host, incluindo os documentos das partilhas, ficam de fora. Restaurar o container da NAS não os recria.
+
+:::warning title="Ainda não há alertas de falha"
+Os jobs correm sozinhos mas, se um falhar, só o vejo se abrir o histórico. Estou a pensar num aviso por ntfy ou por email.
+:::
+
+O que vem a seguir é uma segunda cópia das partilhas da NAS, um destino fora de casa (ainda não escolhi qual) e os alertas.

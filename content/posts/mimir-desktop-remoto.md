@@ -1,6 +1,6 @@
 ---
 title: mimir, um desktop que fica em casa
-desc: Um ThinkCentre Tiny que fica em casa, acessível pela rede privada. Hardware, acesso ao Windows e as escolhas para manter uma segunda máquina de trabalho disponível.
+desc: Um ThinkCentre Tiny sempre ligado em casa, com Windows 11, acesso por SSH e RDP só através do Tailscale. O hardware, a energia e o que correu menos bem.
 category: [Homelab, Windows, Redes]
 date: Out 2026
 readTime: 5 min
@@ -8,46 +8,63 @@ cover: https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v17946548
 related: [project:homelab-proxmox-servidorzinho, post:chega-o-bifrost]
 ---
 
-O mimir é um Lenovo ThinkCentre M90q Gen 6 que fica ligado em casa. Uso-o como desktop e como segunda máquina de trabalho, acessível pela rede privada Tailscale. O portátil continua a acompanhar-me. O desktop fica no mesmo sítio, com os seus programas e o trabalho que lhe deixei.
+O mimir é um Lenovo ThinkCentre M90q Gen 6 que está sempre ligado em casa. É o meu desktop e uma segunda máquina de trabalho. Só lhe chego pela rede privada Tailscale. O portátil continua a andar comigo. O mimir fica no mesmo sítio, com os programas abertos e o trabalho que lá deixei.
 
-Esta separação resolveu uma confusão no meu homelab. A máquina de secretária e os servidores têm necessidades diferentes. Um desktop precisa de uma sessão Windows, aplicações e um ecrã. Os servidores precisam de correr serviços sem depender dessa sessão. O mimir tem o primeiro papel.
+Não era esta a máquina que eu tinha planeado. Queria usar um M90q Gen 5 que estava parado, o antigo MediaBox. Entretanto apareceu um Gen 6 a bom preço, troquei um pelo outro e vendi o Gen 5. Em outubro de 2026 o Gen 6 ficou com o lugar de desktop e com o nome mimir, da lista de nomes nórdicos que estou a dar às máquinas.
 
-## A máquina que acabou por ficar
+:::specs title="mimir"
+Modelo: Lenovo ThinkCentre M90q Gen 6 (Tiny)
+CPU: Intel Core Ultra 5 235T, 14 núcleos
+RAM: 32 GB DDR5 a 5600 MT/s (2 x 16 GB)
+Discos: 2 x Samsung 990 EVO Plus 2 TB NVMe
+Gráfica: integrada, com um monitor ligado
+Rede: Ethernet 1 GbE
+Sistema: Windows 11 Pro, instalado a 23 de outubro de 2026
+Segurança: Secure Boot e BitLocker nos dois discos
+:::
 
-A escolha final foi um ThinkCentre Tiny com um Intel Core Ultra 5 235T, 32 GB de RAM DDR5 e dois SSD NVMe de 2 TB. Substituiu o M90q Gen 5 que tinha previsto usar com o nome MediaBox. O Gen 5 foi vendido e o mimir ficou com o lugar de desktop.
+Os dois SSD separam o sistema e as aplicações (`C:`) dos restantes dados (`D:`). O `D:` ainda está vazio.
 
-O formato pequeno ajuda a deixá-lo num canto com Ethernet e alimentação. A gráfica é integrada e há um monitor físico ligado.
+## Entrar sem abrir uma porta no router
 
-Os dois SSD dão-me espaço para separar o sistema e as aplicações dos restantes dados. O Windows 11 Pro mantém o ambiente de trabalho a que estou habituado. Ativei o Secure Boot e os dois discos têm BitLocker, para que a proteção dos dados acompanhe a preparação do acesso remoto.
+Montei dois acessos: SSH para o terminal e RDP para o ambiente de trabalho. O router não tem nenhuma porta aberta para o mimir.
 
-## Primeiro, conseguir voltar a entrar
+O SSH usa só chave. A chave pública está em `C:\ProgramData\ssh\administrators_authorized_keys`, que é onde o OpenSSH do Windows a procura para contas de administrador. No portátil, o `~/.ssh/config` tem uma entrada para a máquina. Chega isto:
 
-Preparei duas formas de acesso: SSH para administração por terminal e RDP para o ambiente de trabalho. Ambas ficam limitadas à rede privada. Não abri uma porta no router para entrar no Windows.
+```
+ssh mimir
+```
 
-O SSH permite verificar serviços, consultar a configuração e fazer operações que não precisam de interface gráfica. Está configurado com autenticação por chave. A firewall permite esse acesso no perfil privado usado pelo Tailscale. A ligação Ethernet de casa tem outro perfil, pelo que estar na mesma rede local não dá automaticamente o mesmo acesso.
+A regra da firewall do SSH só vale para o perfil Privado. O Tailscale aparece como Privado e a Ethernet de casa como Público, por isso estar na mesma rede local não dá acesso. Foi de propósito.
 
-O RDP está ativado com Network Level Authentication. A regra da firewall restringe as origens à rede Tailscale. É o acesso previsto para abrir o ambiente de trabalho quando preciso de uma aplicação gráfica. O SSH fica disponível para as tarefas de administração que resolvo mais depressa no terminal.
+O RDP está ligado com Network Level Authentication. A regra da firewall limita as origens a `100.64.0.0/10`, o intervalo que o Tailscale usa. Ainda não o testei a partir de outro dispositivo.
 
-## Uma sessão remota também depende da energia
+## Energia
 
-Configurei o Windows para não suspender nem hibernar automaticamente quando está ligado à corrente. O ecrã pode desligar-se ao fim de cinco minutos. Deixar o ecrã apagado não deve tornar o computador inacessível.
+O plano de energia é o Equilibrado. Com a máquina ligada à corrente, o Windows nunca suspende nem hiberna sozinho. O ecrã apaga ao fim de cinco minutos. A hibernação continua ativa no sistema, só nunca é acionada automaticamente.
 
-Ativei também o Wake-on-LAN do lado do Windows e desliguei o arranque rápido. A placa de rede está autorizada a acordar a máquina por magic packet. Isso prepara a possibilidade de a ligar à distância quando estiver desligada, além de manter o acesso enquanto está acordada.
+Do lado do Windows ativei o Wake-on-LAN, para a placa de rede poder acordar a máquina com um magic packet. Desliguei também o arranque rápido, porque sem isso o Wake-on-LAN não funciona a partir de um encerramento completo. Na BIOS, a opção de Wake on LAN está em "Boot Order", mas ainda não confirmei que acorda a máquina desligada. Por agora deixo-a ligada.
 
-Por enquanto, o uso habitual é deixá-la ligada. O plano de energia equilibrado mantém a gestão do Windows e o monitor apaga-se sozinho. Posso deixar um trabalho na máquina sem depender de manter um ecrã aceso em casa.
+## O Secure Boot e o BitLocker
 
-## Preparar o streaming do desktop
+O Secure Boot veio desligado. Liguei-o na BIOS a 25 de outubro. Mudar a cadeia de arranque altera as medições que o BitLocker usa. Sem o suspender antes, o Windows pede a chave de recuperação no arranque seguinte. Este comando suspende-o durante dois reinícios:
 
-Instalei o Sunshine como opção para transmitir o desktop. A ideia é poder trabalhar sobre a imagem da sessão e explorar a interação com as aplicações a partir de outro dispositivo. O RDP continua a ser a outra via preparada para acesso gráfico.
+```
+manage-bde -protectors -disable C: -RebootCount 2
+```
 
-Como há um monitor físico ligado, essa será a imagem disponível para transmitir. Um ecrã virtual permitiria trabalhar com uma resolução independente do monitor, mas decidi adiar essa peça até confirmar o percurso básico.
+No dia seguinte o BitLocker estava outra vez ativo em `C:` e `D:`.
 
-## As dependências menos visíveis
+## O que o SSH não faz
 
-Uma ligação SSH ao Windows não reproduz tudo o que existe na sessão interativa. Encontrei isso na autenticação do GitHub: a credencial disponível no ambiente de trabalho não estava acessível da mesma forma numa sessão SSH por chave. Um comando remoto a rejeitar a autenticação não significava que a conta estivesse desligada na sessão local.
+Uma sessão SSH não é a sessão do ambiente de trabalho. O GitHub mostrou-me a diferença. Fiz `gh auth login` na minha sessão local e funcionou. Por SSH, o `gh auth status` diz que o token é inválido. O token está no armazenamento de credenciais do Windows, que um login por chave não consegue abrir. Para clonar repositórios privados no mimir tenho de estar na sessão dele.
 
-Há ainda uma cautela vinda do portátil: o Proton VPN já interferiu com o Tailscale nessa máquina. Não transformei essa experiência numa conclusão sobre o mimir. Serve como motivo para testar alterações de rede com uma forma de recuperar o acesso disponível.
+O `winget` por SSH tem outra regra estranha: a primeira instalação de cada sessão corre bem e as seguintes falham com "Acesso negado" (`0xc0070005`). Abro uma ligação nova para cada instalação.
 
-## Próximos passos
+Instalei também o Proton VPN para uso ocasional. No portátil já me cortou o Tailscale. No mimir, ligá-lo pode cortar o acesso remoto.
 
-Falta validar a sessão RDP a partir de outro dispositivo, configurar e emparelhar o Sunshine e confirmar o Wake-on-LAN também na BIOS e depois de um encerramento completo. São os próximos passos para fechar o acesso diário à máquina que já ficou preparada em casa.
+## O que falta
+
+Instalei o Sunshine para ver o desktop à distância, mas ainda não criei o utilizador na interface web nem o emparelhei. Como há um monitor ligado, é essa a imagem que vai ser transmitida. Adiei o ecrã virtual até o resto funcionar.
+
+Falta testar o RDP a partir de outro dispositivo, emparelhar o Sunshine e confirmar o Wake-on-LAN na BIOS depois de um encerramento completo.
