@@ -386,15 +386,6 @@
     "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794514017/cabacatech/2026-11/screenshots/africana-virtual-airways/homepage-search-8b8750491f.webp",
     "sha256": "8b8750491f7c9f7038aafde34b723df67c02e2c3fab843b97af3e204744642d2"
   },
-  "screenshots/iade-horarios/iade-home-dark": {
-    "public_id": "cabacatech/2026-11/screenshots/iade-horarios/iade-home-dark-c023e8c008",
-    "version": 1794514018,
-    "width": 2160,
-    "height": 1440,
-    "bytes": 100902,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794514018/cabacatech/2026-11/screenshots/iade-horarios/iade-home-dark-c023e8c008.webp",
-    "sha256": "c023e8c008faa3f64be30264dbb879658e6fb59bfdd76b116f65db01cc40af4e"
-  },
   "screenshots/iade-horarios/iade-week-dark": {
     "public_id": "cabacatech/2026-11/screenshots/iade-horarios/iade-week-dark-6c0c1c59ba",
     "version": 1794514020,
