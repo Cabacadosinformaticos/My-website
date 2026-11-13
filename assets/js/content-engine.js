@@ -910,131 +910,28 @@ function initDetailsBlocks(root = document) {
    a secção fica fixa e a faixa anda em X
    enquanto se faz scroll vertical.
 ══════════════════════════════════════ */
-const TIMELINE_PIN_MIN = 900;
-
-function navHeightPx() {
-  return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 68;
-}
-
+// Faixa horizontal com scroll nativo e snap, dentro da coluna do artigo.
+// O modo fixo que convertia o scroll vertical em horizontal partia a página
+// (saía da coluna, tapava a barra lateral e deixava um ecrã vazio), por isso
+// foi retirado.
 function setupHorizontalTimeline(section) {
   if (!section || section.dataset.tlReady) return;
-  const stage = section.querySelector('.timeline-h-stage');
   const strip = section.querySelector('.timeline-h-scroll');
-  const track = section.querySelector('.timeline-h');
-  const items = [...section.querySelectorAll('.timeline-h-item')];
-  if (!stage || !strip || !track || !items.length) return;
+  if (!strip) return;
   section.dataset.tlReady = '1';
 
-  let maxX = 0;
-  let pinned = false;
-  let ticking = false;
-  let lastX = null;
-
-  // A secção sai da coluna do artigo até à largura do viewport.
-  function applyBleed() {
-    const doc    = document.documentElement;
-    const parent = section.parentElement;
-    const rect   = parent ? parent.getBoundingClientRect() : { left: 0, right: doc.clientWidth };
-    section.style.setProperty('--bleed-l', Math.max(0, Math.round(rect.left)) + 'px');
-    section.style.setProperty('--bleed-r', Math.max(0, Math.round(doc.clientWidth - rect.right)) + 'px');
-  }
-
-  function measure() {
-    if (!pinned) return;
-    applyBleed();
-    maxX = Math.max(0, track.scrollWidth - strip.clientWidth);
-    const stageH = stage.offsetHeight;
-    // Sobra uma cauda no fim para a secção libertar sem corte abrupto.
-    section.style.setProperty('--tl-outer', Math.round(stageH + maxX + stageH * 0.16) + 'px');
-    lastX = null;
-    update();
-  }
-
-  function update() {
-    if (!pinned) return;
-    const scrolled = Math.min(Math.max(navHeightPx() - section.getBoundingClientRect().top, 0), maxX);
-    if (scrolled !== lastX) {
-      lastX = scrolled;
-      track.style.setProperty('--tl-x', (-scrolled) + 'px');
-      section.style.setProperty('--tl-progress', String(maxX ? scrolled / maxX : 1));
-      section.classList.toggle('tl-moved', scrolled > 10);
-      section.classList.toggle('tl-at-end', maxX > 0 && scrolled >= maxX - 1);
-    }
-    // Passo ativo: o mais próximo do centro da faixa.
-    const stripRect = strip.getBoundingClientRect();
-    const centre    = stripRect.left + stripRect.width / 2;
-    let active = -1;
-    let best   = Infinity;
-    items.forEach((el, i) => {
-      const rect = el.getBoundingClientRect();
-      const dist = Math.abs(rect.left + rect.width / 2 - centre);
-      if (dist < best) { best = dist; active = i; }
-    });
-    items.forEach((el, i) => el.classList.toggle('is-active', i === active));
-    // Se a faixa já está a deslizar, os passos têm de estar visíveis.
-    if (!section.classList.contains('is-in') && section.getBoundingClientRect().top < window.innerHeight) section.classList.add('is-in');
-  }
-
-  const onScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => { ticking = false; update(); });
-  };
-  const onResize = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => { ticking = false; measure(); });
-  };
-
-  function enable() {
-    if (pinned) return;
-    pinned = true;
-    section.classList.add('is-pinned');
-    measure();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onResize);
-  }
-
-  function disable() {
-    if (!pinned) return;
-    pinned = false;
-    section.classList.remove('is-pinned');
-    window.removeEventListener('scroll', onScroll);
-    window.removeEventListener('resize', onResize);
-    ['--tl-outer', '--bleed-l', '--bleed-r', '--tl-progress'].forEach(prop => section.style.removeProperty(prop));
-    track.style.removeProperty('--tl-x');
-    section.classList.remove('tl-moved', 'tl-at-end');
-    items.forEach(el => el.classList.remove('is-active'));
-  }
-
-  const mode = () => {
-    const wide = window.matchMedia(`(min-width: ${TIMELINE_PIN_MIN}px)`).matches;
-    wide && !prefersReducedMotion() ? enable() : disable();
-  };
-  mode();
-
-  const mq = window.matchMedia(`(min-width: ${TIMELINE_PIN_MIN}px)`);
-  const rmq = window.matchMedia('(prefers-reduced-motion: reduce)');
-  [mq, rmq].forEach(query => {
-    if (query.addEventListener) query.addEventListener('change', mode);
-    else if (query.addListener) query.addListener(mode);
-  });
-
-  // Na faixa nativa (<900px ou movimento reduzido) o aviso desaparece ao
-  // primeiro deslize e o desvanecimento da direita só aparece se houver mais
-  // passos por ver.
+  // O aviso desaparece ao primeiro deslize e o desvanecimento da direita só
+  // aparece se houver mais passos por ver.
   function stripUpdate() {
-    if (pinned) return;
     const max = strip.scrollWidth - strip.clientWidth;
     section.classList.toggle('tl-moved', strip.scrollLeft > 10);
     section.classList.toggle('tl-at-end', max <= 2 || strip.scrollLeft >= max - 2);
+    section.style.setProperty('--tl-progress', String(max > 2 ? strip.scrollLeft / max : 1));
   }
-  strip.addEventListener('scroll', () => { stripUpdate(); }, { passive: true });
-  window.addEventListener('resize', () => { stripUpdate(); }, { passive: true });
+  strip.addEventListener('scroll', stripUpdate, { passive: true });
+  window.addEventListener('resize', stripUpdate, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(stripUpdate);
   stripUpdate();
-
-  // As fontes mudam a largura do texto: re-medir depois de carregarem.
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measure(); });
 }
 
 function initHorizontalTimelines(root = document) {

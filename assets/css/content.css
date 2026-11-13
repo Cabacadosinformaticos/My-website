@@ -1129,10 +1129,7 @@
 
 /* ══════════════════════════════════════
    HORIZONTAL - faixa de passos
-   Base (mobile e movimento reduzido): faixa com scroll nativo e snap.
-   Com >=900px e sem movimento reduzido o motor de conteúdo põe
-   `.is-pinned`: a secção fica alta, o palco fixa-se e a faixa
-   desloca-se em X conforme o scroll vertical.
+   Faixa com scroll nativo e snap, em todos os tamanhos de ecrã.
 ══════════════════════════════════════ */
 .timeline-card-h { padding: 18px 0; }
 
@@ -1181,7 +1178,7 @@
 }
 /* Desvanecimento na margem direita enquanto houver passos por ver.
    Só na faixa nativa: no modo fixo o palco tem os seus próprios fades. */
-.timeline-card-h:not(.is-pinned):not(.tl-at-end) .timeline-h-scroll {
+.timeline-card-h:not(.tl-at-end) .timeline-h-scroll {
   -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 56px), transparent 100%);
   mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 56px), transparent 100%);
 }
@@ -1243,65 +1240,6 @@
   color: var(--muted2);
 }
 .timeline-h-text p { margin: 0; font-size: 13.5px; line-height: 1.75; color: var(--muted2); }
-
-/* ── Modo fixo: a secção sai da coluna e a faixa anda em X ── */
-.timeline-card-h.is-pinned {
-  height: var(--tl-outer, auto);
-  margin-left: calc(-1 * var(--bleed-l, 0px));
-  margin-right: calc(-1 * var(--bleed-r, 0px));
-  border-color: var(--border);
-  border-left: none;
-  border-right: none;
-  background: var(--bg2);
-  padding: 0;
-}
-.timeline-card-h.is-pinned .timeline-h-stage {
-  position: sticky;
-  top: var(--nav-h);
-  /* Por cima da barra lateral do post (também sticky) enquanto está fixa. */
-  z-index: 20;
-  background: var(--bg);
-  height: calc(100vh - var(--nav-h));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 32px 48px;
-  overflow: hidden;
-}
-/* Desvanecimento nas margens: esquerda depois de arrancar,
-   direita enquanto ainda há passos por ver. */
-.timeline-card-h.is-pinned .timeline-h-stage::before,
-.timeline-card-h.is-pinned .timeline-h-stage::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 72px;
-  pointer-events: none;
-  transition: opacity .3s ease;
-}
-.timeline-card-h.is-pinned .timeline-h-stage::before {
-  left: 0;
-  background: linear-gradient(90deg, var(--bg2), rgba(7,10,23,0));
-  opacity: 0;
-}
-.timeline-card-h.is-pinned .timeline-h-stage::after {
-  right: 0;
-  background: linear-gradient(270deg, var(--bg2), rgba(7,10,23,0));
-  opacity: 1;
-}
-.timeline-card-h.is-pinned.tl-moved .timeline-h-stage::before { opacity: 1; }
-.timeline-card-h.is-pinned.tl-at-end .timeline-h-stage::after { opacity: 0; }
-.timeline-card-h.is-pinned .timeline-h-scroll {
-  overflow: hidden;
-  scroll-snap-type: none;
-}
-.timeline-card-h.is-pinned .timeline-h {
-  transform: translate3d(var(--tl-x, 0px), 0, 0);
-  will-change: transform;
-}
-.timeline-card-h.is-pinned .timeline-h-item { scroll-snap-align: none; }
-.timeline-card-h.is-pinned .timeline-h-item.is-active { background: var(--surface); }
 
 /* ── Compacto: lista densa com coluna de datas ── */
 .timeline-card-c { padding-bottom: 12px; }
