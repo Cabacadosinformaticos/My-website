@@ -14,9 +14,6 @@ Uma das grandes razões para eu querer um servidor em casa era Minecraft. Eu que
 
 Na minha cabeça, isto era simples: montava o servidor, criava o mundo, convidava os amigos e estava feito.
 
-:::image-placeholder title="Servidor de Minecraft" desc="Screenshot de um mundo de Minecraft ou da lista de servidores, sem IP público visível." ratio="16:9"
-:::
-
 ## O problema dos servidores modded
 
 Minecraft vanilla já tem os seus detalhes, mas servidores com mods mudam completamente a conversa. Um modpack pesado não é só "Minecraft com mais coisas". É uma coleção de código de várias origens, versões e dependências, tudo a tentar correr em conjunto.
@@ -79,8 +76,7 @@ VM Debian
 
 Isto é bom porque separa os mundos. Cada servidor pode ter a sua versão, mods e configuração. Mas também significa que quando algo corre mal, é preciso perceber em que camada o problema está.
 
-:::image-placeholder title="Painel de instâncias do AMP" desc="Screenshot do AMP com nomes dos mundos e utilizadores ocultados." ratio="16:9"
-:::
+![Painel de instâncias do AMP, com uma instância de Minecraft por servidor. Os nomes estão tapados.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794696639/cabacatech/2026-11/screenshots/homelab/amp-instances-14c010d95f.webp)
 
 ## O que pode correr mal
 

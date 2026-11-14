@@ -12,8 +12,7 @@ related: [project:homelab-proxmox-servidorzinho, post:o-lado-menos-glamoroso-do-
 
 O AdGuard Home é o serviço mais pequeno do meu homelab e um dos que tem mais impacto. Corre num container LXC com 1 GB de RAM e 8 GB de disco e todos os dispositivos da casa lhe perguntam onde fica cada domínio antes de abrirem o que quer que seja. Se o domínio estiver numa lista de bloqueio, a resposta é "não existe".
 
-:::image-placeholder title="Dashboard do AdGuard Home" desc="Screenshot da dashboard com estatísticas gerais, sem clientes, IPs nem domínios pessoais." ratio="16:9"
-:::
+![Painel do AdGuard Home com as estatísticas das últimas 24 horas. Clientes e domínios estão tapados.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794696638/cabacatech/2026-11/screenshots/homelab/adguard-dashboard-66c4b9ad40.webp)
 
 ## Como funciona um bloqueador de DNS
 

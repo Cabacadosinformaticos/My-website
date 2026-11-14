@@ -92,8 +92,7 @@ O Proxmox tornou-se o centro do homelab. É onde crio máquinas virtuais, contai
 É a plataforma de virtualização que uso nos dois servidores do homelab.
 :::
 
-:::image-placeholder title="Dashboard do Proxmox" desc="Screenshot do Proxmox com dados sensíveis borrados." ratio="16:9"
-:::
+![Painel do Proxmox no servidorzinho, com a VM do AMP e o container do AdGuard a correr.](https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794696636/cabacatech/2026-11/screenshots/homelab/proxmox-dashboard-cfa1666265.webp)
 
 ## As primeiras decisões que mudaram tudo
 

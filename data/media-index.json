@@ -1258,5 +1258,32 @@
     "bytes": 167468,
     "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680237/cabacatech/2026-11/services/pf-vigia-onboarding-0792bc12a8.webp",
     "sha256": "0792bc12a811ed77b55d5111bb66029e9cf88d4a4b8eb6009bbe2583ea21187e"
+  },
+  "screenshots/homelab/proxmox-dashboard": {
+    "public_id": "cabacatech/2026-11/screenshots/homelab/proxmox-dashboard-cfa1666265",
+    "version": 1794696636,
+    "width": 1912,
+    "height": 922,
+    "bytes": 72346,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794696636/cabacatech/2026-11/screenshots/homelab/proxmox-dashboard-cfa1666265.webp",
+    "sha256": "cfa166626561080e1e64bb5cb50b20328ff380ed708640d0b7caf79609386ca6"
+  },
+  "screenshots/homelab/adguard-dashboard": {
+    "public_id": "cabacatech/2026-11/screenshots/homelab/adguard-dashboard-66c4b9ad40",
+    "version": 1794696638,
+    "width": 1912,
+    "height": 1621,
+    "bytes": 101754,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794696638/cabacatech/2026-11/screenshots/homelab/adguard-dashboard-66c4b9ad40.webp",
+    "sha256": "66c4b9ad40d433064893ba8caec6c70de8d9d8678f697bae9c9c9f90ff44b835"
+  },
+  "screenshots/homelab/amp-instances": {
+    "public_id": "cabacatech/2026-11/screenshots/homelab/amp-instances-14c010d95f",
+    "version": 1794696639,
+    "width": 1912,
+    "height": 922,
+    "bytes": 148800,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794696639/cabacatech/2026-11/screenshots/homelab/amp-instances-14c010d95f.webp",
+    "sha256": "14c010d95fed04e1cd175779e1306f9e46fb19c118142f6f265a3127ea21ce0d"
   }
 }
