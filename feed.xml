@@ -32,7 +32,7 @@
       <link>https://cabacatech.com/pages/blog-post.html?id=nas-com-samba-e-cockpit</link>
       <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=nas-com-samba-e-cockpit</guid>
       <pubDate>Sun, 01 Nov 2026 09:00:00 +0000</pubDate>
-      <description>O disco de 10 TB voltou ao homelab. Samba serve as partilhas, Cockpit dá-lhes um painel e DLNA leva os conteúdos da família à televisão. O desenho, as quotas e o que falta proteger.</description>
+      <description>O disco de 10 TB voltou ao homelab. Samba serve as partilhas, o Cockpit dá-lhes um painel e o DLNA leva os vídeos da família à televisão. Como ficou montado, as quotas e o que falta proteger.</description>
       <category>Homelab</category>
       <category>Storage</category>
       <category>Linux</category>
@@ -42,7 +42,7 @@
       <link>https://cabacatech.com/pages/blog-post.html?id=backups-do-homelab-com-pbs</link>
       <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=backups-do-homelab-com-pbs</guid>
       <pubDate>Sun, 01 Nov 2026 09:00:00 +0000</pubDate>
-      <description>Os dois hosts Proxmox já têm backups noturnos configurados para um PBS no bifrost. O destino, a retenção, a verificação e os dados que continuam sem segunda cópia.</description>
+      <description>Os dois hosts Proxmox já têm backups noturnos para um PBS no bifrost. A configuração, a agenda, o primeiro backup e os dados que continuam sem segunda cópia.</description>
       <category>Homelab</category>
       <category>Proxmox</category>
       <category>Backups</category>
@@ -52,7 +52,7 @@
       <link>https://cabacatech.com/pages/blog-post.html?id=mimir-desktop-remoto</link>
       <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=mimir-desktop-remoto</guid>
       <pubDate>Thu, 01 Oct 2026 09:00:00 +0000</pubDate>
-      <description>Um ThinkCentre Tiny que fica em casa, acessível pela rede privada. Hardware, acesso ao Windows e as escolhas para manter uma segunda máquina de trabalho disponível.</description>
+      <description>Um ThinkCentre Tiny sempre ligado em casa, com Windows 11, acesso por SSH e RDP só através do Tailscale. O hardware, a energia e o que correu menos bem.</description>
       <category>Homelab</category>
       <category>Windows</category>
       <category>Redes</category>
@@ -62,7 +62,7 @@
       <link>https://cabacatech.com/pages/blog-post.html?id=chega-o-bifrost</link>
       <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=chega-o-bifrost</guid>
       <pubDate>Sun, 01 Nov 2026 09:00:00 +0000</pubDate>
-      <description>O segundo MS-A1 já corre Proxmox e recebeu as VMs públicas. Como distribuí os serviços, porque mantive os servidores independentes e onde termina a separação entre eles.</description>
+      <description>O segundo MS-A1 já corre Proxmox e recebeu as VMs públicas. Como as mudei por backup e restauro, porque não fiz um cluster e o que a mudança me ensinou sobre o cloud-init.</description>
       <category>Homelab</category>
       <category>Proxmox</category>
       <category>Infraestrutura</category>
@@ -128,7 +128,7 @@
       <category>Pessoal</category>
     </item>
     <item>
-      <title>Olá, Mundo. A minha jornada até aqui</title>
+      <title>Olá, Mundo. Como cheguei aqui</title>
       <link>https://cabacatech.com/pages/blog-post.html?id=ola-mundo</link>
       <guid isPermaLink="true">https://cabacatech.com/pages/blog-post.html?id=ola-mundo</guid>
       <pubDate>Fri, 01 May 2026 09:00:00 +0000</pubDate>

@@ -2,77 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://cabacatech.com/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/about.html</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/projects.html</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/blog.html</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/servicos.html</loc>
     <lastmod>2026-11-14</lastmod>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/servico-websites.html</loc>
     <lastmod>2026-11-14</lastmod>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/servico-design.html</loc>
     <lastmod>2026-11-14</lastmod>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/servico-web-apps.html</loc>
     <lastmod>2026-11-14</lastmod>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/servico-alojamento.html</loc>
     <lastmod>2026-11-14</lastmod>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/servico-otimizacao.html</loc>
     <lastmod>2026-11-14</lastmod>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/servico-consultoria.html</loc>
     <lastmod>2026-11-14</lastmod>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/portfolio.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/contact.html</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/uses.html</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/privacidade.html</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/project-detail.html?id=fieldnote</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -82,12 +87,12 @@
   </url>
   <url>
     <loc>https://cabacatech.com/pages/project-detail.html?id=homelab-proxmox-servidorzinho</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/project-detail.html?id=cabacalab</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -102,12 +107,12 @@
   </url>
   <url>
     <loc>https://cabacatech.com/pages/project-detail.html?id=africana-virtual-airways</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cabacatech.com/pages/project-detail.html?id=psp-lisboa-app</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -117,131 +122,11 @@
   </url>
   <url>
     <loc>https://cabacatech.com/pages/project-detail.html?id=xplored</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cabacatech.com/pages/blog-post.html?id=fieldnote-agendar-sem-interromper</loc>
-    <lastmod>2026-11-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/blog-post.html?id=fieldnote-quando-um-no-falha</loc>
-    <lastmod>2026-11-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/blog-post.html?id=nas-com-samba-e-cockpit</loc>
-    <lastmod>2026-11-11</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/blog-post.html?id=backups-do-homelab-com-pbs</loc>
-    <lastmod>2026-11-10</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/blog-post.html?id=mimir-desktop-remoto</loc>
-    <lastmod>2026-10-28</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/blog-post.html?id=chega-o-bifrost</loc>
-    <lastmod>2026-11-09</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/blog-post.html?id=jellyfin-e-truenas-o-que-aprendi</loc>
-    <lastmod>2026-11-11</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/blog-post.html?id=publicar-um-site-sem-abrir-portas</loc>
-    <lastmod>2026-11-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/blog-post.html?id=o-lado-menos-glamoroso-do-homelab</loc>
-    <lastmod>2026-11-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/blog-post.html?id=dns-em-casa-com-adguard-home</loc>
-    <lastmod>2026-11-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/blog-post.html?id=servidor-minecraft-em-casa</loc>
-    <lastmod>2026-11-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/blog-post.html?id=como-comecei-o-meu-homelab</loc>
-    <lastmod>2026-11-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/blog-post.html?id=ola-mundo</loc>
-    <lastmod>2026-11-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/blog-post.html?id=como-este-site-foi-feito</loc>
-    <lastmod>2026-11-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-
-
-
-
-
-  <url>
-    <loc>https://cabacatech.com/pages/portfolio.html</loc>
-    <lastmod>2026-11-14</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/portfolio/tasca-do-largo.html</loc>
-    <lastmod>2026-11-14</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/portfolio/atelier-norte.html</loc>
-    <lastmod>2026-11-14</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/portfolio/clinica-movimento.html</loc>
-    <lastmod>2026-11-14</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/portfolio/rota-viva.html</loc>
-    <lastmod>2026-11-14</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/portfolio/navalha.html</loc>
-    <lastmod>2026-11-14</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/portfolio/bairro.html</loc>
-    <lastmod>2026-11-14</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/portfolio/lumen.html</loc>
-    <lastmod>2026-11-14</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/portfolio/partida.html</loc>
-    <lastmod>2026-11-14</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cabacatech.com/pages/portfolio/vigia.html</loc>
+    <loc>https://cabacatech.com/pages/portfolio/allegro.html</loc>
     <lastmod>2026-11-14</lastmod>
     <priority>0.7</priority>
   </url>
@@ -251,7 +136,42 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://cabacatech.com/pages/portfolio/atelier-norte.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/portfolio/bairro.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/portfolio/casa-clara.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/portfolio/clinica-movimento.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://cabacatech.com/pages/portfolio/forma-studio.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/portfolio/lumen.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/portfolio/navalha.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/portfolio/partida.html</loc>
     <lastmod>2026-11-14</lastmod>
     <priority>0.7</priority>
   </url>
@@ -261,13 +181,88 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cabacatech.com/pages/portfolio/allegro.html</loc>
+    <loc>https://cabacatech.com/pages/portfolio/rota-viva.html</loc>
     <lastmod>2026-11-14</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cabacatech.com/pages/portfolio/casa-clara.html</loc>
+    <loc>https://cabacatech.com/pages/portfolio/tasca-do-largo.html</loc>
     <lastmod>2026-11-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/portfolio/vigia.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/blog-post.html?id=fieldnote-agendar-sem-interromper</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/blog-post.html?id=fieldnote-quando-um-no-falha</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/blog-post.html?id=nas-com-samba-e-cockpit</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/blog-post.html?id=backups-do-homelab-com-pbs</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/blog-post.html?id=mimir-desktop-remoto</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/blog-post.html?id=chega-o-bifrost</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/blog-post.html?id=jellyfin-e-truenas-o-que-aprendi</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/blog-post.html?id=publicar-um-site-sem-abrir-portas</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/blog-post.html?id=o-lado-menos-glamoroso-do-homelab</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/blog-post.html?id=dns-em-casa-com-adguard-home</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/blog-post.html?id=servidor-minecraft-em-casa</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/blog-post.html?id=como-comecei-o-meu-homelab</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/blog-post.html?id=ola-mundo</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cabacatech.com/pages/blog-post.html?id=como-este-site-foi-feito</loc>
+    <lastmod>2026-11-13</lastmod>
     <priority>0.7</priority>
   </url>
 </urlset>
