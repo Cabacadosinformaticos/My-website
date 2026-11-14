@@ -448,5 +448,113 @@
     "bytes": 145868,
     "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794514028/cabacatech/2026-11/screenshots/fieldnote/fieldnote-portal-activities-a6aec4516a.webp",
     "sha256": "a6aec4516ab734a0eecdc2c6494d4bac67d204f2b82baa8490def519ca4afea0"
+  },
+  "services/app-dashboard": {
+    "public_id": "cabacatech/2026-11/services/app-dashboard-ede6821b5a",
+    "version": 1794667809,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 211474,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667809/cabacatech/2026-11/services/app-dashboard-ede6821b5a.webp",
+    "sha256": "ede6821b5a594b71991efee40a08718f90767ab3b7a46b6c2fccc4dd841e27fc"
+  },
+  "services/app-mobile": {
+    "public_id": "cabacatech/2026-11/services/app-mobile-e3983ccfd1",
+    "version": 1794667811,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 172804,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667811/cabacatech/2026-11/services/app-mobile-e3983ccfd1.webp",
+    "sha256": "e3983ccfd16d01eef279e1b4aec193e33a7a0b4e1a4745d03feece6fda6c909a"
+  },
+  "services/app-reservas": {
+    "public_id": "cabacatech/2026-11/services/app-reservas-d5bbb54b28",
+    "version": 1794667812,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 196128,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667812/cabacatech/2026-11/services/app-reservas-d5bbb54b28.webp",
+    "sha256": "d5bbb54b28f8e6a130b88205bb26ee6ac1f61dd45ba7ef0d84b1381bb286402f"
+  },
+  "services/design-canvas": {
+    "public_id": "cabacatech/2026-11/services/design-canvas-dae13f08fd",
+    "version": 1794667814,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 198280,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667814/cabacatech/2026-11/services/design-canvas-dae13f08fd.webp",
+    "sha256": "dae13f08fdb33b09524a18dcc7fc8340d5ac114ba250cf72e2eca8ce5bbd3b1a"
+  },
+  "services/design-flow": {
+    "public_id": "cabacatech/2026-11/services/design-flow-ba065be16e",
+    "version": 1794667816,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 146496,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667816/cabacatech/2026-11/services/design-flow-ba065be16e.webp",
+    "sha256": "ba065be16e1da12aa7f349c1704c97c6aefe5ac475c1c3336fefd6db63a3fa2b"
+  },
+  "services/design-system": {
+    "public_id": "cabacatech/2026-11/services/design-system-d2dd66d5b1",
+    "version": 1794667818,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 169042,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667818/cabacatech/2026-11/services/design-system-d2dd66d5b1.webp",
+    "sha256": "d2dd66d5b1f88182db706bbfd5356c5733981611bc3a183c6562d74fe53e14ab"
+  },
+  "services/hero-collage": {
+    "public_id": "cabacatech/2026-11/services/hero-collage-1e2f4d58d9",
+    "version": 1794667819,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 240334,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667819/cabacatech/2026-11/services/hero-collage-1e2f4d58d9.webp",
+    "sha256": "1e2f4d58d953da2298bacfc274a121b52803e755a06b9aa409e9ea0d4c4c5d64"
+  },
+  "services/host-deploy": {
+    "public_id": "cabacatech/2026-11/services/host-deploy-24b0401ca0",
+    "version": 1794667821,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 248688,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667821/cabacatech/2026-11/services/host-deploy-24b0401ca0.webp",
+    "sha256": "24b0401ca0e62e52b2d4c50600bfcfc0b2c5ba8d3f4fdd32dbc13ff41416e995"
+  },
+  "services/host-status": {
+    "public_id": "cabacatech/2026-11/services/host-status-cfa98093ca",
+    "version": 1794667822,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 184538,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667822/cabacatech/2026-11/services/host-status-cfa98093ca.webp",
+    "sha256": "cfa98093ca5c0fda6ce4d294804c108da650849ea15c127385259be0742068af"
+  },
+  "services/web-clinica": {
+    "public_id": "cabacatech/2026-11/services/web-clinica-608c6ffe6e",
+    "version": 1794667824,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 215234,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667824/cabacatech/2026-11/services/web-clinica-608c6ffe6e.webp",
+    "sha256": "608c6ffe6e0801147c2fb8954f39beb993366d2503eb131f53f7409d8772158e"
+  },
+  "services/web-estudio": {
+    "public_id": "cabacatech/2026-11/services/web-estudio-59800f9c42",
+    "version": 1794667826,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 166070,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667826/cabacatech/2026-11/services/web-estudio-59800f9c42.webp",
+    "sha256": "59800f9c42c5415cacdee178d4358a697a76fec305a4c3586df1f01dd8031ee8"
+  },
+  "services/web-restaurante": {
+    "public_id": "cabacatech/2026-11/services/web-restaurante-e1acc24f4b",
+    "version": 1794667827,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 226726,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667827/cabacatech/2026-11/services/web-restaurante-e1acc24f4b.webp",
+    "sha256": "e1acc24f4bc40f41e8f9aff57fe6742582c3edda9c7edac4f2f677cc6fcc22d0"
   }
 }
