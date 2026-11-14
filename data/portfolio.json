@@ -175,7 +175,7 @@
     {
       "id": "alma-ceramica",
       "nome": "Alma Cerâmica",
-      "tipo": ["lojas", "sites"],
+      "tipo": ["sites"],
       "setor": "Cerâmica artesanal",
       "resumo": "Loja online de cerâmica feita à mão, onde cada peça tem o espaço todo e o resto fica quieto.",
       "entregaveis": ["Design da loja", "Páginas de produto com variantes", "Carrinho e pagamento", "Versão para telemóvel"],
@@ -213,7 +213,7 @@
     {
       "id": "quinta-do-freixo",
       "nome": "Quinta do Freixo",
-      "tipo": ["sites", "lojas"],
+      "tipo": ["sites"],
       "setor": "Vinho e enoturismo",
       "resumo": "Site de uma quinta no Douro que vende visitas e provas, com uma loja para os vinhos.",
       "entregaveis": ["Design do site", "Reserva de visitas e provas", "Loja de vinhos", "Versão para tablet e telemóvel"],

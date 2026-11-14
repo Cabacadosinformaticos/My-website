@@ -117,12 +117,28 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ── FAQ accordion ── */
+  const setFaq = (item, open) => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    item.classList.toggle('open', open);
+    if (q) q.setAttribute('aria-expanded', String(open));
+    if (a) a.inert = !open; // resposta fechada fora da ordem de tabulação e do leitor de ecrã
+  };
+  document.querySelectorAll('.faq-item').forEach((item, n) => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    if (q && a) {
+      if (!a.id) a.id = 'faq-a-' + n;
+      q.setAttribute('aria-controls', a.id);
+    }
+    setFaq(item, item.classList.contains('open'));
+  });
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item');
       const wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-      if (!wasOpen) item.classList.add('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => setFaq(i, false));
+      if (!wasOpen) setFaq(item, true);
     });
   });
 

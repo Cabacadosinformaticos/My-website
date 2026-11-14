@@ -29,7 +29,14 @@ STATIC_PAGES = [
     ("pages/about.html", "/pages/about.html", "0.9"),
     ("pages/projects.html", "/pages/projects.html", "0.9"),
     ("pages/blog.html", "/pages/blog.html", "0.8"),
-    ("pages/services.html", "/pages/services.html", "0.8"),
+    ("pages/servicos.html", "/pages/servicos.html", "0.9"),
+    ("pages/servico-websites.html", "/pages/servico-websites.html", "0.8"),
+    ("pages/servico-design.html", "/pages/servico-design.html", "0.8"),
+    ("pages/servico-web-apps.html", "/pages/servico-web-apps.html", "0.8"),
+    ("pages/servico-alojamento.html", "/pages/servico-alojamento.html", "0.8"),
+    ("pages/servico-otimizacao.html", "/pages/servico-otimizacao.html", "0.8"),
+    ("pages/servico-consultoria.html", "/pages/servico-consultoria.html", "0.8"),
+    ("pages/portfolio.html", "/pages/portfolio.html", "0.8"),
     ("pages/contact.html", "/pages/contact.html", "0.7"),
     ("pages/uses.html", "/pages/uses.html", "0.6"),
     ("pages/privacidade.html", "/pages/privacidade.html", "0.3"),
@@ -110,6 +117,8 @@ def build_sitemap(posts: list, projects: list) -> str:
     entries += [(f"{BASE}/pages/project-detail.html?id={p}",
                  last_commit_date(ROOT / "content" / "projects" / f"{p}.md"), "0.8")
                 for p in projects]
+    entries += [(f"{BASE}/pages/portfolio/{f.stem}.html", last_commit_date(f), "0.7")
+                for f in sorted((ROOT / "pages" / "portfolio").glob("*.html"))]
     entries += [(f"{BASE}/pages/blog-post.html?id={p}",
                  last_commit_date(ROOT / "content" / "posts" / f"{p}.md"), "0.7")
                 for p in posts]

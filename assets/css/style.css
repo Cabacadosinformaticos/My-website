@@ -16,6 +16,7 @@
   --text:      #dde1f0;
   --muted:     #4a5470;
   --muted2:    #6b7899;
+  --muted-aa:  #7f8bab; /* texto informativo pequeno: 5,9:1 sobre o fundo */
   --font-head: 'Bebas Neue', sans-serif;
   --font-body: 'Epilogue', sans-serif;
   --font-mono: 'DM Mono', monospace;
@@ -952,7 +953,7 @@ nav.scrolled { border-bottom-color: var(--border2); }
   color: var(--accent);
   background: var(--accent-dim);
 }
-.copy-btn:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+.copy-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .copy-btn.is-copied { border-color: #00e87a; color: #00e87a; }
 .copy-status {
   font-family: var(--font-mono);
@@ -1085,7 +1086,7 @@ nav.scrolled { border-bottom-color: var(--border2); }
 .footer-social:focus-visible .fs-icon { background: var(--accent); color: var(--bg); border-color: var(--accent); }
 .footer-social:hover .fs-arrow,
 .footer-social:focus-visible .fs-arrow { color: var(--accent); transform: translate(3px, -3px); }
-.footer-social:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+.footer-social:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) {
   .footer-social, .footer-social::before, .fs-icon, .fs-arrow { transition: none; }
 }
@@ -1140,12 +1141,12 @@ nav.scrolled { border-bottom-color: var(--border2); }
   color: var(--muted);
 }
 .footer-copy,
-.footer-note { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.footer-note { font-family: var(--font-mono); font-size: 11px; color: var(--muted-aa); }
 .footer-heart { color: var(--accent); }
 .footer-privacy-link {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--muted);
+  color: var(--muted-aa);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: color .2s;
@@ -1157,7 +1158,7 @@ nav.scrolled { border-bottom-color: var(--border2); }
   gap: 7px;
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--muted);
+  color: var(--muted-aa);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: color .2s;

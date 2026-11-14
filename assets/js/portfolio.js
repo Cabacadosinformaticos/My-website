@@ -11,17 +11,17 @@
 (function () {
   'use strict';
 
-  var DATA_URL = '../data/portfolio.json';
+  var IN_SUB = !!document.body.getAttribute('data-project-id');
+  var DATA_URL = IN_SUB ? '../../data/portfolio.json' : '../data/portfolio.json';
   var SITE = 'https://cabacatech.com/pages/';
   var TIPOS = [
     { id: 'todos', label: 'Todos' },
     { id: 'sites', label: 'Sites' },
-    { id: 'lojas', label: 'Lojas online' },
     { id: 'webapps', label: 'Web apps' },
     { id: 'apps', label: 'Apps' },
     { id: 'design', label: 'Design' }
   ];
-  var ROTULO = { sites: 'Site', lojas: 'Loja online', webapps: 'Web app', apps: 'App', design: 'Design' };
+  var ROTULO = { sites: 'Site', webapps: 'Web app', apps: 'App', design: 'Design' };
   var ARROW_L = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg>';
   var ARROW_R = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>';
   var CLOSE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
@@ -54,7 +54,9 @@
     if (opts.cls) i.className = opts.cls;
     return i;
   }
-  function projectUrl(p) { return 'portfolio-projeto.html?id=' + encodeURIComponent(p.id); }
+  function projectUrl(p) {
+    return IN_SUB ? encodeURIComponent(p.id) + '.html' : 'portfolio/' + encodeURIComponent(p.id) + '.html';
+  }
   function tiposLabel(p) { return p.tipo.map(function (t) { return ROTULO[t] || t; }); }
 
   /* ── Entrada ao rolar ── */
@@ -326,7 +328,8 @@
   function initCase() {
     var root = document.getElementById('pf-root');
     if (!root) return;
-    var id = new URLSearchParams(location.search).get('id');
+    var staticId = document.body.getAttribute('data-project-id');
+    var id = staticId || new URLSearchParams(location.search).get('id');
 
     load().then(function (projetos) {
       var idx = -1;
@@ -335,9 +338,35 @@
         missing(root, 'Não encontrei esse projeto. Pode ter mudado de endereço ou o link estar incompleto.');
         return;
       }
-      render(root, projetos, idx);
+      if (staticId) { enhance(root, projetos, idx); return; }
+      location.replace('portfolio/' + encodeURIComponent(projetos[idx].id) + '.html');
     }).catch(function () {
+      if (staticId) {
+        root.querySelectorAll('[data-in], .pc-cover, .pc-hero, .pc-next-media').forEach(function (n) { n.classList.add('is-in'); });
+        return;
+      }
       missing(root, 'Não foi possível carregar os projetos. Recarrega a página ou volta ao portfólio.');
+    });
+  }
+
+  /* As páginas estáticas já trazem o texto e as imagens; o JS só liga a
+     galeria, a lightbox, a faixa horizontal e as entradas ao rolar. */
+  function enhance(root, projetos, idx) {
+    var p = projetos[idx];
+    root.querySelectorAll('[data-in]').forEach(reveal);
+    var nm = root.querySelector('.pc-next-media');
+    if (nm) reveal(nm);
+    var track = root.querySelector('.pc-track');
+    var bar = root.querySelector('.pc-progress i');
+    if (track && bar) initTrack(track, bar);
+    initLightbox(root, p);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        var cover = root.querySelector('.pc-cover');
+        var hero = root.querySelector('.pc-hero');
+        if (cover) cover.classList.add('is-in');
+        if (hero) hero.classList.add('is-in');
+      });
     });
   }
 
@@ -350,7 +379,7 @@
   function render(root, projetos, idx) {
     var p = projetos[idx];
     var title = p.nome + ' | Portfólio | Tiago Cabaça';
-    var url = SITE + 'portfolio-projeto.html?id=' + encodeURIComponent(p.id);
+    var url = SITE + 'portfolio/' + encodeURIComponent(p.id) + '.html';
     document.title = title;
     setMeta('meta[name="description"]', 'content', p.resumo);
     setMeta('link[rel="canonical"]', 'href', url);
