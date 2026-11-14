@@ -450,111 +450,813 @@
     "sha256": "a6aec4516ab734a0eecdc2c6494d4bac67d204f2b82baa8490def519ca4afea0"
   },
   "services/app-dashboard": {
-    "public_id": "cabacatech/2026-11/services/app-dashboard-ede6821b5a",
-    "version": 1794667809,
+    "public_id": "cabacatech/2026-11/services/app-dashboard-01091c038f",
+    "version": 1794680105,
     "width": 3200,
     "height": 2000,
-    "bytes": 211474,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667809/cabacatech/2026-11/services/app-dashboard-ede6821b5a.webp",
-    "sha256": "ede6821b5a594b71991efee40a08718f90767ab3b7a46b6c2fccc4dd841e27fc"
+    "bytes": 235250,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680105/cabacatech/2026-11/services/app-dashboard-01091c038f.webp",
+    "sha256": "01091c038f77cbc94710d70c8f4b164c2030dd651c262e0f94c69634b72afcfb"
   },
   "services/app-mobile": {
-    "public_id": "cabacatech/2026-11/services/app-mobile-e3983ccfd1",
-    "version": 1794667811,
+    "public_id": "cabacatech/2026-11/services/app-mobile-cf10c0fd00",
+    "version": 1794680107,
     "width": 3200,
     "height": 2000,
-    "bytes": 172804,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667811/cabacatech/2026-11/services/app-mobile-e3983ccfd1.webp",
-    "sha256": "e3983ccfd16d01eef279e1b4aec193e33a7a0b4e1a4745d03feece6fda6c909a"
+    "bytes": 173536,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680107/cabacatech/2026-11/services/app-mobile-cf10c0fd00.webp",
+    "sha256": "cf10c0fd006266a753af9f4e6563b19b8f4a8d3b668be63db36f28afca2e2547"
   },
   "services/app-reservas": {
-    "public_id": "cabacatech/2026-11/services/app-reservas-d5bbb54b28",
-    "version": 1794667812,
+    "public_id": "cabacatech/2026-11/services/app-reservas-8e137d9537",
+    "version": 1794680109,
     "width": 3200,
     "height": 2000,
-    "bytes": 196128,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667812/cabacatech/2026-11/services/app-reservas-d5bbb54b28.webp",
-    "sha256": "d5bbb54b28f8e6a130b88205bb26ee6ac1f61dd45ba7ef0d84b1381bb286402f"
+    "bytes": 187786,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680109/cabacatech/2026-11/services/app-reservas-8e137d9537.webp",
+    "sha256": "8e137d9537d68a805ae5e7cc48ff25bf5853a2e66147af3f36edbe9245d1093f"
   },
   "services/design-canvas": {
-    "public_id": "cabacatech/2026-11/services/design-canvas-dae13f08fd",
-    "version": 1794667814,
+    "public_id": "cabacatech/2026-11/services/design-canvas-1e7982ed07",
+    "version": 1794680110,
     "width": 3200,
     "height": 2000,
-    "bytes": 198280,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667814/cabacatech/2026-11/services/design-canvas-dae13f08fd.webp",
-    "sha256": "dae13f08fdb33b09524a18dcc7fc8340d5ac114ba250cf72e2eca8ce5bbd3b1a"
+    "bytes": 190208,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680110/cabacatech/2026-11/services/design-canvas-1e7982ed07.webp",
+    "sha256": "1e7982ed07449a50cd65ddfa609e8d4e356a112b54aeecb38b2997bce564448a"
   },
   "services/design-flow": {
-    "public_id": "cabacatech/2026-11/services/design-flow-ba065be16e",
-    "version": 1794667816,
+    "public_id": "cabacatech/2026-11/services/design-flow-1913389f39",
+    "version": 1794680112,
     "width": 3200,
     "height": 2000,
-    "bytes": 146496,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667816/cabacatech/2026-11/services/design-flow-ba065be16e.webp",
-    "sha256": "ba065be16e1da12aa7f349c1704c97c6aefe5ac475c1c3336fefd6db63a3fa2b"
+    "bytes": 137176,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680112/cabacatech/2026-11/services/design-flow-1913389f39.webp",
+    "sha256": "1913389f39918b2e306152bb69dace25d784337dd9b9d59ebf687722b348dca4"
   },
   "services/design-system": {
-    "public_id": "cabacatech/2026-11/services/design-system-d2dd66d5b1",
-    "version": 1794667818,
+    "public_id": "cabacatech/2026-11/services/design-system-3eabfb2226",
+    "version": 1794680113,
     "width": 3200,
     "height": 2000,
-    "bytes": 169042,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667818/cabacatech/2026-11/services/design-system-d2dd66d5b1.webp",
-    "sha256": "d2dd66d5b1f88182db706bbfd5356c5733981611bc3a183c6562d74fe53e14ab"
+    "bytes": 161128,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680113/cabacatech/2026-11/services/design-system-3eabfb2226.webp",
+    "sha256": "3eabfb2226ccb472861390bc379d739367e64fbf5304a91b77fcecdb2a29eefb"
   },
   "services/hero-collage": {
-    "public_id": "cabacatech/2026-11/services/hero-collage-1e2f4d58d9",
-    "version": 1794667819,
+    "public_id": "cabacatech/2026-11/services/hero-collage-52bd820fa4",
+    "version": 1794680115,
     "width": 3200,
     "height": 2000,
-    "bytes": 240334,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667819/cabacatech/2026-11/services/hero-collage-1e2f4d58d9.webp",
-    "sha256": "1e2f4d58d953da2298bacfc274a121b52803e755a06b9aa409e9ea0d4c4c5d64"
+    "bytes": 230152,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680115/cabacatech/2026-11/services/hero-collage-52bd820fa4.webp",
+    "sha256": "52bd820fa4e87a878786a7f5081c384d089550d2409d8d3996057993fcca734b"
   },
   "services/host-deploy": {
-    "public_id": "cabacatech/2026-11/services/host-deploy-24b0401ca0",
-    "version": 1794667821,
+    "public_id": "cabacatech/2026-11/services/host-deploy-43e9365dfa",
+    "version": 1794680116,
     "width": 3200,
     "height": 2000,
-    "bytes": 248688,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667821/cabacatech/2026-11/services/host-deploy-24b0401ca0.webp",
-    "sha256": "24b0401ca0e62e52b2d4c50600bfcfc0b2c5ba8d3f4fdd32dbc13ff41416e995"
+    "bytes": 244910,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680116/cabacatech/2026-11/services/host-deploy-43e9365dfa.webp",
+    "sha256": "43e9365dfa623677fcda9d6d1385e564c6a473907fae48fbd4219800e723726c"
   },
   "services/host-status": {
-    "public_id": "cabacatech/2026-11/services/host-status-cfa98093ca",
-    "version": 1794667822,
+    "public_id": "cabacatech/2026-11/services/host-status-00c45d8d73",
+    "version": 1794680118,
     "width": 3200,
     "height": 2000,
-    "bytes": 184538,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667822/cabacatech/2026-11/services/host-status-cfa98093ca.webp",
-    "sha256": "cfa98093ca5c0fda6ce4d294804c108da650849ea15c127385259be0742068af"
+    "bytes": 199984,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680118/cabacatech/2026-11/services/host-status-00c45d8d73.webp",
+    "sha256": "00c45d8d733881c35acb1868d6da8b5645c7324f11307c3a4a00c1bab31436c7"
   },
   "services/web-clinica": {
-    "public_id": "cabacatech/2026-11/services/web-clinica-608c6ffe6e",
-    "version": 1794667824,
+    "public_id": "cabacatech/2026-11/services/web-clinica-3670dd8f2f",
+    "version": 1794680243,
     "width": 3200,
     "height": 2000,
-    "bytes": 215234,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667824/cabacatech/2026-11/services/web-clinica-608c6ffe6e.webp",
-    "sha256": "608c6ffe6e0801147c2fb8954f39beb993366d2503eb131f53f7409d8772158e"
+    "bytes": 224792,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680243/cabacatech/2026-11/services/web-clinica-3670dd8f2f.webp",
+    "sha256": "3670dd8f2fa0f6f6a1ac04a9655aeefa3cd3a9e45f356d632e8e91593146121e"
   },
   "services/web-estudio": {
-    "public_id": "cabacatech/2026-11/services/web-estudio-59800f9c42",
-    "version": 1794667826,
+    "public_id": "cabacatech/2026-11/services/web-estudio-dfcecd5465",
+    "version": 1794680245,
     "width": 3200,
     "height": 2000,
-    "bytes": 166070,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667826/cabacatech/2026-11/services/web-estudio-59800f9c42.webp",
-    "sha256": "59800f9c42c5415cacdee178d4358a697a76fec305a4c3586df1f01dd8031ee8"
+    "bytes": 165204,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680245/cabacatech/2026-11/services/web-estudio-dfcecd5465.webp",
+    "sha256": "dfcecd546518a369ca1dad0fefb10b4d2443a0600db3b196549a176577b806f7"
   },
   "services/web-restaurante": {
-    "public_id": "cabacatech/2026-11/services/web-restaurante-e1acc24f4b",
-    "version": 1794667827,
+    "public_id": "cabacatech/2026-11/services/web-restaurante-1627dba92d",
+    "version": 1794680246,
     "width": 3200,
     "height": 2000,
-    "bytes": 226726,
-    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794667827/cabacatech/2026-11/services/web-restaurante-e1acc24f4b.webp",
-    "sha256": "e1acc24f4bc40f41e8f9aff57fe6742582c3edda9c7edac4f2f677cc6fcc22d0"
+    "bytes": 213844,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680246/cabacatech/2026-11/services/web-restaurante-1627dba92d.webp",
+    "sha256": "1627dba92d92b996146cfb52abc40b8d8be0b885b2807d3a0fd129e9ea167a68"
+  },
+  "services/pf-allegro-alunos": {
+    "public_id": "cabacatech/2026-11/services/pf-allegro-alunos-97a7e27c6b",
+    "version": 1794680119,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 225716,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680119/cabacatech/2026-11/services/pf-allegro-alunos-97a7e27c6b.webp",
+    "sha256": "97a7e27c6b545bad6f376073685d1b629e71d790c41f049919db4f1d546ec0be"
+  },
+  "services/pf-allegro-mobile": {
+    "public_id": "cabacatech/2026-11/services/pf-allegro-mobile-5798e11759",
+    "version": 1794680123,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 214370,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680123/cabacatech/2026-11/services/pf-allegro-mobile-5798e11759.webp",
+    "sha256": "5798e11759d795e9cbd1470e4210af72f1cf60164d1c0f4afbede5a46ee69f08"
+  },
+  "services/pf-allegro-painel": {
+    "public_id": "cabacatech/2026-11/services/pf-allegro-painel-227018ce12",
+    "version": 1794680125,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 208842,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680125/cabacatech/2026-11/services/pf-allegro-painel-227018ce12.webp",
+    "sha256": "227018ce12dbf77e2f3f369f5169180af57f50566d2985821017fb80af3ede79"
+  },
+  "services/pf-alma-home": {
+    "public_id": "cabacatech/2026-11/services/pf-alma-home-d3b326d163",
+    "version": 1794680133,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 159754,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680133/cabacatech/2026-11/services/pf-alma-home-d3b326d163.webp",
+    "sha256": "d3b326d16394ef0d804ef4381f8209495a659e0dd358e3efb3df39d788de2195"
+  },
+  "services/pf-alma-mobile": {
+    "public_id": "cabacatech/2026-11/services/pf-alma-mobile-61bcad4e36",
+    "version": 1794680135,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 171134,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680135/cabacatech/2026-11/services/pf-alma-mobile-61bcad4e36.webp",
+    "sha256": "61bcad4e36f25f1a7d0b9cea14b053f43472c4c9de4b788a421da20252488d93"
+  },
+  "services/pf-alma-produto": {
+    "public_id": "cabacatech/2026-11/services/pf-alma-produto-d59ddb9176",
+    "version": 1794680138,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 150604,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680138/cabacatech/2026-11/services/pf-alma-produto-d59ddb9176.webp",
+    "sha256": "d59ddb91761db75e7da5215fad105752b632841bff9a975d4b10b19d8f880315"
+  },
+  "services/pf-atelier-mobile": {
+    "public_id": "cabacatech/2026-11/services/pf-atelier-mobile-7f353a2985",
+    "version": 1794680142,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 144422,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680142/cabacatech/2026-11/services/pf-atelier-mobile-7f353a2985.webp",
+    "sha256": "7f353a298593bf73ebc851b5f371903eb37133d6a52009a6c22c0702d5c96304"
+  },
+  "services/pf-atelier-projeto": {
+    "public_id": "cabacatech/2026-11/services/pf-atelier-projeto-60ee119484",
+    "version": 1794680144,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 187434,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680144/cabacatech/2026-11/services/pf-atelier-projeto-60ee119484.webp",
+    "sha256": "60ee119484a69c0daeba4a19455406dc617370ce80f02342e863960c3a9d88a4"
+  },
+  "services/pf-bairro-landing": {
+    "public_id": "cabacatech/2026-11/services/pf-bairro-landing-385508ba76",
+    "version": 1794680151,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 200756,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680151/cabacatech/2026-11/services/pf-bairro-landing-385508ba76.webp",
+    "sha256": "385508ba76ac5f9b0d7568c024de324a1863e46f6dff6881dc4ddb0b6e4ae7c7"
+  },
+  "services/pf-bairro-mapa": {
+    "public_id": "cabacatech/2026-11/services/pf-bairro-mapa-c0ffaccc90",
+    "version": 1794680153,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 200760,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680153/cabacatech/2026-11/services/pf-bairro-mapa-c0ffaccc90.webp",
+    "sha256": "c0ffaccc90bad94d6f3c3bfc7c04f65160576ec0556adc19ea0ebdb47fced295"
+  },
+  "services/pf-casaclara-imovel": {
+    "public_id": "cabacatech/2026-11/services/pf-casaclara-imovel-4b7f4c4c2b",
+    "version": 1794680159,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 169306,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680159/cabacatech/2026-11/services/pf-casaclara-imovel-4b7f4c4c2b.webp",
+    "sha256": "4b7f4c4c2b5122ec232c519ce7c203ca83d96958b2dc9567e880b32ffc81053e"
+  },
+  "services/pf-casaclara-mobile": {
+    "public_id": "cabacatech/2026-11/services/pf-casaclara-mobile-586a9dab39",
+    "version": 1794680161,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 193926,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680161/cabacatech/2026-11/services/pf-casaclara-mobile-586a9dab39.webp",
+    "sha256": "586a9dab3983e9a7859e7c46ed3857bf4015cb700684478761e27398b5548b8a"
+  },
+  "services/pf-casaclara-pesquisa": {
+    "public_id": "cabacatech/2026-11/services/pf-casaclara-pesquisa-fee9c3e17d",
+    "version": 1794680162,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 202584,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680162/cabacatech/2026-11/services/pf-casaclara-pesquisa-fee9c3e17d.webp",
+    "sha256": "fee9c3e17d550d30668b3e8236b5f28396cee618eb2c6f811342993418b7dec3"
+  },
+  "services/pf-clinica-area": {
+    "public_id": "cabacatech/2026-11/services/pf-clinica-area-85ed69ca4e",
+    "version": 1794680165,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 210592,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680165/cabacatech/2026-11/services/pf-clinica-area-85ed69ca4e.webp",
+    "sha256": "85ed69ca4eb20f6735f4841bd835df4d5e4964497177460e1f6f9066eadd4070"
+  },
+  "services/pf-clinica-servicos": {
+    "public_id": "cabacatech/2026-11/services/pf-clinica-servicos-6219ae1951",
+    "version": 1794680171,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 232848,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680171/cabacatech/2026-11/services/pf-clinica-servicos-6219ae1951.webp",
+    "sha256": "6219ae1951b3634c600f13585b94691e29c56a39ac7431f4d4561ba6b18c1056"
+  },
+  "services/pf-forma-app": {
+    "public_id": "cabacatech/2026-11/services/pf-forma-app-816c2e7593",
+    "version": 1794680173,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 153152,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680173/cabacatech/2026-11/services/pf-forma-app-816c2e7593.webp",
+    "sha256": "816c2e7593201fed1d44c4031da9f8b63ed93ce1019d5ce77bc49328c4af6690"
+  },
+  "services/pf-forma-horario": {
+    "public_id": "cabacatech/2026-11/services/pf-forma-horario-8c38c2b579",
+    "version": 1794680176,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 192758,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680176/cabacatech/2026-11/services/pf-forma-horario-8c38c2b579.webp",
+    "sha256": "8c38c2b579e91883dfd4368060acaf14a238ba6222035649e75fcecbb0b0e3fb"
+  },
+  "services/pf-forma-site": {
+    "public_id": "cabacatech/2026-11/services/pf-forma-site-a4a56d5245",
+    "version": 1794680179,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 213992,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680179/cabacatech/2026-11/services/pf-forma-site-a4a56d5245.webp",
+    "sha256": "a4a56d52457bad537dd25762b94df0e998eb592777b7674f1adb75170e85eb97"
+  },
+  "services/pf-freixo-home": {
+    "public_id": "cabacatech/2026-11/services/pf-freixo-home-8bf2322a38",
+    "version": 1794680185,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 285198,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680185/cabacatech/2026-11/services/pf-freixo-home-8bf2322a38.webp",
+    "sha256": "8bf2322a389af723edc7579ec25d5e52fc4de9ec8e00ce30c1b85b46c326f144"
+  },
+  "services/pf-freixo-loja": {
+    "public_id": "cabacatech/2026-11/services/pf-freixo-loja-c3b27b454e",
+    "version": 1794680187,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 188192,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680187/cabacatech/2026-11/services/pf-freixo-loja-c3b27b454e.webp",
+    "sha256": "c3b27b454ef99121d9f431962937136c43b9c051fd1b06b067de9d8e08f2c554"
+  },
+  "services/pf-freixo-visitas": {
+    "public_id": "cabacatech/2026-11/services/pf-freixo-visitas-fdec3ae482",
+    "version": 1794680190,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 276692,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680190/cabacatech/2026-11/services/pf-freixo-visitas-fdec3ae482.webp",
+    "sha256": "fdec3ae4820e7307d54284a75dd830262063c11d1ff71a407f45fb8f6da856aa"
+  },
+  "services/pf-lumen-app": {
+    "public_id": "cabacatech/2026-11/services/pf-lumen-app-0238151dd0",
+    "version": 1794680191,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 172306,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680191/cabacatech/2026-11/services/pf-lumen-app-0238151dd0.webp",
+    "sha256": "0238151dd06ec1bb8ccd7fc0993599b531034337b61ac8b76acbd4b79b745b8a"
+  },
+  "services/pf-lumen-landing": {
+    "public_id": "cabacatech/2026-11/services/pf-lumen-landing-9f04272edf",
+    "version": 1794680196,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 156376,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680196/cabacatech/2026-11/services/pf-lumen-landing-9f04272edf.webp",
+    "sha256": "9f04272edfc256735bb9e5047551fe304d65577b916b97c84735afc34d48998e"
+  },
+  "services/pf-navalha-relatorios": {
+    "public_id": "cabacatech/2026-11/services/pf-navalha-relatorios-68f57789a3",
+    "version": 1794680204,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 154190,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680204/cabacatech/2026-11/services/pf-navalha-relatorios-68f57789a3.webp",
+    "sha256": "68f57789a35d52399833a252965989fb58a92fd7f0758b4c7e800af54e52eb87"
+  },
+  "services/pf-navalha-site": {
+    "public_id": "cabacatech/2026-11/services/pf-navalha-site-f93d56c17a",
+    "version": 1794680206,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 158706,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680206/cabacatech/2026-11/services/pf-navalha-site-f93d56c17a.webp",
+    "sha256": "f93d56c17a0b59b6a565076eadff0bb84da79cee96b5b3625de9ea8a9f3f6374"
+  },
+  "services/pf-partida-checkout": {
+    "public_id": "cabacatech/2026-11/services/pf-partida-checkout-d0fdfed21e",
+    "version": 1794680209,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 164820,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680209/cabacatech/2026-11/services/pf-partida-checkout-d0fdfed21e.webp",
+    "sha256": "d0fdfed21e1cc6e3dc8ed9f79ee8284c7ed92f47db1eb6951136671dcfef6ce1"
+  },
+  "services/pf-partida-pesquisa": {
+    "public_id": "cabacatech/2026-11/services/pf-partida-pesquisa-87cc5419b7",
+    "version": 1794680213,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 200342,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680213/cabacatech/2026-11/services/pf-partida-pesquisa-87cc5419b7.webp",
+    "sha256": "87cc5419b7b327f421876480bc3595293b89495572f0eaf08f31e5ece1c7e566"
+  },
+  "services/pf-rotaviva-estafeta": {
+    "public_id": "cabacatech/2026-11/services/pf-rotaviva-estafeta-f209753021",
+    "version": 1794680218,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 216246,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680218/cabacatech/2026-11/services/pf-rotaviva-estafeta-f209753021.webp",
+    "sha256": "f2097530219083d984a74714dd222ed1371aedda86e1007556ce59eb45b109f1"
+  },
+  "services/pf-rotaviva-rotas": {
+    "public_id": "cabacatech/2026-11/services/pf-rotaviva-rotas-5b7ba91904",
+    "version": 1794680219,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 267030,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680219/cabacatech/2026-11/services/pf-rotaviva-rotas-5b7ba91904.webp",
+    "sha256": "5b7ba91904a436308c12f3594593e6626bd1dfbc74cc5f7a48f74695664ebda4"
+  },
+  "services/pf-tasca-menu": {
+    "public_id": "cabacatech/2026-11/services/pf-tasca-menu-faeb1447c9",
+    "version": 1794680226,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 262330,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680226/cabacatech/2026-11/services/pf-tasca-menu-faeb1447c9.webp",
+    "sha256": "faeb1447c93b8e8e7afe68d28de215d933132e8210da48f00974bfee64f2d6f7"
+  },
+  "services/pf-tasca-mobile": {
+    "public_id": "cabacatech/2026-11/services/pf-tasca-mobile-32a443b825",
+    "version": 1794680227,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 215384,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680227/cabacatech/2026-11/services/pf-tasca-mobile-32a443b825.webp",
+    "sha256": "32a443b825a05ef0b5c0cda5c27de550bc9b66b50fbe6501563a42f5cb93e479"
+  },
+  "services/pf-vigia-incidente": {
+    "public_id": "cabacatech/2026-11/services/pf-vigia-incidente-beff9691f8",
+    "version": 1794680234,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 286022,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680234/cabacatech/2026-11/services/pf-vigia-incidente-beff9691f8.webp",
+    "sha256": "beff9691f8a20411cf25874ff8cfe64acb9375af404fd56ae6c3a31b7d5e08b4"
+  },
+  "services/pf-vigia-landing": {
+    "public_id": "cabacatech/2026-11/services/pf-vigia-landing-9ec081b899",
+    "version": 1794680235,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 232472,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680235/cabacatech/2026-11/services/pf-vigia-landing-9ec081b899.webp",
+    "sha256": "9ec081b89912dbb044c77b5789dc5fe3c16bd3c7f1ae4feaf58182850e101050"
+  },
+  "services/svc-consultoria": {
+    "public_id": "cabacatech/2026-11/services/svc-consultoria-4b63f3b731",
+    "version": 1794680239,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 343584,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680239/cabacatech/2026-11/services/svc-consultoria-4b63f3b731.webp",
+    "sha256": "4b63f3b731b14d51854b8deb7bfb4c60a97aa709925b31059f0b66a5554ad19d"
+  },
+  "services/svc-performance": {
+    "public_id": "cabacatech/2026-11/services/svc-performance-3cc4f8ec3b",
+    "version": 1794680240,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 191644,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680240/cabacatech/2026-11/services/svc-performance-3cc4f8ec3b.webp",
+    "sha256": "3cc4f8ec3b72047711c05e191dae76561c40b36bae3b99daba34ea2df50aa675"
+  },
+  "services/svc-seo": {
+    "public_id": "cabacatech/2026-11/services/svc-seo-378453f70f",
+    "version": 1794680242,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 246980,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680242/cabacatech/2026-11/services/svc-seo-378453f70f.webp",
+    "sha256": "378453f70f56c21164c28c6f66b8c9b439c6fe1d26eff896926821e482e387cf"
+  },
+  "services/pf-allegro-horario": {
+    "public_id": "cabacatech/2026-11/services/pf-allegro-horario-bc78c8bda2",
+    "version": 1794680121,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 125864,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680121/cabacatech/2026-11/services/pf-allegro-horario-bc78c8bda2.webp",
+    "sha256": "bc78c8bda2b5da707f6293b725868ae4a592c6e3a8a695c9744ef447ea90936f"
+  },
+  "services/pf-allegro-professor": {
+    "public_id": "cabacatech/2026-11/services/pf-allegro-professor-3cd317909b",
+    "version": 1794680127,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 199454,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680127/cabacatech/2026-11/services/pf-allegro-professor-3cd317909b.webp",
+    "sha256": "3cd317909b86179abd13019c018ddee1890d5a6b2bdf300788cb7251f8700c29"
+  },
+  "services/pf-allegro-site": {
+    "public_id": "cabacatech/2026-11/services/pf-allegro-site-1c4705f8d2",
+    "version": 1794680128,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 155832,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680128/cabacatech/2026-11/services/pf-allegro-site-1c4705f8d2.webp",
+    "sha256": "1c4705f8d25aebbf6f64af9df53fe36715b84232766d90ee861c63b218856568"
+  },
+  "services/pf-alma-colecao": {
+    "public_id": "cabacatech/2026-11/services/pf-alma-colecao-f8b6bef310",
+    "version": 1794680130,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 176484,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680130/cabacatech/2026-11/services/pf-alma-colecao-f8b6bef310.webp",
+    "sha256": "f8b6bef310acd5f3cc7f415da0e7d68157c0d43dd5c47a8f9f2296943c6c0ed3"
+  },
+  "services/pf-alma-encomendas": {
+    "public_id": "cabacatech/2026-11/services/pf-alma-encomendas-87ab269065",
+    "version": 1794680131,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 158460,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680131/cabacatech/2026-11/services/pf-alma-encomendas-87ab269065.webp",
+    "sha256": "87ab2690659db3ce7e3080c839ef443ed03afec6336b36a252e751209b097286"
+  },
+  "services/pf-alma-oficina": {
+    "public_id": "cabacatech/2026-11/services/pf-alma-oficina-7e0d482483",
+    "version": 1794680136,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 221802,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680136/cabacatech/2026-11/services/pf-alma-oficina-7e0d482483.webp",
+    "sha256": "7e0d4824838a2f44b52b938a13e7f9a46f59e01718393cc44477142b6f74a0c1"
+  },
+  "services/pf-atelier-atelier": {
+    "public_id": "cabacatech/2026-11/services/pf-atelier-atelier-b9b044dd79",
+    "version": 1794680140,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 219502,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680140/cabacatech/2026-11/services/pf-atelier-atelier-b9b044dd79.webp",
+    "sha256": "b9b044dd7922a42da4351ee371610c7c21e69cff99aaac7884ab22702ed330d8"
+  },
+  "services/pf-atelier-indice": {
+    "public_id": "cabacatech/2026-11/services/pf-atelier-indice-6e8aa919ca",
+    "version": 1794680141,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 125792,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680141/cabacatech/2026-11/services/pf-atelier-indice-6e8aa919ca.webp",
+    "sha256": "6e8aa919cac20271ee74bc4694fccd7efe48794eeb9ae381c8ee8ba20ef8b329"
+  },
+  "services/pf-atelier-publicacoes": {
+    "public_id": "cabacatech/2026-11/services/pf-atelier-publicacoes-55f8fc01b5",
+    "version": 1794680146,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 229340,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680146/cabacatech/2026-11/services/pf-atelier-publicacoes-55f8fc01b5.webp",
+    "sha256": "55f8fc01b599c0fe62b027a80128f39f3f66d52bc66d7316bb1c591db306ba9e"
+  },
+  "services/pf-bairro-alertas": {
+    "public_id": "cabacatech/2026-11/services/pf-bairro-alertas-8a656b88a8",
+    "version": 1794680147,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 167724,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680147/cabacatech/2026-11/services/pf-bairro-alertas-8a656b88a8.webp",
+    "sha256": "8a656b88a8d38ae8da8923d0dc11840bf615596fe527daaa26a748b85b916415"
+  },
+  "services/pf-bairro-guia": {
+    "public_id": "cabacatech/2026-11/services/pf-bairro-guia-76c74c71df",
+    "version": 1794680148,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 147120,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680148/cabacatech/2026-11/services/pf-bairro-guia-76c74c71df.webp",
+    "sha256": "76c74c71df18d148270dab9da1ae711926cddbab4ff6273679c4ed64caa86a4e"
+  },
+  "services/pf-bairro-onboarding": {
+    "public_id": "cabacatech/2026-11/services/pf-bairro-onboarding-0212f0ed57",
+    "version": 1794680154,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 178008,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680154/cabacatech/2026-11/services/pf-bairro-onboarding-0212f0ed57.webp",
+    "sha256": "0212f0ed57c1b1b4acc840c6ed7665e94d4b96ce9b51976182c1e5c1cac53337"
+  },
+  "services/pf-casaclara-agente": {
+    "public_id": "cabacatech/2026-11/services/pf-casaclara-agente-914eee3ebf",
+    "version": 1794680156,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 196698,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680156/cabacatech/2026-11/services/pf-casaclara-agente-914eee3ebf.webp",
+    "sha256": "914eee3ebf4fb34c36cc3d7d664c0fca7cd4b4653f459cbdb06b2e88191173a7"
+  },
+  "services/pf-casaclara-home": {
+    "public_id": "cabacatech/2026-11/services/pf-casaclara-home-4fd6c1c39b",
+    "version": 1794680157,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 194058,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680157/cabacatech/2026-11/services/pf-casaclara-home-4fd6c1c39b.webp",
+    "sha256": "4fd6c1c39bcd6b314c5273e0075ec6fc935e78755c471250b64dc4a45df22bd9"
+  },
+  "services/pf-casaclara-vender": {
+    "public_id": "cabacatech/2026-11/services/pf-casaclara-vender-7bdbfce884",
+    "version": 1794680164,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 148806,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680164/cabacatech/2026-11/services/pf-casaclara-vender-7bdbfce884.webp",
+    "sha256": "7bdbfce88456f7ae9f40ae59fdc3379f93082b3380b1e5666b4bd7ae4bc31fbd"
+  },
+  "services/pf-clinica-backoffice": {
+    "public_id": "cabacatech/2026-11/services/pf-clinica-backoffice-78f203056d",
+    "version": 1794680167,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 188248,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680167/cabacatech/2026-11/services/pf-clinica-backoffice-78f203056d.webp",
+    "sha256": "78f203056da73969e5d177c513fb2a6c5ef6cd302c30e33d43ef1e5b4d267d68"
+  },
+  "services/pf-clinica-equipa": {
+    "public_id": "cabacatech/2026-11/services/pf-clinica-equipa-ed9f553e6b",
+    "version": 1794680168,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 211088,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680168/cabacatech/2026-11/services/pf-clinica-equipa-ed9f553e6b.webp",
+    "sha256": "ed9f553e6b8c7ce12fff640973dba9ef19e8b66027e1171083678af29661e6f4"
+  },
+  "services/pf-clinica-marcacao": {
+    "public_id": "cabacatech/2026-11/services/pf-clinica-marcacao-8f9c35d246",
+    "version": 1794680170,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 178262,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680170/cabacatech/2026-11/services/pf-clinica-marcacao-8f9c35d246.webp",
+    "sha256": "8f9c35d2467323800b16d1f914b959942ac078d9a3852a2c68280926354a6fbf"
+  },
+  "services/pf-forma-gestao": {
+    "public_id": "cabacatech/2026-11/services/pf-forma-gestao-1c346c2c03",
+    "version": 1794680174,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 178452,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680174/cabacatech/2026-11/services/pf-forma-gestao-1c346c2c03.webp",
+    "sha256": "1c346c2c037bc2e68940abf5631da5daf2e9fc98f749651ef80b0801298a03bb"
+  },
+  "services/pf-forma-planos": {
+    "public_id": "cabacatech/2026-11/services/pf-forma-planos-5107102b5a",
+    "version": 1794680177,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 189116,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680177/cabacatech/2026-11/services/pf-forma-planos-5107102b5a.webp",
+    "sha256": "5107102b5a1cbef1acbbcd60dbc95f9790277ee30921eaf39b413818f2c91c68"
+  },
+  "services/pf-forma-treinador": {
+    "public_id": "cabacatech/2026-11/services/pf-forma-treinador-93dce339ea",
+    "version": 1794680180,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 181262,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680180/cabacatech/2026-11/services/pf-forma-treinador-93dce339ea.webp",
+    "sha256": "93dce339eaefc4f1eb326c900a543fa0036acc12c94f16534a1113ac7e2ca747"
+  },
+  "services/pf-freixo-checkout": {
+    "public_id": "cabacatech/2026-11/services/pf-freixo-checkout-a0132df132",
+    "version": 1794680182,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 194198,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680182/cabacatech/2026-11/services/pf-freixo-checkout-a0132df132.webp",
+    "sha256": "a0132df1321a8a548384c2845f6682cded7cbbde7f091fcc874bb8e7fa18c9a4"
+  },
+  "services/pf-freixo-historia": {
+    "public_id": "cabacatech/2026-11/services/pf-freixo-historia-3bee30fb47",
+    "version": 1794680184,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 227308,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680184/cabacatech/2026-11/services/pf-freixo-historia-3bee30fb47.webp",
+    "sha256": "3bee30fb47fa66a213b7e4213e56e9a97fd1440583ba3418bced773c48d28ba7"
+  },
+  "services/pf-freixo-vinho": {
+    "public_id": "cabacatech/2026-11/services/pf-freixo-vinho-b68f00930e",
+    "version": 1794680188,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 186198,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680188/cabacatech/2026-11/services/pf-freixo-vinho-b68f00930e.webp",
+    "sha256": "b68f00930e8620aaffd1d1edb07ec1deaf3a64102efd9772b4b57ded938dd451"
+  },
+  "services/pf-lumen-componentes": {
+    "public_id": "cabacatech/2026-11/services/pf-lumen-componentes-fca443613f",
+    "version": 1794680193,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 176316,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680193/cabacatech/2026-11/services/pf-lumen-componentes-fca443613f.webp",
+    "sha256": "fca443613fd4c6199fcb36f02aefdfd8d787eebb95b6e32f357eb7710659fd5e"
+  },
+  "services/pf-lumen-fluxo": {
+    "public_id": "cabacatech/2026-11/services/pf-lumen-fluxo-52802ec748",
+    "version": 1794680194,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 156258,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680194/cabacatech/2026-11/services/pf-lumen-fluxo-52802ec748.webp",
+    "sha256": "52802ec748ae98c6d6b572681979fe20a1539f228c56a22da8cdf8ba87b8ed13"
+  },
+  "services/pf-lumen-tablet": {
+    "public_id": "cabacatech/2026-11/services/pf-lumen-tablet-629739b320",
+    "version": 1794680197,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 83600,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680197/cabacatech/2026-11/services/pf-lumen-tablet-629739b320.webp",
+    "sha256": "629739b3201fa795a251ba0461a5dc2f3342550262c79c0563375c89230ca217"
+  },
+  "services/pf-navalha-clientes": {
+    "public_id": "cabacatech/2026-11/services/pf-navalha-clientes-669cab899c",
+    "version": 1794680199,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 178286,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680199/cabacatech/2026-11/services/pf-navalha-clientes-669cab899c.webp",
+    "sha256": "669cab899cf501ad82f7d5d6fa7cad583e58719ef60a4026f57bc75438925bef"
+  },
+  "services/pf-navalha-equipa": {
+    "public_id": "cabacatech/2026-11/services/pf-navalha-equipa-072deeb0a0",
+    "version": 1794680201,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 121452,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680201/cabacatech/2026-11/services/pf-navalha-equipa-072deeb0a0.webp",
+    "sha256": "072deeb0a04c132b49c82a62e3767421f366ffc864c37ae903bbd5ba07c2e705"
+  },
+  "services/pf-navalha-home": {
+    "public_id": "cabacatech/2026-11/services/pf-navalha-home-b04b345e7a",
+    "version": 1794680203,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 134006,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680203/cabacatech/2026-11/services/pf-navalha-home-b04b345e7a.webp",
+    "sha256": "b04b345e7af47fb12da806a866d30df59b51adf4fe4bb6eaf24cf6af72d16d6d"
+  },
+  "services/pf-partida-bilhete": {
+    "public_id": "cabacatech/2026-11/services/pf-partida-bilhete-89bd1ad7ac",
+    "version": 1794680207,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 131630,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680207/cabacatech/2026-11/services/pf-partida-bilhete-89bd1ad7ac.webp",
+    "sha256": "89bd1ad7ac661c877822c4c4efe190a6ada28ca634ea6116b6fb3911f44e9eb1"
+  },
+  "services/pf-partida-conta": {
+    "public_id": "cabacatech/2026-11/services/pf-partida-conta-67df0ce4b7",
+    "version": 1794680210,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 135818,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680210/cabacatech/2026-11/services/pf-partida-conta-67df0ce4b7.webp",
+    "sha256": "67df0ce4b7c3c65f17d177cc4869dfdaef10f1435b3027821ea8bc0d0886252f"
+  },
+  "services/pf-partida-home": {
+    "public_id": "cabacatech/2026-11/services/pf-partida-home-6590aeb56b",
+    "version": 1794680212,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 152546,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680212/cabacatech/2026-11/services/pf-partida-home-6590aeb56b.webp",
+    "sha256": "6590aeb56bf5cf3dd8693f7192387018d0cda2442964bf65e170614b9839dc66"
+  },
+  "services/pf-rotaviva-clientes": {
+    "public_id": "cabacatech/2026-11/services/pf-rotaviva-clientes-d24c1c242b",
+    "version": 1794680215,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 214206,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680215/cabacatech/2026-11/services/pf-rotaviva-clientes-d24c1c242b.webp",
+    "sha256": "d24c1c242b4f5854c099733c76488f5c93925381e484f7a8fb58148540e9f6a7"
+  },
+  "services/pf-rotaviva-encomenda": {
+    "public_id": "cabacatech/2026-11/services/pf-rotaviva-encomenda-41c913da07",
+    "version": 1794680216,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 223828,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680216/cabacatech/2026-11/services/pf-rotaviva-encomenda-41c913da07.webp",
+    "sha256": "41c913da075270829b23ff3420d7dcecd3fcc835f1c02ef7718b76e51dd67a68"
+  },
+  "services/pf-rotaviva-tracking": {
+    "public_id": "cabacatech/2026-11/services/pf-rotaviva-tracking-600541a097",
+    "version": 1794680221,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 181566,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680221/cabacatech/2026-11/services/pf-rotaviva-tracking-600541a097.webp",
+    "sha256": "600541a09751551fcf14c41f8a6f0f877f47de27ef58b9ffbddc96e8c9d0b2eb"
+  },
+  "services/pf-tasca-admin": {
+    "public_id": "cabacatech/2026-11/services/pf-tasca-admin-a76a7c9057",
+    "version": 1794680223,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 159490,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680223/cabacatech/2026-11/services/pf-tasca-admin-a76a7c9057.webp",
+    "sha256": "a76a7c9057b7fdbab5ca1fdc063cc6683fa63206274173b40d7bcdef4c4a7563"
+  },
+  "services/pf-tasca-eventos": {
+    "public_id": "cabacatech/2026-11/services/pf-tasca-eventos-c36c4ccc37",
+    "version": 1794680224,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 208492,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680224/cabacatech/2026-11/services/pf-tasca-eventos-c36c4ccc37.webp",
+    "sha256": "c36c4ccc3770f0265f1656f118495ad6cfb47edec8c2a1e8e4cb92ddafd64fd4"
+  },
+  "services/pf-tasca-sobre": {
+    "public_id": "cabacatech/2026-11/services/pf-tasca-sobre-c0083407aa",
+    "version": 1794680229,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 261202,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680229/cabacatech/2026-11/services/pf-tasca-sobre-c0083407aa.webp",
+    "sha256": "c0083407aafab057f935b9bf7678e60f07ae02da7754ebc317f966fedef2d3fb"
+  },
+  "services/pf-vigia-alertas": {
+    "public_id": "cabacatech/2026-11/services/pf-vigia-alertas-23c8f059f9",
+    "version": 1794680231,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 177990,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680231/cabacatech/2026-11/services/pf-vigia-alertas-23c8f059f9.webp",
+    "sha256": "23c8f059f93da4d787cfad8b8c88510eaf09c5acca6e3de40a56cd61a5a6257d"
+  },
+  "services/pf-vigia-estado": {
+    "public_id": "cabacatech/2026-11/services/pf-vigia-estado-1663458ca6",
+    "version": 1794680232,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 191238,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680232/cabacatech/2026-11/services/pf-vigia-estado-1663458ca6.webp",
+    "sha256": "1663458ca6a3a8566eb09358484f8eff29bf33734c32839be75105e2ff9fc7fb"
+  },
+  "services/pf-vigia-onboarding": {
+    "public_id": "cabacatech/2026-11/services/pf-vigia-onboarding-0792bc12a8",
+    "version": 1794680237,
+    "width": 3200,
+    "height": 2000,
+    "bytes": 167468,
+    "delivery_url": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680237/cabacatech/2026-11/services/pf-vigia-onboarding-0792bc12a8.webp",
+    "sha256": "0792bc12a811ed77b55d5111bb66029e9cf88d4a4b8eb6009bbe2583ea21187e"
   }
 }

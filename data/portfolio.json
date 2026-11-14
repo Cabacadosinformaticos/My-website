@@ -1,0 +1,271 @@
+{
+  "projetos": [
+    {
+      "id": "tasca-do-largo",
+      "nome": "Tasca do Largo",
+      "tipo": ["sites"],
+      "setor": "Restauração",
+      "resumo": "Site de um restaurante de Lisboa com a ementa do dia à vista e reserva de mesa sem telefonar.",
+      "entregaveis": ["Design do site", "Reserva de mesa online", "Ementa por secções com alergénios", "Versão para telemóvel"],
+      "tecnologias": ["HTML", "CSS", "JavaScript", "Cloudflare"],
+      "desafio": "Uma tasca de bairro vive de quem decide à hora do almoço onde vai comer. O site tinha de mostrar a ementa do dia e o horário logo à chegada e de deixar reservar uma mesa sem uma chamada. Quase todos os visitantes abrem-no no telemóvel, a caminho do restaurante. Não querem procurar o preço de um prato num PDF.",
+      "abordagem": "Desenhei uma página inicial com a ementa do dia em destaque, os preços à vista e o botão de reserva sempre à mão. A ementa completa tem página própria, organizada por entradas, pratos, sobremesas e vinhos, com os alergénios assinalados em cada prato. A reserva pede só a data, a hora e o número de pessoas. Termina num ecrã de confirmação. O site é feito em HTML, CSS e JavaScript simples, para abrir depressa mesmo com pouca rede.",
+      "ecras": [
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680246/cabacatech/2026-11/services/web-restaurante-1627dba92d.webp", "legenda": "Página inicial no computador, com a ementa do dia, o horário e o botão de reserva. No telemóvel, o formulário de reserva." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680226/cabacatech/2026-11/services/pf-tasca-menu-faeb1447c9.webp", "legenda": "Ementa completa por secções, com os preços e os alergénios de cada prato." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680227/cabacatech/2026-11/services/pf-tasca-mobile-32a443b825.webp", "legenda": "Página inicial, ementa e confirmação da reserva no telemóvel." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680229/cabacatech/2026-11/services/pf-tasca-sobre-c0083407aa.webp", "legenda": "Página da casa, com as pessoas e a sala." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680224/cabacatech/2026-11/services/pf-tasca-eventos-c36c4ccc37.webp", "legenda": "Pedido para grupos e eventos privados." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680223/cabacatech/2026-11/services/pf-tasca-admin-a76a7c9057.webp", "legenda": "Gestão das reservas da noite, com as mesas e as notas." }
+      ]
+    },
+    {
+      "id": "atelier-norte",
+      "nome": "Atelier Norte",
+      "tipo": ["sites", "design"],
+      "setor": "Arquitetura",
+      "resumo": "Portfólio de um atelier de arquitetura onde as imagens dos edifícios ocupam o ecrã todo.",
+      "entregaveis": ["Design das páginas em Figma", "Índice de projetos", "Página de cada projeto", "Versão para tablet e telemóvel"],
+      "tecnologias": ["HTML", "CSS", "JavaScript", "Figma"],
+      "desafio": "Um atelier de arquitetura vende aquilo que mostra. O site tinha de dar às imagens a escala que merecem e de manter o texto fora do caminho. Cada projeto é também lido por pessoas diferentes: o cliente que compara ateliers e o jornalista que procura uma ficha técnica.",
+      "abordagem": "Escolhi uma grelha assimétrica para o índice, com imagens de tamanhos diferentes e tipografia grande sobre fundo claro. A única cor é um ocre discreto. Cada projeto tem uma página com a imagem principal inteira, a ficha com área, local e estado, colunas de texto e um desenho em planta. No telemóvel o índice passa a uma lista de nomes que abre cada obra. Desenhei tudo em Figma antes de escrever código.",
+      "ecras": [
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680245/cabacatech/2026-11/services/web-estudio-dfcecd5465.webp", "legenda": "Página inicial com tipografia grande e uma galeria assimétrica. Ao fundo, uma página de projeto." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680144/cabacatech/2026-11/services/pf-atelier-projeto-60ee119484.webp", "legenda": "Página de um projeto, com a imagem do edifício, a ficha técnica, o texto e uma planta desenhada." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680142/cabacatech/2026-11/services/pf-atelier-mobile-7f353a2985.webp", "legenda": "Índice de projetos e página do atelier no telemóvel e no tablet." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680140/cabacatech/2026-11/services/pf-atelier-atelier-b9b044dd79.webp", "legenda": "O atelier, a equipa e o processo." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680146/cabacatech/2026-11/services/pf-atelier-publicacoes-55f8fc01b5.webp", "legenda": "Imprensa e publicações." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680141/cabacatech/2026-11/services/pf-atelier-indice-6e8aa919ca.webp", "legenda": "Índice completo de projetos, com filtros." }
+      ]
+    },
+    {
+      "id": "clinica-movimento",
+      "nome": "Clínica Movimento",
+      "tipo": ["sites", "webapps"],
+      "setor": "Saúde e fisioterapia",
+      "resumo": "Site de uma clínica de fisioterapia com marcação online e uma área onde cada doente segue o seu plano de exercícios.",
+      "entregaveis": ["Site institucional", "Páginas de tratamentos com preços", "Marcação de consultas", "Área de cliente com plano de exercícios"],
+      "tecnologias": ["HTML", "CSS", "React", "Node.js", "PostgreSQL"],
+      "desafio": "Quem procura fisioterapia tem dores e quer saber três coisas: o que tratam, quanto custa e quando há vaga. Depois da consulta, esquece metade dos exercícios que lhe pediram para fazer em casa. A clínica queria resolver as duas pontas com o mesmo sistema.",
+      "abordagem": "O site tem uma página por tratamento com o preço à vista e uma marcação em dois passos, que termina numa grelha de horários livres. Para depois da consulta, desenhei uma área de cliente com as próximas marcações e o plano de exercícios, com o progresso de cada semana. A paleta é calma, em branco, azul-petróleo e azul-marinho, para transmitir tranquilidade e não parecer um hospital. A área de cliente tem login próprio e os dados ficam numa base de dados PostgreSQL.",
+      "ecras": [
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680243/cabacatech/2026-11/services/web-clinica-3670dd8f2f.webp", "legenda": "Página inicial com a lista de serviços, a equipa e as avaliações. No telemóvel, a escolha do horário." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680171/cabacatech/2026-11/services/pf-clinica-servicos-6219ae1951.webp", "legenda": "Página de serviços, com o detalhe de cada tratamento e os preços." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680165/cabacatech/2026-11/services/pf-clinica-area-85ed69ca4e.webp", "legenda": "Área de cliente com as próximas marcações e o plano de exercícios com o progresso." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680168/cabacatech/2026-11/services/pf-clinica-equipa-ed9f553e6b.webp", "legenda": "Página da equipa." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680170/cabacatech/2026-11/services/pf-clinica-marcacao-8f9c35d246.webp", "legenda": "Marcação em três passos no telemóvel." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680167/cabacatech/2026-11/services/pf-clinica-backoffice-78f203056d.webp", "legenda": "Agenda da receção e ficha do paciente." }
+      ]
+    },
+    {
+      "id": "rota-viva",
+      "nome": "Rota Viva",
+      "tipo": ["webapps", "apps"],
+      "setor": "Logística e entregas",
+      "resumo": "Painel de operações para uma empresa de entregas e a app que o estafeta leva no telemóvel.",
+      "entregaveis": ["Painel de operações", "Planeamento de rotas com mapa", "App do estafeta", "API e base de dados"],
+      "tecnologias": ["React", "TypeScript", "FastAPI", "PostgreSQL", "Kotlin", "Docker"],
+      "desafio": "Numa empresa de entregas, o coordenador tem de ver ao mesmo tempo quantas encomendas saíram, onde está cada estafeta e quais estão atrasadas. O estafeta está na rua, com uma mão ocupada e sol no ecrã. São duas pessoas com ecrãs muito diferentes e uma só fonte de dados.",
+      "abordagem": "No painel, os indicadores do dia ficam no topo, o gráfico dos últimos 30 dias ao centro e a lista de encomendas recentes com o estado escrito por extenso. O ecrã de rotas mostra o mapa e as paragens por ordem. Permite arrastá-las para mudar a sequência. A app do estafeta mostra uma entrega de cada vez, com a morada e a navegação num cartão grande e a assinatura do cliente como prova de entrega. Uma API em FastAPI serve as duas interfaces, com PostgreSQL por baixo.",
+      "ecras": [
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680105/cabacatech/2026-11/services/app-dashboard-01091c038f.webp", "legenda": "Painel com os indicadores do dia, o gráfico de 30 dias, as encomendas recentes e um mapa." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680219/cabacatech/2026-11/services/pf-rotaviva-rotas-5b7ba91904.webp", "legenda": "Planeamento de rotas, com o mapa, a lista de paragens e pegas para as reordenar." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680218/cabacatech/2026-11/services/pf-rotaviva-estafeta-f209753021.webp", "legenda": "App do estafeta com as entregas do dia, a navegação e a assinatura como prova de entrega." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680216/cabacatech/2026-11/services/pf-rotaviva-encomenda-41c913da07.webp", "legenda": "Detalhe de uma encomenda." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680215/cabacatech/2026-11/services/pf-rotaviva-clientes-d24c1c242b.webp", "legenda": "Contas de clientes." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680221/cabacatech/2026-11/services/pf-rotaviva-tracking-600541a097.webp", "legenda": "Página de seguimento para o cliente final." }
+      ]
+    },
+    {
+      "id": "navalha",
+      "nome": "Navalha",
+      "tipo": ["webapps", "sites"],
+      "setor": "Barbearias",
+      "resumo": "Marcações online para uma cadeia de barbearias e a agenda onde cada barbeiro vê o seu dia.",
+      "entregaveis": ["Site com marcação online", "Agenda semanal por barbeiro", "Relatórios de faturação e ocupação", "Versão para telemóvel"],
+      "tecnologias": ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
+      "desafio": "Numa barbearia, a agenda vive no telemóvel do dono e as marcações chegam por mensagem a qualquer hora. Com várias lojas isso deixa de funcionar: há horários sobrepostos, faltas sem aviso e ninguém sabe que barbeiro enche mais a cadeira. Era preciso uma só agenda para os clientes e para a equipa.",
+      "abordagem": "O cliente escolhe o serviço, o barbeiro e a hora, por esta ordem. A marcação aparece logo na agenda. A agenda semanal tem uma coluna por barbeiro, com cada marcação num bloco colorido e um painel lateral para confirmar ou remarcar. Os relatórios mostram a faturação por barbeiro, a ocupação por hora e dia e os serviços mais pedidos. No telemóvel, o cliente vê a próxima marcação e volta a marcar com um toque.",
+      "ecras": [
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680109/cabacatech/2026-11/services/app-reservas-8e137d9537.webp", "legenda": "Agenda semanal com uma coluna por barbeiro, o painel de detalhe da marcação e a app do cliente." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680206/cabacatech/2026-11/services/pf-navalha-site-f93d56c17a.webp", "legenda": "Site público com a marcação online: serviço, barbeiro e hora." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680204/cabacatech/2026-11/services/pf-navalha-relatorios-68f57789a3.webp", "legenda": "Relatórios com a faturação por barbeiro, a ocupação por hora e os serviços mais pedidos." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680199/cabacatech/2026-11/services/pf-navalha-clientes-669cab899c.webp", "legenda": "Lista de clientes." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680201/cabacatech/2026-11/services/pf-navalha-equipa-072deeb0a0.webp", "legenda": "Horários dos barbeiros e folgas." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680203/cabacatech/2026-11/services/pf-navalha-home-b04b345e7a.webp", "legenda": "Página inicial da cadeia, com as lojas." }
+      ]
+    },
+    {
+      "id": "bairro",
+      "nome": "Bairro",
+      "tipo": ["apps"],
+      "setor": "Transportes e guia local",
+      "resumo": "App instalável para apanhar o autocarro certo: próximas partidas, mapa e bilhetes no mesmo sítio.",
+      "entregaveis": ["Design da app", "App instalável (PWA)", "Mapa com veículos em movimento", "Página de apresentação"],
+      "tecnologias": ["React", "Vite", "TypeScript", "Cloudflare"],
+      "desafio": "Quem anda de transportes na cidade abre três apps para saber a que horas passa o autocarro, onde fica a paragem e como pagar. Pedir a quem usa a app duas vezes por semana que a instale a partir de uma loja é muito. O objetivo era juntar tudo numa app que se instala a partir do browser e abre depressa.",
+      "abordagem": "Fiz uma PWA, que se instala a partir do browser sem passar pela loja de apps. O ecrã inicial mostra as próximas partidas da paragem mais próxima e um cartão de mapa. Cada percurso tem uma linha vertical com as paragens e o perfil guarda os locais favoritos e as definições. No tablet, o mapa mostra os veículos a circular e a carteira reúne os bilhetes. A página de apresentação explica as funcionalidades e tem um botão para instalar.",
+      "ecras": [
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680107/cabacatech/2026-11/services/app-mobile-cf10c0fd00.webp", "legenda": "Início com as próximas partidas, detalhe de um percurso com as paragens e perfil com os locais guardados." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680151/cabacatech/2026-11/services/pf-bairro-landing-385508ba76.webp", "legenda": "Página de apresentação com as funcionalidades e o botão para instalar." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680153/cabacatech/2026-11/services/pf-bairro-mapa-c0ffaccc90.webp", "legenda": "Mapa com os veículos em movimento no tablet e a carteira de bilhetes no telemóvel." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680154/cabacatech/2026-11/services/pf-bairro-onboarding-0212f0ed57.webp", "legenda": "Primeiros passos da app." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680148/cabacatech/2026-11/services/pf-bairro-guia-76c74c71df.webp", "legenda": "Guia local." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680147/cabacatech/2026-11/services/pf-bairro-alertas-8a656b88a8.webp", "legenda": "Perturbações e avisos." }
+      ]
+    },
+    {
+      "id": "lumen",
+      "nome": "Lumen",
+      "tipo": ["design", "apps"],
+      "setor": "Casa inteligente",
+      "resumo": "Sistema de design e app para controlar luzes, cenas e consumo de energia de uma casa.",
+      "entregaveis": ["Sistema de design", "Ecrãs da app", "Página de apresentação", "Protótipo no Figma"],
+      "tecnologias": ["Figma", "Kotlin", "HTML", "CSS"],
+      "desafio": "Uma app de casa inteligente tem dezenas de ecrãs e controlos que têm de parecer o mesmo produto. Sem regras desenhadas à partida, cada ecrã novo muda os espaçamentos, as cores e o tamanho dos botões. Para a Lumen, era preciso desenhar primeiro as regras e só depois os ecrãs.",
+      "abordagem": "Comecei no canvas do Figma, com ecrãs de 390 por 844 e os espaçamentos anotados. Dali saiu uma folha de sistema com a paleta, a escala tipográfica, os botões em todos os estados, os campos de texto e os ícones. Com ela desenhei os ecrãs finais: início com os dispositivos, cenas e gráfico do consumo de energia. A página de apresentação usa os mesmos componentes e fecha o conjunto.",
+      "ecras": [
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680110/cabacatech/2026-11/services/design-canvas-1e7982ed07.webp", "legenda": "Canvas de design com os ecrãs da app, as medidas e os espaçamentos anotados." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680113/cabacatech/2026-11/services/design-system-3eabfb2226.webp", "legenda": "Folha do sistema de design com cores, tipografia, botões, campos e ícones." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680191/cabacatech/2026-11/services/pf-lumen-app-0238151dd0.webp", "legenda": "Ecrãs finais da app: início, cenas e consumo de energia." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680196/cabacatech/2026-11/services/pf-lumen-landing-9f04272edf.webp", "legenda": "Página de apresentação do produto." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680193/cabacatech/2026-11/services/pf-lumen-componentes-fca443613f.webp", "legenda": "Biblioteca de componentes." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680194/cabacatech/2026-11/services/pf-lumen-fluxo-52802ec748.webp", "legenda": "Mapa do fluxo da app." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680197/cabacatech/2026-11/services/pf-lumen-tablet-629739b320.webp", "legenda": "Controlador de parede em tablet." }
+      ]
+    },
+    {
+      "id": "partida",
+      "nome": "Partida",
+      "tipo": ["design", "apps"],
+      "setor": "Viagens de comboio",
+      "resumo": "App de reserva de bilhetes de comboio, desenhada do esboço ao ecrã final.",
+      "entregaveis": ["Esboços e wireframes", "Fluxo de compra", "Ecrãs finais", "Protótipo clicável"],
+      "tecnologias": ["Figma", "React", "TypeScript"],
+      "desafio": "Comprar um bilhete de comboio envolve muitas decisões seguidas: origem, destino, hora, classe, lugar e pagamento. Cada passo que confunde é alguém que desiste e vai à bilheteira. Era preciso um fluxo que se percorresse sem ler instruções.",
+      "abordagem": "Parti de esboços em papel e passei a wireframes, onde decidi a ordem dos passos antes de pensar em cor. A pesquisa mostra os horários numa lista com filtros por hora, duração e preço. A escolha de lugar usa o mapa da carruagem, com o resumo do pagamento ao lado. No fim, o protótipo clicável permite percorrer a compra de ponta a ponta antes de qualquer código.",
+      "ecras": [
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680112/cabacatech/2026-11/services/design-flow-1913389f39.webp", "legenda": "Do esboço ao wireframe e ao ecrã final da app." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680213/cabacatech/2026-11/services/pf-partida-pesquisa-87cc5419b7.webp", "legenda": "Resultados da pesquisa com filtros, no telemóvel e no computador." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680209/cabacatech/2026-11/services/pf-partida-checkout-d0fdfed21e.webp", "legenda": "Escolha de lugar no mapa da carruagem e resumo do pagamento." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680207/cabacatech/2026-11/services/pf-partida-bilhete-89bd1ad7ac.webp", "legenda": "Bilhete e embarque." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680212/cabacatech/2026-11/services/pf-partida-home-6590aeb56b.webp", "legenda": "Página inicial." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680210/cabacatech/2026-11/services/pf-partida-conta-67df0ce4b7.webp", "legenda": "Viagens, passageiros e recibos da conta." }
+      ]
+    },
+    {
+      "id": "vigia",
+      "nome": "Vigia",
+      "tipo": ["webapps"],
+      "setor": "Software e monitorização",
+      "resumo": "Serviço que vigia sites e avisa quem os gere quando algum deixa de responder.",
+      "entregaveis": ["Painel de estado dos sites", "Página de incidente", "Página de apresentação com planos", "API e verificadores"],
+      "tecnologias": ["React", "TypeScript", "Python", "FastAPI", "PostgreSQL", "Docker"],
+      "desafio": "Quem gere um site só descobre que está em baixo quando um cliente se queixa. As ferramentas de monitorização que existem trazem dezenas de gráficos e pedem uma tarde de configuração. A Vigia precisava de mostrar o estado de cada site de relance e de contar o que aconteceu quando algo falha.",
+      "abordagem": "O painel lista cada site com uma barra de 90 dias, o tempo de resposta, a validade do certificado e a última cópia de segurança. Quando há uma falha, abre-se uma página de incidente com a linha temporal, o gráfico do pico de resposta e as atualizações de estado escritas pela equipa. Os verificadores correm em Python e a interface é em React. A página de apresentação traz os planos com os preços em euros.",
+      "ecras": [
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680118/cabacatech/2026-11/services/host-status-00c45d8d73.webp", "legenda": "Painel com o estado dos sites, a validade do certificado, as cópias de segurança e o tempo de resposta." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680235/cabacatech/2026-11/services/pf-vigia-landing-9ec081b899.webp", "legenda": "Página de apresentação com os planos e os preços." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680234/cabacatech/2026-11/services/pf-vigia-incidente-beff9691f8.webp", "legenda": "Página de incidente com a linha temporal, o pico no tempo de resposta e as atualizações de estado." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680237/cabacatech/2026-11/services/pf-vigia-onboarding-0792bc12a8.webp", "legenda": "Adicionar o primeiro site." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680232/cabacatech/2026-11/services/pf-vigia-estado-1663458ca6.webp", "legenda": "Página pública de estado." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680231/cabacatech/2026-11/services/pf-vigia-alertas-23c8f059f9.webp", "legenda": "Regras de alerta e canais." }
+      ]
+    },
+    {
+      "id": "alma-ceramica",
+      "nome": "Alma Cerâmica",
+      "tipo": ["lojas", "sites"],
+      "setor": "Cerâmica artesanal",
+      "resumo": "Loja online de cerâmica feita à mão, onde cada peça tem o espaço todo e o resto fica quieto.",
+      "entregaveis": ["Design da loja", "Páginas de produto com variantes", "Carrinho e pagamento", "Versão para telemóvel"],
+      "tecnologias": ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
+      "desafio": "Cada peça de cerâmica feita à mão é ligeiramente diferente das outras. Uma loja com demasiado ruído visual tira-lhe valor e uma loja com pouca informação deixa o cliente sem saber o tamanho ou a cor real. Era preciso um fundo calmo que respondesse, ainda assim, a tudo o que se pergunta antes de comprar.",
+      "abordagem": "A página inicial usa muito espaço em branco, cores de terra e imagens grandes das peças. A página de produto tem galeria, variantes de cor e tamanho, preço e botão de adicionar ao carrinho, com as dimensões escritas em centímetros. No telemóvel, o catálogo, o carrinho e o pagamento são três ecrãs seguidos, com um só passo em cada. O pagamento pede apenas o que é preciso para enviar a encomenda.",
+      "ecras": [
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680133/cabacatech/2026-11/services/pf-alma-home-d3b326d163.webp", "legenda": "Página inicial da loja, com as peças em destaque e muito espaço em branco." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680138/cabacatech/2026-11/services/pf-alma-produto-d59ddb9176.webp", "legenda": "Página de produto com galeria, variantes, preço e botão de adicionar ao carrinho." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680135/cabacatech/2026-11/services/pf-alma-mobile-61bcad4e36.webp", "legenda": "Catálogo, carrinho e pagamento no telemóvel." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680136/cabacatech/2026-11/services/pf-alma-oficina-7e0d482483.webp", "legenda": "Página da oficina." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680130/cabacatech/2026-11/services/pf-alma-colecao-f8b6bef310.webp", "legenda": "Página de uma coleção." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680131/cabacatech/2026-11/services/pf-alma-encomendas-87ab269065.webp", "legenda": "Encomendas e stock." }
+      ]
+    },
+    {
+      "id": "forma-studio",
+      "nome": "Forma Studio",
+      "tipo": ["sites", "apps"],
+      "setor": "Pilates e treino",
+      "resumo": "Site e app de membros para um estúdio de pilates, com horário semanal e reserva de aulas.",
+      "entregaveis": ["Design do site", "Horário semanal com reservas", "App de membros", "Check-in por código QR"],
+      "tecnologias": ["React", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL"],
+      "desafio": "Num estúdio de turmas pequenas, cada lugar vazio é dinheiro perdido e cada aula que esgota sem aviso é um aluno desiludido. O estúdio precisava de um horário que se lesse bem e de uma reserva que o membro fizesse sozinho. Queria também um site com a energia do próprio estúdio.",
+      "abordagem": "Usei tipografia grande e condensada e uma única cor forte, o laranja, sobre fundo claro. O site apresenta as aulas, os treinadores e os planos. O horário semanal mostra os lugares livres de cada aula e permite reservar no próprio ecrã. Na app de membros, o próximo treino aparece no topo, com o código QR para o check-in e o progresso do mês.",
+      "ecras": [
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680179/cabacatech/2026-11/services/pf-forma-site-a4a56d5245.webp", "legenda": "Página inicial com as aulas, a equipa, os planos e a marcação de uma aula experimental." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680176/cabacatech/2026-11/services/pf-forma-horario-8c38c2b579.webp", "legenda": "Horário semanal das aulas, com reserva de lugar." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680173/cabacatech/2026-11/services/pf-forma-app-816c2e7593.webp", "legenda": "App de membros com a próxima aula, o código QR de check-in e o progresso." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680177/cabacatech/2026-11/services/pf-forma-planos-5107102b5a.webp", "legenda": "Planos e preços." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680180/cabacatech/2026-11/services/pf-forma-treinador-93dce339ea.webp", "legenda": "Página de um treinador." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680174/cabacatech/2026-11/services/pf-forma-gestao-1c346c2c03.webp", "legenda": "Lotação das aulas e membros." }
+      ]
+    },
+    {
+      "id": "quinta-do-freixo",
+      "nome": "Quinta do Freixo",
+      "tipo": ["sites", "lojas"],
+      "setor": "Vinho e enoturismo",
+      "resumo": "Site de uma quinta no Douro que vende visitas e provas, com uma loja para os vinhos.",
+      "entregaveis": ["Design do site", "Reserva de visitas e provas", "Loja de vinhos", "Versão para tablet e telemóvel"],
+      "tecnologias": ["HTML", "CSS", "JavaScript", "PHP", "Laravel", "MySQL"],
+      "desafio": "Uma quinta no Douro tem dois públicos que raramente coincidem: quem quer visitar e provar e quem só quer encomendar uma caixa de vinho. As visitas dependem de datas e de lotação, os vinhos de stock e de portes de envio. São dois negócios com o mesmo nome, que o site tinha de arrumar sem os misturar.",
+      "abordagem": "A página inicial abre com a paisagem da vinha e uma tipografia com serifa, em tons de bordeaux e verde. As visitas têm página própria, onde se escolhe a experiência, a data no calendário e o número de convidados. A loja é um catálogo à parte, desenhado para tablet e telemóvel, com a ficha de cada vinho e o carrinho. O backend em Laravel guarda a lotação das visitas e o stock das garrafas na mesma base de dados MySQL.",
+      "ecras": [
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680185/cabacatech/2026-11/services/pf-freixo-home-8bf2322a38.webp", "legenda": "Página inicial com a paisagem da vinha e os acessos às visitas e à loja." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680190/cabacatech/2026-11/services/pf-freixo-visitas-fdec3ae482.webp", "legenda": "Reserva de uma visita: experiência, data no calendário e número de convidados." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680187/cabacatech/2026-11/services/pf-freixo-loja-c3b27b454e.webp", "legenda": "Loja de vinhos no tablet e no telemóvel." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680188/cabacatech/2026-11/services/pf-freixo-vinho-b68f00930e.webp", "legenda": "Ficha de um vinho." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680184/cabacatech/2026-11/services/pf-freixo-historia-3bee30fb47.webp", "legenda": "A história da quinta." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680182/cabacatech/2026-11/services/pf-freixo-checkout-a0132df132.webp", "legenda": "Pagamento da encomenda." }
+      ]
+    },
+    {
+      "id": "allegro",
+      "nome": "Allegro",
+      "tipo": ["webapps", "apps"],
+      "setor": "Educação musical",
+      "resumo": "Gestão de uma escola de música (aulas, salas, alunos e mensalidades) com uma app para os pais.",
+      "entregaveis": ["Painel de gestão", "Ficha de aluno", "App para encarregados de educação", "Controlo de mensalidades"],
+      "tecnologias": ["React", "TypeScript", "PHP", "Laravel", "MySQL"],
+      "desafio": "Numa escola de música, a secretaria gere horários de professores, ocupação de salas, faltas e mensalidades, normalmente em folhas de cálculo separadas. Os pais, entretanto, telefonam a perguntar a que horas é a aula e se o professor deixou algum recado. A escola precisava de uma ferramenta para a secretaria e de outra, mais simples, para as famílias.",
+      "abordagem": "O painel da secretaria mostra as aulas de hoje, as salas ocupadas e as presenças, em tons claros e com texto grande. A ficha de cada aluno reúne o instrumento, o professor, o histórico de aulas e o estado das mensalidades. A app dos pais mostra o horário da semana e as mensagens dos professores. O backend em Laravel serve as duas interfaces e a base de dados é MySQL.",
+      "ecras": [
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680125/cabacatech/2026-11/services/pf-allegro-painel-227018ce12.webp", "legenda": "Painel da secretaria com as aulas de hoje, as salas e as presenças." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680119/cabacatech/2026-11/services/pf-allegro-alunos-97a7e27c6b.webp", "legenda": "Ficha de um aluno com instrumento, professor, histórico de aulas e estado das mensalidades." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680123/cabacatech/2026-11/services/pf-allegro-mobile-5798e11759.webp", "legenda": "App dos pais com o horário e as mensagens dos professores." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680121/cabacatech/2026-11/services/pf-allegro-horario-bc78c8bda2.webp", "legenda": "Horário por sala e por professor." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680127/cabacatech/2026-11/services/pf-allegro-professor-3cd317909b.webp", "legenda": "Vista do professor." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680128/cabacatech/2026-11/services/pf-allegro-site-1c4705f8d2.webp", "legenda": "Site público com inscrições." }
+      ]
+    },
+    {
+      "id": "casa-clara",
+      "nome": "Casa Clara",
+      "tipo": ["sites"],
+      "setor": "Imobiliário",
+      "resumo": "Site de uma imobiliária com pesquisa por mapa e filtros e uma página de imóvel que responde às dúvidas de quem procura casa.",
+      "entregaveis": ["Design do site", "Pesquisa com mapa e filtros", "Página de imóvel", "Versão para telemóvel"],
+      "tecnologias": ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
+      "desafio": "Quem procura casa abre dezenas de anúncios e quer comparar preço, área e localização sem os abrir um a um. Quando encontra uma de que gosta, precisa de ver as fotografias, o certificado energético e como marcar uma visita, tudo no mesmo sítio. Num site de imobiliária, a confiança vem da informação completa.",
+      "abordagem": "A pesquisa junta uma lista com filtros e um mapa com o preço em cada marcador, para comparar sem sair da página. A página do imóvel tem a galeria, a ficha técnica, o certificado energético e o contacto do agente. No telemóvel, os imóveis guardados, a ficha e a marcação de visita ficam em três ecrãs. O design é limpo e deixa as fotografias fazerem o trabalho.",
+      "ecras": [
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680162/cabacatech/2026-11/services/pf-casaclara-pesquisa-fee9c3e17d.webp", "legenda": "Pesquisa com filtros e um mapa com o preço em cada marcador." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680159/cabacatech/2026-11/services/pf-casaclara-imovel-4b7f4c4c2b.webp", "legenda": "Página de um imóvel com galeria, ficha técnica, certificado energético e contacto do agente." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680161/cabacatech/2026-11/services/pf-casaclara-mobile-586a9dab39.webp", "legenda": "Imóveis guardados, ficha do imóvel e marcação de visita no telemóvel." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680157/cabacatech/2026-11/services/pf-casaclara-home-4fd6c1c39b.webp", "legenda": "Página inicial." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680164/cabacatech/2026-11/services/pf-casaclara-vender-7bdbfce884.webp", "legenda": "Pedido de avaliação para quem quer vender." },
+        { "img": "https://res.cloudinary.com/ddmoo3e4n/image/upload/f_auto,q_auto/v1794680156/cabacatech/2026-11/services/pf-casaclara-agente-914eee3ebf.webp", "legenda": "Back office do agente." }
+      ]
+    }
+  ]
+}
